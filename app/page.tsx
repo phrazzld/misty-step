@@ -1,6 +1,13 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
+import { 
+  Card, 
+  CardHeader, 
+  CardTitle, 
+  CardDescription, 
+  CardContent 
+} from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -49,11 +56,13 @@ export default function Home() {
                 icon: "🔒"
               }
             ].map((feature, index) => (
-              <div key={index} className="bg-card p-6 rounded-lg border border-border hover:shadow-md transition-shadow">
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-foreground/70">{feature.description}</p>
-              </div>
+              <Card key={index} className="hover:shadow-md transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="text-4xl mb-4">{feature.icon}</div>
+                  <CardTitle className="text-xl mb-2">{feature.title}</CardTitle>
+                  <CardDescription className="text-foreground/70">{feature.description}</CardDescription>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -80,18 +89,22 @@ export default function Home() {
                 points: ["Real-time Dashboards", "Predictive Analytics", "Data Visualization"]
               }
             ].map((solution, index) => (
-              <div key={index} className="bg-card p-8 rounded-lg border border-border">
-                <h3 className="text-2xl font-semibold mb-4">{solution.title}</h3>
-                <p className="text-foreground/70 mb-6">{solution.description}</p>
-                <ul className="space-y-2">
-                  {solution.points.map((point, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
-                      <span className="text-primary">✓</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Card key={index}>
+                <CardHeader>
+                  <CardTitle className="text-2xl">{solution.title}</CardTitle>
+                  <CardDescription className="text-foreground/70">{solution.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {solution.points.map((point, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <span className="text-primary">✓</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>

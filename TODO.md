@@ -88,7 +88,7 @@
         2. Buttons render visually consistent with the original design (post-theming).
         3. Button functionality (links, actions) remains unchanged.
     - **Depends‑on:** [T003, T008]
-- [ ] **T011 · Refactor · P2: refactor card elements in `app/page.tsx` to use `<Card>`**
+- [x] **T011 · Refactor · P2: refactor card elements in `app/page.tsx` to use `<Card>`**
     - **Context:** PLAN.md > Implementation Steps > 5. Refactor Site to Use Components > Replace card elements...
     - **Action:**
         1. Identify elements representing cards (e.g., in Features, Solutions sections) in `app/page.tsx`.
