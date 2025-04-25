@@ -35,7 +35,7 @@
     - **Done‑when:**
         1. `components/ui/card.tsx` file exists and compiles without errors.
     - **Depends‑on:** [T002]
-- [ ] **T005 · Feature · P2: add shadcn input component**
+- [x] **T005 · Feature · P2: add shadcn input component**
     - **Context:** PLAN.md > Implementation Steps > 3. Add Basic shadcn Components
     - **Action:**
         1. Run `pnpm dlx shadcn-ui@latest add input`.
