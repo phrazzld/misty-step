@@ -21,18 +21,14 @@
         1. Pre-commit hooks block commits with lint/format violations
     - **Depends-on:** [T001]
 
-- [ ] **T003 · Chore · P0: replace invalid documentation symlinks**
-    - **Context:** cr-03 in PLAN.md
-    - **Action:**
-        1. Remove symlinks for `docs/DEVELOPMENT_PHILOSOPHY.md` and `docs/prompts`
-        2. Copy actual content as real markdown files into proper locations
-        3. Verify markdown rendering correctly
-    - **Done-when:**
-        1. Documentation files exist as real files (not symlinks)
+- [x] **T003 · Chore · INVALID: symlinks are intentional**
+    - **Context:** cr-03 in PLAN.md - INVALID
+    - **Action:** NONE - symlinks are intentional and should be preserved
+    - **Done-when:** N/A
     - **Depends-on:** none
 
 ## Accessibility & User Experience
-- [ ] **T004 · Bugfix · P0: wrap contact component in semantic form element**
+- [x] **T004 · Bugfix · P0: wrap contact component in semantic form element**
     - **Context:** cr-04 in PLAN.md
     - **Action:**
         1. Modify `components/contact.tsx` to wrap inputs and button in `<form>` tag
