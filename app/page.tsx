@@ -1,36 +1,10 @@
-import Image from "next/image";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Navigation */}
-      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Image 
-              src="/images/logo.svg" 
-              alt="Misty Step Logo" 
-              width={40} 
-              height={40} 
-              className="rounded-md"
-            />
-            <span className="font-bold text-xl">Misty Step</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <a href="#features" className="text-foreground/80 hover:text-foreground transition">Features</a>
-            <a href="#solutions" className="text-foreground/80 hover:text-foreground transition">Solutions</a>
-            <a href="#about" className="text-foreground/80 hover:text-foreground transition">About</a>
-            <a href="#contact" className="text-foreground/80 hover:text-foreground transition">Contact</a>
-          </nav>
-          <a 
-            href="#contact" 
-            className="rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 transition-colors"
-          >
-            Get Started
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Hero Section */}
       <section className="flex-grow flex items-center justify-center bg-gradient-to-b from-background to-accent/10 py-20">

@@ -110,7 +110,7 @@
     - **Depends‑on:** [T005, T006, T007, T008]
 
 ## Composite Components
-- [ ] **T013 · Feature · P2: implement `SiteHeader` component**
+- [x] **T013 · Feature · P2: implement `SiteHeader` component**
     - **Context:** PLAN.md > Implementation Steps > 6. Create Composite Components
     - **Action:**
         1. Create `components/site-header.tsx`.
