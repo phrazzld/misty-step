@@ -42,10 +42,10 @@
     - **Done‑when:**
         1. `components/ui/input.tsx` file exists and compiles without errors.
     - **Depends‑on:** [T002]
-- [ ] **T006 · Feature · P2: add shadcn textarea component**
+- [x] **T006 · Feature · P2: add shadcn textarea component**
     - **Context:** PLAN.md > Implementation Steps > 3. Add Basic shadcn Components
     - **Action:**
-        1. Run `pnpm dlx shadcn-ui@latest add textarea`.
+        1. Run `pnpm dlx shadcn@latest add textarea`.
     - **Done‑when:**
         1. `components/ui/textarea.tsx` file exists and compiles without errors.
     - **Depends‑on:** [T002]
