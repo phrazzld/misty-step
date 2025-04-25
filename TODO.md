@@ -78,7 +78,7 @@
     - **Depends‑on:** [T008]
 
 ## Refactoring `app/page.tsx`
-- [ ] **T010 · Refactor · P2: refactor buttons in `app/page.tsx` to use `<Button>`**
+- [x] **T010 · Refactor · P2: refactor buttons in `app/page.tsx` to use `<Button>`**
     - **Context:** PLAN.md > Implementation Steps > 5. Refactor Site to Use Components > Replace buttons...
     - **Action:**
         1. Identify all button-like elements (`<a>`, `<button>`) in `app/page.tsx`.

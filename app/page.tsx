@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -16,18 +17,12 @@ export default function Home() {
             Innovative technology solutions that help modern businesses achieve digital transformation quickly and efficiently.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <a 
-              href="#contact" 
-              className="rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 text-lg font-medium transition-colors"
-            >
-              Get Started
-            </a>
-            <a 
-              href="#solutions" 
-              className="rounded-md border border-border hover:bg-muted px-6 py-3 text-lg font-medium transition-colors"
-            >
-              Explore Solutions
-            </a>
+            <Button asChild size="lg">
+              <a href="#contact">Get Started</a>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <a href="#solutions">Explore Solutions</a>
+            </Button>
           </div>
         </div>
       </section>
@@ -160,12 +155,9 @@ export default function Home() {
                   ></textarea>
                 </div>
               </div>
-              <button
-                type="submit"
-                className="w-full rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 font-medium transition-colors"
-              >
+              <Button type="submit" size="lg" className="w-full">
                 Send Message
-              </button>
+              </Button>
             </div>
           </div>
         </div>
