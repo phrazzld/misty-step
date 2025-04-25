@@ -8,6 +8,9 @@ import {
   CardDescription, 
   CardContent 
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 export default function Home() {
   return (
@@ -134,38 +137,35 @@ export default function Home() {
           <div className="max-w-md mx-auto">
             <div className="bg-background p-8 rounded-lg border border-border">
               <div className="grid gap-4 mb-6">
-                <div>
-                  <label htmlFor="name" className="block mb-2 text-sm font-medium">
+                <div className="space-y-2">
+                  <Label htmlFor="name">
                     Name
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     type="text"
                     id="name"
-                    className="w-full p-3 rounded-md border border-input bg-background"
                     placeholder="Your name"
                   />
                 </div>
-                <div>
-                  <label htmlFor="email" className="block mb-2 text-sm font-medium">
+                <div className="space-y-2">
+                  <Label htmlFor="email">
                     Email
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     type="email"
                     id="email"
-                    className="w-full p-3 rounded-md border border-input bg-background"
                     placeholder="your.email@example.com"
                   />
                 </div>
-                <div>
-                  <label htmlFor="message" className="block mb-2 text-sm font-medium">
+                <div className="space-y-2">
+                  <Label htmlFor="message">
                     Message
-                  </label>
-                  <textarea
+                  </Label>
+                  <Textarea
                     id="message"
                     rows={4}
-                    className="w-full p-3 rounded-md border border-input bg-background"
                     placeholder="How can we help you?"
-                  ></textarea>
+                  />
                 </div>
               </div>
               <Button type="submit" size="lg" className="w-full">

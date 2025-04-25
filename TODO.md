@@ -98,7 +98,7 @@
         2. Cards render visually consistent with the original design (post-theming).
         3. Card content structure is preserved.
     - **Depends‑on:** [T004, T008]
-- [ ] **T012 · Refactor · P2: refactor form elements in `app/page.tsx` to use form components**
+- [x] **T012 · Refactor · P2: refactor form elements in `app/page.tsx` to use form components**
     - **Context:** PLAN.md > Implementation Steps > 5. Refactor Site to Use Components > Refactor form elements...
     - **Action:**
         1. Identify form elements (likely in Contact section) in `app/page.tsx`.
