@@ -110,7 +110,7 @@
 
 ## Code Hygiene
 
-- [ ] **T011 · Chore · P2: remove unused dependencies**
+- [x] **T011 · Chore · P2: remove unused dependencies**
 
   - **Context:** cr-09 in PLAN.md
   - **Action:**
