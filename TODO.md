@@ -54,7 +54,7 @@
 
 ## Testing & CI
 
-- [ ] **T006 · Chore · P1: set up automated testing infrastructure**
+- [x] **T006 · Chore · P1: set up automated testing infrastructure**
 
   - **Context:** cr-06 in PLAN.md (part 1)
   - **Action:**
