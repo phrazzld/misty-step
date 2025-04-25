@@ -76,7 +76,7 @@
     1. Tests passing with target coverage reached
   - **Depends-on:** [T006, T004]
 
-- [ ] **T008 · Chore · P1: implement CI workflow**
+- [x] **T008 · Chore · P1: implement CI workflow**
   - **Context:** cr-06 in PLAN.md (part 3)
   - **Action:**
     1. Create GitHub Actions workflow file

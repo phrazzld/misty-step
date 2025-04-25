@@ -48,6 +48,20 @@ This project enforces code quality through:
 - Prettier for code formatting
 - Husky for pre-commit hooks
 - lint-staged for running linters on staged files
+- GitHub Actions CI for automated quality checks
+
+## Continuous Integration
+
+A GitHub Actions workflow runs automatically on all pull requests and pushes to main branch. The CI pipeline performs the following checks:
+
+1. Linting with ESLint
+2. Type checking with TypeScript
+3. Running tests with Vitest
+4. Checking test coverage thresholds
+5. Security auditing with pnpm audit
+6. Building the application
+
+All checks must pass for pull requests to be merged. See the workflow configuration in `.github/workflows/ci.yml`.
 
 ## Commands
 

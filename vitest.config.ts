@@ -13,8 +13,7 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "json", "html"],
       exclude: ["node_modules/", ".next/", "**/*.d.ts", "**/*.test.{ts,tsx}"],
-      // Setting initial lower thresholds for bootstrapping
-      // TODO: Raise to 85% as required by development philosophy once more tests are added in task T008
+      // TODO: Gradually increase these thresholds to 85% as test coverage improves
       thresholds: {
         statements: 30,
         branches: 80,
