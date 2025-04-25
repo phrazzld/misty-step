@@ -130,7 +130,7 @@
         1. `SiteFooter` component exists and renders the site footer.
         2. Footer is visually and functionally consistent with the original design.
     - **Depends‑on:** none
-- [ ] **T015 · Refactor · P2: extract Hero section into component**
+- [x] **T015 · Refactor · P2: extract Hero section into component**
     - **Context:** PLAN.md > Implementation Steps > 6. Create Composite Components
     - **Action:**
         1. Move Hero JSX from `app/page.tsx` to `components/hero.tsx`.
