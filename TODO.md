@@ -120,7 +120,7 @@
         1. `SiteHeader` component exists and renders the site navigation/header.
         2. Header is visually and functionally consistent with the original design.
     - **Depends‑on:** [T003] 
-- [ ] **T014 · Feature · P2: implement `SiteFooter` component**
+- [x] **T014 · Feature · P2: implement `SiteFooter` component**
     - **Context:** PLAN.md > Implementation Steps > 6. Create Composite Components
     - **Action:**
         1. Create `components/site-footer.tsx`.
