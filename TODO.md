@@ -49,10 +49,10 @@
     - **Done‑when:**
         1. `components/ui/textarea.tsx` file exists and compiles without errors.
     - **Depends‑on:** [T002]
-- [ ] **T007 · Feature · P2: add shadcn label component**
+- [x] **T007 · Feature · P2: add shadcn label component**
     - **Context:** PLAN.md > Implementation Steps > 3. Add Basic shadcn Components
     - **Action:**
-        1. Run `pnpm dlx shadcn-ui@latest add label`.
+        1. Run `pnpm dlx shadcn@latest add label`.
     - **Done‑when:**
         1. `components/ui/label.tsx` file exists and compiles without errors.
     - **Depends‑on:** [T002]
