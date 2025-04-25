@@ -10,7 +10,7 @@
         1. Command executed successfully.
         2. Output confirms expected configuration.
     - **Depends‑on:** none
-- [ ] **T002 · Chore · P1: verify shadcn/ui configuration files**
+- [x] **T002 · Chore · P1: verify shadcn/ui configuration files**
     - **Context:** PLAN.md > Implementation Steps > 1. Verify and Configure shadcn/ui Setup
     - **Action:**
         1. Inspect `tailwind.config.js` (or equivalent) for correct shadcn/ui plugin setup.
