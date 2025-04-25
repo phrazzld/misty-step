@@ -58,7 +58,7 @@
     - **Depends‑on:** [T002]
 
 ## Theming
-- [ ] **T008 · Refactor · P1: align shadcn css variables with project oklch values**
+- [x] **T008 · Refactor · P1: align shadcn css variables with project oklch values**
     - **Context:** PLAN.md > Implementation Steps > 4. Theme Alignment
     - **Action:**
         1. Identify existing OKLCH color variables in the project (likely `globals.css` or Tailwind config).
