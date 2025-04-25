@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { DarkModeToggle } from "@/components/dark-mode-toggle";
 
 export function SiteHeader() {
   return (
@@ -23,9 +24,12 @@ export function SiteHeader() {
           <a href="#about" className="text-foreground/80 hover:text-foreground transition">About</a>
           <a href="#contact" className="text-foreground/80 hover:text-foreground transition">Contact</a>
         </nav>
-        <Button asChild>
-          <a href="#contact">Get Started</a>
-        </Button>
+        <div className="flex items-center gap-2">
+          <DarkModeToggle />
+          <Button asChild>
+            <a href="#contact">Get Started</a>
+          </Button>
+        </div>
       </div>
     </header>
   );

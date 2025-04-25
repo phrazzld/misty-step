@@ -67,7 +67,7 @@
         1. Shadcn CSS variables in `globals.css` are updated to reflect project's OKLCH color theme.
         2. Base component previews (if available) show correct project colors.
     - **Depends‑on:** [T002]
-- [ ] **T009 · Test · P1: verify base dark mode theme variables**
+- [x] **T009 · Test · P1: verify base dark mode theme variables**
     - **Context:** PLAN.md > Implementation Steps > 4. Theme Alignment
     - **Action:**
         1. Inspect the dark mode variable definitions (`.dark { ... }`) added/modified by shadcn/ui in `globals.css`.
