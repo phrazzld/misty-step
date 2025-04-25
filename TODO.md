@@ -148,7 +148,7 @@
         1. `<Features />` renders identically in page.
         2. No Features-section code remains in `app/page.tsx`.
     - **Depends‑on:** [T011]
-- [ ] **T017 · Refactor · P2: extract Contact section into component**
+- [x] **T017 · Refactor · P2: extract Contact section into component**
     - **Context:** PLAN.md > Implementation Steps > 6. Create Composite Components
     - **Action:**
         1. Move Contact form JSX into `components/contact.tsx`.
