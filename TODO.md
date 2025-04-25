@@ -119,7 +119,7 @@
     - **Done‑when:**
         1. `SiteHeader` component exists and renders the site navigation/header.
         2. Header is visually and functionally consistent with the original design.
-    - **Depends‑on:** [T003] 
+    - **Depends‑on:** [T003]
 - [x] **T014 · Feature · P2: implement `SiteFooter` component**
     - **Context:** PLAN.md > Implementation Steps > 6. Create Composite Components
     - **Action:**
@@ -158,48 +158,3 @@
         2. No Contact-section code remains in `app/page.tsx`.
     - **Depends‑on:** [T012]
 
-## Testing & Validation
-- [ ] **T018 · Test · P2: perform visual regression testing**
-    - **Context:** PLAN.md > Implementation Steps > 7. Testing and Validation > Verify visual consistency...
-    - **Action:**
-        1. Compare the appearance of refactored components/pages against the original design mocks or screenshots.
-        2. Identify and document any visual discrepancies.
-    - **Done‑when:**
-        1. Visual comparison completed for all affected areas (`Button`, `Card`, Form, Header, Footer).
-        2. Any deviations from the original design are documented in new bugfix tickets.
-    - **Depends‑on:** [T010, T011, T012, T013, T014, T015, T016, T017]
-- [ ] **T019 · Test · P2: perform responsiveness testing**
-    - **Context:** PLAN.md > Implementation Steps > 7. Testing and Validation > Test responsiveness...
-    - **Action:**
-        1. Test the refactored pages/components across standard breakpoints (e.g., mobile, tablet, desktop).
-        2. Verify layout and usability are maintained.
-    - **Done‑when:**
-        1. Responsiveness testing completed across target breakpoints.
-        2. Layout issues are documented in new bugfix tickets.
-    - **Depends‑on:** [T010, T011, T012, T013, T014, T015, T016, T017]
-- [ ] **T020 · Test · P1: perform accessibility testing**
-    - **Context:** PLAN.md > Implementation Steps > 7. Testing and Validation > Test ... accessibility & Considerations > Accessibility
-    - **Action:**
-        1. Test keyboard navigation (tab order, focus visibility) on all interactive components (`Button`, `Input`, `Textarea`, links).
-        2. Test compatibility with a screen reader (e.g., VoiceOver, NVDA) for major components and page structure.
-    - **Done‑when:**
-        1. Keyboard navigation is logical and focus indicators are visible.
-        2. Screen reader output is coherent and elements are properly announced.
-        3. Accessibility issues are documented in new bugfix tickets.
-    - **Depends‑on:** [T010, T011, T012, T013, T014, T015, T016, T017]
-- [ ] **T021 · Test · P2: verify dark mode appearance**
-    - **Context:** PLAN.md > Implementation Steps > 7. Testing and Validation > Ensure dark mode compatibility
-    - **Action:**
-        1. Activate dark mode.
-        2. Verify all refactored components (`Button`, `Card`, Form elements) and composite components render correctly using dark theme variables.
-    - **Done‑when:**
-        1. Dark mode renders correctly across all refactored/added components.
-        2. Dark mode inconsistencies are documented in new bugfix tickets.
-    - **Depends‑on:** [T009, T010, T011, T012, T013, T014, T015, T016, T017]
-
----
-
-### Clarifications & Assumptions
-- [ ] **Issue:** Determine if additional shadcn components are needed beyond the initial set
-    - **Context:** PLAN.md > Base Component Integration
-    - **Blocking?:** no (Can proceed with core components and add more as needed)
