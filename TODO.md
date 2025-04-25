@@ -139,7 +139,7 @@
         1. `<Hero />` renders identically in page.
         2. No Hero-section code remains in `app/page.tsx`.
     - **Depends‑on:** [T010]
-- [ ] **T016 · Refactor · P2: extract Features section into component**
+- [x] **T016 · Refactor · P2: extract Features section into component**
     - **Context:** PLAN.md > Implementation Steps > 6. Create Composite Components
     - **Action:**
         1. Move Features JSX into `components/features.tsx`.
