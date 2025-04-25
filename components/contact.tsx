@@ -1,24 +1,22 @@
-"use client"
+"use client";
+
+import { FormEvent } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { FormEvent } from "react";
+import { Textarea } from "@/components/ui/textarea";
 
 export function Contact() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
-    // Get form data
+
+    // Get form data (currently not used, will be used when implementing actual form submission)
     const formData = new FormData(event.currentTarget);
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const message = formData.get("message") as string;
-    
-    // Log form data (replace with actual form submission logic)
-    console.log("Form submitted:", { name, email, message });
-    
+    const _name = formData.get("name") as string;
+    const _email = formData.get("email") as string;
+    const _message = formData.get("message") as string;
+
     // Here you would typically send the data to a server
     // e.g., fetch('/api/contact', { method: 'POST', body: formData });
   };
@@ -32,21 +30,11 @@ export function Contact() {
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4 mb-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name">
-                    Name
-                  </Label>
-                  <Input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Your name"
-                    required
-                  />
+                  <Label htmlFor="name">Name</Label>
+                  <Input type="text" id="name" name="name" placeholder="Your name" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">
-                    Email
-                  </Label>
+                  <Label htmlFor="email">Email</Label>
                   <Input
                     type="email"
                     id="email"
@@ -56,9 +44,7 @@ export function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="message">
-                    Message
-                  </Label>
+                  <Label htmlFor="message">Message</Label>
                   <Textarea
                     id="message"
                     name="message"

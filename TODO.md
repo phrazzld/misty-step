@@ -65,7 +65,7 @@
     1. Test runner initialized and properly configured
   - **Depends-on:** [T001, T002]
 
-- [ ] **T007 · Test · P1: write tests for core components**
+- [x] **T007 · Test · P1: write tests for core components**
 
   - **Context:** cr-06 in PLAN.md (part 2)
   - **Action:**
@@ -99,7 +99,7 @@
     1. Components properly forward refs to underlying DOM elements
   - **Depends-on:** [T001]
 
-- [ ] **T010 · Bugfix · P2: remove console.log statements from DarkModeToggle**
+- [x] **T010 · Bugfix · P2: remove console.log statements from DarkModeToggle**
   - **Context:** cr-08 in PLAN.md
   - **Action:**
     1. Remove all console.log statements from components/dark-mode-toggle.tsx
