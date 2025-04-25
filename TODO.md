@@ -21,7 +21,7 @@
     - **Depends‑on:** [T001]
 
 ## Base Component Integration
-- [ ] **T003 · Feature · P2: add shadcn button component**
+- [x] **T003 · Feature · P2: add shadcn button component**
     - **Context:** PLAN.md > Implementation Steps > 3. Add Basic shadcn Components
     - **Action:**
         1. Run `pnpm dlx shadcn-ui@latest add button`.
