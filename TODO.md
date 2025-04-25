@@ -122,7 +122,7 @@
     2. Application builds and runs without errors
   - **Depends-on:** none
 
-- [ ] **T012 · Bugfix · P2: replace array-index keys with stable identifiers**
+- [x] **T012 · Bugfix · P2: replace array-index keys with stable identifiers**
   - **Context:** cr-10 in PLAN.md
   - **Action:**
     1. Find map functions in app/page.tsx using index as key

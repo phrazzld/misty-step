@@ -24,8 +24,8 @@ export function Features() {
                 "Protect your business with our advanced security protocols and monitoring.",
               icon: "🔒",
             },
-          ].map((feature, index) => (
-            <Card key={index} className="hover:shadow-md transition-shadow">
+          ].map((feature) => (
+            <Card key={feature.title} className="hover:shadow-md transition-shadow">
               <CardContent className="pt-6">
                 <div className="text-4xl mb-4">{feature.icon}</div>
                 <CardTitle className="text-xl mb-2">{feature.title}</CardTitle>
