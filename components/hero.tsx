@@ -1,5 +1,3 @@
-"use client"
-
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
@@ -10,7 +8,8 @@ export function Hero() {
           Teleport Your Business <span className="text-primary">Into The Future</span>
         </h1>
         <p className="text-foreground/70 text-xl max-w-2xl mb-10">
-          Innovative technology solutions that help modern businesses achieve digital transformation quickly and efficiently.
+          Innovative technology solutions that help modern businesses achieve digital transformation
+          quickly and efficiently.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <Button asChild size="lg">

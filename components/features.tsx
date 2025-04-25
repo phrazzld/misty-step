@@ -1,11 +1,4 @@
-"use client"
-
-import { 
-  Card, 
-  CardContent, 
-  CardTitle, 
-  CardDescription 
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 
 export function Features() {
   return (
@@ -17,24 +10,28 @@ export function Features() {
             {
               title: "Cloud Infrastructure",
               description: "Scalable and secure cloud solutions tailored to your business needs.",
-              icon: "🚀"
+              icon: "🚀",
             },
             {
               title: "AI Integration",
-              description: "Leverage artificial intelligence to automate processes and gain insights.",
-              icon: "🧠"
+              description:
+                "Leverage artificial intelligence to automate processes and gain insights.",
+              icon: "🧠",
             },
             {
               title: "Cyber Security",
-              description: "Protect your business with our advanced security protocols and monitoring.",
-              icon: "🔒"
-            }
+              description:
+                "Protect your business with our advanced security protocols and monitoring.",
+              icon: "🔒",
+            },
           ].map((feature, index) => (
             <Card key={index} className="hover:shadow-md transition-shadow">
               <CardContent className="pt-6">
                 <div className="text-4xl mb-4">{feature.icon}</div>
                 <CardTitle className="text-xl mb-2">{feature.title}</CardTitle>
-                <CardDescription className="text-foreground/70">{feature.description}</CardDescription>
+                <CardDescription className="text-foreground/70">
+                  {feature.description}
+                </CardDescription>
               </CardContent>
             </Card>
           ))}

@@ -43,7 +43,7 @@
     1. Clicking "Send Message" triggers form submission handler
   - **Depends-on:** none
 
-- [ ] **T005 · Refactor · P1: remove unnecessary "use client" directives**
+- [x] **T005 · Refactor · P1: remove unnecessary "use client" directives**
   - **Context:** cr-05 in PLAN.md
   - **Action:**
     1. Remove "use client" from `hero.tsx` and `features.tsx`
