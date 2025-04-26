@@ -74,7 +74,7 @@
     1. Failing tests block commits or pushes locally.
   - **Depends-on:** [T003]
 
-- [ ] **T012 · Chore · P2: optimize CI cache configuration**
+- [x] **T012 · Chore · P2: optimize CI cache configuration**
   - **Context:** cr-11 Optimize CI Cache Configuration
   - **Action:**
     1. In `.github/workflows/ci.yml`, add caching for `node_modules/.pnpm` (or workspace directories) alongside the pnpm store.

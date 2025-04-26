@@ -32,16 +32,32 @@ jobs:
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-      - name: Setup pnpm cache
+      - name: Setup pnpm store cache
         uses: actions/cache@v4
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+            
+      - name: Setup node_modules cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules/.pnpm
+          key: ${{ runner.os }}-pnpm-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-modules-
 
       - name: Install dependencies
-        run: pnpm install
+        id: install
+        run: |
+          echo "::group::Dependencies Installation"
+          start_time=$(date +%s)
+          pnpm install
+          end_time=$(date +%s)
+          echo "::endgroup::"
+          echo "INSTALL_TIME=$((end_time-start_time))" >> $GITHUB_OUTPUT
+          echo "Installation time: $((end_time-start_time)) seconds"
 
       - name: Lint
         run: pnpm lint
@@ -60,3 +76,10 @@ jobs:
         
       - name: Build
         run: pnpm build
+        
+      - name: Cache Performance Summary
+        run: |
+          echo "Installation time: ${{ steps.install.outputs.INSTALL_TIME }} seconds"
+          echo "Cache restore paths:"
+          echo "- pnpm store: ${{ steps.pnpm-cache.outputs.STORE_PATH }}"
+          echo "- node_modules: node_modules/.pnpm"
