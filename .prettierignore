@@ -1,0 +1,19 @@
+# Ignore symlinked files
+docs/DEVELOPMENT_PHILOSOPHY.md
+docs/DEVELOPMENT_PHILOSOPHY_APPENDIX_TYPESCRIPT.md
+docs/prompts/
+
+# Build output
+.next/
+out/
+build/
+dist/
+
+# Node modules
+node_modules/
+
+# Misc
+.DS_Store
+*.pem
+.env*
+!.env.example
