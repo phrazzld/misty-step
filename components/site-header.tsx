@@ -5,7 +5,7 @@ import Image from "next/image";
 import { DarkModeToggle } from "@/components/dark-mode-toggle";
 import { Button } from "@/components/ui/button";
 
-export function SiteHeader() {
+export function SiteHeader(): React.JSX.Element {
   return (
     <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">

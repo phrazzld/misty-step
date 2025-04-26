@@ -25,14 +25,6 @@ const eslintConfig = [
     rules: {
       // Enforce strict TypeScript rules
       "@typescript-eslint/no-explicit-any": "error",
-      // Disabled type-checking rules until we can configure parserOptions properly
-      // "@typescript-eslint/explicit-function-return-type": [
-      //   "error",
-      //   {
-      //     allowExpressions: true,
-      //     allowTypedFunctionExpressions: true,
-      //   }
-      // ],
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
@@ -43,7 +35,14 @@ const eslintConfig = [
       "@typescript-eslint/no-non-null-assertion": "error",
       "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
       "@typescript-eslint/no-shadow": "error",
-      // "@typescript-eslint/no-floating-promises": "error", // Requires type-checking
+      // Enforce explicit function return types
+      "@typescript-eslint/explicit-function-return-type": [
+        "error",
+        {
+          allowExpressions: true,
+          allowTypedFunctionExpressions: true,
+        },
+      ],
 
       // Ban console logging in production
       "no-console": ["error", { allow: ["warn", "error"] }],

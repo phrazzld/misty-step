@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
-export function DarkModeToggle() {
+export function DarkModeToggle(): React.JSX.Element {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export function DarkModeToggle() {
     }
   }, []);
 
-  const toggleDarkMode = () => {
+  const toggleDarkMode = (): void => {
     const newDarkMode = !isDarkMode;
     setIsDarkMode(newDarkMode);
 

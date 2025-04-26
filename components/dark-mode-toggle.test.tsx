@@ -10,7 +10,7 @@ describe("DarkModeToggle", () => {
   beforeEach(() => {
     Object.defineProperty(window, "matchMedia", {
       writable: true,
-      value: vi.fn().mockImplementation((query) => ({
+      value: vi.fn().mockImplementation((query: string) => ({
         matches: false, // Default to light mode
         media: query,
         onchange: null,
@@ -20,7 +20,7 @@ describe("DarkModeToggle", () => {
         removeEventListener: vi.fn(),
         dispatchEvent: vi.fn(),
       })),
-    });
+    } as PropertyDescriptor);
 
     // Reset document class list before each test
     document.documentElement.classList.remove("dark");
@@ -65,7 +65,7 @@ describe("DarkModeToggle", () => {
     // Mock system preference for dark mode
     Object.defineProperty(window, "matchMedia", {
       writable: true,
-      value: vi.fn().mockImplementation((query) => ({
+      value: vi.fn().mockImplementation((query: string) => ({
         matches: query === "(prefers-color-scheme: dark)",
         media: query,
         onchange: null,
@@ -75,7 +75,7 @@ describe("DarkModeToggle", () => {
         removeEventListener: vi.fn(),
         dispatchEvent: vi.fn(),
       })),
-    });
+    } as PropertyDescriptor);
 
     render(<DarkModeToggle />);
 

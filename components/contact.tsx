@@ -7,8 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-export function Contact() {
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+export function Contact(): React.JSX.Element {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
     // Get form data (currently not used, will be used when implementing actual form submission)

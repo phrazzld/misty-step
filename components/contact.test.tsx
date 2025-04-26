@@ -11,6 +11,9 @@ describe("Contact", () => {
     get: vi.fn(),
   };
 
+  // Mock prevent default function separately to avoid unbound method issues
+  const mockPreventDefault = vi.fn();
+
   // Setup mocks before tests
   beforeEach(() => {
     // Mock FormData
@@ -24,8 +27,11 @@ describe("Contact", () => {
       return null;
     });
 
-    // Spy on preventDefault
-    vi.spyOn(Event.prototype, "preventDefault").mockImplementation(() => {});
+    // Reset the mock counter
+    mockPreventDefault.mockClear();
+
+    // Spy on preventDefault by replacing it with our mock function
+    vi.spyOn(Event.prototype, "preventDefault").mockImplementation(mockPreventDefault);
   });
 
   it("renders correctly with all form elements", () => {
@@ -76,7 +82,9 @@ describe("Contact", () => {
 
     // Verify form submission
     expect(FormData).toHaveBeenCalled();
-    expect(Event.prototype.preventDefault).toHaveBeenCalled();
+
+    // Check our mock function was called
+    expect(mockPreventDefault).toHaveBeenCalled();
   });
 
   it("properly validates email format", async () => {

@@ -1,140 +1,214 @@
 # Todo
 
-## Core Infrastructure
+## Linting & TypeScript Rules
 
-- [x] **T001 · Chore · P0: create tsconfig.json with strict settings**
+- [x] **T001 · Chore · P0: enable TypeScript-aware ESLint rules**
 
-  - **Context:** cr-01 in PLAN.md
+  - **Context:** cr-01 Enable TypeScript-Aware ESLint Rules
   - **Action:**
-    1. Add `tsconfig.json` at project root with mandatory `compilerOptions` from DEVELOPMENT_PHILOSOPHY_APPENDIX_TYPESCRIPT.md §4
-    2. Include `["next-env.d.ts","**/*.ts","**/*.tsx"]` in the includes section
-    3. Run `tsc --noEmit` to verify configuration
+    1. In `eslint.config.mjs`, set `parserOptions.project = './tsconfig.json'` and extend `plugin:@typescript-eslint/recommended-requiring-type-checking`.
+    2. Uncomment and enable strict rules (`explicit-function-return-type`, `no-floating-promises`).
+    3. Run `pnpm lint` and fix all violations.
   - **Done-when:**
-    1. `tsc --noEmit` passes without errors
+    1. CI reports zero lint errors under strict TypeScript-aware rules.
   - **Depends-on:** none
 
-- [x] **T002 · Chore · P0: configure eslint and prettier with pre-commit hooks**
+- [ ] **T018 · Chore · P2: configure ESLint max-lines rule**
 
-  - **Context:** cr-02 in PLAN.md
+  - **Context:** cr-17 Enforce File Length Limits via ESLint (Step 1)
   - **Action:**
-    1. Install necessary dev dependencies (eslint, prettier, typescript-eslint, husky, lint-staged)
-    2. Configure ESLint to extend recommended configs and strictest settings
-    3. Set up Husky pre-commit hooks for linting and formatting
+    1. In `eslint.config.mjs`, add `max-lines` rule: warn at 500 lines (skip blanks/comments) and error at 1000 lines.
   - **Done-when:**
-    1. Pre-commit hooks block commits with lint/format violations
+    1. ESLint configuration includes the `max-lines` rule.
   - **Depends-on:** [T001]
 
-- [x] **T003 · Chore · INVALID: symlinks are intentional**
-  - **Context:** cr-03 in PLAN.md - INVALID
-  - **Action:** NONE - symlinks are intentional and should be preserved
-  - **Done-when:** N/A
+- [ ] **T019 · Refactor · P2: refactor files exceeding max-lines limit**
+  - **Context:** cr-17 Enforce File Length Limits via ESLint (Step 2)
+  - **Action:**
+    1. Identify files triggering the `max-lines` rule.
+    2. Split or refactor oversized files to comply with the new limits.
+  - **Done-when:**
+    1. `pnpm lint` reports no `max-lines` errors.
+  - **Depends-on:** [T018]
+
+## Test Coverage & Quality Gates
+
+- [ ] **T002 · Chore · P1: update Vitest coverage thresholds to 85%**
+
+  - **Context:** cr-02 Raise Test Coverage Thresholds (Step 1)
+  - **Action:**
+    1. In `vitest.config.ts`, set minimum thresholds to 85% for statements, branches, functions, and lines.
+  - **Done-when:**
+    1. CI and local `pnpm test --coverage` fail if coverage falls below 85%.
   - **Depends-on:** none
 
-## Accessibility & User Experience
-
-- [x] **T004 · Bugfix · P0: wrap contact component in semantic form element**
-
-  - **Context:** cr-04 in PLAN.md
+- [ ] **T003 · Test · P1: write tests to meet 85% coverage threshold**
+  - **Context:** cr-02 Raise Test Coverage Thresholds (Step 2)
   - **Action:**
-    1. Modify `components/contact.tsx` to wrap inputs and button in `<form>` tag
-    2. Implement `handleSubmit` function with preventDefault()
-    3. Add proper validation attributes to inputs
+    1. Identify uncovered core logic/components via the coverage report.
+    2. Write unit/integration tests to achieve ≥85% coverage across all metrics.
   - **Done-when:**
-    1. Clicking "Send Message" triggers form submission handler
+    1. `pnpm test --coverage` passes locally and in CI at ≥85%.
+  - **Depends-on:** [T002]
+
+## Husky Hooks & CI Automation
+
+- [ ] **T004 · Chore · P2: enforce Conventional Commits via commit-msg hook**
+
+  - **Context:** cr-03 Enforce Conventional Commits via commit-msg hook
+  - **Action:**
+    1. Install `@commitlint/cli` and `@commitlint/config-conventional` as dev dependencies.
+    2. Create `commitlint.config.js` extending the conventional config.
+    3. Add `.husky/commit-msg` invoking `npx commitlint --edit "$1"` and mark it executable.
+  - **Done-when:**
+    1. Invalid commit messages are rejected locally and in CI.
   - **Depends-on:** none
 
-- [x] **T005 · Refactor · P1: remove unnecessary "use client" directives**
-  - **Context:** cr-05 in PLAN.md
+- [ ] **T005 · Chore · P2: run tests in pre-commit/pre-push hooks**
+
+  - **Context:** cr-10 Run Tests in Pre-commit/Pre-push Hooks
   - **Action:**
-    1. Remove "use client" from `hero.tsx` and `features.tsx`
-    2. Verify server-side rendering still works correctly
+    1. Update `.husky/pre-commit` to run `pnpm test --passWithNoTests` after `lint-staged`.
+    2. Optionally add `.husky/pre-push` to run the full test suite.
   - **Done-when:**
-    1. No client-only warnings in build output
+    1. Failing tests block commits or pushes locally.
+  - **Depends-on:** [T003]
+
+- [ ] **T012 · Chore · P2: optimize CI cache configuration**
+  - **Context:** cr-11 Optimize CI Cache Configuration
+  - **Action:**
+    1. In `.github/workflows/ci.yml`, add caching for `node_modules/.pnpm` (or workspace directories) alongside the pnpm store.
+    2. Validate faster CI runs with cache hits.
+  - **Done-when:**
+    1. CI shows cache restores for new paths and reduced setup time.
   - **Depends-on:** none
 
-## Testing & CI
+## Components & Code Quality
 
-- [x] **T006 · Chore · P1: set up automated testing infrastructure**
+- [ ] **T006 · Refactor · P2: add forwardRef to Button component**
 
-  - **Context:** cr-06 in PLAN.md (part 1)
+  - **Context:** cr-04 Add `forwardRef` to Button Component
   - **Action:**
-    1. Install Jest/Vitest and React Testing Library
-    2. Configure test runner with settings that match our development philosophy
-    3. Set up coverage thresholds (≥85%)
+    1. Refactor `Button` to use `React.forwardRef<HTMLButtonElement, Props>`.
+    2. Pass `ref` down to the underlying `<button>` element.
+    3. Update tests to assert ref forwarding.
   - **Done-when:**
-    1. Test runner initialized and properly configured
-  - **Depends-on:** [T001, T002]
-
-- [x] **T007 · Test · P1: write tests for core components**
-
-  - **Context:** cr-06 in PLAN.md (part 2)
-  - **Action:**
-    1. Create tests for Contact component
-    2. Create tests for DarkModeToggle component
-    3. Create tests for UI primitives (Button, Input, etc.)
-  - **Done-when:**
-    1. Tests passing with target coverage reached
-  - **Depends-on:** [T006, T004]
-
-- [x] **T008 · Chore · P1: implement CI workflow**
-  - **Context:** cr-06 in PLAN.md (part 3)
-  - **Action:**
-    1. Create GitHub Actions workflow file
-    2. Configure CI to run lint, typecheck, tests, coverage checks
-    3. Add npm audit for security checks
-  - **Done-when:**
-    1. CI pipeline successfully runs on PRs
-  - **Depends-on:** [T006, T007]
-
-## Component Improvements
-
-- [x] **T009 · Refactor · P2: add forwardRef to UI primitives**
-
-  - **Context:** cr-07 in PLAN.md
-  - **Action:**
-    1. Refactor Input component to use React.forwardRef
-    2. Refactor Textarea component to use React.forwardRef
-    3. Refactor Label component to use React.forwardRef
-  - **Done-when:**
-    1. Components properly forward refs to underlying DOM elements
-  - **Depends-on:** [T001]
-
-- [x] **T010 · Bugfix · P2: remove console.log statements from DarkModeToggle**
-  - **Context:** cr-08 in PLAN.md
-  - **Action:**
-    1. Remove all console.log statements from components/dark-mode-toggle.tsx
-    2. Add structured logging if necessary (behind development flag)
-  - **Done-when:**
-    1. No console.log statements in production code
+    1. Tests confirm consumers can attach refs to `Button`.
   - **Depends-on:** none
 
-## Code Hygiene
+- [ ] **T007 · Refactor · P2: remove unnecessary "use client" directives**
 
-- [x] **T011 · Chore · P2: remove unused dependencies**
-
-  - **Context:** cr-09 in PLAN.md
+  - **Context:** cr-05 Remove Unnecessary `"use client"` Directives
   - **Action:**
-    1. Run `pnpm remove tw-animate-css lucide-react`
-    2. Remove any import references to these packages
-    3. Verify build still works after removal
+    1. Remove `"use client"` from static components (`site-header.tsx`, `site-footer.tsx`, `ui/label.tsx`, etc.).
+    2. Run SSR smoke tests to confirm no regressions.
   - **Done-when:**
-    1. Dependencies removed from package.json and lockfile
-    2. Application builds and runs without errors
+    1. No static components contain `"use client"` and SSR/hydration succeed.
   - **Depends-on:** none
 
-- [x] **T012 · Bugfix · P2: replace array-index keys with stable identifiers**
-  - **Context:** cr-10 in PLAN.md
+- [ ] **T008 · Refactor · P2: replace array index keys with stable IDs**
+
+  - **Context:** cr-06 Replace Array Index Keys with Stable IDs
   - **Action:**
-    1. Find map functions in app/page.tsx using index as key
-    2. Find map functions in components/features.tsx using index as key
-    3. Replace with stable unique identifiers (title, id, etc.)
+    1. In `components/features.tsx`, change `key={index}` to `key={feature.title}`.
+    2. In `app/page.tsx`, use unique identifiers (`solution.title`, `point`) as keys.
   - **Done-when:**
-    1. No React "key" warnings in console
+    1. React renders lists with no key warnings and correct updates.
   - **Depends-on:** none
+
+- [ ] **T014 · Refactor · P2: enhance test utils with context providers**
+  - **Context:** cr-13 Enhance Test Utils with Context Providers
+  - **Action:**
+    1. Update `test/utils.tsx` to wrap renders with required contexts (ThemeProvider, Router, etc.).
+    2. Refactor existing tests to use the enhanced render utility.
+  - **Done-when:**
+    1. All component tests pass under full context without manual providers.
+  - **Depends-on:** none
+
+## Logging & Dependencies
+
+- [ ] **T009 · Feature · P2: implement structured logging solution**
+
+  - **Context:** cr-07 Implement Structured Logging Solution
+  - **Action:**
+    1. Install `pino` and create `lib/logger.ts` exporting a configured instance with `service_name`.
+    2. Replace all `console.log`/`console.error` calls with `logger.info`/`logger.error`.
+  - **Done-when:**
+    1. All logs are JSON-formatted with timestamp, level, service_name; no `console.log` remains.
+  - **Depends-on:** none
+
+- [ ] **T010 · Chore · P2: remove unused dependencies**
+  - **Context:** cr-08 Remove Unused Dependencies
+  - **Action:**
+    1. Run `pnpm remove tw-animate-css lucide-react`.
+    2. Delete any import references.
+    3. Run `pnpm install` and perform a smoke build.
+  - **Done-when:**
+    1. Removed packages are absent from `package.json` and lockfile; build succeeds.
+  - **Depends-on:** none
+
+## Environment & Configuration
+
+- [ ] **T011 · Chore · P3: add engines specification to package.json**
+
+  - **Context:** cr-09 Add `engines` Specification to `package.json`
+  - **Action:**
+    1. In `package.json`, add `"engines": { "node": ">=18 <20", "pnpm": ">=7" }`.
+    2. Confirm warnings on incompatible versions.
+  - **Done-when:**
+    1. `package.json` contains the `engines` field and displays warnings for non-compliant environments.
+  - **Depends-on:** none
+
+- [ ] **T017 · Chore · P3: correct Tailwind config reference**
+  - **Context:** cr-16 Correct Tailwind Config Reference
+  - **Action:**
+    1. Update `"config": "tailwind.config.js"` in `components.json`.
+    2. Rebuild and verify shadcn UI styles render correctly.
+  - **Done-when:**
+    1. `components.json` points to `tailwind.config.js` and styles appear as expected.
+  - **Depends-on:** none
+
+## Documentation & Site Content
+
+- [ ] **T013 · Chore · P3: standardize pnpm usage in docs**
+
+  - **Context:** cr-12 Standardize `pnpm` Usage in Docs
+  - **Action:**
+    1. Replace all `npm` commands with `pnpm` equivalents in `.md` documentation files.
+  - **Done-when:**
+    1. No `npm` references remain in project documentation.
+  - **Depends-on:** none
+
+- [ ] **T015 · Chore · P3: update placeholder site metadata**
+
+  - **Context:** cr-14 Update Placeholder Site Metadata
+  - **Action:**
+    1. Draft new title and description aligned with Misty Step branding.
+    2. Update `metadata.title` and `description` in `app/layout.tsx`.
+  - **Done-when:**
+    1. Site metadata reflects the new branding in page source.
+  - **Depends-on:** none
+
+- [ ] **T016 · Chore · P3: add CI & coverage badges to README**
+  - **Context:** cr-15 Add CI & Coverage Badges to README
+  - **Action:**
+    1. Obtain Markdown snippets for CI status and test coverage badges.
+    2. Insert badges at the top of `README.md`.
+  - **Done-when:**
+    1. Badges render correctly on GitHub showing current build status and coverage.
+  - **Depends-on:** [T003, T012]
 
 ### Clarifications & Assumptions
 
-- [x] **Issue:** Package manager choice (npm vs yarn vs pnpm)
-  - **Context:** PLAN.md mentions npm commands but actual project might use a different package manager
+- [ ] **Issue:** Scope of writing tests for coverage (T003)
+  - **Context:** cr-02 Raise Test Coverage Thresholds
   - **Blocking?:** no
-  - **Resolution**: pnpm
+- [ ] **Issue:** Choice of pre-commit vs pre-push hook (T005)
+  - **Context:** cr-10 Run Tests in Pre-commit/Pre-push Hooks
+  - **Blocking?:** no
+- [ ] **Issue:** Volume of lint violations from enabling strict TS rules (T001)
+  - **Context:** cr-01 Enable TypeScript-Aware ESLint Rules
+  - **Blocking?:** no
+- [ ] **Issue:** Number of files exceeding max-lines threshold (T019)
+  - **Context:** cr-17 Enforce File Length Limits via ESLint
+  - **Blocking?:** no

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 
-export function Features() {
+export function Features(): React.JSX.Element {
   return (
     <section id="features" className="py-20 bg-background">
       <div className="container mx-auto px-4">
