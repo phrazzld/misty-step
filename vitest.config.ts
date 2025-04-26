@@ -13,12 +13,11 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "json", "html"],
       exclude: ["node_modules/", ".next/", "**/*.d.ts", "**/*.test.{ts,tsx}"],
-      // TODO: Gradually increase these thresholds to 85% as test coverage improves
       thresholds: {
-        statements: 30,
-        branches: 80,
-        functions: 70,
-        lines: 30,
+        statements: 85,
+        branches: 85,
+        functions: 85,
+        lines: 85,
       },
     },
     include: ["**/*.test.{ts,tsx}"],

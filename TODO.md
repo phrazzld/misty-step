@@ -33,7 +33,7 @@
 
 ## Test Coverage & Quality Gates
 
-- [ ] **T002 · Chore · P1: update Vitest coverage thresholds to 85%**
+- [x] **T002 · Chore · P1: update Vitest coverage thresholds to 85%**
 
   - **Context:** cr-02 Raise Test Coverage Thresholds (Step 1)
   - **Action:**
