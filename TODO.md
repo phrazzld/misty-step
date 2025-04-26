@@ -137,7 +137,7 @@
     1. All logs are JSON-formatted with timestamp, level, service_name; no `console.log` remains.
   - **Depends-on:** none
 
-- [ ] **T010 · Chore · P2: remove unused dependencies**
+- [x] **T010 · Chore · P2: remove unused dependencies**
   - **Context:** cr-08 Remove Unused Dependencies
   - **Action:**
     1. Run `pnpm remove tw-animate-css lucide-react`.
