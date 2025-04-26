@@ -106,7 +106,7 @@
     1. No static components contain `"use client"` and SSR/hydration succeed.
   - **Depends-on:** none
 
-- [ ] **T008 · Refactor · P2: replace array index keys with stable IDs**
+- [x] **T008 · Refactor · P2: replace array index keys with stable IDs**
 
   - **Context:** cr-06 Replace Array Index Keys with Stable IDs
   - **Action:**
