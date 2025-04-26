@@ -105,9 +105,9 @@ The most severe issues center around insufficient enforcement of TypeScript and 
 
 ### Inconsistent Package Manager References - MEDIUM
 
-- **Location**: `PLAN.md` (various steps mentioning `npm`)
+- **Location**: `PLAN.md` (various steps mentioning incorrect package manager)
 - **Violation**: Automation § Quality Gates and CI/CD
-- **Impact**: The plan uses `npm` commands while the project uses `pnpm`, causing confusion and potential errors.
+- **Impact**: The plan uses incorrect package manager commands while the project uses `pnpm`, causing confusion and potential errors.
 - **Fix**: Update the plan to consistently use `pnpm` commands.
 
 ### Test Utils Missing Context Providers - MEDIUM

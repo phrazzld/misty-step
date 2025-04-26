@@ -126,7 +126,7 @@ This plan addresses the BLOCKER and HIGH-severity issues preventing merge of Spr
 - Chosen Fix: Add `"engines": { "node": ">=18 <20", "pnpm": ">=7" }`.
 - Steps:
   1. Edit `package.json` accordingly.
-  2. Verify npm/yarn warns on unsupported versions.
+  2. Verify pnpm warns on unsupported versions.
 - Done-When: `engines` field present and enforced.
 
 ### cr-10 Run Tests in Pre-commit/Pre-push Hooks

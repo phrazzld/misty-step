@@ -170,7 +170,7 @@
 
 ## Documentation & Site Content
 
-- [ ] **T013 · Chore · P3: standardize pnpm usage in docs**
+- [x] **T013 · Chore · P3: standardize pnpm usage in docs**
 
   - **Context:** cr-12 Standardize `pnpm` Usage in Docs
   - **Action:**
