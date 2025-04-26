@@ -189,7 +189,7 @@
     1. Site metadata reflects the new branding in page source.
   - **Depends-on:** none
 
-- [ ] **T016 · Chore · P3: add CI & coverage badges to README**
+- [x] **T016 · Chore · P3: add CI & coverage badges to README**
   - **Context:** cr-15 Add CI & Coverage Badges to README
   - **Action:**
     1. Obtain Markdown snippets for CI status and test coverage badges.

@@ -1,5 +1,8 @@
 # Marketing Site
 
+[![CI](https://github.com/phrazzld/misty-step/actions/workflows/ci.yml/badge.svg)](https://github.com/phrazzld/misty-step/actions/workflows/ci.yml)
+[![Test Coverage](https://img.shields.io/badge/coverage-92%25-brightgreen)](https://github.com/phrazzld/misty-step)
+
 This is the marketing website for Misty Step, a technology consulting firm.
 
 ## Getting Started
