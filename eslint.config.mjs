@@ -44,8 +44,8 @@ const eslintConfig = [
         },
       ],
 
-      // Ban console logging in production
-      "no-console": ["error", { allow: ["warn", "error"] }],
+      // Ban console logging (use structured logger instead)
+      "no-console": "error",
 
       // Enforce React best practices
       "react/jsx-key": "error",
