@@ -159,7 +159,7 @@
     1. `package.json` contains the `engines` field and displays warnings for non-compliant environments.
   - **Depends-on:** none
 
-- [ ] **T017 · Chore · P3: correct Tailwind config reference**
+- [x] **T017 · Chore · P3: correct Tailwind config reference**
   - **Context:** cr-16 Correct Tailwind Config Reference
   - **Action:**
     1. Update `"config": "tailwind.config.js"` in `components.json`.
