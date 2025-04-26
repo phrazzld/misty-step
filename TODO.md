@@ -22,7 +22,7 @@
     1. ESLint configuration includes the `max-lines` rule.
   - **Depends-on:** [T001]
 
-- [ ] **T019 · Refactor · P2: refactor files exceeding max-lines limit**
+- [x] **T019 · Refactor · P2: refactor files exceeding max-lines limit**
   - **Context:** cr-17 Enforce File Length Limits via ESLint (Step 2)
   - **Action:**
     1. Identify files triggering the `max-lines` rule.
