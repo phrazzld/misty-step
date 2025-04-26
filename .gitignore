@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# thinktank outputs
+/thinktank_output/
+
+# task prompts 
+TASK-PROMPT.md
