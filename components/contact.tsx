@@ -29,7 +29,7 @@ export function Contact(): React.JSX.Element {
         <h2 className="text-3xl font-bold text-center mb-16">Get In Touch</h2>
         <div className="max-w-md mx-auto">
           <div className="bg-background p-8 rounded-lg border border-border">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} aria-label="Contact form">
               <div className="grid gap-4 mb-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>

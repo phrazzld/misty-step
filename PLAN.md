@@ -2,155 +2,239 @@
 
 ## Executive Summary
 
-We tackle the four critical blockers first—strict typing, lint/format enforcement, docs integrity, and form accessibility—to restore core developer workflows and UX. Next, we eliminate high-severity performance and process gaps ("use client" misuse, missing CI/tests). Finally, we sweep up medium-effort code-hygiene tasks (ref forwarding, logging, deps, React keys) to bulletproof the codebase.
+This plan addresses the BLOCKER and HIGH-severity issues preventing merge of Sprint 1 remediation work, then tackles MEDIUM and LOW priorities as quick wins. Sequencing ensures critical type-safety, test‐coverage, and release‐automation fixes unblock other remediation tasks first. Once foundational quality gates are restored, we implement component API improvements, performance optimizations, and documentation enhancements.
 
 ## Strike List
 
-| Seq | CR-ID | Title                                                         | Effort | Owner     |
-| --- | ----- | ------------------------------------------------------------- | ------ | --------- |
-| 1   | cr-01 | Add `tsconfig.json` with strict settings                      | s      | frontend  |
-| 2   | cr-02 | Commit ESLint & Prettier configs + pre-commit hooks           | s      | frontend  |
-| 3   | cr-03 | Replace invalid documentation symlinks                        | xs     | docs team |
-| 4   | cr-04 | Wrap Contact component in `<form>`                            | s      | frontend  |
-| 5   | cr-05 | Remove unnecessary `"use client"` directives                  | xs     | frontend  |
-| 6   | cr-06 | Introduce automated tests & CI pipeline                       | m      | devops    |
-| 7   | cr-07 | Add `forwardRef` to Input/Textarea/Label primitives           | s      | frontend  |
-| 8   | cr-08 | Remove unstructured `console.log` in DarkModeToggle           | xs     | frontend  |
-| 9   | cr-09 | Remove unused dependencies (`tw-animate-css`, `lucide-react`) | xs     | frontend  |
-| 10  | cr-10 | Replace array-index keys with stable identifiers              | xs     | frontend  |
+| Seq | CR-ID | Title                                            | Effort | Owner?   |
+| --- | ----- | ------------------------------------------------ | ------ | -------- |
+| 1   | cr-01 | Enable TypeScript-Aware ESLint Rules             | s      | frontend |
+| 2   | cr-02 | Raise Test Coverage Thresholds                   | m      | frontend |
+| 3   | cr-03 | Enforce Conventional Commits via commit-msg hook | s      | devops   |
+| 4   | cr-04 | Add `forwardRef` to Button Component             | s      | frontend |
+| 5   | cr-05 | Remove Unnecessary `"use client"` Directives     | xs     | frontend |
+| 6   | cr-06 | Replace Array Index Keys with Stable IDs         | xs     | frontend |
+| 7   | cr-07 | Implement Structured Logging Solution            | m      | frontend |
+| 8   | cr-08 | Remove Unused Dependencies                       | xs     | frontend |
+| 9   | cr-09 | Add `engines` Specification to `package.json`    | xs     | frontend |
+| 10  | cr-10 | Run Tests in Pre-commit/Pre-push Hooks           | s      | frontend |
+| 11  | cr-11 | Optimize CI Cache Configuration                  | s      | devops   |
+| 12  | cr-12 | Standardize `pnpm` Usage in Docs                 | xs     | frontend |
+| 13  | cr-13 | Enhance Test Utils with Context Providers        | s      | frontend |
+| 14  | cr-14 | Update Placeholder Site Metadata                 | xs     | frontend |
+| 15  | cr-15 | Add CI & Coverage Badges to README               | xs     | frontend |
+| 16  | cr-16 | Correct Tailwind Config Reference                | xs     | frontend |
+| 17  | cr-17 | Enforce File Length Limits via ESLint            | xs     | frontend |
 
 ## Detailed Remedies
 
-### cr-01 Add `tsconfig.json` with strict settings
+### cr-01 Enable TypeScript-Aware ESLint Rules
 
-- **Problem:** No TypeScript config exists, so code isn’t type-checked.
-- **Impact:** Runtime bugs slip through; editors and CI can’t enforce types.
-- **Chosen Fix:** Create a root `tsconfig.json` per Appendix-TypeScript §4 with `"strict": true`, `noImplicitAny`, `strictNullChecks`, etc.
-- **Steps:**
-  1. Add `tsconfig.json` at project root with mandated `compilerOptions`.
-  2. Include `include: ["next-env.d.ts","**/*.ts","**/*.tsx"]`.
-  3. Run `tsc --noEmit`; fix resulting errors.
-- **Done-When:** `tsc --noEmit` passes locally and in CI.
+- Problem: Critical rules (`explicit-function-return-type`, `no-floating-promises`) are disabled due to missing `parserOptions.project`.
+- Impact: Type errors bypass lint, risking runtime bugs; violates strictness policy.
+- Chosen Fix: Configure parser to use `tsconfig.json` and re-enable `@typescript-eslint/recommended-requiring-type-checking`.
+- Steps:
+  1. In `eslint.config.mjs`, set `parserOptions.project = './tsconfig.json'`.
+  2. Extend `plugin:@typescript-eslint/recommended-requiring-type-checking`.
+  3. Uncomment and enable the disabled rules.
+  4. Run `pnpm lint` and fix all violations.
+- Done-When: CI reports zero lint errors under strict TypeScript rules.
 
-### cr-02 Commit ESLint & Prettier configs + pre-commit hooks
+### cr-02 Raise Test Coverage Thresholds
 
-- **Problem:** No linting or formatting enforcement.
-- **Impact:** Style drift, undetected errors, no CI quality gate.
-- **Chosen Fix:** Add `.eslintrc.js` extending `next/core-web-vitals` & `@typescript-eslint/recommended`, plus `.prettierrc`; wire Husky + lint-staged.
-- **Steps:**
-  1. Install dev deps: `eslint`, `prettier`, `@typescript-eslint/*`, `eslint-config-prettier`, `husky`, `lint-staged`.
-  2. Create configs and `package.json` scripts for `lint`/`format`.
-  3. Configure Husky pre-commit to run `eslint --fix` & `prettier --write`.
-  4. Add lint/format checks to CI.
-- **Done-When:** Pre-commit and CI block on lint/format violations.
+- Problem: Coverage thresholds (30%/70%) are far below the 85% standard.
+- Impact: Unverified code can merge, increasing risk of regressions.
+- Chosen Fix: Update Vitest config to enforce ≥85% on all metrics and add missing tests.
+- Steps:
+  1. In `vitest.config.ts`, set thresholds to 85% for statements, branches, functions, and lines.
+  2. Write unit/integration tests for uncovered core logic and components.
+  3. Ensure CI fails if thresholds aren’t met.
+- Done-When: `pnpm test --coverage` passes locally and in CI at ≥85%.
 
-### cr-03 Replace invalid documentation symlinks
+### cr-03 Enforce Conventional Commits via commit-msg hook
 
-- **Problem:** `docs/DEVELOPMENT_PHILOSOPHY.md` and `docs/prompts` are symlinked to local absolute paths.
-- **Impact:** Team and CI see empty placeholders; core docs unavailable.
-- **Chosen Fix:** Delete symlinks and check in real Markdown content under `docs/`.
-- **Steps:**
-  1. Remove the broken symlinks.
-  2. Copy or recreate the original content as `.md` files.
-  3. Verify rendering in GitHub and local previews.
-- **Done-When:** `docs/` contains proper `.md` files; docs linting passes.
+- Problem: No hook enforces Conventional Commits spec.
+- Impact: Automated changelog/versioning is broken.
+- Chosen Fix: Install `commitlint` and add a Husky `commit-msg` hook.
+- Steps:
+  1. `pnpm add -D @commitlint/cli @commitlint/config-conventional`
+  2. Create `commitlint.config.js` extending the conventional config.
+  3. Add `.husky/commit-msg` invoking `npx commitlint --edit "$1"`.
+  4. `chmod +x .husky/commit-msg`
+- Done-When: Invalid commit messages are rejected locally and in CI.
 
-### cr-04 Wrap Contact component in `<form>`
+### cr-04 Add `forwardRef` to Button Component
 
-- **Problem:** Inputs and submit button aren’t inside a `<form>`.
-- **Impact:** “Send Message” does nothing; accessibility context lost.
-- **Chosen Fix:** Wrap fields and `<Button type="submit">` in a semantic `<form>` with `onSubmit`.
-- **Steps:**
-  1. In `components/contact.tsx`, wrap the grid and button in `<form onSubmit={handleSubmit}>`.
-  2. Implement `handleSubmit` to `preventDefault()` and handle data.
-  3. Ensure each `<Label htmlFor>` matches the input `id`.
-  4. Add basic validation (`required` attributes).
-- **Done-When:** Clicking “Send Message” fires `handleSubmit`; unit test verifies submission.
+- Problem: Button lacks `React.forwardRef`, blocking ref usage.
+- Impact: Hinders testability and integration with forms.
+- Chosen Fix: Refactor Button to use `forwardRef`, update its props and types.
+- Steps:
+  1. Convert to `const Button = React.forwardRef<HTMLButtonElement, Props>(…)`.
+  2. Pass `ref` to the underlying element (`<Comp ref={ref} …>`).
+  3. Update tests to verify ref forwarding.
+- Done-When: Tests confirm consumers can attach refs to Button.
 
-### cr-05 Remove unnecessary `"use client"` directives
+### cr-05 Remove Unnecessary `"use client"` Directives
 
-- **Problem:** Static components (`hero.tsx`, `features.tsx`) declare `"use client"` without needing state/effects.
-- **Impact:** Forces client-side JS, inflating bundle and hurting SSR performance.
-- **Chosen Fix:** Remove the `"use client"` pragma from these files.
-- **Steps:**
-  1. Delete the first line in each file.
-  2. Rebuild and confirm SSR rendering in Next.js.
-- **Done-When:** No client-only warnings; Lighthouse SSR audit shows no extra bundle.
+- Problem: Non-interactive components are marked client-side.
+- Impact: Unneeded client JS bloats bundle and hurts performance.
+- Chosen Fix: Audit and remove `"use client"` from all static components.
+- Steps:
+  1. Identify directives in `site-header.tsx`, `site-footer.tsx`, `ui/label.tsx`, etc.
+  2. Delete the directives and verify SSR behavior.
+  3. Run smoke tests.
+- Done-When: No redundant `"use client"` lines; SSR and hydration succeed.
 
-### cr-06 Introduce automated tests & CI pipeline
+### cr-06 Replace Array Index Keys with Stable IDs
 
-- **Problem:** Zero tests and no CI workflow.
-- **Impact:** High regression risk; no enforceable quality gate.
-- **Chosen Fix:** Add Jest or Vitest config, write baseline tests, enforce ≥85% coverage, and create GitHub Actions CI.
-- **Steps:**
-  1. Install `jest`/`vitest`, `@testing-library/react`, and setup config.
-  2. Write unit tests for `Contact`, `DarkModeToggle`, UI primitives.
-  3. Configure coverage thresholds.
-  4. Create `.github/workflows/ci.yml` to run lint, typecheck, test, coverage, and `npm audit`.
-- **Done-When:** CI on PRs fails on any lint/type/test/coverage/audit violation.
+- Problem: Using array indices as React keys in lists.
+- Impact: Incorrect UI updates and performance issues when lists change.
+- Chosen Fix: Use unique identifiers (e.g., `feature.title`, `point`).
+- Steps:
+  1. In `components/features.tsx`, change `key={index}` to `key={feature.title}`.
+  2. In `app/page.tsx`, use `key={solution.title}` and `key={point}`.
+  3. Verify absence of key warnings.
+- Done-When: All lists use stable keys and render correctly.
 
-### cr-07 Add `forwardRef` to Input/Textarea/Label primitives
+### cr-07 Implement Structured Logging Solution
 
-- **Problem:** Primitives can’t accept refs for composition/testing.
-- **Impact:** Hinders integration with form libraries and testing tools.
-- **Chosen Fix:** Refactor each to use `React.forwardRef<HTML…, Props>`.
-- **Steps:**
-  1. In `components/ui/*`, wrap component definitions with `forwardRef`.
-  2. Pass the `ref` to the underlying DOM element.
-  3. Update types to include `ref`.
-  4. Add/refactor tests to assert `ref` attachment.
-- **Done-When:** Consumers can attach refs; tests confirm ref forwarding.
+- Problem: Ad-hoc `console.log`; no structured logging.
+- Impact: Poor observability; logs not machine-readable.
+- Chosen Fix: Integrate `pino` for JSON structured logs.
+- Steps:
+  1. `pnpm add pino`
+  2. Create `lib/logger.ts` exporting a `pino` instance with `service_name`.
+  3. Replace `console.log`/`error` with `logger.info`/`error`.
+  4. Ensure logs include timestamp, level, service_name.
+- Done-When: All logs are JSON-structured via `pino`; no `console.log` remains.
 
-### cr-08 Remove unstructured `console.log` in DarkModeToggle
+### cr-08 Remove Unused Dependencies
 
-- **Problem:** Uses `console.log` for debugging in production code.
-- **Impact:** Pollutes logs; violates structured-logging policy.
-- **Chosen Fix:** Delete all `console.log` calls (or guard behind `NODE_ENV==='development'`).
-- **Steps:**
-  1. Remove debug statements from `components/dark-mode-toggle.tsx`.
-  2. Optionally inject a structured logger if logging needed.
-- **Done-When:** No `console.log` in production build; `no-console` lint rule passes.
+- Problem: `tw-animate-css` and `lucide-react` remain installed but unused.
+- Impact: Increases bundle size and attack surface.
+- Chosen Fix: Remove via pnpm.
+- Steps:
+  1. `pnpm remove tw-animate-css lucide-react`
+  2. Remove any import references.
+  3. Run `pnpm install` and smoke-test.
+- Done-When: Dependencies are gone from `package.json`; build succeeds.
 
-### cr-09 Remove unused dependencies
+### cr-09 Add `engines` Specification to `package.json`
 
-- **Problem:** `tw-animate-css` and `lucide-react` are installed but not used.
-- **Impact:** Bundle bloat; larger attack surface; wasted maintenance.
-- **Chosen Fix:** Uninstall and remove from `package.json`/lockfile.
-- **Steps:**
-  1. Run `npm uninstall tw-animate-css lucide-react`.
-  2. Clean up any import references.
-  3. Commit updated `package.json` and lockfile.
-- **Done-When:** Dependencies gone; `npm ls` shows no references; app builds.
+- Problem: No `engines` field to enforce Node.js/pnpm versions.
+- Impact: Environment drift risks inconsistent builds.
+- Chosen Fix: Add `"engines": { "node": ">=18 <20", "pnpm": ">=7" }`.
+- Steps:
+  1. Edit `package.json` accordingly.
+  2. Verify npm/yarn warns on unsupported versions.
+- Done-When: `engines` field present and enforced.
 
-### cr-10 Replace array-index keys with stable identifiers
+### cr-10 Run Tests in Pre-commit/Pre-push Hooks
 
-- **Problem:** Lists use `key={index}` in `app/page.tsx` and `components/features.tsx`.
-- **Impact:** React can mis-match DOM, lose state, and cause UI flicker on reorders.
-- **Chosen Fix:** Use a unique field (e.g., `title` or `id`) as `key`.
-- **Steps:**
-  1. Update `map` calls to `key={item.title}` or `item.id`.
-  2. Ensure items have unique IDs; add if needed.
-  3. Run storybook/tests to confirm no key warnings.
-- **Done-When:** React console shows no `key` warnings; UI behaves correctly on dynamic updates.
+- Problem: Pre-commit only runs lint/format, not tests.
+- Impact: Broken functionality can be committed.
+- Chosen Fix: Extend Husky hooks to execute tests.
+- Steps:
+  1. Update `.husky/pre-commit` to run `pnpm test --passWithNoTests` after `lint-staged`.
+  2. Or add `.husky/pre-push` that runs full test suite.
+- Done-When: Failing tests block commit or push locally.
+
+### cr-11 Optimize CI Cache Configuration
+
+- Problem: CI only caches pnpm store path, rebuilds node_modules each run.
+- Impact: Slow CI feedback loop.
+- Chosen Fix: Cache `node_modules/.pnpm` or workspace directories too.
+- Steps:
+  1. Edit `.github/workflows/ci.yml` to add corresponding cache paths.
+  2. Validate faster CI runs on cache hits.
+- Done-When: CI build time improves and cache hit rate increases.
+
+### cr-12 Standardize `pnpm` Usage in Docs
+
+- Problem: PLAN.md and other docs reference `npm`.
+- Impact: Confuses contributors; inconsistent commands.
+- Chosen Fix: Replace all `npm` commands with `pnpm` equivalents.
+- Steps:
+  1. Grep for `npm` in docs and replace.
+  2. Verify commands in README and PLAN.md.
+- Done-When: No `npm` references remain in process docs.
+
+### cr-13 Enhance Test Utils with Context Providers
+
+- Problem: Test utilities omit essential providers (Theme, Router).
+- Impact: Component tests may fail or be incomplete.
+- Chosen Fix: Wrap test renderers with all required contexts.
+- Steps:
+  1. Update `test/utils.tsx` to include ThemeProvider, Router, etc.
+  2. Refactor existing tests to use enhanced utility.
+- Done-When: All component tests pass consistently under full context.
+
+### cr-14 Update Placeholder Site Metadata
+
+- Problem: `metadata.title` and `description` are generic placeholders.
+- Impact: Weak branding and SEO.
+- Chosen Fix: Craft specific, compelling metadata aligning with Misty Step brand.
+- Steps:
+  1. Write descriptive title and summary.
+  2. Update `app/layout.tsx`.
+- Done-When: Metadata reflects real product positioning.
+
+### cr-15 Add CI & Coverage Badges to README
+
+- Problem: README lacks status and coverage indicators.
+- Impact: New contributors can’t gauge build/test health at a glance.
+- Chosen Fix: Insert badges for CI status, coverage percentage, and maturity.
+- Steps:
+  1. Copy badge URLs from CI and coverage services.
+  2. Add to top of `README.md`.
+- Done-When: Badges display correctly in GitHub.
+
+### cr-16 Correct Tailwind Config Reference
+
+- Problem: `components.json` has empty `config` string.
+- Impact: Potential misconfiguration of shadcn UI integration.
+- Chosen Fix: Point `config` to `tailwind.config.js`.
+- Steps:
+  1. Update `"config": "tailwind.config.js"` in `components.json`.
+  2. Verify Tailwind classes generate correctly.
+- Done-When: shadcn components build with expected styles.
+
+### cr-17 Enforce File Length Limits via ESLint
+
+- Problem: No rule limiting file size, risking unmanageable files.
+- Impact: Codebase complexity can grow unchecked.
+- Chosen Fix: Add `max-lines` rule to ESLint.
+- Steps:
+  1. In `eslint.config.mjs`, configure `max-lines: ["warn", { max: 500, skipBlankLines: true, skipComments: true }]` and error at 1000.
+  2. Lint and refactor oversized files.
+- Done-When: Files over threshold trigger ESLint warnings/errors.
 
 ## Standards Alignment
 
-- **Simplicity First:** We add only essential infra (tsconfig, linting, docs) and remove accidental complexity (`"use client"`, `console.log`, unused deps).
-- **Modularity & Separation of Concerns:** Forms are now semantic; UI primitives accept refs; global styles unaffected.
-- **Design for Testability & Automation:** CI with lint/type/test/coverage/audit, plus `forwardRef`, unlock safe refactors.
-- **Coding Standards:** Strict TS, ESLint/Prettier, no-console, stable keys enforce cultural discipline.
-- **Performance & Security:** Removing client-only directives and unused deps shrinks bundle; CI audit reduces vulnerabilities.
-- **Accessibility:** Contact form semantics and proper labels restore a11y compliance.
+- **Simplicity First:** cr-05, cr-08, cr-09, cr-12 remove unnecessary complexity and standardize environment.
+- **Maximize Language Strictness:** cr-01 enforces strict TypeScript linting to catch errors early.
+- **Design for Testability:** cr-02, cr-04, cr-10, cr-13 ensure robust test coverage, ref-forwarding, and full context.
+- **Coding Standards:** cr-06 and cr-17 uphold React best practices and file manageability.
+- **Automation & Release Hygiene:** cr-03 and cr-10 automate commit and quality gates for seamless CI/CD.
+- **Observability:** cr-07 implements structured JSON logging for reliable debugging.
 
 ## Validation Checklist
 
-- [ ] `tsc --noEmit` passes without errors (cr-01)
-- [ ] Pre-commit hooks block on lint/format; CI fails on violations (cr-02)
-- [ ] `docs/` contains real Markdown; GitHub renders correctly (cr-03)
-- [ ] “Send Message” triggers form submission; basic validation works (cr-04)
-- [ ] No `"use client"` in pure static components; SSR audit clean (cr-05)
-- [ ] CI workflow runs lint, typecheck, tests, coverage, audit on PRs (cr-06)
-- [ ] UI primitives accept React refs; tests verify ref forwarding (cr-07)
-- [ ] No `console.log` in production; lint rule `no-console` passes (cr-08)
-- [ ] `tw-animate-css` and `lucide-react` removed; lockfile updated (cr-09)
-- [ ] React console shows no key warnings; stable keys in place (cr-10)
+- [ ] cr-01: ESLint with `parserOptions.project` passes strictly.
+- [ ] cr-02: Vitest coverage ≥85% locally and in CI.
+- [ ] cr-03: Husky `commit-msg` hook rejects non-conventional commits.
+- [ ] cr-04: Button component forwards refs; tests verify.
+- [ ] cr-05: No unnecessary `"use client"` directives; SSR works.
+- [ ] cr-06: All list `key` props use stable identifiers; no warnings.
+- [ ] cr-07: Structured JSON logs via `pino`; no `console.log`.
+- [ ] cr-08: Unused dependencies removed; build passes.
+- [ ] cr-09: `package.json` contains correct `engines`.
+- [ ] cr-10: Pre-commit/pre-push hooks run tests and block failures.
+- [ ] cr-11: CI caching extended; build times improved.
+- [ ] cr-12: Docs reference only `pnpm`.
+- [ ] cr-13: Test utils wrap all required context.
+- [ ] cr-14: Site metadata updated with brand messaging.
+- [ ] cr-15: README displays CI and coverage badges.
+- [ ] cr-16: Tailwind config reference corrected; styles intact.
+- [ ] cr-17: ESLint warns/errors on oversized files.
+- [ ] All automated tests and linters pass; no new warnings.

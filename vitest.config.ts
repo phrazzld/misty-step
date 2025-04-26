@@ -12,7 +12,16 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["text", "json", "html"],
-      exclude: ["node_modules/", ".next/", "**/*.d.ts", "**/*.test.{ts,tsx}"],
+      exclude: [
+        "node_modules/",
+        ".next/",
+        "**/*.d.ts",
+        "**/*.test.{ts,tsx}",
+        "**/*.config.{ts,js,mjs}",
+        "next.config.ts",
+        "postcss.config.mjs",
+        "eslint.config.mjs",
+      ],
       thresholds: {
         statements: 85,
         branches: 85,

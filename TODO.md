@@ -116,7 +116,7 @@
     1. React renders lists with no key warnings and correct updates.
   - **Depends-on:** none
 
-- [ ] **T014 · Refactor · P2: enhance test utils with context providers**
+- [x] **T014 · Refactor · P2: enhance test utils with context providers**
   - **Context:** cr-13 Enhance Test Utils with Context Providers
   - **Action:**
     1. Update `test/utils.tsx` to wrap renders with required contexts (ThemeProvider, Router, etc.).
