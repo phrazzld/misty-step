@@ -85,7 +85,7 @@
 
 ## Components & Code Quality
 
-- [ ] **T006 · Refactor · P2: add forwardRef to Button component**
+- [x] **T006 · Refactor · P2: add forwardRef to Button component**
 
   - **Context:** cr-04 Add `forwardRef` to Button Component
   - **Action:**

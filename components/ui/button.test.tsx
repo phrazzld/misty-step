@@ -1,3 +1,4 @@
+import * as React from "react";
 import { describe, it, expect } from "vitest";
 
 import { render, screen } from "@/test/utils";
@@ -67,5 +68,30 @@ describe("Button", () => {
   it("passes additional props", () => {
     render(<Button data-testid="test-button">Button</Button>);
     expect(screen.getByTestId("test-button")).toBeInTheDocument();
+  });
+
+  it("forwards ref to the underlying element", () => {
+    const ref = React.createRef<HTMLButtonElement>();
+    render(<Button ref={ref}>Ref Button</Button>);
+
+    expect(ref.current).not.toBeNull();
+    expect(ref.current?.tagName).toBe("BUTTON");
+    expect(ref.current?.textContent).toBe("Ref Button");
+  });
+
+  it("forwards ref when asChild is true", () => {
+    const ref = React.createRef<HTMLAnchorElement>();
+    render(
+      <Button asChild>
+        <a ref={ref} href="#test-ref">
+          Link With Ref
+        </a>
+      </Button>
+    );
+
+    expect(ref.current).not.toBeNull();
+    expect(ref.current?.tagName).toBe("A");
+    expect(ref.current?.textContent).toBe("Link With Ref");
+    expect(ref.current?.getAttribute("href")).toBe("#test-ref");
   });
 });
