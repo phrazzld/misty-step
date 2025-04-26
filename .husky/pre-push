@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# Run full test suite with coverage to ensure code quality before pushing
+echo "Running full test suite with coverage..."
+pnpm test --coverage
+
+# If tests pass, allow the push to proceed
+echo "Tests passed! Proceeding with push..."

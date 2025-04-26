@@ -64,7 +64,7 @@
     1. Invalid commit messages are rejected locally and in CI.
   - **Depends-on:** none
 
-- [ ] **T005 · Chore · P2: run tests in pre-commit/pre-push hooks**
+- [x] **T005 · Chore · P2: run tests in pre-commit/pre-push hooks**
 
   - **Context:** cr-10 Run Tests in Pre-commit/Pre-push Hooks
   - **Action:**

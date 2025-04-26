@@ -1,3 +1,11 @@
 #!/bin/sh
 
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# Run lint-staged first
 npx lint-staged
+
+# Run tests with --passWithNoTests to allow committing new files without tests
+echo "Running tests..."
+pnpm test --passWithNoTests
