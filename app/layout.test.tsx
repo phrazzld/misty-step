@@ -18,6 +18,8 @@ import { metadata } from "./layout";
 describe("Layout", () => {
   it("has the correct metadata", () => {
     expect(metadata.title).toBe("Misty Step - Teleporting Your Business Into The Future");
-    expect(metadata.description).toBe("Innovative tech solutions for modern businesses");
+    expect(metadata.description).toBe(
+      "Expert technology consulting delivering digital transformation, data analytics, and tailored solutions that drive growth and efficiency for businesses of all sizes."
+    );
   });
 });

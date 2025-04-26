@@ -179,7 +179,7 @@
     1. No `npm` references remain in project documentation.
   - **Depends-on:** none
 
-- [ ] **T015 · Chore · P3: update placeholder site metadata**
+- [x] **T015 · Chore · P3: update placeholder site metadata**
 
   - **Context:** cr-14 Update Placeholder Site Metadata
   - **Action:**

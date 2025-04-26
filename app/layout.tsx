@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Misty Step - Teleporting Your Business Into The Future",
-  description: "Innovative tech solutions for modern businesses",
+  description:
+    "Expert technology consulting delivering digital transformation, data analytics, and tailored solutions that drive growth and efficiency for businesses of all sizes.",
 };
 
 export default function RootLayout({
