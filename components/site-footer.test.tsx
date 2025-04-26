@@ -13,7 +13,7 @@ describe("SiteFooter", () => {
   beforeEach(() => {
     // Mock Date to return fixed date
     global.Date = class extends Date {
-      constructor(): Date {
+      constructor() {
         super();
         return mockDate;
       }
