@@ -53,7 +53,7 @@
 
 ## Husky Hooks & CI Automation
 
-- [ ] **T004 · Chore · P2: enforce Conventional Commits via commit-msg hook**
+- [x] **T004 · Chore · P2: enforce Conventional Commits via commit-msg hook**
 
   - **Context:** cr-03 Enforce Conventional Commits via commit-msg hook
   - **Action:**
