@@ -1,3 +1,4 @@
+import * as React from "react";
 import { describe, it, expect } from "vitest";
 
 import { render, screen } from "@/test/utils";
@@ -34,5 +35,12 @@ describe("Textarea", () => {
   it("handles validation attributes", () => {
     render(<Textarea required placeholder="Required textarea" />);
     expect(screen.getByPlaceholderText("Required textarea")).toHaveAttribute("required");
+  });
+
+  it("forwards ref to the textarea element", () => {
+    const ref = React.createRef<HTMLTextAreaElement>();
+    render(<Textarea ref={ref} placeholder="Ref test" />);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toEqual(screen.getByPlaceholderText("Ref test"));
   });
 });

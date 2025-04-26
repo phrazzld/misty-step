@@ -1,3 +1,4 @@
+import * as React from "react";
 import { describe, it, expect } from "vitest";
 
 import { render, screen } from "@/test/utils";
@@ -34,5 +35,12 @@ describe("Input", () => {
   it("handles validation attributes", () => {
     render(<Input required placeholder="Required input" />);
     expect(screen.getByPlaceholderText("Required input")).toHaveAttribute("required");
+  });
+
+  it("forwards ref to the input element", () => {
+    const ref = React.createRef<HTMLInputElement>();
+    render(<Input ref={ref} placeholder="Ref test" />);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toEqual(screen.getByPlaceholderText("Ref test"));
   });
 });

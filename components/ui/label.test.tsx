@@ -1,3 +1,4 @@
+import * as React from "react";
 import { describe, it, expect } from "vitest";
 
 import { render, screen } from "@/test/utils";
@@ -41,5 +42,16 @@ describe("Label", () => {
     );
     expect(screen.getByText("Complex")).toBeInTheDocument();
     expect(screen.getByText("Label", { exact: false })).toBeInTheDocument();
+  });
+
+  it("forwards ref to the label element", () => {
+    const ref = React.createRef<HTMLLabelElement>();
+    render(
+      <Label ref={ref} htmlFor="test-ref">
+        Ref Test
+      </Label>
+    );
+    expect(ref.current).not.toBeNull();
+    expect(ref.current).toEqual(screen.getByText("Ref Test"));
   });
 });

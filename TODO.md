@@ -88,7 +88,7 @@
 
 ## Component Improvements
 
-- [ ] **T009 · Refactor · P2: add forwardRef to UI primitives**
+- [x] **T009 · Refactor · P2: add forwardRef to UI primitives**
 
   - **Context:** cr-07 in PLAN.md
   - **Action:**
@@ -134,6 +134,7 @@
 
 ### Clarifications & Assumptions
 
-- [ ] **Issue:** Package manager choice (npm vs yarn vs pnpm)
+- [x] **Issue:** Package manager choice (npm vs yarn vs pnpm)
   - **Context:** PLAN.md mentions npm commands but actual project might use a different package manager
   - **Blocking?:** no
+  - **Resolution**: pnpm
