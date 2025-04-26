@@ -42,7 +42,7 @@
     1. CI and local `pnpm test --coverage` fail if coverage falls below 85%.
   - **Depends-on:** none
 
-- [ ] **T003 · Test · P1: write tests to meet 85% coverage threshold**
+- [x] **T003 · Test · P1: write tests to meet 85% coverage threshold**
   - **Context:** cr-02 Raise Test Coverage Thresholds (Step 2)
   - **Action:**
     1. Identify uncovered core logic/components via the coverage report.
