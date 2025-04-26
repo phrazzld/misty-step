@@ -13,7 +13,7 @@
     1. CI reports zero lint errors under strict TypeScript-aware rules.
   - **Depends-on:** none
 
-- [ ] **T018 · Chore · P2: configure ESLint max-lines rule**
+- [x] **T018 · Chore · P2: configure ESLint max-lines rule**
 
   - **Context:** cr-17 Enforce File Length Limits via ESLint (Step 1)
   - **Action:**

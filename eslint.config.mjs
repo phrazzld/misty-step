@@ -51,6 +51,10 @@ const eslintConfig = [
       "react/jsx-key": "error",
       "react-hooks/exhaustive-deps": "error",
 
+      // Enforce file length limits
+      // Warn at 500 lines (excluding blanks/comments)
+      "max-lines": ["warn", { max: 500, skipBlankLines: true, skipComments: true }],
+
       // Ensure imports are properly sorted
       "import/order": [
         "error",
