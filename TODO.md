@@ -149,7 +149,7 @@
 
 ## Environment & Configuration
 
-- [ ] **T011 · Chore · P3: add engines specification to package.json**
+- [x] **T011 · Chore · P3: add engines specification to package.json**
 
   - **Context:** cr-09 Add `engines` Specification to `package.json`
   - **Action:**
