@@ -96,7 +96,7 @@
     1. Tests confirm consumers can attach refs to `Button`.
   - **Depends-on:** none
 
-- [ ] **T007 · Refactor · P2: remove unnecessary "use client" directives**
+- [x] **T007 · Refactor · P2: remove unnecessary "use client" directives**
 
   - **Context:** cr-05 Remove Unnecessary `"use client"` Directives
   - **Action:**
