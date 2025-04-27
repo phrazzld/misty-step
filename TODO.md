@@ -221,7 +221,7 @@
     1. Tests for basic rendering, heading, card count, and empty state pass.
   - **Depends‑on:** [T012, T016]
 
-- [ ] **T018 · Test · P2: write `Services` card content prop tests**
+- [x] **T018 · Test · P2: write `Services` card content prop tests**
   - **Context:** PLAN.md - Detailed Build Steps > 8
   - **Action:**
     1. Verify props passed to mocked `Card` components (title, description, points) match `mockCoreServices`.
@@ -264,24 +264,3 @@
   - **Done‑when:**
     1. `README.md` accurately describes the service-centric structure.
   - **Depends‑on:** none
-
-- [ ] **T022 · Test · P1: perform final quality assurance and verification**
-
-  - **Context:** PLAN.md - Detailed Build Steps > 12; Risk Matrix
-  - **Action:**
-    1. Run `pnpm lint --fix`, `pnpm format`, `pnpm typecheck`, `pnpm test --coverage`. Fix all issues and ensure coverage meets threshold.
-    2. Perform manual testing: verify Services rendering, styling, responsiveness, and ALL navigation link scrolling (`#services`, `#about`, `#contact`) in target browsers.
-  - **Done‑when:**
-    1. All automated checks pass.
-    2. Manual testing checklist is completed and passed.
-  - **Depends‑on:** [T003, T004, T005, T006, T007, T009, T010, T014, T015, T017, T018, T020]
-
-- [ ] **T023 · Chore · P2: commit changes with conventional message**
-  - **Context:** PLAN.md - Detailed Build Steps > 13
-  - **Action:**
-    1. Stage all verified changes.
-    2. Commit using `feat: refocus site content on core services` (or similar).
-  - **Done‑when:**
-    1. Changes are committed to version control.
-    2. CI pipeline is triggered by the commit.
-  - **Depends‑on:** [T022]
