@@ -69,7 +69,7 @@
     2. `app/layout.test.tsx` passes with updated assertions.
   - **Depends‑on:** none
 
-- [ ] **T005 · Refactor · P2: update hero content and cta in `components/hero.tsx`**
+- [x] **T005 · Refactor · P2: update hero content and cta in `components/hero.tsx`**
 
   - **Context:** PLAN.md - Detailed Build Steps > 4; Detailed Build Steps > 11
   - **Action:**
