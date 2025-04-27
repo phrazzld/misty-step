@@ -197,7 +197,7 @@
 
 ## Services Component Tests (`components/services.test.tsx`)
 
-- [ ] **T016 · Test · P2: set up mocks for `services` tests**
+- [x] **T016 · Test · P2: set up mocks for `services` tests**
 
   - **Context:** PLAN.md - Detailed Build Steps > 8; Testing Strategy > What to Mock
   - **Action:**
