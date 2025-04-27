@@ -151,7 +151,7 @@
     3. Code passes linting and type checking.
   - **Depends‑on:** none
 
-- [ ] **T012 · Feature · P2: implement data mapping and card rendering**
+- [x] **T012 · Feature · P2: implement data mapping and card rendering**
 
   - **Context:** PLAN.md - Detailed Build Steps > 7
   - **Action:**
