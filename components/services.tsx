@@ -1,7 +1,23 @@
+import React from "react";
+
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import {
+  StrategicConsultingIcon,
+  SoftwareDevelopmentIcon,
+  CloudDevOpsIcon,
+  DataAnalyticsIcon,
+} from "@/lib/content/service-icons";
 import { coreServices } from "@/lib/content/services";
 
 export function Services(): React.JSX.Element {
+  // Map of service IDs to their icon components
+  const iconMap: Record<string, React.ReactNode> = {
+    "strategic-technology-consulting": <StrategicConsultingIcon />,
+    "custom-software-development": <SoftwareDevelopmentIcon />,
+    "cloud-devops-solutions": <CloudDevOpsIcon />,
+    "data-analytics-ai": <DataAnalyticsIcon />,
+  };
+
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-muted/50 to-muted">
       <div className="container mx-auto px-4">
@@ -19,7 +35,11 @@ export function Services(): React.JSX.Element {
               className="border border-border/40 transition-all duration-300 hover:shadow-lg hover:border-border/80"
             >
               <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-bold mb-2">{service.title}</CardTitle>
+                <div className="flex items-center mb-3">
+                  {/* Render icon based on service ID from the iconMap */}
+                  {iconMap[service.id]}
+                  <CardTitle className="text-xl font-bold ml-3">{service.title}</CardTitle>
+                </div>
                 <CardDescription className="text-foreground/70 text-base">
                   {service.description}
                 </CardDescription>

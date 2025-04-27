@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 /**
  * Represents a service offering provided by Misty Step consulting.
  * Used to display service cards on the marketing site.
@@ -24,12 +22,6 @@ export interface ServiceOffering {
   readonly description: string;
 
   /**
-   * Optional icon to display with the service.
-   * Can be a React component (e.g., from lucide-react) or emoji string.
-   */
-  readonly icon?: ReactNode;
-
-  /**
    * Key points describing the service offering.
    * These are displayed as bullet points in the service card.
    * Each point should be a concise, complete statement.
@@ -38,36 +30,61 @@ export interface ServiceOffering {
 }
 
 /**
- * Placeholder core services data.
- * This will be replaced with the final, approved services content.
- * Currently contains example data for development and testing.
+ * Core services offered by Misty Step.
+ * These represent our primary areas of expertise and service offerings.
+ * Icons are handled directly in the Services component.
  */
 export const coreServices: readonly ServiceOffering[] = [
+  {
+    id: "strategic-technology-consulting",
+    title: "Strategic Technology Consulting",
+    description:
+      "We provide expert guidance to help you navigate complex technology decisions, optimize your IT landscape, and align technology effectively with your strategic business goals.",
+    points: [
+      "Technology roadmap definition and future-proof architecture design",
+      "Digital transformation strategy formulation and implementation planning",
+      "Codebase audits, quality assessments, and technical due diligence",
+      "Development process optimization (Agile, DevOps) and best-practice implementation",
+      "Cloud strategy, vendor selection, and technology stack evaluation",
+    ],
+  },
   {
     id: "custom-software-development",
     title: "Custom Software Development",
     description:
-      "End-to-end software solutions tailored to your specific business needs, challenges, and growth objectives.",
-    // Icon to be determined based on C002 decision
+      "We design, build, deploy, and scale bespoke software solutions tailored precisely to your unique business needs, driving efficiency and competitive advantage.",
     points: [
-      "Bespoke web and mobile applications built with modern technologies",
-      "Scalable architecture designed for your business growth",
-      "User-focused design process with iterative development and feedback",
-      "Ongoing maintenance and support options to ensure long-term success",
+      "Bespoke web, mobile, and enterprise application development using modern stacks",
+      "Scalable, cloud-native architectures designed for performance and growth",
+      "User-centric design (UX/UI) principles integrated throughout the agile process",
+      "Seamless integration with existing systems, APIs, and third-party services",
+      "Ongoing maintenance, support, and strategic evolution of applications",
     ],
   },
   {
-    id: "technical-consulting",
-    title: "Technical Consulting",
+    id: "cloud-devops-solutions",
+    title: "Cloud & DevOps Solutions",
     description:
-      "Strategic technology guidance to help you make informed decisions, optimize processes, and achieve your business goals.",
-    // Icon to be determined based on C002 decision
+      "Accelerate your cloud journey and streamline software delivery with our expertise in cloud architecture, migration, automation, and modern DevOps practices.",
     points: [
-      "Technology stack selection and architectural design",
-      "Code quality assessments and optimization recommendations",
-      "Development process improvements and best practices",
-      "Cloud infrastructure planning and migration strategies",
-      "Security audits and implementation guidance",
+      "Cloud strategy, migration planning, and execution across major providers (AWS, Azure, GCP)",
+      "Infrastructure as Code (IaC) implementation for consistency and repeatability (Terraform, CloudFormation)",
+      "CI/CD pipeline design, automation, and optimization for faster, reliable releases",
+      "Containerization (Docker, Kubernetes) strategy, implementation, and management",
+      "Observability setup (monitoring, logging, alerting) and Site Reliability Engineering (SRE) practices",
+    ],
+  },
+  {
+    id: "data-analytics-ai",
+    title: "Data Analytics & AI",
+    description:
+      "Unlock actionable insights from your data. We help define data strategies, build robust analytics platforms, and leverage AI/ML to drive smarter business decisions.",
+    points: [
+      "Data strategy development, governance frameworks, and architecture design (lakes, warehouses)",
+      "ETL/ELT pipeline implementation and data quality management",
+      "Business Intelligence (BI) solutions, dashboard creation, and data visualization",
+      "Custom Machine Learning (ML) model development, deployment, and integration",
+      "AI feasibility studies, Proof-of-Concept (PoC) development, and implementation",
     ],
   },
 ];

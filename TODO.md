@@ -2,7 +2,7 @@
 
 ## Clarifications
 
-- [ ] **C001 · Chore · P0: define final core services content**
+- [x] **C001 · Chore · P0: define final core services content**
 
   - **Context:** PLAN.md - Open Questions > 1; Detailed Build Steps > 1
   - **Action:**
@@ -10,8 +10,9 @@
   - **Done‑when:**
     1. Final service content is documented and approved by stakeholders.
   - **Blocking?:** yes (for T003)
+  - **Resolution:** Used thinktank to get recommended core services. See clarifications/C001-C002-responses.md
 
-- [ ] **C002 · Chore · P2: decide on service icon usage and format**
+- [x] **C002 · Chore · P2: decide on service icon usage and format**
   - **Context:** PLAN.md - Open Questions > 2; Detailed Build Steps > 1, 7
   - **Action:**
     1. Determine if icons should be used for service cards.
@@ -19,6 +20,7 @@
   - **Done‑when:**
     1. Decision on icon usage and format/source is documented.
   - **Blocking?:** yes (for T003, T015)
+  - **Resolution:** Decision to use icons with lucide-react format. See clarifications/C001-C002-responses.md
 
 ## Content Definition (`lib/content/services.ts`)
 
@@ -45,7 +47,7 @@
     2. Code passes linting and type checking.
   - **Depends‑on:** [T001]
 
-- [ ] **T003 · Feature · P1: populate `coreServices` with final data**
+- [x] **T003 · Feature · P1: populate `coreServices` with final data**
   - **Context:** PLAN.md - Detailed Build Steps > 1, 2
   - **Action:**
     1. Replace placeholder data in `coreServices` with final content from C001.
@@ -184,7 +186,7 @@
     1. `Services` section and cards are styled consistently with the site.
   - **Depends‑on:** [T013]
 
-- [ ] **T015 · Feature · P2: implement optional icon rendering**
+- [x] **T015 · Feature · P2: implement optional icon rendering**
   - **Context:** PLAN.md - Detailed Build Steps > 7
   - **Action:**
     1. Conditionally render `service.icon` in `CardHeader` based on C002 decision and data.
