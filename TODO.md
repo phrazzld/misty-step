@@ -81,7 +81,7 @@
     2. `components/hero.test.tsx` passes with updated assertions.
   - **Depends‑on:** none
 
-- [ ] **T006 · Refactor · P2: update header navigation in `components/site-header.tsx`**
+- [x] **T006 · Refactor · P2: update header navigation in `components/site-header.tsx`**
 
   - **Context:** PLAN.md - Detailed Build Steps > 10; Detailed Build Steps > 11
   - **Action:**
