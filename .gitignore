@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # thinktank outputs
-/thinktank_output/
+thinktank_*/
 
-# task prompts 
+# task prompts
 TASK-PROMPT.md
