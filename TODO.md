@@ -242,7 +242,7 @@
     2. Code passes linting and type checking.
   - **Depends‑on:** [T011]
 
-- [ ] **T020 · Test · P2: update `app/page.test.tsx`**
+- [x] **T020 · Test · P2: update `app/page.test.tsx`**
   - **Context:** PLAN.md - Detailed Build Steps > 11
   - **Action:**
     1. Remove mocks/assertions for `Features` and inline "Solutions".
