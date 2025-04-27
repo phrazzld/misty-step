@@ -93,7 +93,7 @@
     2. `components/site-header.test.tsx` passes with updated assertions.
   - **Depends‑on:** none
 
-- [ ] **T007 · Refactor · P2: update footer navigation in `components/site-footer.tsx`**
+- [x] **T007 · Refactor · P2: update footer navigation in `components/site-footer.tsx`**
   - **Context:** PLAN.md - Detailed Build Steps > 10; Detailed Build Steps > 11
   - **Action:**
     1. Remove "Features" nav link.

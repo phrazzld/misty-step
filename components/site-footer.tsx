@@ -16,11 +16,8 @@ export function SiteFooter(): React.JSX.Element {
             <span className="font-bold">Misty Step</span>
           </div>
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 text-sm text-foreground/70">
-            <a href="#features" className="hover:text-foreground transition">
-              Features
-            </a>
-            <a href="#solutions" className="hover:text-foreground transition">
-              Solutions
+            <a href="#services" className="hover:text-foreground transition">
+              Services
             </a>
             <a href="#about" className="hover:text-foreground transition">
               About
