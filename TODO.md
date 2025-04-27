@@ -175,7 +175,7 @@
     2. Code passes linting and type checking.
   - **Depends‑on:** [T012]
 
-- [ ] **T014 · Feature · P2: apply styling to `Services` component**
+- [x] **T014 · Feature · P2: apply styling to `Services` component**
 
   - **Context:** PLAN.md - Detailed Build Steps > 7
   - **Action:**
