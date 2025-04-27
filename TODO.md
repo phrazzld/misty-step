@@ -231,7 +231,7 @@
 
 ## Integration & Page Tests
 
-- [ ] **T019 · Feature · P2: integrate `Services` component into `app/page.tsx`**
+- [x] **T019 · Feature · P2: integrate `Services` component into `app/page.tsx`**
 
   - **Context:** PLAN.md - Detailed Build Steps > 9
   - **Action:**
