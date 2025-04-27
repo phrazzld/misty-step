@@ -17,9 +17,9 @@ import { metadata } from "./layout";
 
 describe("Layout", () => {
   it("has the correct metadata", () => {
-    expect(metadata.title).toBe("Misty Step - Teleporting Your Business Into The Future");
+    expect(metadata.title).toBe("Misty Step - Professional Technology Consulting Services");
     expect(metadata.description).toBe(
-      "Expert technology consulting delivering digital transformation, data analytics, and tailored solutions that drive growth and efficiency for businesses of all sizes."
+      "Software development and technical consulting services that transform your business challenges into effective digital solutions. Expert guidance when you need it most."
     );
   });
 });

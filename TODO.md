@@ -58,7 +58,7 @@
 
 ## Core Component Updates
 
-- [ ] **T004 · Refactor · P2: update site metadata in `app/layout.tsx`**
+- [x] **T004 · Refactor · P2: update site metadata in `app/layout.tsx`**
 
   - **Context:** PLAN.md - Detailed Build Steps > 3; Detailed Build Steps > 11
   - **Action:**
