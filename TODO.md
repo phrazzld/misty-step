@@ -106,7 +106,7 @@
 
 ## Cleanup
 
-- [ ] **T008 · Refactor · P2: delete features component files**
+- [x] **T008 · Refactor · P2: delete features component files**
 
   - **Context:** PLAN.md - Detailed Build Steps > 5
   - **Action:**
@@ -117,7 +117,7 @@
     2. Project builds successfully (`pnpm build`).
   - **Depends‑on:** none
 
-- [ ] **T009 · Refactor · P2: remove features component usage from `app/page.tsx`**
+- [x] **T009 · Refactor · P2: remove features component usage from `app/page.tsx`**
 
   - **Context:** PLAN.md - Detailed Build Steps > 5
   - **Action:**

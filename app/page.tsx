@@ -1,5 +1,4 @@
 import { Contact } from "@/components/contact";
-import { Features } from "@/components/features";
 import { Hero } from "@/components/hero";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -11,8 +10,6 @@ export default function Home(): React.JSX.Element {
       <SiteHeader />
 
       <Hero />
-
-      <Features />
 
       {/* Solutions */}
       <section id="solutions" className="py-20 bg-muted">

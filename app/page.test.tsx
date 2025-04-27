@@ -8,9 +8,7 @@ vi.mock("@/components/contact", () => ({
   Contact: () => <div data-testid="contact-component">Contact Component</div>,
 }));
 
-vi.mock("@/components/features", () => ({
-  Features: () => <div data-testid="features-component">Features Component</div>,
-}));
+// Features component has been removed
 
 vi.mock("@/components/hero", () => ({
   Hero: () => <div data-testid="hero-component">Hero Component</div>,
@@ -59,7 +57,7 @@ describe("Home Page", () => {
 
     expect(screen.getByTestId("site-header-component")).toBeInTheDocument();
     expect(screen.getByTestId("hero-component")).toBeInTheDocument();
-    expect(screen.getByTestId("features-component")).toBeInTheDocument();
+    // Features component has been removed
     expect(screen.getByTestId("contact-component")).toBeInTheDocument();
     expect(screen.getByTestId("site-footer-component")).toBeInTheDocument();
   });
