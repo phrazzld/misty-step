@@ -208,7 +208,7 @@
     1. `components/services.test.tsx` exists with mocks for content and UI cards.
   - **Depends‑on:** [T011]
 
-- [ ] **T017 · Test · P2: write `Services` component rendering tests**
+- [x] **T017 · Test · P2: write `Services` component rendering tests**
 
   - **Context:** PLAN.md - Detailed Build Steps > 8
   - **Action:**
