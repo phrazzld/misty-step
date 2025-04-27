@@ -36,3 +36,38 @@ export interface ServiceOffering {
    */
   readonly points: readonly string[];
 }
+
+/**
+ * Placeholder core services data.
+ * This will be replaced with the final, approved services content.
+ * Currently contains example data for development and testing.
+ */
+export const coreServices: readonly ServiceOffering[] = [
+  {
+    id: "custom-software-development",
+    title: "Custom Software Development",
+    description:
+      "End-to-end software solutions tailored to your specific business needs, challenges, and growth objectives.",
+    // Icon to be determined based on C002 decision
+    points: [
+      "Bespoke web and mobile applications built with modern technologies",
+      "Scalable architecture designed for your business growth",
+      "User-focused design process with iterative development and feedback",
+      "Ongoing maintenance and support options to ensure long-term success",
+    ],
+  },
+  {
+    id: "technical-consulting",
+    title: "Technical Consulting",
+    description:
+      "Strategic technology guidance to help you make informed decisions, optimize processes, and achieve your business goals.",
+    // Icon to be determined based on C002 decision
+    points: [
+      "Technology stack selection and architectural design",
+      "Code quality assessments and optimization recommendations",
+      "Development process improvements and best practices",
+      "Cloud infrastructure planning and migration strategies",
+      "Security audits and implementation guidance",
+    ],
+  },
+];

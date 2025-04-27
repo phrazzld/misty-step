@@ -34,7 +34,7 @@
     2. Code passes linting and type checking (`pnpm lint && pnpm typecheck`).
   - **Depends‑on:** none
 
-- [ ] **T002 · Feature · P2: export placeholder `coreServices` array**
+- [x] **T002 · Feature · P2: export placeholder `coreServices` array**
 
   - **Context:** PLAN.md - Detailed Build Steps > 2; Risk Matrix > Content Delay Mitigation
   - **Action:**
