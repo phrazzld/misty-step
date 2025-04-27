@@ -139,7 +139,7 @@
 
 ## Services Component (`components/services.tsx`)
 
-- [ ] **T011 · Feature · P2: scaffold `Services` component structure**
+- [x] **T011 · Feature · P2: scaffold `Services` component structure**
 
   - **Context:** PLAN.md - Detailed Build Steps > 7
   - **Action:**
