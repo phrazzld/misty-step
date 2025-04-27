@@ -254,7 +254,7 @@
 
 ## Documentation & Final QA
 
-- [ ] **T021 · Chore · P3: update project `README.md`**
+- [x] **T021 · Chore · P3: update project `README.md`**
 
   - **Context:** PLAN.md - Documentation > README Updates
   - **Action:**
