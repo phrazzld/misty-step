@@ -128,7 +128,7 @@
     2. Code passes linting and type checking.
   - **Depends‑on:** [T008]
 
-- [ ] **T010 · Refactor · P2: remove inline solutions section from `app/page.tsx`**
+- [x] **T010 · Refactor · P2: remove inline solutions section from `app/page.tsx`**
   - **Context:** PLAN.md - Detailed Build Steps > 6
   - **Action:**
     1. Locate and delete the `<section id="solutions" ...>` JSX block from `app/page.tsx`.

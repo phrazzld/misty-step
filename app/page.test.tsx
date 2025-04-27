@@ -62,35 +62,7 @@ describe("Home Page", () => {
     expect(screen.getByTestId("site-footer-component")).toBeInTheDocument();
   });
 
-  it("renders the solutions section", () => {
-    render(<Home />);
-
-    // Solutions section heading and description
-    expect(screen.getByText("Solutions")).toBeInTheDocument();
-    expect(
-      screen.getByText("Tailored technology solutions for businesses of all sizes.")
-    ).toBeInTheDocument();
-
-    // Solution cards are present
-    const cardComponents = screen.getAllByTestId("card-component");
-    expect(cardComponents.length).toBeGreaterThanOrEqual(2); // At least 2 solution cards
-
-    // Solution titles
-    expect(screen.getByText("Digital Transformation")).toBeInTheDocument();
-    expect(screen.getByText("Data Analytics")).toBeInTheDocument();
-
-    // Solution descriptions
-    expect(
-      screen.getByText(
-        "Modernize your business with our comprehensive digital transformation strategies."
-      )
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        "Turn your data into actionable insights with our advanced analytics solutions."
-      )
-    ).toBeInTheDocument();
-  });
+  // Solutions section has been removed
 
   it("renders the about section", () => {
     render(<Home />);
@@ -103,26 +75,12 @@ describe("Home Page", () => {
     expect(screen.getByText(/We believe in partnering with our clients/)).toBeInTheDocument();
   });
 
-  it("uses key properties in map functions", () => {
-    render(<Home />);
-
-    // Digital Transformation solution points
-    expect(screen.getByText("Legacy System Migration")).toBeInTheDocument();
-    expect(screen.getByText("Process Automation")).toBeInTheDocument();
-    expect(screen.getByText("Cloud Adoption")).toBeInTheDocument();
-
-    // Data Analytics solution points
-    expect(screen.getByText("Real-time Dashboards")).toBeInTheDocument();
-    expect(screen.getByText("Predictive Analytics")).toBeInTheDocument();
-    expect(screen.getByText("Data Visualization")).toBeInTheDocument();
-  });
+  // "uses key properties in map functions" test removed - Solutions section has been removed
 
   it("has sections with correct IDs for navigation", () => {
     render(<Home />);
 
-    const solutionsSection = document.getElementById("solutions");
-    expect(solutionsSection).toBeInTheDocument();
-
+    // Solutions section has been removed
     const aboutSection = document.getElementById("about");
     expect(aboutSection).toBeInTheDocument();
   });
