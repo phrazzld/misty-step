@@ -164,7 +164,7 @@
     3. Code passes linting and type checking.
   - **Depends‑on:** [T002, T011]
 
-- [ ] **T013 · Feature · P2: populate service card content**
+- [x] **T013 · Feature · P2: populate service card content**
 
   - **Context:** PLAN.md - Detailed Build Steps > 7
   - **Action:**
