@@ -10,11 +10,11 @@ describe("Hero", () => {
 
     // Main heading contains both regular and highlighted text
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Teleport Your Business Into The Future"
+      "Expert Technology Services & Consulting"
     );
 
     // Check that the highlight span exists
-    const highlight = screen.getByText("Into The Future");
+    const highlight = screen.getByText("Services & Consulting");
     expect(highlight).toBeInTheDocument();
     expect(highlight).toHaveClass("text-primary");
   });
@@ -23,7 +23,7 @@ describe("Hero", () => {
     render(<Hero />);
 
     const description = screen.getByText(
-      "Innovative technology solutions that help modern businesses achieve digital transformation quickly and efficiently."
+      "Custom software development and technical consulting that transforms your business challenges into effective digital solutions."
     );
     expect(description).toBeInTheDocument();
   });
@@ -36,17 +36,17 @@ describe("Hero", () => {
     expect(getStartedButton).toBeInTheDocument();
     expect(getStartedButton).toHaveAttribute("href", "#contact");
 
-    // Explore Solutions button (secondary)
-    const exploreSolutionsButton = screen.getByRole("link", { name: "Explore Solutions" });
-    expect(exploreSolutionsButton).toBeInTheDocument();
-    expect(exploreSolutionsButton).toHaveAttribute("href", "#solutions");
+    // Explore Services button (secondary)
+    const exploreServicesButton = screen.getByRole("link", { name: "Explore Services" });
+    expect(exploreServicesButton).toBeInTheDocument();
+    expect(exploreServicesButton).toHaveAttribute("href", "#services");
   });
 
   it("has the expected layout structure", () => {
     render(<Hero />);
 
     // Check section has the appropriate classes
-    const section = screen.getByText("Teleport Your Business").closest("section");
+    const section = screen.getByText("Expert Technology").closest("section");
     expect(section).toBeInTheDocument();
     expect(section).toHaveClass("flex-grow");
     expect(section).toHaveClass("bg-gradient-to-b");
@@ -70,9 +70,9 @@ describe("Hero", () => {
     expect(getStartedButton).toHaveClass("h-10"); // size-lg equivalent in the CSS
 
     // Secondary button should have outline variant
-    const exploreSolutionsLink = screen.getByRole("link", { name: "Explore Solutions" });
-    const exploreSolutionsButton = exploreSolutionsLink.closest("a");
-    expect(exploreSolutionsButton).toHaveClass("border");
-    expect(exploreSolutionsButton).toHaveClass("h-10"); // size-lg equivalent in the CSS
+    const exploreServicesLink = screen.getByRole("link", { name: "Explore Services" });
+    const exploreServicesButton = exploreServicesLink.closest("a");
+    expect(exploreServicesButton).toHaveClass("border");
+    expect(exploreServicesButton).toHaveClass("h-10"); // size-lg equivalent in the CSS
   });
 });

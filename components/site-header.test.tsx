@@ -24,13 +24,9 @@ describe("SiteHeader", () => {
   it("renders the navigation links", () => {
     render(<SiteHeader />);
 
-    const featuresLink = screen.getByRole("link", { name: "Features" });
-    expect(featuresLink).toBeInTheDocument();
-    expect(featuresLink).toHaveAttribute("href", "#features");
-
-    const solutionsLink = screen.getByRole("link", { name: "Solutions" });
-    expect(solutionsLink).toBeInTheDocument();
-    expect(solutionsLink).toHaveAttribute("href", "#solutions");
+    const servicesLink = screen.getByRole("link", { name: "Services" });
+    expect(servicesLink).toBeInTheDocument();
+    expect(servicesLink).toHaveAttribute("href", "#services");
 
     const aboutLink = screen.getByRole("link", { name: "About" });
     expect(aboutLink).toBeInTheDocument();

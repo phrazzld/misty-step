@@ -20,11 +20,8 @@ export function SiteHeader(): React.JSX.Element {
           <span className="font-bold text-xl">Misty Step</span>
         </div>
         <nav className="hidden md:flex items-center gap-6">
-          <a href="#features" className="text-foreground/80 hover:text-foreground transition">
-            Features
-          </a>
-          <a href="#solutions" className="text-foreground/80 hover:text-foreground transition">
-            Solutions
+          <a href="#services" className="text-foreground/80 hover:text-foreground transition">
+            Services
           </a>
           <a href="#about" className="text-foreground/80 hover:text-foreground transition">
             About
