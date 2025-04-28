@@ -9,7 +9,7 @@
   - **Done‑when:**
     1. Responsibility for initial color value definition is documented.
   - **Depends‑on:** none
-- [ ] **T002 · Chore · P0: clarify contrast validation standard and tool**
+- [x] **T002 · Chore · P0: clarify contrast validation standard and tool**
   - **Context:** Open Questions Q3
   - **Action:**
     1. Confirm the specific WCAG version (e.g., 2.1, 2.2) and level (AA) to target.
@@ -177,9 +177,10 @@
   - **Context:** Open Questions Q1
   - **Blocking?:** yes (Blocks T003)
   - **Resolution:** Development team will propose values. Documented in docs/decisions/color-palette-origin.md
-- [ ] **Issue:** What is the definitive tool and standard for contrast validation?
+- [x] **Issue:** What is the definitive tool and standard for contrast validation?
   - **Context:** Open Questions Q3
   - **Blocking?:** yes (Blocks T004, T017)
+  - **Resolution:** WCAG 2.1 AA standard with WebAIM Contrast Checker as primary tool. Documented in docs/decisions/contrast-validation-standard.md
 - [ ] **Issue:** Are there third-party components needing separate theming?
   - **Context:** Open Questions Q2
   - **Blocking?:** yes (Blocks T012)
