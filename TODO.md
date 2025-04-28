@@ -173,13 +173,14 @@
     1. A list of third-party components needing separate theming (or confirmation of none) is documented.
   - **Depends‑on:** none
   - **Completed:** Conducted thorough analysis of all third-party UI components (Radix UI, Next.js Image) and confirmed that none require separate theming outside of the existing Tailwind CSS and CSS variables approach. Created comprehensive documentation in `docs/third-party-components.md` detailing the analysis and findings.
-- [ ] **T012 · Refactor · P2: apply theme to identified third-party components**
+- [x] **T012 · Refactor · P2: apply theme to identified third-party components**
   - **Context:** Open Questions Q2 (Implied Action)
   - **Action:**
     1. Apply the new color scheme (from T005) to third-party components identified in T011 using their specific theming methods.
   - **Done‑when:**
     1. Identified third-party components visually match the new color scheme.
   - **Depends‑on:** [T005, T011]
+  - **Completed:** Verified that no separate theming is required for third-party components as documented in T011. All identified components (Radix UI's Slot and Label, Next.js Image) already use the project's semantic color tokens through Tailwind CSS classes mapped to CSS variables. The existing theming approach is sufficient for all components.
 
 ## Verification & Testing
 
