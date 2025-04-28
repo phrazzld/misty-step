@@ -164,13 +164,14 @@
   - **Done‑when:**
     1. Codebase audit complete; hardcoded colors replaced with semantic utilities.
   - **Depends‑on:** [T006, T007, T009]
-- [ ] **T011 · Chore · P1: identify third-party components needing separate theming**
+- [x] **T011 · Chore · P1: identify third-party components needing separate theming**
   - **Context:** Open Questions Q2
   - **Action:**
     1. Investigate if any embedded third-party components lack Tailwind/CSS variable support and require custom theming.
   - **Done‑when:**
     1. A list of third-party components needing separate theming (or confirmation of none) is documented.
   - **Depends‑on:** none
+  - **Completed:** Conducted thorough analysis of all third-party UI components (Radix UI, Next.js Image) and confirmed that none require separate theming outside of the existing Tailwind CSS and CSS variables approach. Created comprehensive documentation in `docs/third-party-components.md` detailing the analysis and findings.
 - [ ] **T012 · Refactor · P2: apply theme to identified third-party components**
   - **Context:** Open Questions Q2 (Implied Action)
   - **Action:**
@@ -263,6 +264,7 @@
   - **Context:** Open Questions Q3
   - **Blocking?:** yes (Blocks T004, T017)
   - **Resolution:** WCAG 2.1 AA standard with WebAIM Contrast Checker as primary tool. Documented in docs/decisions/contrast-validation-standard.md
-- [ ] **Issue:** Are there third-party components needing separate theming?
+- [x] **Issue:** Are there third-party components needing separate theming?
   - **Context:** Open Questions Q2
   - **Blocking?:** yes (Blocks T012)
+  - **Resolution:** No third-party components require separate theming. All components (Radix UI, Next.js Image) can be themed using the existing Tailwind CSS and CSS variables approach. Documented in docs/third-party-components.md.
