@@ -110,13 +110,14 @@
     1. The task `T004` in `TODO.md` is marked with `[x]`.
   - **Depends‑on:** [T024]
   - **Completed:** Task T004 is already marked as completed in TODO.md with detailed documentation. All dependencies are properly reflected, and the completion status is included in the commit.
-- [ ] **T005 · Chore · P1: document finalized color values**
+- [x] **T005 · Chore · P1: document finalized color values**
   - **Context:** Detailed Build Steps - 2. Verify Accessibility & Finalize Values
   - **Action:**
     1. Record the final, verified HSL/Oklch values agreed upon after accessibility checks (T004).
   - **Done‑when:**
     1. A definitive list of HSL/Oklch values for implementation is documented and accessible.
   - **Depends‑on:** [T025]
+  - **Completed:** Created a comprehensive `docs/colors.md` document containing all finalized color values organized by semantic tokens for both light and dark modes. The document includes implementation notes, usage guidelines, and references to the verification process.
 - [ ] **T006 · Feature · P1: implement light mode colors in globals.css**
   - **Context:** Detailed Build Steps - 3. Update `globals.css`; Architecture Blueprint - `app/globals.css`
   - **Action:**
