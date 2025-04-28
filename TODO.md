@@ -127,7 +127,7 @@
     1. `app/globals.css` `:root` scope contains the new, verified light mode HSL/Oklch values.
   - **Depends‑on:** [T005]
   - **Completed:** Updated the `:root` section in `app/globals.css` with all finalized light mode color values from `docs/colors.md`. All 33 color tokens have been updated with the verified Oklch values while maintaining the existing structure and variable names.
-- [ ] **T007 · Feature · P1: implement dark mode colors in globals.css**
+- [x] **T007 · Feature · P1: implement dark mode colors in globals.css**
   - **Context:** Detailed Build Steps - 3. Update `globals.css`; Architecture Blueprint - `app/globals.css`
   - **Action:**
     1. Replace HSL/Oklch values in the `.dark` scope of `app/globals.css` with the finalized dark mode values (from T005).
@@ -135,6 +135,7 @@
   - **Done‑when:**
     1. `app/globals.css` `.dark` scope contains the new, verified dark mode HSL/Oklch values.
   - **Depends‑on:** [T005]
+  - **Completed:** Updated the `.dark` section in `app/globals.css` with all finalized dark mode color values from `docs/colors.md`. All 33 color tokens have been updated with the verified Oklch values while maintaining the existing structure and variable names.
 - [ ] **T008 · Refactor · P2: add explanatory comments to globals.css**
   - **Context:** Detailed Build Steps - 3. Update `globals.css`; Documentation - Code Self-Doc Patterns
   - **Action:**
