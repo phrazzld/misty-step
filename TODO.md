@@ -70,7 +70,7 @@
     1. `git status` shows all the listed files (if modified/created) correctly staged for commit.
   - **Depends‑on:** [T022]
   - **Completed:** All relevant files for T004 and the ESLint fix have been staged, including `TODO.md`, `color-check.js`, `eslint.config.mjs`, and the documentation files in the `docs/` directory.
-- [ ] **T024 · Chore · P1: Commit T004 changes with Conventional Commit message**
+- [x] **T024 · Chore · P1: Commit T004 changes with Conventional Commit message**
 
   - **Context:** All files related to T004 and the associated ESLint fix are staged (T023). A Conventional Commit message is required to accurately reflect the changes, combining the feature work and the lint fix as suggested by the consultant plan.
   - **Action:**
@@ -97,8 +97,9 @@
     1. A single commit is created in the Git history containing all changes from T023.
     2. The commit message adheres to the specified Conventional Commit format and content.
   - **Depends‑on:** [T023]
+  - **Completed:** Successfully committed all T004 changes and the ESLint fix with a detailed conventional commit message following the specified format. The pre-commit hooks ran successfully, and all automated tests passed.
 
-- [ ] **T025 · Chore · P2: Mark T004 as completed in TODO.md**
+- [x] **T025 · Chore · P2: Mark T004 as completed in TODO.md**
   - **Context:** The development work, documentation, and associated lint fix for T004 have been successfully committed (T024). The final step is to update the task status in the project's `TODO.md` file.
   - **Action:**
     1. Open the `TODO.md` file in the project root.
@@ -108,6 +109,7 @@
   - **Done‑when:**
     1. The task `T004` in `TODO.md` is marked with `[x]`.
   - **Depends‑on:** [T024]
+  - **Completed:** Task T004 is already marked as completed in TODO.md with detailed documentation. All dependencies are properly reflected, and the completion status is included in the commit.
 - [ ] **T005 · Chore · P1: document finalized color values**
   - **Context:** Detailed Build Steps - 2. Verify Accessibility & Finalize Values
   - **Action:**
