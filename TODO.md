@@ -118,7 +118,7 @@
     1. A definitive list of HSL/Oklch values for implementation is documented and accessible.
   - **Depends‑on:** [T025]
   - **Completed:** Created a comprehensive `docs/colors.md` document containing all finalized color values organized by semantic tokens for both light and dark modes. The document includes implementation notes, usage guidelines, and references to the verification process.
-- [ ] **T006 · Feature · P1: implement light mode colors in globals.css**
+- [x] **T006 · Feature · P1: implement light mode colors in globals.css**
   - **Context:** Detailed Build Steps - 3. Update `globals.css`; Architecture Blueprint - `app/globals.css`
   - **Action:**
     1. Replace HSL/Oklch values in the `:root` scope of `app/globals.css` with the finalized light mode values (from T005).
@@ -126,6 +126,7 @@
   - **Done‑when:**
     1. `app/globals.css` `:root` scope contains the new, verified light mode HSL/Oklch values.
   - **Depends‑on:** [T005]
+  - **Completed:** Updated the `:root` section in `app/globals.css` with all finalized light mode color values from `docs/colors.md`. All 33 color tokens have been updated with the verified Oklch values while maintaining the existing structure and variable names.
 - [ ] **T007 · Feature · P1: implement dark mode colors in globals.css**
   - **Context:** Detailed Build Steps - 3. Update `globals.css`; Architecture Blueprint - `app/globals.css`
   - **Action:**
