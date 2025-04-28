@@ -9,7 +9,8 @@ describe("logger", () => {
     vi.spyOn(logger, "error").mockImplementation(() => {});
     vi.spyOn(logger, "warn").mockImplementation(() => {});
     vi.spyOn(logger, "debug").mockImplementation(() => {});
-    vi.spyOn(logger, "child").mockImplementation(() => logger);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    vi.spyOn(logger, "child").mockImplementation(() => logger as any);
   });
 
   afterEach(() => {
