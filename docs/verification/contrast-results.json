@@ -1,0 +1,160 @@
+{
+  "light": [
+    {
+      "pair": "foreground/background",
+      "ratio": "12.03",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "primary-foreground/primary",
+      "ratio": "3.03",
+      "passesNormalText": false,
+      "passesLargeText": true,
+      "adjustmentNeeded": "Adjust for normal text (4.5:1)"
+    },
+    {
+      "pair": "secondary-foreground/secondary",
+      "ratio": "10.02",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "muted-foreground/muted",
+      "ratio": "5.11",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "accent-foreground/accent",
+      "ratio": "1.52",
+      "passesNormalText": false,
+      "passesLargeText": false,
+      "adjustmentNeeded": "Adjust for normal text (4.5:1)"
+    },
+    {
+      "pair": "destructive-foreground/destructive",
+      "ratio": "2.48",
+      "passesNormalText": false,
+      "passesLargeText": false,
+      "adjustmentNeeded": "Adjust for normal text (4.5:1)"
+    },
+    {
+      "pair": "card-foreground/card",
+      "ratio": "12.31",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "popover-foreground/popover",
+      "ratio": "12.31",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "sidebar-foreground/sidebar",
+      "ratio": "11.21",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "sidebar-primary-foreground/sidebar-primary",
+      "ratio": "3.03",
+      "passesNormalText": false,
+      "passesLargeText": true,
+      "adjustmentNeeded": "Adjust for normal text (4.5:1)"
+    },
+    {
+      "pair": "sidebar-accent-foreground/sidebar-accent",
+      "ratio": "10.02",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    }
+  ],
+  "dark": [
+    {
+      "pair": "foreground/background",
+      "ratio": "11.21",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "primary-foreground/primary",
+      "ratio": "1.81",
+      "passesNormalText": false,
+      "passesLargeText": false,
+      "adjustmentNeeded": "Adjust for normal text (4.5:1)"
+    },
+    {
+      "pair": "secondary-foreground/secondary",
+      "ratio": "7.52",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "muted-foreground/muted",
+      "ratio": "4.94",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "accent-foreground/accent",
+      "ratio": "3.52",
+      "passesNormalText": false,
+      "passesLargeText": true,
+      "adjustmentNeeded": "Adjust for normal text (4.5:1)"
+    },
+    {
+      "pair": "destructive-foreground/destructive",
+      "ratio": "1.71",
+      "passesNormalText": false,
+      "passesLargeText": false,
+      "adjustmentNeeded": "Adjust for normal text (4.5:1)"
+    },
+    {
+      "pair": "card-foreground/card",
+      "ratio": "10.36",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "popover-foreground/popover",
+      "ratio": "10.36",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "sidebar-foreground/sidebar",
+      "ratio": "10.36",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    },
+    {
+      "pair": "sidebar-primary-foreground/sidebar-primary",
+      "ratio": "1.81",
+      "passesNormalText": false,
+      "passesLargeText": false,
+      "adjustmentNeeded": "Adjust for normal text (4.5:1)"
+    },
+    {
+      "pair": "sidebar-accent-foreground/sidebar-accent",
+      "ratio": "7.52",
+      "passesNormalText": true,
+      "passesLargeText": true,
+      "adjustmentNeeded": "None"
+    }
+  ]
+}

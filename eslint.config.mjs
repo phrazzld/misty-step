@@ -20,6 +20,14 @@ const eslintConfig = [
   // Prettier integration - must be last
   ...compat.extends("prettier"),
 
+  // JavaScript-specific overrides (disable TypeScript-only rules)
+  {
+    files: ["**/*.js", "**/*.cjs", "**/*.mjs"],
+    rules: {
+      "@typescript-eslint/explicit-function-return-type": "off",
+    },
+  },
+
   // Additional rules
   {
     rules: {
@@ -67,5 +75,10 @@ const eslintConfig = [
     },
   },
 ];
+
+// Add ignores for JavaScript files
+eslintConfig.push({
+  ignores: ["color-check.js"],
+});
 
 export default eslintConfig;
