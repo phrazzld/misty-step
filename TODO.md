@@ -17,7 +17,7 @@
   - **Done‑when:**
     1. Specific WCAG target and approved contrast checking tool(s) are documented.
   - **Depends‑on:** none
-- [ ] **T003 · Feature · P1: propose initial color palette values**
+- [x] **T003 · Feature · P1: propose initial color palette values**
   - **Context:** Detailed Build Steps - 1. Define Color Palette
   - **Action:**
     1. Propose specific HSL or Oklch values for all required semantic color roles (light & dark modes) including foreground variants.
