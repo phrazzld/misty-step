@@ -233,7 +233,7 @@
 
 ## Documentation & Finalization
 
-- [ ] **T018 · Chore · P2: create color palette documentation**
+- [x] **T018 · Chore · P2: create color palette documentation**
   - **Context:** Detailed Build Steps - 9. Document Palette; Documentation - Required Readme or OpenAPI Updates
   - **Action:**
     1. Create `docs/colors.md` detailing semantic roles, usage, final HSL/Oklch values (light/dark), and WCAG AA compliance status.
@@ -241,13 +241,15 @@
   - **Done‑when:**
     1. `docs/colors.md` exists with the specified content.
   - **Depends‑on:** [T005]
-- [ ] **T019 · Chore · P3: update readme with link to color docs**
+  - **Completed:** Created comprehensive color documentation in `docs/colors.md` containing all color token values for light and dark modes, organized by semantic categories, with implementation notes and usage guidelines. The document includes tables showing Oklch values and purpose for each color token, and confirms WCAG 2.1 AA compliance.
+- [x] **T019 · Chore · P3: update readme with link to color docs**
   - **Context:** Documentation - Required Readme or OpenAPI Updates
   - **Action:**
     1. Edit the main `README.md` to mention the new color scheme and link to `docs/colors.md`.
   - **Done‑when:**
     1. `README.md` includes the mention and link.
   - **Depends‑on:** [T018]
+  - **Completed:** Added a new "Design System" section to README.md that highlights the key features of the color system (semantic tokens, Oklch color space, accessibility compliance) and includes a link to the detailed documentation in docs/colors.md.
 - [ ] **T020 · Chore · P3: create pull request for review**
   - **Context:** Detailed Build Steps - 10. Commit & Code Review
   - **Action:**

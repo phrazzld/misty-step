@@ -29,9 +29,20 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Next.js 15.3.1 with React 19
 - TypeScript with strict configuration
 - Tailwind CSS for styling
-- Shadcn UI components
+- Shadcn UI components with semantic color tokens
 - Responsive design
-- Dark mode support
+- Dark mode support with WCAG 2.1 AA compliant color scheme
+
+## Design System
+
+The site uses a comprehensive color system based on semantic tokens:
+
+- Implemented using CSS custom properties and Tailwind utilities
+- Uses Oklch color space for better perceptual uniformity
+- Provides both light and dark mode variations
+- Ensures WCAG 2.1 AA accessibility compliance
+
+See [Color Documentation](docs/colors.md) for detailed color values and usage guidelines.
 
 ## Testing
 
