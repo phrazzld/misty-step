@@ -156,7 +156,7 @@
 
 ## Component & Third-Party Refactoring
 
-- [ ] **T010 · Refactor · P1: audit and refactor component hardcoded colors**
+- [x] **T010 · Refactor · P1: audit and refactor component hardcoded colors**
   - **Context:** Detailed Build Steps - 5. Audit & Refactor Component Color Usage; Risk Matrix - Inconsistent Color Application
   - **Action:**
     1. Search `components/**/*.tsx` and `app/**/*.tsx` for hardcoded colors (hex, rgb, non-semantic Tailwind like `text-red-500`).
@@ -164,6 +164,7 @@
   - **Done‑when:**
     1. Codebase audit complete; hardcoded colors replaced with semantic utilities.
   - **Depends‑on:** [T006, T007, T009]
+  - **Completed:** Conducted thorough audit of all component and app files. No hardcoded colors were found - the codebase is already consistently using semantic color tokens through Tailwind utility classes. The only gradient classes found (`bg-gradient-to-b from-muted/50 to-muted` in services.tsx and `bg-gradient-to-b from-background to-accent/10` in hero.tsx) already use semantic color tokens properly mapped in the Tailwind configuration.
 - [x] **T011 · Chore · P1: identify third-party components needing separate theming**
   - **Context:** Open Questions Q2
   - **Action:**
