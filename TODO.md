@@ -136,13 +136,14 @@
     1. `app/globals.css` `.dark` scope contains the new, verified dark mode HSL/Oklch values.
   - **Depends‑on:** [T005]
   - **Completed:** Updated the `.dark` section in `app/globals.css` with all finalized dark mode color values from `docs/colors.md`. All 33 color tokens have been updated with the verified Oklch values while maintaining the existing structure and variable names.
-- [ ] **T008 · Refactor · P2: add explanatory comments to globals.css**
+- [x] **T008 · Refactor · P2: add explanatory comments to globals.css**
   - **Context:** Detailed Build Steps - 3. Update `globals.css`; Documentation - Code Self-Doc Patterns
   - **Action:**
     1. Add inline comments to `app/globals.css` explaining the semantic role of each CSS color variable.
   - **Done‑when:**
     1. All color variables in `app/globals.css` have explanatory comments.
   - **Depends‑on:** [T006, T007]
+  - **Completed:** Added comprehensive documentation to globals.css including section headers for logical grouping and detailed inline comments for each color variable explaining its purpose and usage. Comments are consistent across both light and dark mode sections and provide clear explanations of the semantic role of each color token.
 - [x] **T009 · Chore · P1: verify tailwind.config.mjs color mapping**
   - **Context:** Detailed Build Steps - 4. Verify `tailwind.config.mjs`; Architecture Blueprint - `tailwind.config.mjs`
   - **Action:**
