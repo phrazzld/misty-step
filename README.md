@@ -3,7 +3,7 @@
 [![CI](https://github.com/phrazzld/misty-step/actions/workflows/ci.yml/badge.svg)](https://github.com/phrazzld/misty-step/actions/workflows/ci.yml)
 [![Test Coverage](https://img.shields.io/badge/coverage-92%25-brightgreen)](https://github.com/phrazzld/misty-step)
 
-This is the marketing website for Misty Step, a technology consulting firm.
+This is the marketing website for Misty Step, a technology consulting firm specializing in custom software development and technical consulting services.
 
 ## Getting Started
 
@@ -15,7 +15,16 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Features
+## Site Structure
+
+- **Header** - Navigation to key sections (Services, About, Contact)
+- **Hero** - Main banner with company introduction and CTA buttons
+- **Services** - Core service offerings with detailed descriptions
+- **About** - Company background and mission
+- **Contact** - Contact form and information
+- **Footer** - Additional navigation and links
+
+## Technology Stack
 
 - Next.js 15.3.1 with React 19
 - TypeScript with strict configuration

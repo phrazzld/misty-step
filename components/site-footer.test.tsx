@@ -43,13 +43,9 @@ describe("SiteFooter", () => {
   it("renders navigation links", () => {
     render(<SiteFooter />);
 
-    const featuresLink = screen.getByText("Features");
-    expect(featuresLink).toBeInTheDocument();
-    expect(featuresLink).toHaveAttribute("href", "#features");
-
-    const solutionsLink = screen.getByText("Solutions");
-    expect(solutionsLink).toBeInTheDocument();
-    expect(solutionsLink).toHaveAttribute("href", "#solutions");
+    const servicesLink = screen.getByText("Services");
+    expect(servicesLink).toBeInTheDocument();
+    expect(servicesLink).toHaveAttribute("href", "#services");
 
     const aboutLink = screen.getByText("About");
     expect(aboutLink).toBeInTheDocument();
