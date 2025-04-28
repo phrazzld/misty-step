@@ -21,6 +21,7 @@ export default defineConfig({
         "next.config.ts",
         "postcss.config.mjs",
         "eslint.config.mjs",
+        "color-check.js", // Utility script for color contrast verification, not part of the application
       ],
       thresholds: {
         statements: 85,
