@@ -143,7 +143,7 @@
   - **Done‑when:**
     1. All color variables in `app/globals.css` have explanatory comments.
   - **Depends‑on:** [T006, T007]
-- [ ] **T009 · Chore · P1: verify tailwind.config.mjs color mapping**
+- [x] **T009 · Chore · P1: verify tailwind.config.mjs color mapping**
   - **Context:** Detailed Build Steps - 4. Verify `tailwind.config.mjs`; Architecture Blueprint - `tailwind.config.mjs`
   - **Action:**
     1. Review `tailwind.config.mjs` `theme.extend.colors` section.
@@ -151,6 +151,7 @@
   - **Done‑when:**
     1. Tailwind config color mappings are confirmed correct.
   - **Depends‑on:** none
+  - **Completed:** Verified all core UI semantic colors were correctly mapped. Enhanced the configuration by adding missing mappings for chart colors (1-5) and sidebar-specific colors, ensuring all CSS variables can be accessed through Tailwind utilities. All mappings use the `hsl(var(--variable-name))` syntax as required.
 
 ## Component & Third-Party Refactoring
 
