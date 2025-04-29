@@ -21,7 +21,7 @@ Initialize Storybook within the `marketing-site` project using the Storybook CLI
 - Core Storybook packages (`@storybook/react-vite`, `@storybook/addon-essentials`, etc.) are added to `devDependencies` in `package.json`.
 - `pnpm install` runs successfully after the changes.
 
-## TASK-002: Install Additional Required Storybook Addons
+## [x] TASK-002: Install Additional Required Storybook Addons
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-001
