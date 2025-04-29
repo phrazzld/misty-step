@@ -282,7 +282,7 @@ Run the Storybook development server locally and perform manual checks using the
 
 **AC Ref**: None
 
-- [ ] TASK-013: Update `tailwind.config.mjs` Content Paths for Storybook
+- [x] TASK-013: Update `tailwind.config.mjs` Content Paths for Storybook
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: None
