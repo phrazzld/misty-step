@@ -149,7 +149,7 @@ Create a minimal Storybook story to act as a test case for verifying the entire 
 - The story's render function includes elements testing Tailwind, global styles, fonts, aliases, and static assets.
 - A sample static asset exists in the `public/` directory.
 
-## TASK-007: Update README.md Documentation
+## [x] TASK-007: Update README.md Documentation
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-005
