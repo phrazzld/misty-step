@@ -1,6 +1,6 @@
 Okay, here is the detailed task breakdown for PLAN-1, following your specified format and requirements.
 
-## [x] TASK-001: Initialize Storybook and Install Core Dependencies
+- [x] TASK-001: Initialize Storybook and Install Core Dependencies
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: None
@@ -21,7 +21,7 @@ Initialize Storybook within the `marketing-site` project using the Storybook CLI
 - Core Storybook packages (`@storybook/react-vite`, `@storybook/addon-essentials`, etc.) are added to `devDependencies` in `package.json`.
 - `pnpm install` runs successfully after the changes.
 
-## [x] TASK-002: Install Additional Required Storybook Addons
+- [x] TASK-002: Install Additional Required Storybook Addons
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-001
@@ -40,7 +40,7 @@ Manually install the specific Storybook addons required by the plan that might n
 - `@storybook/addon-a11y` is listed in `devDependencies` in `package.json`.
 - `pnpm install` runs successfully without peer dependency warnings related to these addons.
 
-## [x] TASK-003: Configure `.storybook/main.ts`
+- [x] TASK-003: Configure `.storybook/main.ts`
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-002
@@ -67,7 +67,7 @@ Configure the main Storybook settings file (`.storybook/main.ts`) to integrate w
 - The `viteFinal` function correctly configures the `@/*` alias relative to the project root.
 - `staticDirs` is correctly configured to point to `../public`.
 
-## [x] TASK-004: Configure `.storybook/preview.ts`
+- [x] TASK-004: Configure `.storybook/preview.ts`
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-001
@@ -98,7 +98,7 @@ Configure the Storybook preview file (`.storybook/preview.ts`) to load global st
 - The `decorators` array includes `withThemeByClassName` configured correctly for HTML class-based theming.
 - Basic `parameters.controls` are configured.
 
-## [x] TASK-005: Add Storybook npm Scripts to `package.json`
+- [x] TASK-005: Add Storybook npm Scripts to `package.json`
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-001
@@ -119,7 +119,7 @@ Add standardized npm scripts to the project's `package.json` for running the Sto
 - `package.json` contains the `storybook` script with the command `storybook dev -p 6006`.
 - `package.json` contains the `build-storybook` script with the command `storybook build`.
 
-## [x] TASK-006: Create Placeholder Verification Story
+- [x] TASK-006: Create Placeholder Verification Story
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-003, TASK-004
@@ -149,7 +149,7 @@ Create a minimal Storybook story to act as a test case for verifying the entire 
 - The story's render function includes elements testing Tailwind, global styles, fonts, aliases, and static assets.
 - A sample static asset exists in the `public/` directory.
 
-## [x] TASK-007: Update README.md Documentation
+- [x] TASK-007: Update README.md Documentation
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-005
@@ -169,7 +169,7 @@ Update the project's `README.md` file to document the addition of Storybook, exp
 - The section accurately describes Storybook's purpose within the project.
 - The section correctly lists the `pnpm storybook` and `pnpm build-storybook` commands with brief explanations.
 
-## TASK-008: Manual Verification of Storybook Development Server
+- [~] TASK-008: Manual Verification of Storybook Development Server
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-006
@@ -199,7 +199,170 @@ Run the Storybook development server locally and perform manual checks using the
 - The theme toggle correctly applies the `dark` class and updates component appearance.
 - No critical errors related to the setup appear in the browser console.
 
-## TASK-009: Verify Local Storybook Build
+- [x] TASK-009: Install `postcss-nesting` Dependency
+
+**PRIORITY**: MUST
+**DEPENDS-ON**: None
+**ESTIMATED TIME**: S
+
+**ACTION**:
+1.  Add the `postcss-nesting` package as a development dependency using the project's package manager:
+    ```bash
+    pnpm add -D postcss-nesting
+    ```
+2.  Verify that `postcss-nesting` is added to `devDependencies` in `package.json`.
+3.  Ensure the lock file (`pnpm-lock.yaml`) is updated.
+
+**AC Ref**: None
+
+- [ ] TASK-010: Update Root `postcss.config.mjs` for Tailwind v4
+
+**PRIORITY**: MUST
+**DEPENDS-ON**: TASK-009
+**ESTIMATED TIME**: S
+
+**ACTION**:
+1.  Modify the root `postcss.config.mjs` file.
+2.  Import the necessary plugins: `postcss-nesting`, `tailwindcss`, `autoprefixer`.
+3.  Update the `plugins` array to use the standard Tailwind CSS v4 structure in the correct order:
+    ```javascript
+    // postcss.config.mjs
+    import nesting from 'postcss-nesting';
+    import tailwindcss from 'tailwindcss';
+    import autoprefixer from 'autoprefixer';
+
+    const config = {
+      plugins: [
+        nesting(),       // MUST come before tailwindcss
+        tailwindcss(),
+        autoprefixer(),
+      ],
+    };
+
+    export default config;
+    ```
+4.  Remove any imports or usage of `@tailwindcss/postcss` or `tailwindcss/nesting` from this file.
+5.  Save the changes.
+
+**AC Ref**: None
+
+- [ ] TASK-011: Remove Storybook-Specific PostCSS Configuration File
+
+**PRIORITY**: MUST
+**DEPENDS-ON**: TASK-010
+**ESTIMATED TIME**: S
+
+**ACTION**:
+1.  Delete the custom PostCSS configuration file previously created specifically for Storybook (likely located at `.storybook/postcss.config.mjs`).
+    ```bash
+    rm .storybook/postcss.config.mjs
+    ```
+2.  Verify the file no longer exists in the project structure.
+
+**AC Ref**: None
+
+- [ ] TASK-012: Remove `webpackFinal` PostCSS Override from Storybook Config
+
+**PRIORITY**: MUST
+**DEPENDS-ON**: TASK-011
+**ESTIMATED TIME**: S
+
+**ACTION**:
+1.  Edit the Storybook main configuration file (`.storybook/main.ts`).
+2.  Locate the `webpackFinal` function within the exported configuration object.
+3.  Remove or comment out the specific logic within `webpackFinal` that modified the `postcss-loader` options to point to the (now deleted) `.storybook/postcss.config.mjs` file.
+    *(Ensure only the PostCSS loader modification part is removed, preserving other unrelated customizations if they exist. If the *only* purpose of `webpackFinal` was the PostCSS override, remove the entire `webpackFinal` key.)*
+4.  Save the changes.
+
+**AC Ref**: None
+
+- [ ] TASK-013: Update `tailwind.config.mjs` Content Paths for Storybook
+
+**PRIORITY**: MUST
+**DEPENDS-ON**: None
+**ESTIMATED TIME**: S
+
+**ACTION**:
+1.  Edit the root `tailwind.config.mjs` file.
+2.  Ensure the `content` array includes glob patterns that cover Storybook story files and any Storybook configuration/preview files that might use Tailwind classes. Add/verify the following patterns:
+    ```diff
+    --- a/tailwind.config.mjs
+    +++ b/tailwind.config.mjs
+    @@ -?,? +?,? @@
+     export default {
+       content: [
+         "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+         "./components/**/*.{js,ts,jsx,tsx,mdx}",
+         "./app/**/*.{js,ts,jsx,tsx,mdx}",
++        // Add/verify paths for Storybook files
++        "./stories/**/*.{js,ts,jsx,tsx,mdx}",
++        "./.storybook/**/*.{js,ts,jsx,tsx,mdx}",
+       ],
+       darkMode: ["selector", '[data-mode="dark"]'],
+       theme: {
+    ```
+3.  Save the changes.
+
+**AC Ref**: None
+
+- [ ] TASK-014: Verify Dependencies and Remove Obsolete Ones
+
+**PRIORITY**: MUST
+**DEPENDS-ON**: TASK-009, TASK-010
+**ESTIMATED TIME**: S
+
+**ACTION**:
+1.  Inspect `package.json`.
+2.  Verify the following packages are listed as dependencies or devDependencies:
+    - `tailwindcss` (ensure it's v4+)
+    - `postcss`
+    - `autoprefixer`
+    - `postcss-nesting` (added in TASK-009)
+3.  Check if `@tailwindcss/postcss` is listed as a direct dependency or devDependency. If present, remove it:
+    ```bash
+    pnpm remove @tailwindcss/postcss
+    ```
+4.  Run `pnpm install` after any removal to update the lock file and ensure consistency.
+
+**AC Ref**: None
+
+- [ ] TASK-015: Test Storybook Integration with Tailwind v4
+
+**PRIORITY**: MUST
+**DEPENDS-ON**: TASK-010, TASK-011, TASK-012, TASK-013, TASK-014
+**ESTIMATED TIME**: M
+
+**ACTION**:
+1.  Ensure all dependencies are fully installed: `pnpm install`.
+2.  Start the Storybook development server: `pnpm storybook`.
+3.  Check the terminal output for any PostCSS, Tailwind, or nesting-related errors during startup. Confirm the previous error (`Loading PostCSS 'tailwindcss/nesting' plugin failed`) is resolved.
+4.  Open Storybook in the browser.
+5.  Navigate to stories that utilize Tailwind CSS classes.
+6.  Verify that components render correctly with Tailwind styles applied.
+7.  If using `@storybook/addon-themes` or a similar theme toggler, test switching between modes (e.g., light/dark) and verify that styles update correctly according to Tailwind's `darkMode` configuration.
+
+**AC Ref**: None
+
+- [ ] TASK-016: Mark Original Issue TASK-008 as Completed
+
+**PRIORITY**: MUST
+**DEPENDS-ON**: TASK-015
+**ESTIMATED TIME**: S
+
+**ACTION**:
+1.  Confirm that TASK-015 (Testing) has passed successfully and the integration is working as expected.
+2.  Edit the `TODO.md` file.
+3.  Locate the entry for `TASK-008: Manual Verification of Storybook Development Server`.
+4.  Update the line to mark the task as completed by changing `[~]` to `[x]`.
+    ```diff
+    - ## [~] TASK-008: Manual Verification of Storybook Development Server
+    + ## [x] TASK-008: Manual Verification of Storybook Development Server
+    ```
+5. Save the `TODO.md` file.
+
+**AC Ref**: None
+
+- [ ] TASK-009: Verify Local Storybook Build
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-005, TASK-006
@@ -217,7 +380,7 @@ Execute the static Storybook build command locally to ensure the build process c
 - No build errors are reported in the console output.
 - A `storybook-static` directory (or configured output directory) is generated.
 
-## TASK-010: Integrate Storybook Build into CI Pipeline
+- [ ] TASK-010: Integrate Storybook Build into CI Pipeline
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-009
@@ -237,7 +400,7 @@ Add a step to the project's Continuous Integration (CI) workflow (e.g., GitHub A
 - The step executes `pnpm build-storybook`.
 - The CI workflow successfully completes the "Build Storybook" step on a test commit/PR containing these changes.
 
-## TASK-011: Code Review and QA Sign-off
+- [ ] TASK-011: Code Review and QA Sign-off
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-007, TASK-008, TASK-010
@@ -263,7 +426,7 @@ Submit all the code changes for review by another developer. Perform final Quali
 - All acceptance criteria from PLAN-1 and tasks TASK-001 through TASK-010 are confirmed as met.
 - CI pipeline passes for the PR.
 
-## TASK-012: (Optional) Add Font Loading via `preview-head.html`
+- [ ] TASK-012: (Optional) Add Font Loading via `preview-head.html`
 
 **PRIORITY**: NICE-TO-HAVE
 **DEPENDS-ON**: TASK-004, TASK-008 (if fonts didn't load correctly)

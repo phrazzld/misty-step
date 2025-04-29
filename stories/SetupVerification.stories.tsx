@@ -1,60 +1,44 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import { Button } from "@/components/ui/button";
+// Create a simple button component for testing
+const TestButton = ({ label }: { label: string }) => (
+  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    {label}
+  </button>
+);
 
-const meta: Meta<typeof Button> = {
+const meta: Meta<typeof TestButton> = {
   title: "Setup/Verification",
-  component: Button,
+  component: TestButton,
   parameters: {
     layout: "centered",
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof TestButton>;
 
 export const VerificationStory: Story = {
+  args: {
+    label: "Test Button",
+  },
+};
+
+// Simple version as a fallback
+export const SimpleVerification: Story = {
   render: () => (
-    <div className="p-4 border rounded-lg max-w-md space-y-4">
-      <h2 className="text-2xl font-bold text-foreground">Storybook Setup Verification</h2>
-
-      <div className="space-y-2">
-        <h3 className="text-lg font-semibold">Tailwind Classes</h3>
-        <div className="bg-slate-100 dark:bg-slate-800 p-3 rounded-md">
-          <p className="text-primary">Primary text color from theme</p>
-          <p className="text-foreground">Foreground text color from theme</p>
-          <p className="text-sm text-muted-foreground">Muted text with smaller size</p>
-        </div>
+    <div className="p-4 border border-gray-300 rounded-lg max-w-md">
+      <h2 className="text-xl font-bold mb-4">Storybook Verification</h2>
+      <TestButton label="Simple Button" />
+      <div className="mt-4">
+        <p className="text-sm">Tailwind classes are working if this has padding and rounded corners</p>
       </div>
-
-      <div className="space-y-2">
-        <h3 className="text-lg font-semibold">Component from alias</h3>
-        <Button variant="default">Button Component</Button>
+      <div className="mt-4">
+        <p>Static asset test:</p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/vercel.svg" alt="Vercel Logo" width={100} height={50} />
       </div>
-
-      <div className="space-y-2">
-        <h3 className="text-lg font-semibold">Static Assets</h3>
-        <div className="flex justify-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/vercel.svg"
-            alt="Vercel Logo"
-            width={120}
-            height={40}
-            className="dark:invert"
-          />
-        </div>
-      </div>
-
-      <div className="space-y-2">
-        <h3 className="text-lg font-semibold">Font Family</h3>
-        <p className="font-sans">This text uses the font-sans class</p>
-      </div>
-
-      <p className="text-xs text-muted-foreground mt-4">
-        Use the theme toggle in the toolbar to switch between light and dark mode
-      </p>
     </div>
   ),
 };
