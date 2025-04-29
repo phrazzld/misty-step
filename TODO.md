@@ -98,7 +98,7 @@ Configure the Storybook preview file (`.storybook/preview.ts`) to load global st
 - The `decorators` array includes `withThemeByClassName` configured correctly for HTML class-based theming.
 - Basic `parameters.controls` are configured.
 
-## TASK-005: Add Storybook npm Scripts to `package.json`
+## [x] TASK-005: Add Storybook npm Scripts to `package.json`
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-001
