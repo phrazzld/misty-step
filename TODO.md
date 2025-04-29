@@ -396,7 +396,7 @@ Execute the static Storybook build command locally to ensure the build process c
 - No build errors are reported in the console output.
 - A `storybook-static` directory (or configured output directory) is generated.
 
-- [ ] TASK-010: Integrate Storybook Build into CI Pipeline
+- [x] TASK-010: Integrate Storybook Build into CI Pipeline
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-009
