@@ -318,7 +318,7 @@ Run the Storybook development server locally and perform manual checks using the
 
 **AC Ref**: None
 
-- [ ] TASK-014: Verify Dependencies and Remove Obsolete Ones
+- [x] TASK-014: Verify Dependencies and Update PostCSS Configuration
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-009, TASK-010
