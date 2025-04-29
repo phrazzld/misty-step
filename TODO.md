@@ -40,7 +40,7 @@ Manually install the specific Storybook addons required by the plan that might n
 - `@storybook/addon-a11y` is listed in `devDependencies` in `package.json`.
 - `pnpm install` runs successfully without peer dependency warnings related to these addons.
 
-## TASK-003: Configure `.storybook/main.ts`
+## [x] TASK-003: Configure `.storybook/main.ts`
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-002
