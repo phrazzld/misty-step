@@ -67,7 +67,7 @@ Configure the main Storybook settings file (`.storybook/main.ts`) to integrate w
 - The `viteFinal` function correctly configures the `@/*` alias relative to the project root.
 - `staticDirs` is correctly configured to point to `../public`.
 
-## TASK-004: Configure `.storybook/preview.ts`
+## [x] TASK-004: Configure `.storybook/preview.ts`
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-001
