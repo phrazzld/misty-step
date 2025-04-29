@@ -53,7 +53,7 @@ jobs:
         run: |
           echo "::group::Dependencies Installation"
           start_time=$(date +%s)
-          pnpm install
+          pnpm install --no-frozen-lockfile
           end_time=$(date +%s)
           echo "::endgroup::"
           echo "INSTALL_TIME=$((end_time-start_time))" >> $GITHUB_OUTPUT
