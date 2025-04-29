@@ -21,6 +21,9 @@ export default defineConfig({
         "next.config.ts",
         "postcss.config.mjs",
         "eslint.config.mjs",
+        ".storybook/**",
+        "storybook-static/**",
+        "stories/**",
       ],
       thresholds: {
         statements: 85,
