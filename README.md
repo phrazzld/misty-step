@@ -30,6 +30,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - TypeScript with strict configuration
 - Tailwind CSS for styling
 - Shadcn UI components
+- Storybook for component development and documentation
 - Responsive design
 - Dark mode support
 
@@ -75,6 +76,20 @@ A GitHub Actions workflow runs automatically on all pull requests and pushes to 
 
 All checks must pass for pull requests to be merged. See the workflow configuration in `.github/workflows/ci.yml`.
 
+## Storybook
+
+This project uses Storybook for UI component development and documentation. Storybook provides an isolated environment to build, test, and document UI components outside the main application.
+
+- `pnpm storybook` - Start the Storybook development server on port 6006
+- `pnpm build-storybook` - Build a static version of Storybook for deployment
+
+Storybook includes the following features:
+
+- Component documentation and interactive examples
+- Theme switching (light/dark mode)
+- Accessibility testing via addon-a11y
+- Responsive testing
+
 ## Commands
 
 - `pnpm dev` - Start the development server
@@ -84,3 +99,5 @@ All checks must pass for pull requests to be merged. See the workflow configurat
 - `pnpm format` - Format the code
 - `pnpm typecheck` - Type-check the code
 - `pnpm test` - Run the tests
+- `pnpm storybook` - Start the Storybook development server
+- `pnpm build-storybook` - Build static Storybook
