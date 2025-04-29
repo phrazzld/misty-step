@@ -378,7 +378,7 @@ Run the Storybook development server locally and perform manual checks using the
 
 **AC Ref**: None
 
-- [ ] TASK-009: Verify Local Storybook Build
+- [x] TASK-009: Verify Local Storybook Build
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-005, TASK-006
