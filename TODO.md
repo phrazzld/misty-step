@@ -206,6 +206,7 @@ Run the Storybook development server locally and perform manual checks using the
 **ESTIMATED TIME**: S
 
 **ACTION**:
+
 1.  Add the `postcss-nesting` package as a development dependency using the project's package manager:
     ```bash
     pnpm add -D postcss-nesting
@@ -215,25 +216,27 @@ Run the Storybook development server locally and perform manual checks using the
 
 **AC Ref**: None
 
-- [ ] TASK-010: Update Root `postcss.config.mjs` for Tailwind v4
+- [x] TASK-010: Update Root `postcss.config.mjs` for Tailwind v4
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-009
 **ESTIMATED TIME**: S
 
 **ACTION**:
+
 1.  Modify the root `postcss.config.mjs` file.
 2.  Import the necessary plugins: `postcss-nesting`, `tailwindcss`, `autoprefixer`.
 3.  Update the `plugins` array to use the standard Tailwind CSS v4 structure in the correct order:
+
     ```javascript
     // postcss.config.mjs
-    import nesting from 'postcss-nesting';
-    import tailwindcss from 'tailwindcss';
-    import autoprefixer from 'autoprefixer';
+    import nesting from "postcss-nesting";
+    import tailwindcss from "tailwindcss";
+    import autoprefixer from "autoprefixer";
 
     const config = {
       plugins: [
-        nesting(),       // MUST come before tailwindcss
+        nesting(), // MUST come before tailwindcss
         tailwindcss(),
         autoprefixer(),
       ],
@@ -241,6 +244,7 @@ Run the Storybook development server locally and perform manual checks using the
 
     export default config;
     ```
+
 4.  Remove any imports or usage of `@tailwindcss/postcss` or `tailwindcss/nesting` from this file.
 5.  Save the changes.
 
@@ -253,6 +257,7 @@ Run the Storybook development server locally and perform manual checks using the
 **ESTIMATED TIME**: S
 
 **ACTION**:
+
 1.  Delete the custom PostCSS configuration file previously created specifically for Storybook (likely located at `.storybook/postcss.config.mjs`).
     ```bash
     rm .storybook/postcss.config.mjs
@@ -268,6 +273,7 @@ Run the Storybook development server locally and perform manual checks using the
 **ESTIMATED TIME**: S
 
 **ACTION**:
+
 1.  Edit the Storybook main configuration file (`.storybook/main.ts`).
 2.  Locate the `webpackFinal` function within the exported configuration object.
 3.  Remove or comment out the specific logic within `webpackFinal` that modified the `postcss-loader` options to point to the (now deleted) `.storybook/postcss.config.mjs` file.
@@ -283,6 +289,7 @@ Run the Storybook development server locally and perform manual checks using the
 **ESTIMATED TIME**: S
 
 **ACTION**:
+
 1.  Edit the root `tailwind.config.mjs` file.
 2.  Ensure the `content` array includes glob patterns that cover Storybook story files and any Storybook configuration/preview files that might use Tailwind classes. Add/verify the following patterns:
     ```diff
@@ -294,13 +301,19 @@ Run the Storybook development server locally and perform manual checks using the
          "./pages/**/*.{js,ts,jsx,tsx,mdx}",
          "./components/**/*.{js,ts,jsx,tsx,mdx}",
          "./app/**/*.{js,ts,jsx,tsx,mdx}",
-+        // Add/verify paths for Storybook files
-+        "./stories/**/*.{js,ts,jsx,tsx,mdx}",
-+        "./.storybook/**/*.{js,ts,jsx,tsx,mdx}",
+    ```
+
+-        // Add/verify paths for Storybook files
+-        "./stories/**/*.{js,ts,jsx,tsx,mdx}",
+-        "./.storybook/**/*.{js,ts,jsx,tsx,mdx}",
        ],
        darkMode: ["selector", '[data-mode="dark"]'],
        theme: {
-    ```
+
+  ```
+
+  ```
+
 3.  Save the changes.
 
 **AC Ref**: None
@@ -312,6 +325,7 @@ Run the Storybook development server locally and perform manual checks using the
 **ESTIMATED TIME**: S
 
 **ACTION**:
+
 1.  Inspect `package.json`.
 2.  Verify the following packages are listed as dependencies or devDependencies:
     - `tailwindcss` (ensure it's v4+)
@@ -333,6 +347,7 @@ Run the Storybook development server locally and perform manual checks using the
 **ESTIMATED TIME**: M
 
 **ACTION**:
+
 1.  Ensure all dependencies are fully installed: `pnpm install`.
 2.  Start the Storybook development server: `pnpm storybook`.
 3.  Check the terminal output for any PostCSS, Tailwind, or nesting-related errors during startup. Confirm the previous error (`Loading PostCSS 'tailwindcss/nesting' plugin failed`) is resolved.
@@ -350,6 +365,7 @@ Run the Storybook development server locally and perform manual checks using the
 **ESTIMATED TIME**: S
 
 **ACTION**:
+
 1.  Confirm that TASK-015 (Testing) has passed successfully and the integration is working as expected.
 2.  Edit the `TODO.md` file.
 3.  Locate the entry for `TASK-008: Manual Verification of Storybook Development Server`.
@@ -358,7 +374,7 @@ Run the Storybook development server locally and perform manual checks using the
     - ## [~] TASK-008: Manual Verification of Storybook Development Server
     + ## [x] TASK-008: Manual Verification of Storybook Development Server
     ```
-5. Save the `TODO.md` file.
+5.  Save the `TODO.md` file.
 
 **AC Ref**: None
 
