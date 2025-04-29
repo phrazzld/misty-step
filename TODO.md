@@ -119,7 +119,7 @@ Add standardized npm scripts to the project's `package.json` for running the Sto
 - `package.json` contains the `storybook` script with the command `storybook dev -p 6006`.
 - `package.json` contains the `build-storybook` script with the command `storybook build`.
 
-## TASK-006: Create Placeholder Verification Story
+## [x] TASK-006: Create Placeholder Verification Story
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-003, TASK-004
