@@ -169,7 +169,7 @@ Update the project's `README.md` file to document the addition of Storybook, exp
 - The section accurately describes Storybook's purpose within the project.
 - The section correctly lists the `pnpm storybook` and `pnpm build-storybook` commands with brief explanations.
 
-- [~] TASK-008: Manual Verification of Storybook Development Server
+- [x] TASK-008: Manual Verification of Storybook Development Server
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-006
@@ -358,7 +358,7 @@ Run the Storybook development server locally and perform manual checks using the
 
 **AC Ref**: None
 
-- [ ] TASK-016: Mark Original Issue TASK-008 as Completed
+- [x] TASK-016: Mark Original Issue TASK-008 as Completed
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-015
