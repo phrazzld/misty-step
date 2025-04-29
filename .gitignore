@@ -45,5 +45,8 @@ thinktank_*/
 
 # task prompts
 TASK-PROMPT.md
+TASK-*-verification.md
 
+# storybook
 *storybook.log
+storybook-static/

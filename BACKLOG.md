@@ -6,6 +6,8 @@ This backlog outlines the planned work for the Misty Step website, balancing imm
 
 ### Brand Identity & Content Strategy
 
+- **[Ops]**: Set up Storybook and initial component library
+
 - **[Feature]**: Define and Document Core Brand Identity & Messaging
 
   - **Complexity**: Medium
