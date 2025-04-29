@@ -1,13 +1,13 @@
 import path from "path";
 import { fileURLToPath } from "url";
 
-import type { StorybookConfig } from "@storybook/react-vite";
+import type { StorybookConfig } from "@storybook/nextjs";
 
 // Get the directory name in ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const config: StorybookConfig = {
+const storybookConfig: StorybookConfig = {
   stories: [
     "../stories/**/*.mdx",
     "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
@@ -21,20 +21,10 @@ const config: StorybookConfig = {
     "@storybook/addon-themes",
   ],
   framework: {
-    name: "@storybook/react-vite",
+    name: "@storybook/nextjs",
     options: {},
   },
   staticDirs: ["../public"],
-  async viteFinal(viteConfig) {
-    // Add path aliases
-    if (viteConfig.resolve) {
-      viteConfig.resolve.alias = {
-        ...(viteConfig.resolve.alias || {}),
-        "@": path.resolve(__dirname, "../"),
-      };
-    }
-    return viteConfig;
-  },
 };
 
-export default config;
+export default storybookConfig;

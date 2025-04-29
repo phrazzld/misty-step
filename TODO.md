@@ -250,7 +250,7 @@ Run the Storybook development server locally and perform manual checks using the
 
 **AC Ref**: None
 
-- [ ] TASK-011: Remove Storybook-Specific PostCSS Configuration File
+- [x] TASK-011: Remove Storybook-Specific PostCSS Configuration File
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-010
@@ -266,7 +266,7 @@ Run the Storybook development server locally and perform manual checks using the
 
 **AC Ref**: None
 
-- [ ] TASK-012: Remove `webpackFinal` PostCSS Override from Storybook Config
+- [x] TASK-012: Remove `webpackFinal` PostCSS Override from Storybook Config
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-011
