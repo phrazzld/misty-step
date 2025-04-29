@@ -340,7 +340,7 @@ Run the Storybook development server locally and perform manual checks using the
 
 **AC Ref**: None
 
-- [ ] TASK-015: Test Storybook Integration with Tailwind v4
+- [x] TASK-015: Test Storybook Integration with Tailwind v4
 
 **PRIORITY**: MUST
 **DEPENDS-ON**: TASK-010, TASK-011, TASK-012, TASK-013, TASK-014
