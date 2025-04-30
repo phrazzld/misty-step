@@ -30,6 +30,11 @@ const meta: Meta<typeof Button> = {
       control: "text",
       description: "The content of the button",
     },
+    "aria-label": {
+      control: "text",
+      description:
+        "Accessible label for the button when visual text is not available or not descriptive enough",
+    },
   },
 };
 

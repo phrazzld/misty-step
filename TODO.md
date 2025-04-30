@@ -50,7 +50,7 @@
     2. Inspect `<img>` elements for correct `alt` text.
     3. Check Accessibility addon panel for violations.
   - **Depends‑on:** T001
-- [ ] **T006 · refactor · P1: define aria-label in button argtypes**
+- [x] **T006 · refactor · P1: define aria-label in button argtypes**
   - **Context:** cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling) - Step 1 (Button)
   - **Action:**
     1. Edit `components/ui/button.stories.tsx` and add `aria-label` to `meta.argTypes` with a description.
