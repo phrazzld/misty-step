@@ -122,7 +122,7 @@
 
 ## Verification
 
-- [ ] **T007 · Test · P2: verify storybook build passes with new stories**
+- [x] **T007 · Test · P2: verify storybook build passes with new stories**
   - **Context:** PLAN-2 §5, §6 - Testing Strategy & Acceptance Criteria (CI build)
   - **Action:**
     1. Run the `build-storybook` command locally (e.g., `pnpm build-storybook`).
