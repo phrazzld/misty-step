@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Image from "next/image";
 import * as React from "react";
 
 import { Button } from "./button";
@@ -97,7 +96,7 @@ export const IconSize: Story = {
   args: {
     size: "icon",
     "aria-label": "Icon button",
-    children: <Image src="/globe.svg" width={20} height={20} alt="" />,
+    children: <img src="/globe.svg" width={20} height={20} alt="Globe icon placeholder" />,
   },
 };
 
@@ -112,7 +111,7 @@ export const WithIcon: Story = {
   args: {
     children: (
       <>
-        <Image src="/file.svg" width={16} height={16} alt="" />
+        <img src="/file.svg" width={16} height={16} alt="File icon placeholder" />
         With Icon
       </>
     ),
