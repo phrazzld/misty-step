@@ -102,7 +102,7 @@
     1. Create/update a story demonstrating the `required` prop visually.
     2. Create/update a story linking Label via `htmlFor` to a disabled input, verifying the Label's disabled style.
   - **Depends‑on:** none
-- [ ] **T011 · refactor · P1: replace raw button with button component in card story**
+- [x] **T011 · refactor · P1: replace raw button with button component in card story**
   - **Context:** cr‑02 Enforce Consistent Component Usage - Step 2 (Card Story)
   - **Action:**
     1. Edit `components/ui/card.stories.tsx` (line ~101) and replace raw `<button>` with `<Button>`.

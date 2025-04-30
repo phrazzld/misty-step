@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Button } from "./button";
 import {
   Card,
   CardHeader,
@@ -91,9 +92,9 @@ export const FullExample: Story = {
           This card demonstrates all subcomponents working together.
         </CardDescription>
         <CardAction>
-          <button className="rounded-md bg-primary px-2 py-1 text-xs text-primary-foreground">
+          <Button variant="default" size="sm">
             View
-          </button>
+          </Button>
         </CardAction>
       </CardHeader>
       <CardContent>
