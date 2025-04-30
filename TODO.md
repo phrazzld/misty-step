@@ -108,7 +108,7 @@
 
 ## Documentation
 
-- [ ] **T006 · Chore · P2: document story creation guidelines**
+- [x] **T006 · Chore · P2: document story creation guidelines**
   - **Context:** PLAN-2 §4.2 - Update Documentation
   - **Action:**
     1. Choose location (`README.md` or new `docs/CONTRIBUTING-STORYBOOK.md`).

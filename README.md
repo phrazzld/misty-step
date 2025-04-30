@@ -90,6 +90,8 @@ Storybook includes the following features:
 - Accessibility testing via addon-a11y
 - Responsive testing
 
+For detailed guidelines on creating and maintaining Storybook stories, see [Storybook Contribution Guidelines](./docs/CONTRIBUTING-STORYBOOK.md).
+
 ## Commands
 
 - `pnpm dev` - Start the development server
