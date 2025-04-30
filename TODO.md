@@ -77,7 +77,7 @@
   - **Verification:**
     1. Run Storybook, check Textarea component's "Controls" / "Docs" tabs for `aria-required`.
   - **Depends‑on:** none
-- [ ] **T009 · refactor · P2: review and define standard aria props in label argtypes**
+- [x] **T009 · refactor · P2: review and define standard aria props in label argtypes**
   - **Context:** cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling) - Step 4 (Label)
   - **Action:**
     1. Review `components/ui/label.stories.tsx` for common ARIA props (e.g., `aria-labelledby`).

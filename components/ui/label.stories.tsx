@@ -20,6 +20,21 @@ const meta: Meta<typeof Label> = {
       control: "text",
       description: "Additional CSS class names",
     },
+    "aria-labelledby": {
+      control: "text",
+      description:
+        "ID of an element that labels this element. Use when a label can't be directly associated via htmlFor.",
+    },
+    "aria-describedby": {
+      control: "text",
+      description:
+        "ID of an element that describes this label's associated input. Useful for linking to help text or error messages.",
+    },
+    "aria-owns": {
+      control: "text",
+      description:
+        "Indicates element(s) that are owned by the label but not in the DOM hierarchy. Useful for complex form relationships.",
+    },
   },
 };
 
