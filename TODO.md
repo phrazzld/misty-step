@@ -65,7 +65,7 @@
     6. Check the Accessibility tab for violations.
   - **Depends‑on:** none
 
-- [ ] **T004 · Feature · P2: create label component stories and verify**
+- [x] **T004 · Feature · P2: create label component stories and verify**
 
   - **Context:** PLAN-2 §4.1 - Label Stories Creation
   - **Action:**
