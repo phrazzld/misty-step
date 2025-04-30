@@ -24,6 +24,11 @@ const meta: Meta<typeof Input> = {
       control: "text",
       description: "Additional CSS class names",
     },
+    "aria-required": {
+      control: "boolean",
+      description:
+        "Indicates to screen readers that input is required. Use alongside HTML 'required' attribute for both validation and accessibility.",
+    },
   },
 };
 

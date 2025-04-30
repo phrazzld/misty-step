@@ -59,7 +59,7 @@
   - **Verification:**
     1. Run Storybook, check Button component's "Controls" / "Docs" tabs for `aria-label`.
   - **Depends‑on:** none
-- [ ] **T007 · refactor · P1: define aria-required in input argtypes**
+- [x] **T007 · refactor · P1: define aria-required in input argtypes**
   - **Context:** cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling) - Step 2 (Input)
   - **Action:**
     1. Edit `components/ui/input.stories.tsx` and add `aria-required` to `meta.argTypes` with a description.
