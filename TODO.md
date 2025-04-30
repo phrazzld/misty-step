@@ -135,6 +135,6 @@
 
 ### Clarifications & Assumptions
 
-- [ ] **Issue:** How should icons be handled/imported for stories like `Button` `WithIcon`?
+- [x] **Issue:** How should icons be handled/imported for stories like `Button` `WithIcon`?
   - **Context:** PLAN-2 §4.1 bullet "Button: ... WithIcon (requires importing an icon)"
-  - **Blocking?:** no _(Assumption: Use a simple placeholder SVG or readily available icon for the story)_
+  - **Resolution:** Used available SVG icons from the public directory (`file.svg` and `globe.svg`) with Next.js Image component.
