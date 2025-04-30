@@ -25,6 +25,11 @@ const meta: Meta<typeof Textarea> = {
       control: "text",
       description: "Additional CSS class names",
     },
+    "aria-required": {
+      control: "boolean",
+      description:
+        "Indicates to screen readers that textarea is required. Use alongside HTML 'required' attribute for both validation and accessibility.",
+    },
   },
 };
 

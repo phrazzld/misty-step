@@ -68,7 +68,7 @@
   - **Verification:**
     1. Run Storybook, check Input component's "Controls" / "Docs" tabs for `aria-required`.
   - **Depends‑on:** none
-- [ ] **T008 · refactor · P1: define aria-required in textarea argtypes**
+- [x] **T008 · refactor · P1: define aria-required in textarea argtypes**
   - **Context:** cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling) - Step 3 (Textarea)
   - **Action:**
     1. Edit `components/ui/textarea.stories.tsx` and add `aria-required` to `meta.argTypes` with a description.
