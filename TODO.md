@@ -85,7 +85,7 @@
     5. Check the Accessibility tab for violations.
   - **Depends‑on:** none _(Assumes Input component exists, story doesn't need T003 to be merged)_
 
-- [ ] **T005 · Feature · P2: create textarea component stories and verify**
+- [x] **T005 · Feature · P2: create textarea component stories and verify**
   - **Context:** PLAN-2 §4.1 - Textarea Stories Creation
   - **Action:**
     1. Create `components/ui/textarea.stories.tsx`.
