@@ -38,7 +38,7 @@
 
 ## Storybook / Accessibility (A11y)
 
-- [ ] **T005 · refactor · P1: add meaningful alt text to button story images**
+- [x] **T005 · refactor · P1: add meaningful alt text to button story images**
   - **Context:** cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling) - Step 1 (Button)
   - **Action:**
     1. In `button.stories.tsx`, update the `<img>` tags (from T001) with meaningful `alt` text or `alt=""` (if purely decorative + button has text/aria-label) with a comment justifying empty alt.

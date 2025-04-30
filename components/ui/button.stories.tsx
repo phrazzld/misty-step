@@ -96,7 +96,14 @@ export const IconSize: Story = {
   args: {
     size: "icon",
     "aria-label": "Icon button",
-    children: <img src="/globe.svg" width={20} height={20} alt="Globe icon placeholder" />,
+    children: (
+      <img
+        src="/globe.svg"
+        width={20}
+        height={20}
+        alt="" /* Empty alt as this is decorative; the button has an aria-label that describes its purpose */
+      />
+    ),
   },
 };
 
@@ -111,7 +118,12 @@ export const WithIcon: Story = {
   args: {
     children: (
       <>
-        <img src="/file.svg" width={16} height={16} alt="File icon placeholder" />
+        <img
+          src="/file.svg"
+          width={16}
+          height={16}
+          alt="" /* Empty alt as this is decorative; the visible text "With Icon" provides context */
+        />
         With Icon
       </>
     ),
