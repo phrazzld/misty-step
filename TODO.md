@@ -26,17 +26,7 @@
     1. Run `pnpm storybook`.
     2. Navigate to Button stories (`IconSize`, `WithIcon`). Verify icons load and render correctly via `<img>`.
   - **Depends‑on:** T001
-- [ ] **T003 · chore · P1: restore historical planning docs and update readme**
-  - **Context:** cr‑04 Reinstate Planning Documentation
-  - **Action:**
-    1. Restore deleted `PLAN-*.md`, `PLAN-INDEX.md`, `PLAN-ORIGINAL.md` files from Git history.
-    2. Create `docs/archive/planning` directory and move restored files into it.
-    3. Add a brief note in `README.md` pointing to the archive directory.
-  - **Done‑when:**
-    1. Planning documents exist in `docs/archive/planning`.
-    2. `README.md` contains a link/reference to the archive location.
-  - **Depends‑on:** none
-- [ ] **T004 · chore · P2: remove stories exclusion from vitest coverage config**
+- [x] **T004 · chore · P2: remove stories exclusion from vitest coverage config**
   - **Context:** cr‑05 Remove Overly Broad Test Coverage Exclusion
   - **Action:**
     1. Edit `vitest.config.ts` and remove the pattern `"**/*.stories.{ts,tsx}"` from the `coverage.exclude` array.
