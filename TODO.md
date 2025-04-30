@@ -2,7 +2,7 @@
 
 ## Storybook UI Component Stories
 
-- [ ] **T001 · Feature · P2: create button component stories and verify**
+- [x] **T001 · Feature · P2: create button component stories and verify**
 
   - **Context:** PLAN-2 §4.1 - Button Stories Creation
   - **Action:**
