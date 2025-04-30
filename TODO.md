@@ -88,7 +88,7 @@
 
 ## Storybook / Component Consistency & Refinement
 
-- [ ] **T010 · refactor · P1: refactor label component for required prop and disabled state handling**
+- [x] **T010 · refactor · P1: refactor label component for required prop and disabled state handling**
   - **Context:** cr‑02 Enforce Consistent Component Usage - Step 1 (Refactor Label)
   - **Action:**
     1. Edit `components/ui/label.tsx`, add `required?: boolean` prop.

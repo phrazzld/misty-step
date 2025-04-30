@@ -16,6 +16,10 @@ const meta: Meta<typeof Label> = {
       control: "text",
       description: "The ID of the form element this label is associated with",
     },
+    required: {
+      control: "boolean",
+      description: "Displays a required indicator (*) after the label text",
+    },
     className: {
       control: "text",
       description: "Additional CSS class names",
@@ -53,8 +57,8 @@ export const Default: Story = {
 export const Required: Story = {
   render: () => (
     <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label htmlFor="required-input">
-        Required Field <span className="text-destructive">*</span>
+      <Label htmlFor="required-input" required>
+        Required Field
       </Label>
       <Input id="required-input" placeholder="Required field" required aria-required="true" />
     </div>
@@ -76,9 +80,7 @@ export const WithDescription: Story = {
 export const Disabled: Story = {
   render: () => (
     <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label htmlFor="disabled-input" className="opacity-50 cursor-not-allowed">
-        Disabled Field
-      </Label>
+      <Label htmlFor="disabled-input">Disabled Field</Label>
       <Input id="disabled-input" placeholder="This field is disabled" disabled />
     </div>
   ),
