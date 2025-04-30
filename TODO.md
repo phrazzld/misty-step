@@ -112,7 +112,7 @@
   - **Verification:**
     1. Run Storybook, view the Card story with the action button. Verify it renders correctly and uses the `<Button>` component via inspection.
   - **Depends‑on:** T010
-- [ ] **T012 · refactor · P1: replace raw label with label component in input story**
+- [x] **T012 · refactor · P1: replace raw label with label component in input story**
   - **Context:** cr‑02 Enforce Consistent Component Usage - Step 3 (Input Story)
   - **Action:**
     1. Edit `components/ui/input.stories.tsx` (lines ~73-77) and replace raw `<label>` with `<Label>`.

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Input } from "./input";
+import { Label } from "./label";
 
 const meta: Meta<typeof Input> = {
   title: "UI/Input",
@@ -80,12 +81,7 @@ export const TypeEmail: Story = {
 export const WithLabel: Story = {
   render: () => (
     <div className="grid w-full max-w-sm items-center gap-1.5">
-      <label
-        htmlFor="email-demo"
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-      >
-        Email
-      </label>
+      <Label htmlFor="email-demo">Email</Label>
       <Input type="email" id="email-demo" placeholder="Email" />
     </div>
   ),
