@@ -15,7 +15,7 @@
     1. Run `pnpm storybook`.
     2. Check browser console for errors when viewing Button stories.
   - **Depends‑on:** none
-- [ ] **T002 · chore · P2: configure storybook staticdirs for assets**
+- [x] **T002 · chore · P2: configure storybook staticdirs for assets**
   - **Context:** cr‑01 Remove Framework-Specific Component (`next/image`) - Step 3
   - **Action:**
     1. Configure Storybook's `staticDirs` in `.storybook/main.ts` (or equivalent) to serve icon assets (e.g., from `public/`).
