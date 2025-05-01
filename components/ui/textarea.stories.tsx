@@ -141,10 +141,15 @@ export const Disabled: Story = {
 };
 
 export const WithLabel: Story = {
-  render: () => (
+  args: {
+    id: "message",
+    placeholder: "Type your message here...",
+    rows: 4,
+  },
+  render: (args) => (
     <div className="grid w-full max-w-sm gap-1.5">
-      <Label htmlFor="message">Your message</Label>
-      <Textarea id="message" placeholder="Type your message here..." rows={4} />
+      <Label htmlFor={args.id}>Your message</Label>
+      <Textarea {...args} />
     </div>
   ),
 };
@@ -177,18 +182,19 @@ export const WithCharacterCount: Story = {
 };
 
 export const Required: Story = {
-  render: () => (
+  args: {
+    id: "required-message",
+    placeholder: "This field is required",
+    required: true,
+    "aria-required": "true",
+    rows: 4,
+  },
+  render: (args) => (
     <div className="grid w-full max-w-sm gap-1.5">
-      <Label htmlFor="required-message" required>
+      <Label htmlFor={args.id} required>
         Message
       </Label>
-      <Textarea
-        id="required-message"
-        placeholder="This field is required"
-        required
-        aria-required="true"
-        rows={4}
-      />
+      <Textarea {...args} />
     </div>
   ),
 };

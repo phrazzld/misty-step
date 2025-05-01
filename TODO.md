@@ -242,7 +242,7 @@
   - **Done‑when:**
     1. Label stories consistently use `args` for simple prop variations.
   - **Depends‑on:** none
-- [ ] **T026 · refactor · P2: standardize textarea story structure (args vs render)**
+- [x] **T026 · refactor · P2: standardize textarea story structure (args vs render)**
   - **Context:** cr‑07 Ensure Consistent Story Structure (Args vs. Render)
   - **Action:**
     1. Review `textarea.stories.tsx` and convert stories using `render` for simple prop changes to use `args`.
