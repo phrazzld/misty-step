@@ -249,7 +249,7 @@
   - **Done‑when:**
     1. Textarea stories consistently use `args` for simple prop variations.
   - **Depends‑on:** none
-- [ ] **T027 · feature · P2: add interactive state stories for button**
+- [x] **T027 · feature · P2: add interactive state stories for button**
   - **Context:** cr‑08 Add Edge Case and State Coverage to Stories - Step 1
   - **Action:**
     1. Add stories to `button.stories.tsx` demonstrating `:hover`, `:focus`, `:active` states using pseudo-state addon or interaction tests. Name clearly (e.g., `HoverState`).
