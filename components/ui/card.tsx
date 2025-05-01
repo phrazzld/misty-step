@@ -48,6 +48,29 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">): 
   );
 }
 
+/**
+ * CardAction is a specialized component designed to add action elements (buttons or links)
+ * to a Card header that align to the right side. It is intended to be used within a CardHeader
+ * component and positions itself to span both title and description rows.
+ *
+ * @example
+ * ```tsx
+ * <Card>
+ *   <CardHeader>
+ *     <CardTitle>Card Title</CardTitle>
+ *     <CardDescription>Card description text</CardDescription>
+ *     <CardAction>
+ *       <Button variant="default" size="sm">Action</Button>
+ *     </CardAction>
+ *   </CardHeader>
+ *   <CardContent>Main content</CardContent>
+ * </Card>
+ * ```
+ *
+ * @param props - Standard HTML div props including className for additional styling
+ * @param props.className - Optional CSS class names to apply to the action container
+ * @returns JSX element - A div with grid positioning for aligning actions within the card header
+ */
 function CardAction({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element {
   return (
     <div
