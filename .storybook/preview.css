@@ -1,3 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Additional styles for Storybook */
+.sbdocs-content {
+  max-width: 1200px;
+}
+
+.sbdocs-title {
+  margin-bottom: 2rem;
+}
+
+/* Ensure proper spacing in preview */
+.sb-story {
+  padding: 1rem;
+}

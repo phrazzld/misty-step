@@ -35,6 +35,19 @@ const meta: Meta<typeof Button> = {
       description:
         "Accessible label for the button when visual text is not available or not descriptive enough",
     },
+    onClick: {
+      control: false,
+      description: "Function to call when the button is clicked",
+    },
+    id: {
+      control: "text",
+      description: "The unique identifier for the button element",
+    },
+    type: {
+      control: "select",
+      options: ["button", "submit", "reset"],
+      description: "The type of button, affecting its behavior in forms",
+    },
   },
 };
 

@@ -154,7 +154,7 @@
 
 ## Storybook / ArgTypes Documentation
 
-- [ ] **T016 · refactor · P2: add standard props to button argtypes**
+- [x] **T016 · refactor · P2: add standard props to button argtypes**
   - **Context:** cr‑06 Complete Prop Documentation in `argTypes` - Step 1 (Button)
   - **Action:**
     1. Edit `components/ui/button.stories.tsx`, add `onClick` (control: false), `id`, `type` to `meta.argTypes`.
