@@ -96,8 +96,8 @@ export const WithCharacterCount: Story = {
 export const Required: Story = {
   render: () => (
     <div className="grid w-full max-w-sm gap-1.5">
-      <Label htmlFor="required-message">
-        Message <span className="text-destructive">*</span>
+      <Label htmlFor="required-message" required>
+        Message
       </Label>
       <Textarea
         id="required-message"

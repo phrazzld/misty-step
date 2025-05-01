@@ -122,7 +122,7 @@
   - **Verification:**
     1. Run Storybook, view the Input story with a label. Verify it renders correctly and uses the `<Label>` component via inspection.
   - **Depends‑on:** T010
-- [ ] **T013 · refactor · P1: update label stories to use required prop and remove manual styles**
+- [x] **T013 · refactor · P1: update label stories to use required prop and remove manual styles**
   - **Context:** cr‑02 Enforce Consistent Component Usage - Step 4 (Label Story)
   - **Action:**
     1. Edit `components/ui/label.stories.tsx`, remove raw `<span>` indicators (lines ~32-33, ~45, ~61-62) and use the `required` prop on `<Label>` instead.
@@ -133,7 +133,7 @@
   - **Verification:**
     1. Run Storybook, view Label stories for required/disabled states. Verify correct rendering and implementation.
   - **Depends‑on:** T010
-- [ ] **T014 · refactor · P1: update textarea stories to use label component and required prop**
+- [x] **T014 · refactor · P1: update textarea stories to use label component and required prop**
   - **Context:** cr‑02 Enforce Consistent Component Usage - Step 5 (Textarea Story)
   - **Action:**
     1. Edit `components/ui/textarea.stories.tsx`, ensure `<Label>` is used consistently (lines ~72-73, ~100-101).
