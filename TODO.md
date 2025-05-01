@@ -276,7 +276,7 @@
   - **Verification:**
     1. Run Storybook, view new Input/Textarea error state stories, confirm visual correctness.
   - **Depends‑on:** none
-- [ ] **T030 · feature · P2: add edge case stories for button (long text)**
+- [x] **T030 · feature · P2: add edge case stories for button (long text)**
   - **Context:** cr‑08 Add Edge Case and State Coverage to Stories - Step 3
   - **Action:**
     1. Add story to `button.stories.tsx` demonstrating behavior with very long text content. Name clearly (e.g., `LongText`).
