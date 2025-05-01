@@ -258,7 +258,7 @@
   - **Verification:**
     1. Run Storybook, view new Button state stories, confirm visual correctness.
   - **Depends‑on:** none
-- [ ] **T028 · feature · P2: add interactive state stories for input/textarea**
+- [x] **T028 · feature · P2: add interactive state stories for input/textarea**
   - **Context:** cr‑08 Add Edge Case and State Coverage to Stories - Step 1
   - **Action:**
     1. Add stories to `input.stories.tsx` and `textarea.stories.tsx` demonstrating `:hover`, `:focus`, `:active` states. Name clearly.

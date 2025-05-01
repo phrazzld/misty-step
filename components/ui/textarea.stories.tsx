@@ -3,6 +3,19 @@ import * as React from "react";
 
 import { Label } from "./label";
 import { Textarea } from "./textarea";
+import "./textarea-states.css";
+
+// Wrapper to simulate interactive states
+const InteractiveStateTextarea = ({
+  className,
+  state,
+  ...props
+}: React.ComponentProps<typeof Textarea> & {
+  state: "hover" | "focus" | "active" | "error";
+}): React.ReactElement => {
+  const stateClass = `simulate-${state}`;
+  return <Textarea className={`${className || ""} ${stateClass}`} {...props} />;
+};
 
 const meta: Meta<typeof Textarea> = {
   title: "UI/Textarea",
@@ -195,6 +208,103 @@ export const Required: Story = {
         Message
       </Label>
       <Textarea {...args} />
+    </div>
+  ),
+};
+
+// Interactive state stories
+export const HoverState: Story = {
+  name: "Hover State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This shows how the textarea looks when hovered. The hover state is simulated with CSS classes to make it visible without user interaction.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <p className="text-sm font-medium mb-2">Default</p>
+        <InteractiveStateTextarea state="hover" placeholder="Hover state" rows={4} />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">With Label</p>
+        <div className="grid w-full max-w-sm gap-1.5">
+          <Label htmlFor="hover-textarea">Your message</Label>
+          <InteractiveStateTextarea
+            state="hover"
+            id="hover-textarea"
+            placeholder="Type your message here..."
+            rows={4}
+          />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const FocusState: Story = {
+  name: "Focus State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This shows how the textarea looks when focused. The focus state is simulated with CSS classes to make it visible without user interaction.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <p className="text-sm font-medium mb-2">Default</p>
+        <InteractiveStateTextarea state="focus" placeholder="Focus state" rows={4} />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">With Label</p>
+        <div className="grid w-full max-w-sm gap-1.5">
+          <Label htmlFor="focus-textarea">Your message</Label>
+          <InteractiveStateTextarea
+            state="focus"
+            id="focus-textarea"
+            placeholder="Type your message here..."
+            rows={4}
+          />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const ActiveState: Story = {
+  name: "Active State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This shows how the textarea looks when active (being edited). The active state is simulated with CSS classes to make it visible without user interaction.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <p className="text-sm font-medium mb-2">Default</p>
+        <InteractiveStateTextarea state="active" placeholder="Active state" rows={4} />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">With Label</p>
+        <div className="grid w-full max-w-sm gap-1.5">
+          <Label htmlFor="active-textarea">Your message</Label>
+          <InteractiveStateTextarea
+            state="active"
+            id="active-textarea"
+            placeholder="Type your message here..."
+            rows={4}
+          />
+        </div>
+      </div>
     </div>
   ),
 };

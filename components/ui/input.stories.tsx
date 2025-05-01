@@ -1,7 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import * as React from "react";
 
 import { Input } from "./input";
 import { Label } from "./label";
+import "./input-states.css";
+
+// Wrapper to simulate interactive states
+const InteractiveStateInput = ({
+  className,
+  state,
+  ...props
+}: React.ComponentProps<typeof Input> & {
+  state: "hover" | "focus" | "active" | "error";
+}): React.ReactElement => {
+  const stateClass = `simulate-${state}`;
+  return <Input className={`${className || ""} ${stateClass}`} {...props} />;
+};
 
 const meta: Meta<typeof Input> = {
   title: "UI/Input",
@@ -183,4 +197,101 @@ export const Required: Story = {
     required: true,
     "aria-required": true,
   },
+};
+
+// Interactive state stories
+export const HoverState: Story = {
+  name: "Hover State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This shows how the input looks when hovered. The hover state is simulated with CSS classes to make it visible without user interaction.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <p className="text-sm font-medium mb-2">Default</p>
+        <InteractiveStateInput state="hover" placeholder="Hover state" type="text" />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">With Label</p>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="hover-input">Email address</Label>
+          <InteractiveStateInput
+            state="hover"
+            id="hover-input"
+            placeholder="name@example.com"
+            type="email"
+          />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const FocusState: Story = {
+  name: "Focus State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This shows how the input looks when focused. The focus state is simulated with CSS classes to make it visible without user interaction.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <p className="text-sm font-medium mb-2">Default</p>
+        <InteractiveStateInput state="focus" placeholder="Focus state" type="text" />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">With Label</p>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="focus-input">Email address</Label>
+          <InteractiveStateInput
+            state="focus"
+            id="focus-input"
+            placeholder="name@example.com"
+            type="email"
+          />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const ActiveState: Story = {
+  name: "Active State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This shows how the input looks when active (being pressed/clicked). The active state is simulated with CSS classes to make it visible without user interaction.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <p className="text-sm font-medium mb-2">Default</p>
+        <InteractiveStateInput state="active" placeholder="Active state" type="text" />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">With Label</p>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="active-input">Email address</Label>
+          <InteractiveStateInput
+            state="active"
+            id="active-input"
+            placeholder="name@example.com"
+            type="email"
+          />
+        </div>
+      </div>
+    </div>
+  ),
 };
