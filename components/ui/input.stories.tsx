@@ -161,12 +161,19 @@ export const TypeEmail: Story = {
 };
 
 export const WithLabel: Story = {
-  render: () => (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label htmlFor="email-demo">Email</Label>
-      <Input type="email" id="email-demo" placeholder="Email" />
-    </div>
-  ),
+  args: {
+    type: "email",
+    id: "email-demo",
+    placeholder: "Email",
+  },
+  decorators: [
+    (Story) => (
+      <div className="grid w-full max-w-sm items-center gap-1.5">
+        <Label htmlFor="email-demo">Email</Label>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const Required: Story = {
