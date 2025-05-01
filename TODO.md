@@ -285,7 +285,7 @@
   - **Verification:**
     1. Run Storybook, view new Button edge case story, confirm visual correctness (wrapping/truncation).
   - **Depends‑on:** none
-- [ ] **T031 · feature · P2: add edge case stories for input/textarea (long placeholder/value)**
+- [x] **T031 · feature · P2: add edge case stories for input/textarea (long placeholder/value)**
   - **Context:** cr‑08 Add Edge Case and State Coverage to Stories - Step 3
   - **Action:**
     1. Add stories to `input.stories.tsx` and `textarea.stories.tsx` demonstrating behavior with long placeholder/value text. Name clearly (e.g., `LongPlaceholder`).

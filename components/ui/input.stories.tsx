@@ -362,3 +362,123 @@ export const WithLabelAndError: Story = {
     );
   },
 };
+
+export const LongPlaceholder: Story = {
+  name: "Long Placeholder",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates how the input handles exceptionally long placeholder text. Since inputs typically don't wrap text, long content will be truncated with an ellipsis or require scrolling.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-6">
+      <div>
+        <p className="text-sm font-medium mb-2">Default Width</p>
+        <Input
+          placeholder="This is an exceptionally long placeholder text that demonstrates how the input component handles text that exceeds the typical width of an input field"
+          type="text"
+        />
+        <p className="text-xs text-muted-foreground mt-2">
+          The text is truncated and requires the user to scroll horizontally within the input.
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">Constrained Width</p>
+        <div className="max-w-sm">
+          <Input
+            placeholder="This is an exceptionally long placeholder text that demonstrates how the input component handles text that exceeds the typical width of an input field"
+            type="text"
+          />
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          In a constrained container, the input still maintains its width and truncates the text.
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">With Label</p>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="long-placeholder">Username</Label>
+          <Input
+            id="long-placeholder"
+            placeholder="Enter a username that will be displayed on your profile and used for all communications within the platform"
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const LongValue: Story = {
+  name: "Long Value",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates how the input handles exceptionally long input values. Users can scroll horizontally to see the full content.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-6">
+      <div>
+        <p className="text-sm font-medium mb-2">Default Width with Long Value</p>
+        <Input
+          type="text"
+          defaultValue="This is an exceptionally long input value that demonstrates how the input component handles text that exceeds the typical width of an input field"
+        />
+        <p className="text-xs text-muted-foreground mt-2">
+          The text extends beyond the visible area, and users can scroll horizontally to see it all.
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">Constrained Width with Long Value</p>
+        <div className="max-w-xs">
+          <Input
+            type="text"
+            defaultValue="This is an exceptionally long input value that demonstrates how the input component handles text that exceeds the typical width of an input field"
+          />
+        </div>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">Long Email Address</p>
+        <div className="max-w-sm">
+          <Input
+            type="email"
+            defaultValue="extremely.long.email.address.with.many.parts.and.subdomain.levels@very.long.domain.name.with.multiple.subdomains.example.com"
+          />
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          Email inputs handle long addresses by allowing horizontal scrolling.
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">Different Input Types</p>
+        <div className="grid grid-cols-1 gap-4">
+          <div>
+            <p className="text-xs mb-1">URL Type</p>
+            <Input
+              type="url"
+              defaultValue="https://extremely-long-subdomain-with-many-parts.very-long-domain-name-with-multiple-words.example.com/very/long/path/with/many/segments/and/a/very/long/query/string?param1=value1&param2=value2&param3=value3"
+            />
+          </div>
+          <div>
+            <p className="text-xs mb-1">Search Type</p>
+            <Input
+              type="search"
+              defaultValue="extremely long search query with many keywords and phrases to demonstrate how search inputs handle long content within the visible area"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+};

@@ -375,3 +375,125 @@ export const WithLabelAndError: Story = {
     );
   },
 };
+
+export const LongPlaceholder: Story = {
+  name: "Long Placeholder",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates how the textarea handles exceptionally long placeholder text. Unlike inputs, textareas naturally wrap content to multiple lines.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-6">
+      <div>
+        <p className="text-sm font-medium mb-2">Default Width</p>
+        <Textarea
+          placeholder="This is an exceptionally long placeholder text that demonstrates how the textarea component handles text that exceeds the typical width of a single line. Unlike single-line inputs, textareas naturally wrap content to multiple lines, making them suitable for longer text content that needs to be readable without scrolling horizontally."
+          rows={4}
+        />
+        <p className="text-xs text-muted-foreground mt-2">
+          The placeholder text wraps naturally within the textarea boundaries.
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">Constrained Width</p>
+        <div className="max-w-sm">
+          <Textarea
+            placeholder="This is an exceptionally long placeholder text that demonstrates how the textarea component handles text that exceeds the typical width of a single line. Unlike single-line inputs, textareas naturally wrap content to multiple lines, making them suitable for longer text content that needs to be readable without scrolling horizontally."
+            rows={4}
+          />
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          In a constrained container, the textarea adapts and maintains proper text wrapping.
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">With Different Row Settings</p>
+        <div className="grid grid-cols-1 gap-4">
+          <div>
+            <p className="text-xs mb-1">2 Rows</p>
+            <Textarea
+              placeholder="This is an exceptionally long placeholder text that demonstrates how the textarea component handles text with limited vertical space, showing only a portion of the content initially."
+              rows={2}
+            />
+          </div>
+          <div>
+            <p className="text-xs mb-1">8 Rows</p>
+            <Textarea
+              placeholder="This is an exceptionally long placeholder text that demonstrates how the textarea component handles text with more vertical space, showing more content at once. When placeholder text is long but the textarea has sufficient vertical space, it can display more of the content without requiring scrolling."
+              rows={8}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const LongValue: Story = {
+  name: "Long Value",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates how the textarea handles exceptionally long text content. Textareas are designed specifically for multi-line content and automatically handle text wrapping and scrolling.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-6">
+      <div>
+        <p className="text-sm font-medium mb-2">Standard Paragraph</p>
+        <Textarea
+          rows={4}
+          defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus ac risus dignissim, at gravida urna semper. Nulla tincidunt vestibulum mauris, sit amet vestibulum mi aliquet in. Pellentesque aliquet tincidunt vestibulum. Aliquam a egestas dui. Maecenas varius sollicitudin tristique. Etiam condimentum varius massa vel consectetur. Aenean imperdiet augue velit, vitae posuere felis convallis ac. Maecenas quis lacinia lacus, vel congue lorem. Cras ut odio et magna molestie luctus. In nec dictum dolor. Ut sit amet fermentum quam."
+        />
+        <p className="text-xs text-muted-foreground mt-2">
+          A standard paragraph with text that exceeds the visible area, requiring vertical
+          scrolling.
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">Very Long Single Line</p>
+        <Textarea
+          rows={3}
+          defaultValue="This is an extremely long line of text without any line breaks that demonstrates how the textarea handles text that would normally extend far beyond the horizontal boundaries of the container and shows how the text wrapping behavior works for continuous strings of text without natural breaking points in the content."
+        />
+        <p className="text-xs text-muted-foreground mt-2">
+          A very long single line wraps automatically to fit the textarea width.
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">Content With Line Breaks</p>
+        <Textarea
+          rows={8}
+          defaultValue={`First line: relatively short line
+Second line: medium length line that spans a bit more space than the first
+Third line: this is a much longer line that will definitely wrap to multiple lines within the textarea container showing how manual and automatic line breaking work together
+Fourth line: back to a shorter line
+Fifth line: another line with moderate length`}
+        />
+        <p className="text-xs text-muted-foreground mt-2">
+          Content with manual line breaks combined with word wrapping.
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">Constrained Width</p>
+        <div className="max-w-xs">
+          <Textarea
+            rows={6}
+            defaultValue="When a textarea is constrained to a narrow width, long words and content must wrap more frequently. This demonstrates how the component handles a higher ratio of wrapping in limited horizontal space while still maintaining readability."
+          />
+        </div>
+      </div>
+    </div>
+  ),
+};
