@@ -16,9 +16,85 @@ const meta: Meta<typeof Card> = {
   component: Card,
   tags: ["autodocs"],
   argTypes: {
+    // Standard HTML div props (Card is a div)
+    id: {
+      control: "text",
+      description: "Unique identifier for the card element",
+    },
     className: {
       control: "text",
       description: "Additional CSS class names",
+    },
+    // Event handlers
+    onClick: {
+      control: false,
+      description: "Function called when the card is clicked",
+    },
+    onKeyDown: {
+      control: false,
+      description: "Function called when a key is pressed while the card has focus",
+    },
+    // Accessibility attributes
+    role: {
+      control: "text",
+      description: "ARIA role attribute for accessibility",
+    },
+    "aria-label": {
+      control: "text",
+      description: "Accessible label for the card, if title is not visible",
+    },
+    // Common HTML attributes
+    tabIndex: {
+      control: "number",
+      description: "Tab order of the element",
+    },
+    style: {
+      control: false,
+      description: "Inline styles for the card element",
+    },
+  },
+  subcomponents: {
+    CardHeader: {
+      description: "Container for the top section of the card",
+      props: {
+        className: { description: "Additional CSS classes for the header" },
+        id: { description: "Unique identifier for the header" },
+      },
+    },
+    CardTitle: {
+      description: "Main heading for the card",
+      props: {
+        className: { description: "Additional CSS classes for the title" },
+        id: { description: "Unique identifier for the title" },
+      },
+    },
+    CardDescription: {
+      description: "Supporting text below the card title",
+      props: {
+        className: { description: "Additional CSS classes for the description" },
+        id: { description: "Unique identifier for the description" },
+      },
+    },
+    CardAction: {
+      description: "Container for buttons or actions in the card header",
+      props: {
+        className: { description: "Additional CSS classes for the action container" },
+        id: { description: "Unique identifier for the action container" },
+      },
+    },
+    CardContent: {
+      description: "Container for the main content of the card",
+      props: {
+        className: { description: "Additional CSS classes for the content" },
+        id: { description: "Unique identifier for the content" },
+      },
+    },
+    CardFooter: {
+      description: "Container for the bottom section of the card",
+      props: {
+        className: { description: "Additional CSS classes for the footer" },
+        id: { description: "Unique identifier for the footer" },
+      },
     },
   },
 };
