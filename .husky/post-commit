@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run glance asynchronously so it doesn't block the commit process
+# The output is redirected to a log file to avoid cluttering the terminal
+(nohup glance ./ > /tmp/glance-post-commit.log 2>&1 &)
+
+# Optional: Add a message to indicate the background process started
+echo "Running glance ./ asynchronously in the background"

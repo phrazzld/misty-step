@@ -50,3 +50,4 @@ TASK-*-verification.md
 # storybook
 *storybook.log
 storybook-static/
+**/glance.md
