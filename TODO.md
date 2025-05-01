@@ -228,7 +228,7 @@
 
 ## Storybook / Story Structure & Quality
 
-- [~] **T024 · refactor · P2: standardize input story structure (args vs render)**
+- [x] **T024 · refactor · P2: standardize input story structure (args vs render)**
   - **Context:** cr‑07 Ensure Consistent Story Structure (Args vs. Render)
   - **Action:**
     1. Review `input.stories.tsx` and convert stories using `render` for simple prop changes to use `args`.
