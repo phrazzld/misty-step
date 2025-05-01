@@ -113,6 +113,10 @@ This backlog outlines the planned work for the Misty Step website, balancing imm
   - **Complexity**: Medium
   - **Rationale**: Ensures the project benefits from the latest features, performance improvements, and security patches of its underlying libraries and frameworks (Node.js, framework, build tools). Reduces technical debt.
   - **Expected Outcome**: Major dependencies updated to recent stable versions. Build process remains stable and efficient. Security vulnerabilities identified by `npm audit` (or similar) addressed.
+- **[Fix]**: Update Husky Post-Commit Hook Format
+  - **Complexity**: Simple
+  - **Rationale**: Address the deprecation warning in Husky post-commit hook to ensure compatibility with future versions. Current format will fail in Husky v10.0.0.
+  - **Expected Outcome**: Updated post-commit hook format that follows current Husky best practices, eliminating the deprecation warning.
 - **[Enhancement]**: Add Comprehensive README and Developer Onboarding Documentation
   - **Complexity**: Simple
   - **Rationale**: Lowers friction for new contributors or future maintenance, ensuring consistency in setup and development practices.
