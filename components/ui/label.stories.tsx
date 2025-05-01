@@ -8,22 +8,31 @@ const meta: Meta<typeof Label> = {
   component: Label,
   tags: ["autodocs"],
   argTypes: {
+    // Content
     children: {
       control: "text",
       description: "The content of the label",
+    },
+    // Identification and relationships
+    id: {
+      control: "text",
+      description: "Unique identifier for the label element",
     },
     htmlFor: {
       control: "text",
       description: "The ID of the form element this label is associated with",
     },
+    // Label states and features
     required: {
       control: "boolean",
       description: "Displays a required indicator (*) after the label text",
     },
+    // Styling
     className: {
       control: "text",
       description: "Additional CSS class names",
     },
+    // Accessibility attributes
     "aria-labelledby": {
       control: "text",
       description:
@@ -38,6 +47,37 @@ const meta: Meta<typeof Label> = {
       control: "text",
       description:
         "Indicates element(s) that are owned by the label but not in the DOM hierarchy. Useful for complex form relationships.",
+    },
+    // Event handlers - control: false means they won't appear in controls panel
+    onClick: {
+      control: false,
+      description: "Function called when the label is clicked",
+    },
+    onMouseEnter: {
+      control: false,
+      description: "Function called when mouse enters the label area",
+    },
+    onMouseLeave: {
+      control: false,
+      description: "Function called when mouse leaves the label area",
+    },
+    // HTML attributes
+    lang: {
+      control: "text",
+      description: "The language of the label content",
+    },
+    dir: {
+      control: "select",
+      options: ["ltr", "rtl", "auto"],
+      description: "The text direction of the label content",
+    },
+    style: {
+      control: false,
+      description: "Inline CSS styles for the label element",
+    },
+    title: {
+      control: "text",
+      description: "Additional information shown as a tooltip when hovering over the label",
     },
   },
 };
