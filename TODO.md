@@ -144,7 +144,7 @@
   - **Verification:**
     1. Run Storybook, view Textarea stories with labels/required indicators. Verify correct rendering and implementation.
   - **Depends‑on:** T010
-- [ ] **T015 · test · P2: audit all stories for remaining raw html button/label usage**
+- [x] **T015 · test · P2: audit all stories for remaining raw html button/label usage**
   - **Context:** cr‑02 Enforce Consistent Component Usage - Step 6 (Audit)
   - **Action:**
     1. Review all `*.stories.tsx` files for inappropriate use of raw `<button>` or `<label>` where project components should be used.
