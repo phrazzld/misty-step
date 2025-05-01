@@ -267,7 +267,7 @@
   - **Verification:**
     1. Run Storybook, view new Input/Textarea state stories, confirm visual correctness.
   - **Depends‑on:** none
-- [ ] **T029 · feature · P2: add error state stories for input/textarea**
+- [x] **T029 · feature · P2: add error state stories for input/textarea**
   - **Context:** cr‑08 Add Edge Case and State Coverage to Stories - Step 2
   - **Action:**
     1. Add stories to `input.stories.tsx` and `textarea.stories.tsx` demonstrating error/invalid states (e.g., using `aria-invalid="true"`). Name clearly (e.g., `ErrorState`).

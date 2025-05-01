@@ -308,3 +308,70 @@ export const ActiveState: Story = {
     </div>
   ),
 };
+
+export const ErrorState: Story = {
+  name: "Error State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This shows how the textarea looks when it has an error or invalid state. The error state is achieved with the aria-invalid attribute, which can be applied to any textarea to indicate validation failure.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <p className="text-sm font-medium mb-2">With aria-invalid attribute</p>
+        <Textarea
+          aria-invalid="true"
+          placeholder="Invalid textarea content"
+          rows={4}
+          defaultValue="This content has validation errors"
+        />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">With simulated error class</p>
+        <InteractiveStateTextarea
+          state="error"
+          placeholder="Error state"
+          rows={4}
+          defaultValue="Error state simulation with CSS class"
+        />
+      </div>
+    </div>
+  ),
+};
+
+export const WithLabelAndError: Story = {
+  name: "With Label and Error",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This shows how to display a textarea with an error state alongside a label and error message. The aria-describedby attribute connects the textarea to its error message.",
+      },
+    },
+  },
+  render: () => {
+    const textareaId = "message-error-demo";
+    const errorId = "message-error-text";
+
+    return (
+      <div className="grid w-full max-w-sm gap-1.5">
+        <Label htmlFor={textareaId}>Your message</Label>
+        <Textarea
+          id={textareaId}
+          placeholder="Type your message here..."
+          rows={4}
+          defaultValue="Message is too short"
+          aria-invalid="true"
+          aria-describedby={errorId}
+        />
+        <p id={errorId} className="text-sm text-destructive">
+          Message must be at least 20 characters long
+        </p>
+      </div>
+    );
+  },
+};

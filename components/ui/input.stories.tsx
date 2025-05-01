@@ -295,3 +295,70 @@ export const ActiveState: Story = {
     </div>
   ),
 };
+
+export const ErrorState: Story = {
+  name: "Error State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This shows how the input looks when it has an error or invalid state. The error state is achieved with the aria-invalid attribute, which can be applied to any input to indicate validation failure.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <p className="text-sm font-medium mb-2">With aria-invalid attribute</p>
+        <Input
+          aria-invalid="true"
+          placeholder="Invalid input value"
+          type="text"
+          defaultValue="Invalid data"
+        />
+      </div>
+      <div>
+        <p className="text-sm font-medium mb-2">With simulated error class</p>
+        <InteractiveStateInput
+          state="error"
+          placeholder="Error state"
+          type="text"
+          defaultValue="Error state simulation"
+        />
+      </div>
+    </div>
+  ),
+};
+
+export const WithLabelAndError: Story = {
+  name: "With Label and Error",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This shows how to display an input with an error state alongside a label and error message. The aria-describedby attribute connects the input to its error message.",
+      },
+    },
+  },
+  render: () => {
+    const inputId = "email-error-demo";
+    const errorId = "email-error-message";
+
+    return (
+      <div className="grid w-full max-w-sm items-center gap-1.5">
+        <Label htmlFor={inputId}>Email address</Label>
+        <Input
+          id={inputId}
+          type="email"
+          placeholder="name@example.com"
+          defaultValue="invalid-email"
+          aria-invalid="true"
+          aria-describedby={errorId}
+        />
+        <p id={errorId} className="text-sm text-destructive">
+          Please enter a valid email address
+        </p>
+      </div>
+    );
+  },
+};
