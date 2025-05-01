@@ -86,30 +86,41 @@ export default meta;
 type Story = StoryObj<typeof Label>;
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    htmlFor: "default-input",
+    children: "Default Label",
+  },
+  render: (args) => (
     <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label htmlFor="default-input">Default Label</Label>
-      <Input id="default-input" placeholder="Enter text..." />
+      <Label {...args} />
+      <Input id={args.htmlFor} placeholder="Enter text..." />
     </div>
   ),
 };
 
 export const Required: Story = {
-  render: () => (
+  args: {
+    htmlFor: "required-input",
+    required: true,
+    children: "Required Field",
+  },
+  render: (args) => (
     <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label htmlFor="required-input" required>
-        Required Field
-      </Label>
-      <Input id="required-input" placeholder="Required field" required aria-required="true" />
+      <Label {...args} />
+      <Input id={args.htmlFor} placeholder="Required field" required aria-required="true" />
     </div>
   ),
 };
 
 export const WithDescription: Story = {
-  render: () => (
+  args: {
+    htmlFor: "email-with-description",
+    children: "Email Address",
+  },
+  render: (args) => (
     <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label htmlFor="email-with-description">Email Address</Label>
-      <Input id="email-with-description" type="email" placeholder="email@example.com" />
+      <Label {...args} />
+      <Input id={args.htmlFor} type="email" placeholder="email@example.com" />
       <p className="text-xs text-muted-foreground">
         We&apos;ll never share your email with anyone else.
       </p>
@@ -118,10 +129,14 @@ export const WithDescription: Story = {
 };
 
 export const Disabled: Story = {
-  render: () => (
+  args: {
+    htmlFor: "disabled-input",
+    children: "Disabled Field",
+  },
+  render: (args) => (
     <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label htmlFor="disabled-input">Disabled Field</Label>
-      <Input id="disabled-input" placeholder="This field is disabled" disabled />
+      <Label {...args} />
+      <Input id={args.htmlFor} placeholder="This field is disabled" disabled />
     </div>
   ),
 };

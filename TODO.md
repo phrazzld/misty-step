@@ -163,7 +163,7 @@
   - **Verification:**
     1. Run Storybook, check Button "Controls"/"Docs" for added props.
   - **Depends‑on:** T006
-- [ ] **T017 · refactor · P2: add standard props to input argtypes**
+- [x] **T017 · refactor · P2: add standard props to input argtypes**
   - **Context:** cr‑06 Complete Prop Documentation in `argTypes` - Step 1 (Input)
   - **Action:**
     1. Edit `components/ui/input.stories.tsx`, add `onChange`, `onBlur`, `onFocus` (control: false), `id`, `name`, `placeholder`, `type`, `value`, `defaultValue`, `required`, `disabled`, `readOnly`, etc. to `meta.argTypes`.
@@ -172,7 +172,7 @@
   - **Verification:**
     1. Run Storybook, check Input "Controls"/"Docs" for added props.
   - **Depends‑on:** T007
-- [ ] **T018 · refactor · P2: add standard props to textarea argtypes**
+- [x] **T018 · refactor · P2: add standard props to textarea argtypes**
   - **Context:** cr‑06 Complete Prop Documentation in `argTypes` - Step 1 (Textarea)
   - **Action:**
     1. Edit `components/ui/textarea.stories.tsx`, add `onChange`, `onBlur`, `onFocus` (control: false), `id`, `name`, `placeholder`, `rows`, `value`, `defaultValue`, `required`, `disabled`, `readOnly`, etc. to `meta.argTypes`.
@@ -181,7 +181,7 @@
   - **Verification:**
     1. Run Storybook, check Textarea "Controls"/"Docs" for added props.
   - **Depends‑on:** T008
-- [ ] **T019 · refactor · P2: add standard props to label argtypes**
+- [x] **T019 · refactor · P2: add standard props to label argtypes**
   - **Context:** cr‑06 Complete Prop Documentation in `argTypes` - Step 1 (Label)
   - **Action:**
     1. Edit `components/ui/label.stories.tsx`, add `htmlFor`, `id` to `meta.argTypes`.
@@ -190,7 +190,7 @@
   - **Verification:**
     1. Run Storybook, check Label "Controls"/"Docs" for added props.
   - **Depends‑on:** T009, T010
-- [ ] **T020 · refactor · P2: add standard props to card component argtypes**
+- [x] **T020 · refactor · P2: add standard props to card component argtypes**
   - **Context:** cr‑06 Complete Prop Documentation in `argTypes` - Step 1 (Card)
   - **Action:**
     1. Edit `components/ui/card.stories.tsx`, add common props like `id`, `className` to `meta.argTypes` for Card and its subcomponents.
@@ -202,21 +202,21 @@
 
 ## Storybook / CardAction Component
 
-- [ ] **T021 · refactor · P2: add tsdoc comments to cardaction component**
+- [x] **T021 · refactor · P2: add tsdoc comments to cardaction component**
   - **Context:** cr‑09 Document Custom `CardAction` Component - Step 1
   - **Action:**
     1. Add TSDoc comments to the `CardAction` component definition in `components/ui/card.tsx`.
   - **Done‑when:**
     1. `CardAction` component has TSDoc documentation explaining purpose and props.
   - **Depends‑on:** none
-- [ ] **T022 · refactor · P2: export cardaction component**
+- [x] **T022 · refactor · P2: export cardaction component**
   - **Context:** cr‑09 Document Custom `CardAction` Component - Step 2
   - **Action:**
     1. Ensure `CardAction` is exported from `components/ui/card.tsx`.
   - **Done‑when:**
     1. `CardAction` component is successfully exported and importable.
   - **Depends‑on:** T021
-- [ ] **T023 · refactor · P2: list cardaction in storybook meta subcomponents**
+- [x] **T023 · refactor · P2: list cardaction in storybook meta subcomponents**
   - **Context:** cr‑09 Document Custom `CardAction` Component - Step 3
   - **Action:**
     1. Edit `card.stories.tsx` and add `CardAction` to `meta.subcomponents` if desired for clarity.
@@ -228,14 +228,14 @@
 
 ## Storybook / Story Structure & Quality
 
-- [ ] **T024 · refactor · P2: standardize input story structure (args vs render)**
+- [~] **T024 · refactor · P2: standardize input story structure (args vs render)**
   - **Context:** cr‑07 Ensure Consistent Story Structure (Args vs. Render)
   - **Action:**
     1. Review `input.stories.tsx` and convert stories using `render` for simple prop changes to use `args`.
   - **Done‑when:**
     1. Input stories consistently use `args` for simple prop variations.
   - **Depends‑on:** none
-- [ ] **T025 · refactor · P2: standardize label story structure (args vs render)**
+- [x] **T025 · refactor · P2: standardize label story structure (args vs render)**
   - **Context:** cr‑07 Ensure Consistent Story Structure (Args vs. Render)
   - **Action:**
     1. Review `label.stories.tsx` and convert stories using `render` for simple prop changes to use `args`.
