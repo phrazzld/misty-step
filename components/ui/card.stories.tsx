@@ -106,137 +106,15 @@ const meta: Meta<typeof Card> = {
       description: "Hides the card visually and from screen readers",
     },
 
-    // Data attributes
-    "data-state": {
-      control: "text",
-      description: "Custom data attribute for controlling card state via CSS",
-    },
-    "data-orientation": {
-      control: "select",
-      options: ["horizontal", "vertical"],
-      description: "Orientation of the card's internal layout",
-    },
+    // Note: Data attributes are removed as they're causing TypeScript errors with Storybook's ArgTypes
   },
   subcomponents: {
-    CardHeader: {
-      description: "Container for the top section of the card",
-      props: {
-        className: {
-          description: "Additional CSS classes for the header",
-          control: "text",
-        },
-        id: {
-          description: "Unique identifier for the header",
-          control: "text",
-        },
-        "aria-labelledby": {
-          description: "ID of an element that labels this header",
-          control: "text",
-        },
-        "aria-describedby": {
-          description: "ID of an element that describes this header",
-          control: "text",
-        },
-        children: {
-          description:
-            "Content of the header (typically CardTitle, CardDescription, and optionally CardAction)",
-          control: false,
-        },
-        onClick: {
-          description: "Function called when the header is clicked",
-          control: false,
-        },
-      },
-    },
-    CardTitle: {
-      description: "Main heading for the card",
-      props: {
-        className: {
-          description: "Additional CSS classes for the title",
-          control: "text",
-        },
-        id: {
-          description: "Unique identifier for the title",
-          control: "text",
-        },
-        children: {
-          description: "Text content of the title",
-          control: "text",
-        },
-        "aria-level": {
-          description: "Semantic heading level (1-6) for screen readers",
-          control: "number",
-        },
-      },
-    },
-    CardDescription: {
-      description: "Supporting text below the card title",
-      props: {
-        className: {
-          description: "Additional CSS classes for the description",
-          control: "text",
-        },
-        id: {
-          description: "Unique identifier for the description",
-          control: "text",
-        },
-        children: {
-          description: "Text content of the description",
-          control: "text",
-        },
-      },
-    },
-    CardAction: {
-      description: "Container for buttons or actions in the card header",
-      props: {
-        className: {
-          description: "Additional CSS classes for the action container",
-          control: "text",
-        },
-        id: {
-          description: "Unique identifier for the action container",
-          control: "text",
-        },
-        children: {
-          description: "Action elements like buttons or links",
-          control: false,
-        },
-      },
-    },
-    CardContent: {
-      description: "Container for the main content of the card",
-      props: {
-        className: {
-          description: "Additional CSS classes for the content",
-          control: "text",
-        },
-        id: {
-          description: "Unique identifier for the content",
-          control: "text",
-        },
-        children: {
-          description: "Main content of the card",
-          control: false,
-        },
-      },
-    },
-    CardFooter: {
-      description: "Container for the bottom section of the card",
-      props: {
-        className: {
-          description: "Additional CSS classes for the footer",
-          control: "text",
-        },
-        id: {
-          description: "Unique identifier for the footer",
-          control: "text",
-        },
-        children: {
-          description: "Content of the footer",
-          control: false,
-        },
-      },
-    },
+    CardHeader: CardHeader,
+    CardTitle: CardTitle,
+    CardDescription: CardDescription,
+    CardAction: CardAction,
+    CardContent: CardContent,
+    CardFooter: CardFooter,
   },
 };
 

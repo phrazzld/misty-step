@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 
@@ -46,10 +47,6 @@ const meta: Meta<typeof Input> = {
     },
 
     // Text attributes
-    placeholder: {
-      control: "text",
-      description: "Placeholder text for the input",
-    },
     value: {
       control: "text",
       description: "The controlled value of the input",

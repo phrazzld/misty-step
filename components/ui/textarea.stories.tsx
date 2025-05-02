@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 
@@ -188,12 +189,14 @@ const meta: Meta<typeof Textarea> = {
       options: ["hard", "soft", "off"],
       description: "Indicates how the text should be wrapped when submitting in a form",
     },
-    resize: {
-      control: "select",
-      options: ["none", "both", "horizontal", "vertical"],
-      description:
-        "Controls how the textarea can be resized by the user (applies via style object)",
-    },
+    // Resize property (applied via style object)
+    // Note: This is intentionally commented out as it's handled through the style prop
+    // resize: {
+    //   control: "select",
+    //   options: ["none", "both", "horizontal", "vertical"],
+    //   description:
+    //     "Controls how the textarea can be resized by the user (applies via style object)",
+    // },
     enterKeyHint: {
       control: "select",
       options: ["enter", "done", "go", "next", "previous", "search", "send"],
