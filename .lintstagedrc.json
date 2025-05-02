@@ -3,5 +3,8 @@
   "*.{json,css,html}": ["prettier --write"],
   "*.md": [
     "node -e \"const {execSync} = require('child_process'); const fs = require('fs'); const files = process.argv.slice(1); const nonSymlinks = files.filter(file => !fs.lstatSync(file).isSymbolicLink()); if (nonSymlinks.length) execSync('prettier --write ' + nonSymlinks.join(' '), {stdio: 'inherit'});\""
+  ],
+  ".husky/*": [
+    "node -e \"const fs = require('fs'); const path = require('path'); const files = process.argv.slice(1); files.forEach(file => { const content = fs.readFileSync(file, 'utf8'); if (!content.endsWith('\\n')) { fs.writeFileSync(file, content + '\\n'); } });\""
   ]
 }

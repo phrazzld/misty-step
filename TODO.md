@@ -109,7 +109,7 @@
     2. Run `npm install` or `yarn install` and confirm an error/warning related to the package manager occurs.
     3. Run `pnpm install` and confirm it succeeds.
   - **Depends‑on:** none
-- [ ] **T009 · Bugfix · P0: ensure husky hook echo command ends with newline**
+- [x] **T009 · Bugfix · P0: ensure husky hook echo command ends with newline**
   - **Context:** cr-18 Ensure Husky Hook Echo Command Ends with Newline
   - **Action:**
     1. Edit `.husky/post-commit`.
