@@ -54,4 +54,7 @@ TASK-*-verification.md
 storybook-static/
 **/glance.md
 
+# log files
+/.logs
+
 **/.claude/settings.local.json

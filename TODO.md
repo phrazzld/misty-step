@@ -131,7 +131,7 @@
     1. The necessity of the `glance` command is determined (keep or remove).
     2. Documentation exists explaining the hook's purpose or why it was removed.
   - **Depends‑on:** none
-- [ ] **T011 · Refactor · P2: remediate post-commit hook logging and feedback**
+- [x] **T011 · Refactor · P2: remediate post-commit hook logging and feedback**
   - **Context:** cr-07 Audit and Remediate Risky Post-Commit Hook (Steps 2, 3: Logging & Feedback)
   - **Action:**
     1. If T010 determined the hook is necessary: Change log output redirection in `.husky/post-commit` to `.logs/husky/glance-post-commit.log`.
