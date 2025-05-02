@@ -85,7 +85,7 @@
 
 ## Tooling & Configuration
 
-- [ ] **T007 · Chore · P0: remove story exclusion from vitest coverage**
+- [x] **T007 · Chore · P0: remove story exclusion from vitest coverage**
   - **Context:** cr-03 Remove Story Exclusion from Test Coverage
   - **Action:**
     1. Edit `vitest.config.ts`.
