@@ -69,7 +69,7 @@
     2. Navigate to the Card component documentation page ('Docs' tab).
     3. Verify the `CardAction` subcomponent section includes the added TSDoc descriptions.
   - **Depends‑on:** none
-- [ ] **T006 · Feature · P2: enhance component `argTypes` for core ui components**
+- [x] **T006 · Feature · P2: enhance component `argTypes` for core ui components**
   - **Context:** cr-10 Enhance Component Prop Documentation (`argTypes`)
   - **Action:**
     1. Audit `Button`, `Card`, `Input`, `Label`, `Textarea` components and their stories.

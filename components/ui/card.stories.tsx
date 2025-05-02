@@ -25,6 +25,7 @@ const meta: Meta<typeof Card> = {
       control: "text",
       description: "Additional CSS class names",
     },
+
     // Event handlers
     onClick: {
       control: false,
@@ -34,15 +35,50 @@ const meta: Meta<typeof Card> = {
       control: false,
       description: "Function called when a key is pressed while the card has focus",
     },
+    onFocus: {
+      control: false,
+      description: "Function called when the card receives focus",
+    },
+    onBlur: {
+      control: false,
+      description: "Function called when the card loses focus",
+    },
+    onMouseEnter: {
+      control: false,
+      description: "Function called when mouse pointer enters the card",
+    },
+    onMouseLeave: {
+      control: false,
+      description: "Function called when mouse pointer leaves the card",
+    },
+
     // Accessibility attributes
     role: {
-      control: "text",
+      control: "select",
+      options: ["region", "group", "article", "figure", "presentation", "none"],
       description: "ARIA role attribute for accessibility",
     },
     "aria-label": {
       control: "text",
       description: "Accessible label for the card, if title is not visible",
     },
+    "aria-labelledby": {
+      control: "text",
+      description: "ID of an element (typically CardTitle) that labels this card",
+    },
+    "aria-describedby": {
+      control: "text",
+      description: "ID of an element (typically CardDescription) that describes this card",
+    },
+    "aria-details": {
+      control: "text",
+      description: "ID of an element providing more detailed information about the card",
+    },
+    "aria-hidden": {
+      control: "boolean",
+      description: "Whether to hide the card from screen readers",
+    },
+
     // Common HTML attributes
     tabIndex: {
       control: "number",
@@ -52,48 +88,153 @@ const meta: Meta<typeof Card> = {
       control: false,
       description: "Inline styles for the card element",
     },
+    lang: {
+      control: "text",
+      description: "The language of the card content",
+    },
+    dir: {
+      control: "select",
+      options: ["ltr", "rtl", "auto"],
+      description: "The text direction of the card content",
+    },
+    title: {
+      control: "text",
+      description: "Tooltip text that appears when hovering over the card",
+    },
+    hidden: {
+      control: "boolean",
+      description: "Hides the card visually and from screen readers",
+    },
+
+    // Data attributes
+    "data-state": {
+      control: "text",
+      description: "Custom data attribute for controlling card state via CSS",
+    },
+    "data-orientation": {
+      control: "select",
+      options: ["horizontal", "vertical"],
+      description: "Orientation of the card's internal layout",
+    },
   },
   subcomponents: {
     CardHeader: {
       description: "Container for the top section of the card",
       props: {
-        className: { description: "Additional CSS classes for the header" },
-        id: { description: "Unique identifier for the header" },
+        className: {
+          description: "Additional CSS classes for the header",
+          control: "text",
+        },
+        id: {
+          description: "Unique identifier for the header",
+          control: "text",
+        },
+        "aria-labelledby": {
+          description: "ID of an element that labels this header",
+          control: "text",
+        },
+        "aria-describedby": {
+          description: "ID of an element that describes this header",
+          control: "text",
+        },
+        children: {
+          description:
+            "Content of the header (typically CardTitle, CardDescription, and optionally CardAction)",
+          control: false,
+        },
+        onClick: {
+          description: "Function called when the header is clicked",
+          control: false,
+        },
       },
     },
     CardTitle: {
       description: "Main heading for the card",
       props: {
-        className: { description: "Additional CSS classes for the title" },
-        id: { description: "Unique identifier for the title" },
+        className: {
+          description: "Additional CSS classes for the title",
+          control: "text",
+        },
+        id: {
+          description: "Unique identifier for the title",
+          control: "text",
+        },
+        children: {
+          description: "Text content of the title",
+          control: "text",
+        },
+        "aria-level": {
+          description: "Semantic heading level (1-6) for screen readers",
+          control: "number",
+        },
       },
     },
     CardDescription: {
       description: "Supporting text below the card title",
       props: {
-        className: { description: "Additional CSS classes for the description" },
-        id: { description: "Unique identifier for the description" },
+        className: {
+          description: "Additional CSS classes for the description",
+          control: "text",
+        },
+        id: {
+          description: "Unique identifier for the description",
+          control: "text",
+        },
+        children: {
+          description: "Text content of the description",
+          control: "text",
+        },
       },
     },
     CardAction: {
       description: "Container for buttons or actions in the card header",
       props: {
-        className: { description: "Additional CSS classes for the action container" },
-        id: { description: "Unique identifier for the action container" },
+        className: {
+          description: "Additional CSS classes for the action container",
+          control: "text",
+        },
+        id: {
+          description: "Unique identifier for the action container",
+          control: "text",
+        },
+        children: {
+          description: "Action elements like buttons or links",
+          control: false,
+        },
       },
     },
     CardContent: {
       description: "Container for the main content of the card",
       props: {
-        className: { description: "Additional CSS classes for the content" },
-        id: { description: "Unique identifier for the content" },
+        className: {
+          description: "Additional CSS classes for the content",
+          control: "text",
+        },
+        id: {
+          description: "Unique identifier for the content",
+          control: "text",
+        },
+        children: {
+          description: "Main content of the card",
+          control: false,
+        },
       },
     },
     CardFooter: {
       description: "Container for the bottom section of the card",
       props: {
-        className: { description: "Additional CSS classes for the footer" },
-        id: { description: "Unique identifier for the footer" },
+        className: {
+          description: "Additional CSS classes for the footer",
+          control: "text",
+        },
+        id: {
+          description: "Unique identifier for the footer",
+          control: "text",
+        },
+        children: {
+          description: "Content of the footer",
+          control: false,
+        },
       },
     },
   },

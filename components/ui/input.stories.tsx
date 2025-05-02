@@ -25,9 +25,26 @@ const meta: Meta<typeof Input> = {
     // Input type
     type: {
       control: "select",
-      options: ["text", "password", "email", "number", "tel", "url", "search"],
+      options: [
+        "text",
+        "password",
+        "email",
+        "number",
+        "tel",
+        "url",
+        "search",
+        "date",
+        "time",
+        "datetime-local",
+        "month",
+        "week",
+        "color",
+        "file",
+        "hidden",
+      ],
       description: "The type of input",
     },
+
     // Text attributes
     placeholder: {
       control: "text",
@@ -41,6 +58,7 @@ const meta: Meta<typeof Input> = {
       control: "text",
       description: "The default value of the input (uncontrolled)",
     },
+
     // Identification
     id: {
       control: "text",
@@ -50,6 +68,7 @@ const meta: Meta<typeof Input> = {
       control: "text",
       description: "Name of the input, used when submitting forms",
     },
+
     // Input states
     disabled: {
       control: "boolean",
@@ -64,6 +83,36 @@ const meta: Meta<typeof Input> = {
       control: "boolean",
       description: "Indicates whether the input value can be modified",
     },
+
+    // Form attributes
+    form: {
+      control: "text",
+      description:
+        "Associates the input with a form (by form id) even when not nested inside the form",
+    },
+    formAction: {
+      control: "text",
+      description: "URL where form data will be submitted if this input submits a form",
+    },
+    formEncType: {
+      control: "select",
+      options: ["application/x-www-form-urlencoded", "multipart/form-data", "text/plain"],
+      description: "Encoding type to use when submitting form data",
+    },
+    formMethod: {
+      control: "select",
+      options: ["get", "post", "dialog"],
+      description: "HTTP method to use when submitting form data",
+    },
+    formNoValidate: {
+      control: "boolean",
+      description: "Bypass form validation when submitting",
+    },
+    formTarget: {
+      control: "text",
+      description: "Where to display the response after form submission",
+    },
+
     // Accessibility attributes
     "aria-required": {
       control: "boolean",
@@ -79,11 +128,36 @@ const meta: Meta<typeof Input> = {
       control: "text",
       description: "Identifies the element(s) that describes the input",
     },
+    "aria-label": {
+      control: "text",
+      description: "Provides an accessible name for the input when a visible label isn't present",
+    },
+    "aria-labelledby": {
+      control: "text",
+      description: "Identifies the element that labels the input",
+    },
+    "aria-errormessage": {
+      control: "text",
+      description: "Identifies the element that provides an error message for the input",
+    },
+    "aria-autocomplete": {
+      control: "select",
+      options: ["none", "inline", "list", "both"],
+      description: "Indicates whether and how autocomplete suggestions are provided",
+    },
+    "aria-haspopup": {
+      control: "select",
+      options: ["false", "true", "menu", "listbox", "tree", "grid", "dialog"],
+      description:
+        "Indicates the availability and type of interactive popup element that can be triggered",
+    },
+
     // Styling
     className: {
       control: "text",
       description: "Additional CSS class names",
     },
+
     // Event handlers - control: false means they won't appear in controls panel
     onChange: {
       control: false,
@@ -97,9 +171,40 @@ const meta: Meta<typeof Input> = {
       control: false,
       description: "Function called when the input receives focus",
     },
+    onInput: {
+      control: false,
+      description: "Function called when the value of the input changes",
+    },
+    onInvalid: {
+      control: false,
+      description: "Function called when the input fails validation",
+    },
+    onKeyDown: {
+      control: false,
+      description: "Function called when a key is pressed down in the input",
+    },
+    onKeyUp: {
+      control: false,
+      description: "Function called when a key is released in the input",
+    },
+
     // Additional HTML attributes
     autoComplete: {
-      control: "text",
+      control: "select",
+      options: [
+        "on",
+        "off",
+        "name",
+        "email",
+        "username",
+        "current-password",
+        "new-password",
+        "one-time-code",
+        "tel",
+        "street-address",
+        "country",
+        "postal-code",
+      ],
       description: "Hint for form autofill feature",
     },
     autoFocus: {
@@ -108,11 +213,15 @@ const meta: Meta<typeof Input> = {
     },
     min: {
       control: "text",
-      description: "Minimum value for number inputs",
+      description: "Minimum value for number, date, time, and range inputs",
     },
     max: {
       control: "text",
-      description: "Maximum value for number inputs",
+      description: "Maximum value for number, date, time, and range inputs",
+    },
+    step: {
+      control: "text",
+      description: "Granularity increment for number, date, time, and range inputs",
     },
     maxLength: {
       control: "number",
@@ -125,6 +234,51 @@ const meta: Meta<typeof Input> = {
     pattern: {
       control: "text",
       description: "Regular expression pattern the input's value must match",
+    },
+    accept: {
+      control: "text",
+      description: "Types of files that can be selected with a file input",
+    },
+    capture: {
+      control: "select",
+      options: ["user", "environment"],
+      description: "Which camera to use for file inputs of type 'file' (for mobile devices)",
+    },
+    multiple: {
+      control: "boolean",
+      description:
+        "Whether multiple values can be entered for appropriate input types (e.g., email, file)",
+    },
+    list: {
+      control: "text",
+      description: "ID of a datalist element providing predefined options for the input",
+    },
+    size: {
+      control: "number",
+      description: "Visual size of the input in characters",
+    },
+    enterKeyHint: {
+      control: "select",
+      options: ["enter", "done", "go", "next", "previous", "search", "send"],
+      description: "Hint for what action the Enter key will perform",
+    },
+    inputMode: {
+      control: "select",
+      options: ["none", "text", "decimal", "numeric", "tel", "search", "email", "url"],
+      description:
+        "Hint to browsers for which input mechanism to show (e.g., virtual keyboard type)",
+    },
+    placeholder: {
+      control: "text",
+      description: "Short hint displayed in the input before the user enters a value",
+    },
+    title: {
+      control: "text",
+      description: "Tooltip text that appears when hovering over the input",
+    },
+    spellCheck: {
+      control: "boolean",
+      description: "Whether to enable spell checking for the input",
     },
   },
 };

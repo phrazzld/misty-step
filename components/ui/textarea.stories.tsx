@@ -35,6 +35,7 @@ const meta: Meta<typeof Textarea> = {
       control: "text",
       description: "The default value of the textarea (uncontrolled)",
     },
+
     // Sizing
     rows: {
       control: { type: "number", min: 2, max: 20 },
@@ -44,6 +45,7 @@ const meta: Meta<typeof Textarea> = {
       control: "number",
       description: "Number of visible character columns",
     },
+
     // Identification
     id: {
       control: "text",
@@ -53,6 +55,7 @@ const meta: Meta<typeof Textarea> = {
       control: "text",
       description: "Name of the textarea, used when submitting forms",
     },
+
     // TextArea states
     disabled: {
       control: "boolean",
@@ -67,6 +70,14 @@ const meta: Meta<typeof Textarea> = {
       control: "boolean",
       description: "Indicates whether the textarea value can be modified",
     },
+
+    // Form attributes
+    form: {
+      control: "text",
+      description:
+        "Associates the textarea with a form (by form id) even when not nested inside the form",
+    },
+
     // Accessibility attributes
     "aria-required": {
       control: "boolean",
@@ -82,11 +93,40 @@ const meta: Meta<typeof Textarea> = {
       control: "text",
       description: "Identifies the element(s) that describes the textarea",
     },
+    "aria-label": {
+      control: "text",
+      description:
+        "Provides an accessible name for the textarea when a visible label isn't present",
+    },
+    "aria-labelledby": {
+      control: "text",
+      description: "Identifies the element that labels the textarea",
+    },
+    "aria-errormessage": {
+      control: "text",
+      description: "Identifies the element that provides an error message for the textarea",
+    },
+    "aria-multiline": {
+      control: "boolean",
+      description: "Indicates that the textarea accepts multiple lines of input",
+      defaultValue: true,
+    },
+    "aria-placeholder": {
+      control: "text",
+      description:
+        "Defines the placeholder text for assistive technologies (use alongside HTML placeholder)",
+    },
+    "aria-readonly": {
+      control: "boolean",
+      description: "Indicates the textarea is not editable (use alongside HTML readOnly)",
+    },
+
     // Styling
     className: {
       control: "text",
       description: "Additional CSS class names",
     },
+
     // Event handlers - control: false means they won't appear in controls panel
     onChange: {
       control: false,
@@ -100,9 +140,31 @@ const meta: Meta<typeof Textarea> = {
       control: false,
       description: "Function called when the textarea receives focus",
     },
+    onInput: {
+      control: false,
+      description: "Function called when the value of the textarea changes",
+    },
+    onInvalid: {
+      control: false,
+      description: "Function called when the textarea fails validation",
+    },
+    onKeyDown: {
+      control: false,
+      description: "Function called when a key is pressed down in the textarea",
+    },
+    onKeyUp: {
+      control: false,
+      description: "Function called when a key is released in the textarea",
+    },
+    onSelect: {
+      control: false,
+      description: "Function called when text is selected within the textarea",
+    },
+
     // Additional HTML attributes
     autoComplete: {
-      control: "text",
+      control: "select",
+      options: ["on", "off"],
       description: "Hint for form autofill feature",
     },
     autoFocus: {
@@ -125,6 +187,44 @@ const meta: Meta<typeof Textarea> = {
       control: "select",
       options: ["hard", "soft", "off"],
       description: "Indicates how the text should be wrapped when submitting in a form",
+    },
+    resize: {
+      control: "select",
+      options: ["none", "both", "horizontal", "vertical"],
+      description:
+        "Controls how the textarea can be resized by the user (applies via style object)",
+    },
+    enterKeyHint: {
+      control: "select",
+      options: ["enter", "done", "go", "next", "previous", "search", "send"],
+      description: "Hint for what action the Enter key will perform",
+    },
+    inputMode: {
+      control: "select",
+      options: ["none", "text", "decimal", "numeric", "tel", "search", "email", "url"],
+      description:
+        "Hint to browsers for which input mechanism to show (e.g., virtual keyboard type)",
+    },
+    tabIndex: {
+      control: "number",
+      description: "Controls the tab order of the textarea",
+    },
+    title: {
+      control: "text",
+      description: "Tooltip text that appears when hovering over the textarea",
+    },
+    dirName: {
+      control: "text",
+      description: "Name of form field to use for sending the text direction of the textarea",
+    },
+    dir: {
+      control: "select",
+      options: ["ltr", "rtl", "auto"],
+      description: "The text direction of the textarea content",
+    },
+    lang: {
+      control: "text",
+      description: "The language of the textarea content",
     },
   },
 };

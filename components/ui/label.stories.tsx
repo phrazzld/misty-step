@@ -13,6 +13,7 @@ const meta: Meta<typeof Label> = {
       control: "text",
       description: "The content of the label",
     },
+
     // Identification and relationships
     id: {
       control: "text",
@@ -22,16 +23,19 @@ const meta: Meta<typeof Label> = {
       control: "text",
       description: "The ID of the form element this label is associated with",
     },
+
     // Label states and features
     required: {
       control: "boolean",
       description: "Displays a required indicator (*) after the label text",
     },
+
     // Styling
     className: {
       control: "text",
       description: "Additional CSS class names",
     },
+
     // Accessibility attributes
     "aria-labelledby": {
       control: "text",
@@ -48,6 +52,20 @@ const meta: Meta<typeof Label> = {
       description:
         "Indicates element(s) that are owned by the label but not in the DOM hierarchy. Useful for complex form relationships.",
     },
+    "aria-hidden": {
+      control: "boolean",
+      description: "Whether to hide the label from screen readers (use with caution)",
+    },
+    "aria-live": {
+      control: "select",
+      options: ["off", "polite", "assertive"],
+      description: "Indicates how assistive technologies should announce updates to the label",
+    },
+    "aria-atomic": {
+      control: "boolean",
+      description: "Whether the entire label should be announced when it changes",
+    },
+
     // Event handlers - control: false means they won't appear in controls panel
     onClick: {
       control: false,
@@ -61,6 +79,19 @@ const meta: Meta<typeof Label> = {
       control: false,
       description: "Function called when mouse leaves the label area",
     },
+    onFocus: {
+      control: false,
+      description: "Function called when the label receives focus",
+    },
+    onBlur: {
+      control: false,
+      description: "Function called when the label loses focus",
+    },
+    onKeyDown: {
+      control: false,
+      description: "Function called when a key is pressed while the label is focused",
+    },
+
     // HTML attributes
     lang: {
       control: "text",
@@ -78,6 +109,22 @@ const meta: Meta<typeof Label> = {
     title: {
       control: "text",
       description: "Additional information shown as a tooltip when hovering over the label",
+    },
+    tabIndex: {
+      control: "number",
+      description:
+        "Tab order of the element (typically -1 for labels as they're not usually focusable)",
+    },
+
+    // Radix UI Label specific props from @radix-ui/react-label
+    asChild: {
+      control: "boolean",
+      description:
+        "Change the default rendered element for the one passed as a child, merging their props and behavior",
+    },
+    ref: {
+      control: false,
+      description: "React ref forwarded to the underlying DOM element",
     },
   },
 };

@@ -28,6 +28,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   tags: ["autodocs"],
   argTypes: {
+    // Core Button props
     variant: {
       control: "select",
       options: ["default", "destructive", "outline", "secondary", "ghost", "link"],
@@ -38,35 +39,139 @@ const meta: Meta<typeof Button> = {
       options: ["default", "sm", "lg", "icon"],
       description: "The size of the button",
     },
-    disabled: {
-      control: "boolean",
-      description: "Whether the button is disabled",
-    },
     asChild: {
       control: "boolean",
       description: "Whether to render as a child element instead of a button",
     },
-    children: {
-      control: "text",
-      description: "The content of the button",
-    },
-    "aria-label": {
-      control: "text",
-      description:
-        "Accessible label for the button when visual text is not available or not descriptive enough",
-    },
-    onClick: {
-      control: false,
-      description: "Function to call when the button is clicked",
-    },
-    id: {
-      control: "text",
-      description: "The unique identifier for the button element",
+
+    // HTML button attributes
+    disabled: {
+      control: "boolean",
+      description: "Whether the button is disabled",
     },
     type: {
       control: "select",
       options: ["button", "submit", "reset"],
       description: "The type of button, affecting its behavior in forms",
+    },
+    name: {
+      control: "text",
+      description: "The name of the button, used when submitting forms",
+    },
+    value: {
+      control: "text",
+      description: "The value of the button, used when submitting forms",
+    },
+    form: {
+      control: "text",
+      description:
+        "Associates the button with a form (by form id) even when not nested inside the form",
+    },
+    formAction: {
+      control: "text",
+      description: "URL where form data will be submitted if this button submits a form",
+    },
+    formEncType: {
+      control: "select",
+      options: ["application/x-www-form-urlencoded", "multipart/form-data", "text/plain"],
+      description: "Encoding type to use when submitting form data",
+    },
+    formMethod: {
+      control: "select",
+      options: ["get", "post", "dialog"],
+      description: "HTTP method to use when submitting form data",
+    },
+    formNoValidate: {
+      control: "boolean",
+      description: "Bypass form validation when submitting via this button",
+    },
+    formTarget: {
+      control: "text",
+      description: "Where to display the response after form submission",
+    },
+
+    // Content props
+    children: {
+      control: "text",
+      description: "The content of the button",
+    },
+
+    // Event handlers
+    onClick: {
+      control: false,
+      description: "Function to call when the button is clicked",
+    },
+    onFocus: {
+      control: false,
+      description: "Function to call when the button receives focus",
+    },
+    onBlur: {
+      control: false,
+      description: "Function to call when the button loses focus",
+    },
+    onMouseEnter: {
+      control: false,
+      description: "Function to call when mouse pointer enters the button",
+    },
+    onMouseLeave: {
+      control: false,
+      description: "Function to call when mouse pointer leaves the button",
+    },
+    onKeyDown: {
+      control: false,
+      description: "Function to call when a key is pressed while the button has focus",
+    },
+
+    // ARIA accessibility attributes
+    "aria-label": {
+      control: "text",
+      description:
+        "Accessible label for the button when visual text is not available or not descriptive enough",
+    },
+    "aria-expanded": {
+      control: "boolean",
+      description:
+        "Indicates whether a dropdown or similar element controlled by this button is expanded",
+    },
+    "aria-haspopup": {
+      control: "select",
+      options: ["true", "menu", "dialog", "listbox", "tree", "grid"],
+      description: "Indicates the button opens a menu or other interactive element",
+    },
+    "aria-controls": {
+      control: "text",
+      description: "Identifies the element controlled by this button",
+    },
+    "aria-pressed": {
+      control: "select",
+      options: ["true", "false", "mixed"],
+      description: "Indicates the button's pressed state (for toggle buttons)",
+    },
+    "aria-disabled": {
+      control: "boolean",
+      description: "Indicates the button is disabled for accessibility purposes",
+    },
+
+    // Common HTML attributes
+    id: {
+      control: "text",
+      description: "The unique identifier for the button element",
+    },
+    className: {
+      control: "text",
+      description: "Additional CSS class names",
+    },
+    tabIndex: {
+      control: "number",
+      description: "Controls the tab order of the button",
+    },
+    title: {
+      control: "text",
+      description: "Tooltip text that appears when hovering over the button",
+    },
+    autoFocus: {
+      control: "boolean",
+      description: "Button should automatically receive focus when the page loads",
     },
   },
 };
