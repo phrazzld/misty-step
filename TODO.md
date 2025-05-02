@@ -28,7 +28,7 @@
   - **Verification:**
     1. Review `README.md`/`CONTRIBUTING.md` for the pnpm requirement statement.
   - **Depends‑on:** none
-- [ ] **T003 · Chore · P0: link orphaned storybook contribution guidelines**
+- [x] **T003 · Chore · P0: link orphaned storybook contribution guidelines**
   - **Context:** cr-14 Link to Orphaned Storybook Contribution Guidelines
   - **Action:**
     1. Edit `README.md` and add a link to `docs/CONTRIBUTING-STORYBOOK.md` in the Contribution/Development section.
