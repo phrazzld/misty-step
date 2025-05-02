@@ -38,20 +38,24 @@
   - **Verification:**
     1. Open `README.md`/`CONTRIBUTING.md` and click the link(s) to ensure they work.
   - **Depends‑on:** none
-- [ ] **T004 · Chore · P1: restore and archive deleted historical planning docs**
+- [x] **T004 · Chore · P1: restore and archive deleted historical planning docs**
   - **Context:** cr-05 Restore Deleted Historical Planning Documentation
   - **Action:**
-    1. Use `git checkout <commit-hash>^ -- <path/to/PLAN-*.md>` to restore deleted files (`PLAN-2.md`, `PLAN-INDEX.md`, `PLAN-ORIGINAL.md`).
-    2. Create directory `docs/archive/planning/`.
-    3. Move the restored files into `docs/archive/planning/` using `git mv`.
-    4. Add a reference to this archive directory in `README.md` or `CONTRIBUTING.md`.
+    1. ~~Use `git checkout <commit-hash>^ -- <path/to/PLAN-*.md>` to restore deleted files (`PLAN-2.md`, `PLAN-INDEX.md`, `PLAN-ORIGINAL.md`).~~
+    2. ~~Create directory `docs/archive/planning/`.~~
+    3. ~~Move the restored files into `docs/archive/planning/` using `git mv`.~~
+    4. ~~Add a reference to this archive directory in `README.md` or `CONTRIBUTING.md`.~~
+    - CANCELLED: Documents were intentionally deleted and should remain deleted.
   - **Done‑when:**
-    1. Historical planning documents are present in `docs/archive/planning/`.
-    2. The archive directory is referenced in `README.md` or `CONTRIBUTING.md`.
+    1. ~~Historical planning documents are present in `docs/archive/planning/`.~~
+    2. ~~The archive directory is referenced in `README.md` or `CONTRIBUTING.md`.~~
+    - CANCELLED: Task is no longer required.
   - **Verification:**
-    1. Navigate to `docs/archive/planning/` and confirm file presence.
-    2. Check `README.md`/`CONTRIBUTING.md` for the reference link.
+    1. ~~Navigate to `docs/archive/planning/` and confirm file presence.~~
+    2. ~~Check `README.md`/`CONTRIBUTING.md` for the reference link.~~
+    - CANCELLED: Task is no longer required.
   - **Depends‑on:** none
+  - **NOTE:** Task cancelled as the files were intentionally deleted and should remain deleted.
 - [ ] **T005 · Chore · P1: document `CardAction` subcomponent api with tsdoc**
   - **Context:** cr-09 Document `CardAction` Subcomponent API
   - **Action:**
