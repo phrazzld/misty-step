@@ -1,270 +1,254 @@
-```markdown
 # Remediation Plan – Sprint 1
 
 ## Executive Summary
 
-This plan targets critical and high-severity violations identified in the PLAN-2 Storybook implementation code review, prioritizing the restoration of modularity, accessibility, documentation integrity, and testability. We will first eliminate the framework dependency blocker, then restore lost documentation and fix test coverage configuration. Subsequently, we will address accessibility and component consistency issues, establishing a stable, compliant foundation before tackling medium and low-priority improvements.
+This plan prioritizes the immediate resolution of critical blockers preventing documentation access, component isolation, and accurate test coverage reporting. High-priority fixes addressing historical context loss, component inconsistency, and fragile testing methods follow. The strike order focuses on rapid wins and unblocking foundational improvements to restore repository integrity and align with core development philosophies.
 
 ## Strike List
 
-| Seq | CR‑ID | Title                                                     | Effort | Owner?    |
-| --- | ----- | --------------------------------------------------------- | ------ | --------- |
-| 1   | cr‑01 | Remove Framework-Specific Component (`next/image`)        | xs     | Frontend  |
-| 2   | cr‑04 | Reinstate Planning Documentation                          | xs     | Docs/Lead |
-| 3   | cr‑05 | Remove Overly Broad Test Coverage Exclusion               | xs     | Frontend  |
-| 4   | cr‑03 | Fix Accessibility Violations (Alt Text, ARIA Handling)    | s      | Frontend  |
-| 5   | cr‑02 | Enforce Consistent Component Usage (Replace Raw HTML/CSS) | m      | Frontend  |
-| 6   | cr‑06 | Complete Prop Documentation in `argTypes`                 | m      | Frontend  |
-| 7   | cr‑09 | Document Custom `CardAction` Component (or Remove)        | s      | Frontend  |
-| 8   | cr‑07 | Ensure Consistent Story Structure (Args vs. Render)       | s      | Frontend  |
-| 9   | cr‑08 | Add Edge Case/State Coverage to Stories                   | m      | Frontend  |
-| 10  | cr‑10 | Replace Hardcoded Unrealistic Data in Stories             | xs     | Frontend  |
-| 11  | cr‑11 | Use Idiomatic React Import Style                          | xs     | Frontend  |
-| 12  | cr‑15 | Use More Descriptive Story Names                          | s      | Frontend  |
-| 13  | cr‑14 | Enhance `CONTRIBUTING-STORYBOOK.md`                       | xs     | Docs/Lead |
-| 14  | cr‑13 | Reduce Story Definition Verbosity (Optional DRY)          | xs     | Frontend  |
-
-_(Note: `cr-12` [Hardcoded Required Indicator] is addressed within `cr-02`)_
-
----
+| Seq | CR-ID | Title                                                       | Effort | Owner? |
+| --- | ----- | ----------------------------------------------------------- | ------ | ------ |
+| 1   | cr-01 | Fix Non-Portable Symlink for Documentation                  | xs     |        |
+| 2   | cr-03 | Remove Story Exclusion from Test Coverage                   | xs     |        |
+| 3   | cr-13 | Formalize and Enforce PNPM Usage                            | xs     |        |
+| 4   | cr-14 | Link to Orphaned Storybook Contribution Guidelines          | xs     |        |
+| 5   | cr-15 | Remove Unjustified Global Story Margin Decorator            | xs     |        |
+| 6   | cr-18 | Ensure Husky Hook Echo Command Ends with Newline            | xs     |        |
+| 7   | cr-05 | Restore Deleted Historical Planning Documentation           | s      |        |
+| 8   | cr-02 | Decouple Storybook from Next.js `next/image`                | s      |        |
+| 9   | cr-08 | Clarify Tailwind Directive Handling in Storybook            | xs     |        |
+| 10  | cr-09 | Document `CardAction` Subcomponent API                      | xs     |        |
+| 11  | cr-16 | Use Idiomatic React Import Style                            | xs     |        |
+| 12  | cr-06 | Enforce Consistent Use of Library Components in Stories     | m      |        |
+| 13  | cr-04 | Replace Fragile CSS State Simulation with Interaction Tests | m      |        |
+| 14  | cr-12 | Refactor Inconsistent Story Structure (`args` vs. `render`) | s      |        |
+| 15  | cr-17 | Improve Generic Story Names for Clarity                     | s      |        |
+| 16  | cr-07 | Audit and Remediate Risky Post-Commit Hook                  | s      |        |
+| 17  | cr-10 | Enhance Component Prop Documentation (`argTypes`)           | m      |        |
+| 18  | cr-11 | Add Missing State and Edge Case Coverage in Stories         | m      |        |
 
 ## Detailed Remedies
 
-### cr‑01 Remove Framework-Specific Component (`next/image`)
+### cr-01 Fix Non-Portable Symlink for Documentation
 
-- **Problem:** Stories directly import and use `next/image`, coupling the Storybook environment to Next.js internals.
-- **Impact:** Violates **Mandatory Modularity** and **Strict Separation of Concerns**, risking Storybook build failures outside Next.js, preventing isolated component viewing, and adding unnecessary complexity.
-- **Chosen Fix:** Replace all `next/image` usage in stories with standard `<img>` tags; ensure static assets are available to Storybook.
+- **Problem:** Documentation file `docs/DEVELOPMENT_PHILOSOPHY_APPENDIX_FRONTEND.md` is an inaccessible absolute-path symlink.
+- **Impact:** Blocks documentation access for team and CI/CD, violating portability.
+- **Chosen Fix:** Replace the symlink with the actual file content directly in the repository.
 - **Steps:**
-  1. Remove `import Image from "next/image";` from `components/ui/button.stories.tsx`.
-  2. Replace `<Image ... />` instances (`button.stories.tsx:98`, `113`) with standard `<img src="..." width="..." height="..." alt="..." />`. Use appropriate `alt` text (see cr-03).
-  3. Configure Storybook's `staticDirs` (in `.storybook/main.ts` or equivalent) if needed to serve the icon assets (e.g., from a `public/` directory).
-- **Done‑When:** `next/image` is removed from stories; icons render correctly using `<img>`; Storybook builds and runs without Next.js context errors.
+  1.  Identify the source content of the symlink (`/Users/phaedrus/...`).
+  2.  Delete the symlink `docs/DEVELOPMENT_PHILOSOPHY_APPENDIX_FRONTEND.md` from the repository (`git rm ...`).
+  3.  Create a new file at the same path containing the actual documentation content.
+  4.  Commit the new file (`git add ...`).
+- **Done-When:** The file exists as a regular file in Git, is readable by all, and CI passes doc checks.
 
----
+### cr-03 Remove Story Exclusion from Test Coverage
 
-### cr‑04 Reinstate Planning Documentation
-
-- **Problem:** Historical project planning documents (`PLAN-*.md`, etc.) were deleted, erasing project context and decision rationale.
-- **Impact:** Loss of architectural history violates the **Documentation Approach**, hindering onboarding, maintenance, and understanding the "why" behind implementations.
-- **Chosen Fix:** Restore deleted files from Git history and move them to a dedicated archive directory.
+- **Problem:** Story files (`*.stories.tsx`) are excluded from Vitest coverage analysis.
+- **Impact:** Hides untested logic within stories (e.g., `play` functions), undermining quality gates.
+- **Chosen Fix:** Remove the story file exclusion pattern from the Vitest configuration.
 - **Steps:**
-  1. Identify the commit hash immediately preceding the deletion of the `PLAN-*.md` files.
-  2. Restore the files using Git (e.g., `git checkout <hash>^ -- PLAN-*.md PLAN-INDEX.md PLAN-ORIGINAL.md`).
-  3. Create an `archive/` directory (e.g., `docs/archive/planning`).
-  4. Move the restored planning files into `docs/archive/planning`.
-  5. Add a brief note in the main `README.md` or contributing guide pointing to the archive for historical context.
-- **Done‑When:** Planning documents are restored and accessible within the `archive/` directory; the archive location is documented.
+  1.  Edit `vitest.config.ts`.
+  2.  Remove the `"**/*.stories.{ts,tsx}"` pattern from the `coverage.exclude` array.
+  3.  Commit the change.
+  4.  Run coverage and verify stories are included in the report.
+- **Done-When:** `coverage.exclude` no longer lists story files; coverage report includes story logic.
 
----
+### cr-13 Formalize and Enforce PNPM Usage
 
-### cr‑05 Remove Overly Broad Test Coverage Exclusion
-
-- **Problem:** `vitest.config.ts` excludes `**/*.stories.{ts,tsx}` from test coverage analysis, potentially hiding untested logic within stories.
-- **Impact:** Prevents accurate coverage tracking for story-embedded logic (helpers, interaction tests), violating **Design for Testability (Accurate Coverage)**.
-- **Chosen Fix:** Remove the overly broad exclusion pattern and rely on Vitest's default behavior (covering files imported by tests).
+- **Problem:** Mandated `pnpm` usage is hidden in an obscure file (`CLAUDE.md`).
+- **Impact:** New contributors miss the requirement, leading to inconsistent environments.
+- **Chosen Fix:** Document the requirement prominently and enforce it technically via `package.json`.
 - **Steps:**
-  1. Edit `vitest.config.ts`.
-  2. Remove the pattern `"**/*.stories.{ts,tsx}"` from the `coverage.exclude` array (line 24).
-  3. Run the test coverage suite (`npm run test:coverage` or similar) to confirm it runs correctly and potentially identifies any newly included story files.
-- **Done‑When:** Exclusion line is removed; test coverage runs successfully; configuration is committed.
+  1.  Add a clear statement mandating `pnpm` usage to the Setup section of `README.md` and/or `CONTRIBUTING.md`.
+  2.  Add `"packageManager": "pnpm@<version>"` to `package.json` (use the correct project version).
+  3.  (Optional) Add `.npmrc` with `engine-strict=true`.
+  4.  Delete `CLAUDE.md` (or integrate any other useful content elsewhere).
+- **Done-When:** `pnpm` requirement is documented in main README/CONTRIBUTING and enforced via `package.json`.
 
----
+### cr-14 Link to Orphaned Storybook Contribution Guidelines
 
-### cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling)
-
-- **Problem:** Images used as icons lack meaningful `alt` text; ARIA attributes (`aria-label`, `aria-required`) are used directly in story `args` without being defined in `argTypes`.
-- **Impact:** Violates **Security Considerations (Accessibility)**, making UI elements inaccessible; creates fragile, undocumented accessibility implementations; hinders **Testability**.
-- **Chosen Fix:** Provide meaningful `alt` text (or justify empty `alt`) for icons and explicitly define relevant accessibility props in `argTypes` for documentation and control.
+- **Problem:** `docs/CONTRIBUTING-STORYBOOK.md` exists but is not linked from main documentation.
+- **Impact:** Developers are unaware of specific Storybook contribution standards.
+- **Chosen Fix:** Add links to the guidelines from `README.md` and/or `CONTRIBUTING.md`.
 - **Steps:**
-  1.  **Button Story (`button.stories.tsx`):**
-      - For `IconSize` (line 98) and `WithIcon` (line 113) `<img>` tags (updated in cr-01): Provide meaningful `alt` text (e.g., `alt="View details"`) if the icon conveys meaning not present in adjacent text or `aria-label`. If the icon is _purely_ decorative _and_ the button has text or a sufficient `aria-label`, use `alt=""` and add a comment justifying it. Icon-only buttons _must_ have an accessible name via `aria-label` or `alt`.
-      - Add `aria-label` to `Button`'s `meta.argTypes` with a description (e.g., "Provides an accessible name for the button, especially useful for icon-only buttons.").
-  2.  **Input Story (`input.stories.tsx`):**
-      - Add `aria-required` to `Input`'s `meta.argTypes` with description. Ensure story `args` (line 86) correctly uses this prop.
-  3.  **Textarea Story (`textarea.stories.tsx`):**
-      - Add `aria-required` to `Textarea`'s `meta.argTypes` with description. Ensure story `args` (line 101) correctly uses this prop.
-  4.  **Label Story (`label.stories.tsx`):**
-      - Review if any standard ARIA props need documenting in `argTypes` based on common usage patterns (e.g., `aria-labelledby` relationships).
-- **Done‑When:** `alt` text is meaningful or justified empty; `aria-label`, `aria-required` are defined in relevant `argTypes`; Storybook accessibility checks pass for these stories.
+  1.  Edit `README.md` and add a link to `docs/CONTRIBUTING-STORYBOOK.md` in the Contribution/Development section.
+  2.  Edit `CONTRIBUTING.md` (if exists) and add a link similarly.
+- **Done-When:** Clear links to `docs/CONTRIBUTING-STORYBOOK.md` exist in primary contribution documentation.
 
----
+### cr-15 Remove Unjustified Global Story Margin Decorator
 
-### cr‑02 Enforce Consistent Component Usage (Replace Raw HTML/CSS)
-
-- **Problem:** Stories inconsistently use raw HTML elements (`<button>`, `<label>`, `<span>`) with hardcoded Tailwind classes instead of the project's `Button` and `Label` components.
-- **Impact:** Undermines the component library (**Mandatory Modularity**), violates **Coding Standards (Consistency)**, duplicates logic (**Simplicity First**), risks visual inconsistencies, and potentially masks component deficiencies (e.g., `Label` state handling).
-- **Chosen Fix:** Replace all raw HTML elements/styles in stories with the corresponding project components (`Button`, `Label`). Refactor the base `Label` component to handle `required` indication and `disabled` styling intrinsically.
+- **Problem:** A global Storybook decorator adds `margin: "1rem"` to all stories without justification.
+- **Impact:** May interfere with component layout, visual testing, or intended component boundaries.
+- **Chosen Fix:** Remove the global margin decorator.
 - **Steps:**
-  1.  **Refactor `Label` Component (`components/ui/label.tsx`):**
-      - Add a `required?: boolean` prop.
-      - Conditionally render a styled required indicator (e.g., `<span className="text-destructive">*</span>`) within the `Label` when `required={true}`.
-      - Verify Radix primitives handle disabled state styling correctly via data attributes (`[data-disabled]`) when associated with a disabled input; remove any manual disabled styling logic if present.
-  2.  **Card Story (`card.stories.tsx:101`):** Replace raw `<button>` with `<Button variant="secondary" size="sm">Action</Button>` (adjust props as needed).
-  3.  **Input Story (`input.stories.tsx:73-77`):** Replace raw `<label>` with `<Label htmlFor="...">Email</Label>`.
-  4.  **Label Story (`label.stories.tsx`):**
-      - Remove raw `<span>` for required indicator (lines 32-33, 45, 61-62); use the new `required` prop on the `Label` component instead.
-      - Remove manual disabled styles/classes; ensure disabled state is demonstrated by linking the `Label` to a disabled `Input` in a story.
-  5.  **Textarea Story (`textarea.stories.tsx`):**
-      - Ensure `Label` is used consistently (lines 72-73, 100-101).
-      - Remove raw `<span>` for required indicator (line 94); use the new `required` prop on the `Label` component.
-  6.  **Audit:** Review all stories again to ensure no raw HTML replacements remain for `Button` or `Label`.
-- **Done‑When:** All raw HTML (`button`, `label`, style `span`s) are replaced; `Label` component handles `required`/`disabled` states internally; stories demonstrate correct component usage; visual consistency verified. _(Addresses cr-12)_
+  1.  Edit `.storybook/preview.tsx`.
+  2.  Remove the decorator applying the `margin: "1rem"` style wrapper.
+  3.  Visually verify stories in Storybook; apply spacing locally within stories only if needed for specific demos.
+- **Done-When:** The global margin decorator is removed from `.storybook/preview.tsx`.
 
----
+### cr-18 Ensure Husky Hook Echo Command Ends with Newline
 
-### cr‑06 Complete Prop Documentation in `argTypes`
-
-- **Problem:** `argTypes` definitions omit many standard HTML attributes, accessibility attributes, and common event handlers relevant to the components.
-- **Impact:** Reduces Storybook's interactive documentation value (**Documentation Approach**, **Design for Testability**), making the component API less clear and discoverable.
-- **Chosen Fix:** Audit each component's props and update its `meta.argTypes` to include all relevant props a consumer might set.
+- **Problem:** The `echo` command in `.husky/post-commit` lacks a final newline.
+- **Impact:** Causes minor terminal formatting issues where the prompt follows immediately.
+- **Chosen Fix:** Ensure the `echo` command output includes a trailing newline.
 - **Steps:**
-  1.  **Audit & Update `argTypes` for:**
-      - `Button`: Add `onClick` (control: false), `id`, `type`. (`aria-label` added in cr-03).
-      - `Input`: Add `onChange`, `onBlur`, `onFocus` (all control: false), `id`, `name`, `placeholder`, `type`, `value`, `defaultValue`, `required`, `disabled`, `readOnly`. (`aria-required` added in cr-03). Consider `aria-invalid`, `aria-describedby`.
-      - `Textarea`: Add `onChange`, `onBlur`, `onFocus` (all control: false), `id`, `name`, `placeholder`, `rows`, `value`, `defaultValue`, `required`, `disabled`, `readOnly`. (`aria-required` added in cr-03). Consider `aria-invalid`, `aria-describedby`.
-      - `Label`: Add `htmlFor`, `id`.
-      - `Card` (and subcomponents like `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`): Add common props like `id`, `className`.
-  2.  **Refine:** Use `control: false` or `table: { disable: true }` for props like event handlers or complex objects not suitable for controls but needing documentation. Ensure clear `description` fields for all added props.
-- **Done‑When:** `argTypes` for core UI components (Button, Input, Textarea, Label, Card) include comprehensive standard HTML, accessibility, and event props with appropriate controls/documentation settings.
+  1.  Edit `.husky/post-commit`.
+  2.  Verify the `echo` command on line 9 does not use `-n` and naturally outputs a newline.
+  3.  Ensure the file itself ends with a newline character.
+- **Done-When:** Terminal output from the hook is correctly formatted with a trailing newline.
 
----
+### cr-05 Restore Deleted Historical Planning Documentation
 
-### cr‑09 Document Custom `CardAction` Component (or Remove)
-
-- **Problem:** The `CardAction` subcomponent used in `card.stories.tsx` is undocumented and potentially non-standard within the library.
-- **Impact:** Introduces undocumented API (**Documentation Approach**), confuses consumers, potential violation of **Mandatory Modularity** if not properly integrated.
-- **Chosen Fix:** Evaluate `CardAction`; if necessary, formally adopt, document, and export it; otherwise, remove it and achieve the layout with standard components/utilities. **Decision:** Assume `CardAction` is useful for layout; proceed to document.
+- **Problem:** Historical planning documents (`PLAN-*.md`) were deleted.
+- **Impact:** Loss of critical project context, rationale, and decision history.
+- **Chosen Fix:** Restore files from Git history and archive them within the `docs` directory.
 - **Steps:**
-  1.  **Document:** Add TSDoc comments to the `CardAction` component definition in `components/ui/card.tsx` explaining its purpose, props, and intended usage (e.g., "A container for action elements typically placed in the `CardHeader`, aligned to the end.").
-  2.  **Export:** Ensure `CardAction` is exported from `components/ui/card.tsx` alongside other subcomponents.
-  3.  **Storybook:** Explicitly list `CardAction` in `card.stories.tsx` `meta.subcomponents` if desired for documentation clarity. Ensure the `FullExample` story clearly demonstrates its usage.
-  4.  **Standards:** Briefly verify `CardAction` implementation aligns with project coding and styling standards.
-- **Done‑When:** `CardAction` is documented via TSDoc; exported correctly; usage is clear in Storybook; component adheres to standards.
+  1.  Use `git checkout <commit-hash>^ -- <path/to/PLAN-*.md>` to restore the deleted files (`PLAN-2.md`, `PLAN-INDEX.md`, `PLAN-ORIGINAL.md`).
+  2.  Create directory `docs/archive/planning/`.
+  3.  Move the restored files into `docs/archive/planning/` (`git mv ...`).
+  4.  Commit the restored and moved files.
+  5.  Add a reference to this archive directory in `README.md` or `CONTRIBUTING.md`.
+- **Done-When:** Historical planning documents are present in `docs/archive/planning/` and referenced.
 
----
+### cr-02 Decouple Storybook from Next.js `next/image`
 
-### cr‑07 Ensure Consistent Story Structure (Args vs. Render)
-
-- **Problem:** Stories within the same file or across similar components inconsistently use the `args` property versus the `render` function for defining variations.
-- **Impact:** Increases cognitive load, violates **Coding Standards (Consistency)** and **Simplicity First**.
-- **Chosen Fix:** Establish and enforce a consistent pattern: Prefer `args` for simple prop variations on a single component instance. Use `render` _only_ when necessary for multi-component compositions, stateful wrappers, or complex setup logic.
+- **Problem:** Storybook stories directly import and use `next/image`.
+- **Impact:** Violates component isolation, couples Storybook to Next.js, risks errors outside Next.js context.
+- **Chosen Fix:** Replace `next/image` with standard HTML `<img>` tags and configure static asset serving.
 - **Steps:**
-  1.  **Standardize:** Explicitly adopt the `args`-first approach.
-  2.  **Audit & Refactor:**
-      - Review stories in `input.stories.tsx`, `label.stories.tsx`, `textarea.stories.tsx`.
-      - Convert stories currently using `render` for simple prop changes (like setting `required` or `disabled` on a single component) back to using the `args` property.
-      - Retain `render` for stories that compose multiple components (e.g., `Input` with `Label`, `Textarea` with `Button`).
-- **Done‑When:** All stories across `input`, `label`, `textarea` (and others reviewed) follow the consistent `args`-first pattern where applicable.
+  1.  Verify `.storybook/main.ts` includes `staticDirs: ['../public']` (or equivalent).
+  2.  In `components/ui/button.stories.tsx` (lines 3, 98, 113):
+      - Remove the `next/image` import.
+      - Replace `<Image ... />` with `<img ... />`.
+      - Ensure `src` paths are relative to `public` (e.g., `/icons/lucide-icon.svg`).
+  3.  Test affected stories in Storybook to ensure images load correctly.
+- **Done-When:** No `next/image` usage in stories; images render correctly via `<img>`.
 
----
+### cr-08 Clarify Tailwind Directive Handling in Storybook
 
-### cr‑08 Add Edge Case and State Coverage to Stories
-
-- **Problem:** Stories primarily cover basic variants and lack explicit coverage for crucial interactive states (`hover`, `focus`, `active`), error states, and common edge cases.
-- **Impact:** Limits Storybook's effectiveness for visual regression testing and comprehensive component documentation (**Testing Strategy**, **Documentation Approach**).
-- **Chosen Fix:** Augment stories for interactive components to explicitly demonstrate missing states and add stories showcasing common edge cases.
+- **Problem:** Omitting `@tailwind` directives in `.storybook/preview.css` relies implicitly on `globals.css` import.
+- **Impact:** Makes Tailwind integration less explicit and potentially fragile.
+- **Chosen Fix:** Add a prominent comment in `preview.css` explaining the reliance on `globals.css` import.
 - **Steps:**
-  1.  **Interactive States (Button, Input, Textarea):**
-      - Add stories demonstrating `:hover`, `:focus`, and `:active` states. Utilize Storybook's pseudo-state capabilities (e.g., via `parameters.pseudo` or interaction tests with `play` function) where possible. Name stories clearly (e.g., `Hover`, `FocusVisible`).
-  2.  **Error States (Input, Textarea):**
-      - Add stories showing the components in an error/invalid state (e.g., using `aria-invalid="true"` and applying relevant visual styles if not automatic). Name clearly (e.g., `ErrorState`).
-  3.  **Edge Cases:**
-      - Add stories for: Button with very long text; Input/Textarea with long placeholder/value; Label with long text; Card with minimal/overflowing content. Name clearly (e.g., `LongContent`, `EmptyContent`).
-- **Done‑When:** New stories demonstrating hover, focus, active, error states, and relevant edge cases are present for Button, Input, Textarea, Label, Card.
+  1.  Edit `.storybook/preview.css`.
+  2.  Add a comment at the top explaining why `@tailwind` directives are omitted and confirming that importing `globals.css` in `preview.tsx` is the intended mechanism.
+  3.  Visually verify styles in Storybook match the application.
+- **Done-When:** A clarifying comment exists in `.storybook/preview.css`; styles are verified.
 
----
+### cr-09 Document `CardAction` Subcomponent API
 
-### cr‑10 Replace Hardcoded Unrealistic Data in Stories
-
-- **Problem:** Card stories use hardcoded future dates ("April ... 2025"), which are unrealistic, misleading, and guaranteed to become stale.
-- **Impact:** Reduces the story's value as a reliable example (**Testing Strategy**, **Documentation Approach**).
-- **Chosen Fix:** Replace hardcoded future dates with realistic static examples or relative descriptions.
+- **Problem:** The `CardAction` subcomponent lacks TSDoc comments.
+- **Impact:** Creates an undocumented internal API surface, increasing friction.
+- **Chosen Fix:** Add comprehensive TSDoc comments to the `CardAction` component definition.
 - **Steps:**
-  1.  Edit `components/ui/card.stories.tsx`.
-  2.  Locate the hardcoded future dates (lines 56, 77, 111, 112).
-  3.  Replace them with plausible static past dates (e.g., "October 26, 2023") or relative descriptions ("Updated 3 days ago"). Static dates are preferred for consistency.
-- **Done‑When:** All hardcoded future dates are replaced with realistic, static data.
+  1.  Edit `components/ui/card.tsx`.
+  2.  Add TSDoc comments above the `CardAction` definition (lines 61-72), explaining its purpose (e.g., container for actions in `CardHeader`), props, and usage context.
+  3.  Verify Storybook's auto-generated docs pick up the comments.
+- **Done-When:** `CardAction` component has clear TSDoc documentation.
 
----
+### cr-16 Use Idiomatic React Import Style
 
-### cr‑11 Use Idiomatic React Import Style
-
-- **Problem:** Uses verbose `import * as React from "react";` instead of relying on modern JSX transform's implicit import or standard `import React from "react";`.
-- **Impact:** Minor violation of **Coding Standards (Idiomatic Patterns)**.
-- **Chosen Fix:** Remove explicit `* as React` imports where the modern JSX transform suffices. Use `import React from "react";` only if React APIs (hooks, etc.) are directly used.
+- **Problem:** Non-idiomatic `import * as React from "react";` is used.
+- **Impact:** Verbose and generally unnecessary with modern JSX transforms.
+- **Chosen Fix:** Remove unnecessary imports or switch to standard `import React from "react";` / named imports.
 - **Steps:**
-  1.  Remove `import * as React from "react";` from `button.stories.tsx:3` and `textarea.stories.tsx:3` (assuming no React hooks are used directly in the story file scope).
-  2.  Verify builds pass.
-- **Done‑When:** Unnecessary React imports are removed.
+  1.  Identify files using `import * as React` (e.g., `button.stories.tsx:3`, `textarea.stories.tsx:3`, `.storybook/preview.tsx:3`).
+  2.  If only JSX is used, remove the import.
+  3.  If React APIs (hooks, context) are used, change to `import React from "react";` or specific named imports (`import { useState } from "react";`).
+- **Done-When:** React imports follow standard, idiomatic patterns.
 
----
+### cr-06 Enforce Consistent Use of Library Components in Stories
 
-### cr‑15 Use More Descriptive Story Names
-
-- **Problem:** Generic story names ("Default", "Basic", "FullExample") make it harder to quickly understand the scenario being demonstrated.
-- **Impact:** Minor violation of **Coding Standards (Clarity)**, slightly hinders Storybook usability.
-- **Chosen Fix:** Rename stories using more descriptive names reflecting the specific state or configuration.
+- **Problem:** Stories bypass `Button`/`Label` components, using raw HTML and manual styling.
+- **Impact:** Undermines library purpose, duplicates logic, risks inconsistency, masks component deficiencies.
+- **Chosen Fix:** Refactor `Label` to handle `required` prop; replace all raw HTML in stories with library components.
 - **Steps:**
-  1.  Review all `*.stories.tsx` files.
-  2.  Rename stories based on their content: e.g., `Default` -> `Primary` (Button), `Basic` -> `ContentOnly` (Card), `FullExample` -> `CompleteLayout` (Card), `Default` -> `BasicInput`, `Required` -> `RequiredInput`, etc.
-- **Done‑When:** Stories across components have clear, descriptive names.
+  1.  Edit `components/ui/label.tsx`: ensure it accepts a `required?: boolean` prop and renders the required indicator internally based on it.
+  2.  Audit stories (`card.stories.tsx:101`, `input.stories.tsx:73-77`, `label.stories.tsx`, `textarea.stories.tsx`) for raw `<button>`, `<label>`, and manual required indicator `<span>` elements.
+  3.  Replace _all_ instances with the project's `Button` and `Label` components, utilizing the `required` prop on `Label`.
+  4.  Rigorously verify visual consistency in Storybook.
+- **Done-When:** No raw HTML elements for library-defined components exist in stories; `Label` handles `required` state internally.
 
----
+### cr-04 Replace Fragile CSS State Simulation with Interaction Tests
 
-### cr‑14 Enhance `CONTRIBUTING-STORYBOOK.md`
-
-- **Problem:** The new contribution guidelines lack detail on edge cases, complex children, and linking upstream docs.
-- **Impact:** Incomplete guidance (**Documentation Approach**).
-- **Chosen Fix:** Enhance `CONTRIBUTING-STORYBOOK.md` with sections covering the missing points.
+- **Problem:** Interactive states are faked via custom CSS classes and wrappers.
+- **Impact:** Brittle, complex, inaccurate visual representation, diverges from actual component styling.
+- **Chosen Fix:** Eliminate CSS/wrappers; use Storybook's `play` function with `userEvent` for interaction testing.
 - **Steps:**
-  1.  Edit `docs/CONTRIBUTING-STORYBOOK.md`.
-  2.  Add points or sections covering:
-      - Importance of adding stories for edge cases and interaction states (referencing cr-08).
-      - Guidance on using `render` vs. `args` for complex children/compositions (referencing cr-07 standard).
-      - Recommendation to link to original Shadcn documentation where relevant for deeper API context.
-- **Done‑When:** `CONTRIBUTING-STORYBOOK.md` includes enhanced guidance.
+  1.  Delete `components/ui/button-states.css`, `input-states.css`, `textarea-states.css`.
+  2.  Remove the `InteractiveState*` wrapper components and their usage from stories.
+  3.  Refactor affected stories to use the `play` function (`@storybook/addon-interactions`) with `userEvent` to programmatically trigger `:hover`, `:focus`, `:active` states.
+  4.  Document that visual state verification relies on interaction tests or investigate pseudo-state addon integration.
+- **Done-When:** No simulation CSS/wrappers remain; interactive states are tested via `play` functions.
 
----
+### cr-12 Refactor Inconsistent Story Structure (`args` vs. `render`)
 
-### cr‑13 Reduce Story Definition Verbosity (Optional DRY)
-
-- **Problem:** Defining each story fully (`export const Name: Story = { args: { ... } };`) can be repetitive for simple variants.
-- **Impact:** Minor verbosity (**Simplicity First**). Current explicit approach is acceptable.
-- **Chosen Fix:** No action required unless the team prefers the `Template.bind({})` pattern for reducing boilerplate in files with many simple variants (like Button). Maintain current style otherwise.
+- **Problem:** Stories inconsistently use `render` for simple prop variations where `args` would suffice.
+- **Impact:** Increases boilerplate and cognitive load, contradicts guidelines.
+- **Chosen Fix:** Refactor simple stories to use the `args` property consistently.
 - **Steps:**
-  1.  Team decision: Stick with explicit definitions for clarity or adopt `Template.bind({})` for specific files.
-  2.  If adopting template, refactor relevant files (e.g., `button.stories.tsx`).
-- **Done‑When:** Team decision made and documented, or refactoring completed if chosen.
+  1.  Audit stories noted (`input.stories.tsx:64`, `label.stories.tsx`, `textarea.stories.tsx`).
+  2.  Convert stories using `render` solely to set basic props on a single component instance to use the `args` property instead.
+  3.  Reserve `render` for complex compositions or stateful logic.
+- **Done-When:** Simple prop variations in stories consistently use the `args` property.
 
----
+### cr-17 Improve Generic Story Names for Clarity
+
+- **Problem:** Story names like "Default", "Basic", "WithLabel" are uninformative.
+- **Impact:** Slightly hinders navigation and understanding within Storybook.
+- **Chosen Fix:** Rename stories to be more descriptive of the state or variant shown.
+- **Steps:**
+  1.  Review story names in `*.stories.tsx` files.
+  2.  Rename generic names to be specific (e.g., `Default` -> `Primary`, `WithLabel` -> `InputWithAssociatedLabel`).
+- **Done-When:** Story names clearly describe the component state or scenario being demonstrated.
+
+### cr-07 Audit and Remediate Risky Post-Commit Hook
+
+- **Problem:** The post-commit hook runs an undocumented async command, logs insecurely to `/tmp/`, and lacks feedback.
+- **Impact:** Opaque, potentially insecure, and unreliable automation.
+- **Chosen Fix:** Audit necessity, document purpose, secure logging, provide feedback, and update format.
+- **Steps:**
+  1.  **Audit & Document:** Determine if the `glance` command is necessary. Document purpose, output, failure modes in `README.md` or `docs/`.
+  2.  **Logging:** Change output redirection to `.logs/husky/glance-post-commit.log` (ensure `.logs` is gitignored). Set appropriate file permissions (`chmod 600`).
+  3.  **Feedback:** Ensure hook provides clearer feedback on success/failure, or consider synchronous execution if failure should block (e.g., pre-push).
+  4.  **Necessity/Format:** Evaluate if it belongs in commit hook vs CI. Address Husky v10 format update.
+- **Done-When:** Hook is documented, logs securely, provides feedback, and its necessity/placement is confirmed.
+
+### cr-10 Enhance Component Prop Documentation (`argTypes`)
+
+- **Problem:** `argTypes` definitions omit many standard HTML attributes and relevant ARIA attributes.
+- **Impact:** Reduces Storybook's value as interactive documentation and API reference.
+- **Chosen Fix:** Systematically enhance `argTypes` for core UI components.
+- **Steps:**
+  1.  Audit `Button`, `Card`, `Input`, `Label`, `Textarea` components.
+  2.  Enhance `meta.argTypes` in corresponding `.stories.tsx` files to include relevant pass-through HTML attributes (`id`, `className`, event handlers, form attributes) and ARIA attributes (`aria-label`, `aria-invalid`).
+  3.  Provide brief descriptions and appropriate controls (`text`, `boolean`, `control: false`).
+- **Done-When:** Core UI components have comprehensive `argTypes` covering common HTML/ARIA attributes.
+
+### cr-11 Add Missing State and Edge Case Coverage in Stories
+
+- **Problem:** Stories lack coverage for true interactive states and common edge cases.
+- **Impact:** Limits Storybook's utility for robust visual testing, accessibility validation, and resilience demonstration.
+- **Chosen Fix:** Augment stories with edge-case data and implement interaction tests for states.
+- **Steps:**
+  1.  Add specific stories for `Button`, `Input`, `Textarea`, `Card`, `Label` demonstrating behavior with edge cases (long strings, empty content, wrapping text).
+  2.  Implement interaction tests using the `play` function (building on cr-04 fix) to cover `:hover`, `:focus`, `:active` states programmatically.
+- **Done-When:** Stories include explicit examples and tests for common edge cases and interactive states.
 
 ## Standards Alignment
 
-- **Modularity & Separation of Concerns:** Enforced by `cr-01` (removing framework dependency) and `cr-02` (using library components).
-- **Simplicity First:** Promoted by `cr-01` (removing complexity), `cr-02` (reducing duplication), `cr-07` (consistent patterns), `cr-11` (idiomatic imports), and potentially `cr-13`.
-- **Coding Standards:** Addressed by `cr-02` & `cr-07` (consistency), `cr-11` (idiomatic code), `cr-15` (clarity).
-- **Design for Testability:** Improved by `cr-03` & `cr-06` (documented APIs in `argTypes`), `cr-05` (accurate coverage), and `cr-08` (visual test coverage for states/edges).
-- **Security (Accessibility):** Directly addressed by `cr-03`.
-- **Documentation Approach:** Improved by `cr-03`, `cr-06` (better Storybook docs), `cr-04` (restored context), `cr-08` (documenting states), `cr-09` (documenting components), `cr-10` (realistic data), `cr-14` (better guidelines).
+- **Simplicity First:** Fixes eliminate complex CSS simulations (cr-04), unnecessary global styles (cr-15), inconsistent story structures (cr-12), and opaque automation (cr-07).
+- **Mandatory Modularity:** Decoupling Storybook from Next.js (cr-02), enforcing library component usage (cr-06), and ensuring portable documentation (cr-01) reinforce modularity.
+- **Design for Testability:** Including stories in coverage (cr-03) and using proper interaction tests (cr-04, cr-11) improve testability and confidence.
+- **Documentation Approach:** Restoring history (cr-05), fixing access (cr-01), linking guidelines (cr-14), documenting APIs (cr-09), enhancing prop docs (cr-10), and clarifying configurations (cr-08, cr-13) uphold documentation standards.
+- **Coding Standards:** Enforcing consistency (cr-06, cr-12), portability (cr-01), and idiomatic patterns (cr-16, cr-18) aligns with established standards.
 
 ## Validation Checklist
 
-- [ ] All automated tests (unit, integration, e2e if applicable) pass.
-- [ ] Linting (`eslint`), formatting (`prettier`), and type checking (`tsc --noEmit`) pass without errors.
-- [ ] Test coverage meets project standards after `cr-05` fix.
-- [ ] `pnpm audit` reports no new high/critical vulnerabilities.
-- [ ] Storybook builds successfully (`pnpm build-storybook`).
-- [ ] **Manual Storybook Review:**
-  - [ ] All stories render correctly without framework-specific errors (`cr-01`).
-  - [ ] Stories consistently use project components (`Button`, `Label`), not raw HTML (`cr-02`).
-  - [ ] Accessibility checks (`@storybook/addon-a11y`) pass for reviewed stories (`cr-03`).
-  - [ ] `argTypes` controls/docs reflect complete props for major components (`cr-06`).
-  - [ ] `CardAction` documentation/usage is clear (`cr-09`).
-  - [ ] Story structure (`args`/`render`) is consistent (`cr-07`).
-  - [ ] Stories for interactive states and edge cases are present and render correctly (`cr-08`).
-  - [ ] Example data is realistic (no future dates) (`cr-10`).
-  - [ ] Story names are descriptive (`cr-15`).
-- [ ] Historical planning documents are accessible in `docs/archive/planning` (`cr-04`).
-- [ ] `CONTRIBUTING-STORYBOOK.md` contains updated guidance (`cr-14`).
-```
+- [ ] Automated tests (Vitest) pass, including coverage checks.
+- [ ] Static analyzers (ESLint, TypeScript) pass without new warnings.
+- [ ] Storybook builds successfully and all stories render correctly without errors.
+- [ ] Manual review confirms documentation accessibility (cr-01), archive restoration (cr-05), and link updates (cr-14).
+- [ ] Manual review confirms Storybook component consistency (cr-06) and state interactions (cr-04, cr-11).
+- [ ] Post-commit hook (cr-07) logs correctly to the designated local directory (if retained).
+- [ ] No new `npm audit` warnings introduced.

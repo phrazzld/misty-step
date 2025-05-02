@@ -1,292 +1,308 @@
-```markdown
 # Todo
 
-## Storybook / Configuration & Core
+## Documentation & Standards
 
-- [x] **T001 · refactor · P0: remove next/image usage in button stories**
-  - **Context:** cr‑01 Remove Framework-Specific Component (`next/image`)
+- [x] **T001 · Bugfix · P0: fix non-portable documentation symlink**
+  - **Context:** cr-01 Fix Non-Portable Symlink for Documentation
   - **Action:**
-    1. Remove `import Image from "next/image";` from `components/ui/button.stories.tsx`.
-    2. Replace `<Image ... />` instances (lines ~98, ~113) with standard `<img>` tags (use placeholder `alt` for now, addressed in T005).
+    1. Identify the source content of the symlink `docs/DEVELOPMENT_PHILOSOPHY_APPENDIX_FRONTEND.md`.
+    2. Delete the symlink from the repository using `git rm`.
+    3. Create a new file at `docs/DEVELOPMENT_PHILOSOPHY_APPENDIX_FRONTEND.md` containing the actual documentation content.
   - **Done‑when:**
-    1. `next/image` import and usage are removed from `button.stories.tsx`.
-    2. Storybook builds and runs without Next.js context errors related to Image.
+    1. `docs/DEVELOPMENT_PHILOSOPHY_APPENDIX_FRONTEND.md` exists as a regular file in the repository.
+    2. The file content is readable by all team members and CI.
+    3. CI documentation checks pass.
   - **Verification:**
-    1. Run `pnpm storybook`.
-    2. Check browser console for errors when viewing Button stories.
+    1. Clone the repository and confirm the file exists and is readable.
+    2. Check CI results for documentation steps.
   - **Depends‑on:** none
-- [x] **T002 · chore · P2: configure storybook staticdirs for assets**
-  - **Context:** cr‑01 Remove Framework-Specific Component (`next/image`) - Step 3
+  - **NOTE:** note an issue, skipping
+- [x] **T002 · Chore · P0: formalize pnpm usage requirement in documentation**
+  - **Context:** cr-13 Formalize and Enforce PNPM Usage (Documentation part)
   - **Action:**
-    1. Configure Storybook's `staticDirs` in `.storybook/main.ts` (or equivalent) to serve icon assets (e.g., from `public/`).
+    1. Add a clear statement mandating `pnpm` usage to the Setup section of `README.md` and/or `CONTRIBUTING.md`.
+    2. ~~Delete `CLAUDE.md` (or integrate any other useful content elsewhere first).~~ Keep CLAUDE.md per instructions.
   - **Done‑when:**
-    1. `staticDirs` configuration is added/updated.
-    2. Icons used in stories (via `<img>` tags) render correctly.
+    1. `pnpm` requirement is clearly documented in `README.md` or `CONTRIBUTING.md`.
+    2. ~~`CLAUDE.md` is removed or its relevant content migrated.~~ CLAUDE.md content has been formalized in README.md but file is kept.
   - **Verification:**
-    1. Run `pnpm storybook`.
-    2. Navigate to Button stories (`IconSize`, `WithIcon`). Verify icons load and render correctly via `<img>`.
-  - **Depends‑on:** T001
-- [x] **T004 · chore · P2: remove stories exclusion from vitest coverage config**
-  - **Context:** cr‑05 Remove Overly Broad Test Coverage Exclusion
-  - **Action:**
-    1. Edit `vitest.config.ts` and remove the pattern `"**/*.stories.{ts,tsx}"` from the `coverage.exclude` array.
-    2. Run the test coverage suite (`npm run test:coverage` or similar).
-  - **Done‑when:**
-    1. Exclusion line is removed from `vitest.config.ts`.
-    2. Test coverage suite runs successfully and potentially includes story files in analysis.
+    1. Review `README.md`/`CONTRIBUTING.md` for the pnpm requirement statement.
   - **Depends‑on:** none
-
-## Storybook / Accessibility (A11y)
-
-- [x] **T005 · refactor · P1: add meaningful alt text to button story images**
-  - **Context:** cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling) - Step 1 (Button)
+- [ ] **T003 · Chore · P0: link orphaned storybook contribution guidelines**
+  - **Context:** cr-14 Link to Orphaned Storybook Contribution Guidelines
   - **Action:**
-    1. In `button.stories.tsx`, update the `<img>` tags (from T001) with meaningful `alt` text or `alt=""` (if purely decorative + button has text/aria-label) with a comment justifying empty alt.
+    1. Edit `README.md` and add a link to `docs/CONTRIBUTING-STORYBOOK.md` in the Contribution/Development section.
+    2. Edit `CONTRIBUTING.md` (if exists) and add a similar link.
   - **Done‑when:**
-    1. `<img>` tags in Button stories have appropriate `alt` attributes.
-    2. Storybook a11y addon passes for image alt text checks on relevant stories.
+    1. Clear links to `docs/CONTRIBUTING-STORYBOOK.md` exist in primary contribution documentation (`README.md` and `CONTRIBUTING.md` if applicable).
   - **Verification:**
-    1. Run Storybook, navigate to Button stories with icons.
-    2. Inspect `<img>` elements for correct `alt` text.
-    3. Check Accessibility addon panel for violations.
-  - **Depends‑on:** T001
-- [x] **T006 · refactor · P1: define aria-label in button argtypes**
-  - **Context:** cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling) - Step 1 (Button)
-  - **Action:**
-    1. Edit `components/ui/button.stories.tsx` and add `aria-label` to `meta.argTypes` with a description.
-  - **Done‑when:**
-    1. `aria-label` is documented in Storybook argTypes for the Button component.
-  - **Verification:**
-    1. Run Storybook, check Button component's "Controls" / "Docs" tabs for `aria-label`.
+    1. Open `README.md`/`CONTRIBUTING.md` and click the link(s) to ensure they work.
   - **Depends‑on:** none
-- [x] **T007 · refactor · P1: define aria-required in input argtypes**
-  - **Context:** cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling) - Step 2 (Input)
+- [ ] **T004 · Chore · P1: restore and archive deleted historical planning docs**
+  - **Context:** cr-05 Restore Deleted Historical Planning Documentation
   - **Action:**
-    1. Edit `components/ui/input.stories.tsx` and add `aria-required` to `meta.argTypes` with a description.
+    1. Use `git checkout <commit-hash>^ -- <path/to/PLAN-*.md>` to restore deleted files (`PLAN-2.md`, `PLAN-INDEX.md`, `PLAN-ORIGINAL.md`).
+    2. Create directory `docs/archive/planning/`.
+    3. Move the restored files into `docs/archive/planning/` using `git mv`.
+    4. Add a reference to this archive directory in `README.md` or `CONTRIBUTING.md`.
   - **Done‑when:**
-    1. `aria-required` is documented in Storybook argTypes for the Input component.
+    1. Historical planning documents are present in `docs/archive/planning/`.
+    2. The archive directory is referenced in `README.md` or `CONTRIBUTING.md`.
   - **Verification:**
-    1. Run Storybook, check Input component's "Controls" / "Docs" tabs for `aria-required`.
+    1. Navigate to `docs/archive/planning/` and confirm file presence.
+    2. Check `README.md`/`CONTRIBUTING.md` for the reference link.
   - **Depends‑on:** none
-- [x] **T008 · refactor · P1: define aria-required in textarea argtypes**
-  - **Context:** cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling) - Step 3 (Textarea)
+- [ ] **T005 · Chore · P1: document `CardAction` subcomponent api with tsdoc**
+  - **Context:** cr-09 Document `CardAction` Subcomponent API
   - **Action:**
-    1. Edit `components/ui/textarea.stories.tsx` and add `aria-required` to `meta.argTypes` with a description.
+    1. Edit `components/ui/card.tsx`.
+    2. Add comprehensive TSDoc comments above the `CardAction` definition, explaining its purpose, props, and usage context.
   - **Done‑when:**
-    1. `aria-required` is documented in Storybook argTypes for the Textarea component.
+    1. `CardAction` component definition has clear TSDoc comments.
+    2. Storybook auto-generated docs reflect the new comments.
   - **Verification:**
-    1. Run Storybook, check Textarea component's "Controls" / "Docs" tabs for `aria-required`.
+    1. Run Storybook locally.
+    2. Navigate to the Card component documentation page ('Docs' tab).
+    3. Verify the `CardAction` subcomponent section includes the added TSDoc descriptions.
   - **Depends‑on:** none
-- [x] **T009 · refactor · P2: review and define standard aria props in label argtypes**
-  - **Context:** cr‑03 Fix Accessibility Violations (Alt Text, ARIA Handling) - Step 4 (Label)
+- [ ] **T006 · Feature · P2: enhance component `argTypes` for core ui components**
+  - **Context:** cr-10 Enhance Component Prop Documentation (`argTypes`)
   - **Action:**
-    1. Review `components/ui/label.stories.tsx` for common ARIA props (e.g., `aria-labelledby`).
-    2. Add any missing relevant standard ARIA props to `meta.argTypes` with descriptions.
+    1. Audit `Button`, `Card`, `Input`, `Label`, `Textarea` components and their stories.
+    2. Enhance `meta.argTypes` in corresponding `.stories.tsx` to include relevant pass-through HTML attributes (e.g., `id`, `className`, event handlers) and ARIA attributes (e.g., `aria-label`).
+    3. Provide brief descriptions and appropriate controls in `argTypes`.
   - **Done‑when:**
-    1. Label `argTypes` include documentation for relevant standard ARIA props.
+    1. `argTypes` for core UI components (`Button`, `Card`, `Input`, `Label`, `Textarea`) are comprehensive, covering common HTML/ARIA attributes.
+  - **Verification:**
+    1. Run Storybook locally.
+    2. Check the "Controls" and "Docs" tabs for the specified components.
+    3. Verify new argTypes appear with descriptions and appropriate controls.
   - **Depends‑on:** none
 
-## Storybook / Component Consistency & Refinement
+## Tooling & Configuration
 
-- [x] **T010 · refactor · P1: refactor label component for required prop and disabled state handling**
-  - **Context:** cr‑02 Enforce Consistent Component Usage - Step 1 (Refactor Label)
+- [ ] **T007 · Chore · P0: remove story exclusion from vitest coverage**
+  - **Context:** cr-03 Remove Story Exclusion from Test Coverage
   - **Action:**
-    1. Edit `components/ui/label.tsx`, add `required?: boolean` prop.
-    2. Conditionally render required indicator (`*`) within the component based on the prop.
-    3. Verify Radix primitives handle disabled styling via `[data-disabled]`; remove manual disabled styling logic if present.
+    1. Edit `vitest.config.ts`.
+    2. Remove the `"**/*.stories.{ts,tsx}"` pattern from the `coverage.exclude` array.
   - **Done‑when:**
-    1. Label component accepts `required` prop and renders indicator correctly.
-    2. Label component styles correctly via data attributes when associated with a disabled input.
-    3. No manual disabled styling logic remains in the Label component.
+    1. The story file exclusion pattern is removed from `vitest.config.ts`.
+    2. Running the coverage command includes story logic in the report.
   - **Verification:**
-    1. Create/update a story demonstrating the `required` prop visually.
-    2. Create/update a story linking Label via `htmlFor` to a disabled input, verifying the Label's disabled style.
+    1. Run `npm run test:coverage` (or equivalent) and check the report for story file entries.
   - **Depends‑on:** none
-- [x] **T011 · refactor · P1: replace raw button with button component in card story**
-  - **Context:** cr‑02 Enforce Consistent Component Usage - Step 2 (Card Story)
+- [ ] **T008 · Chore · P1: enforce pnpm usage via package.json**
+  - **Context:** cr-13 Formalize and Enforce PNPM Usage (Enforcement part)
   - **Action:**
-    1. Edit `components/ui/card.stories.tsx` (line ~101) and replace raw `<button>` with `<Button>`.
+    1. Add `"packageManager": "pnpm@<version>"` to `package.json` (use correct project version).
+    2. (Optional) Add `.npmrc` with `engine-strict=true`.
   - **Done‑when:**
-    1. Card story uses the project `<Button>` component instead of raw HTML.
-    2. Story renders correctly.
+    1. `package.json` enforces the specified pnpm version via `packageManager`.
+    2. Attempting install with npm/yarn shows a warning/error.
   - **Verification:**
-    1. Run Storybook, view the Card story with the action button. Verify it renders correctly and uses the `<Button>` component via inspection.
-  - **Depends‑on:** T010
-- [x] **T012 · refactor · P1: replace raw label with label component in input story**
-  - **Context:** cr‑02 Enforce Consistent Component Usage - Step 3 (Input Story)
+    1. Delete `node_modules` and `pnpm-lock.yaml`.
+    2. Run `npm install` or `yarn install` and confirm an error/warning related to the package manager occurs.
+    3. Run `pnpm install` and confirm it succeeds.
+  - **Depends‑on:** none
+- [ ] **T009 · Bugfix · P0: ensure husky hook echo command ends with newline**
+  - **Context:** cr-18 Ensure Husky Hook Echo Command Ends with Newline
   - **Action:**
-    1. Edit `components/ui/input.stories.tsx` (lines ~73-77) and replace raw `<label>` with `<Label>`.
+    1. Edit `.husky/post-commit`.
+    2. Verify the `echo` command (approx. line 9) does not use `-n` and outputs a newline.
+    3. Ensure the file itself ends with a newline character.
   - **Done‑when:**
-    1. Input story uses the project `<Label>` component instead of raw HTML.
-    2. Story renders correctly with correct `htmlFor` association.
+    1. The `echo` command in the hook correctly produces a trailing newline.
+    2. The `.husky/post-commit` file ends with a newline character.
   - **Verification:**
-    1. Run Storybook, view the Input story with a label. Verify it renders correctly and uses the `<Label>` component via inspection.
-  - **Depends‑on:** T010
-- [x] **T013 · refactor · P1: update label stories to use required prop and remove manual styles**
-  - **Context:** cr‑02 Enforce Consistent Component Usage - Step 4 (Label Story)
+    1. Make a test commit locally.
+    2. Observe terminal output; the shell prompt should appear on a new line after the hook's echo message.
+  - **Depends‑on:** none
+- [ ] **T010 · Chore · P1: audit post-commit hook necessity and document findings**
+  - **Context:** cr-07 Audit and Remediate Risky Post-Commit Hook (Step 1: Audit & Document)
   - **Action:**
-    1. Edit `components/ui/label.stories.tsx`, remove raw `<span>` indicators (lines ~32-33, ~45, ~61-62) and use the `required` prop on `<Label>` instead.
-    2. Remove manual disabled styles/classes; ensure disabled state is demonstrated by linking Label to a disabled Input in a story.
+    1. Investigate the purpose and necessity of the `glance` command in `.husky/post-commit`.
+    2. Document findings (purpose, output, failure modes, necessity decision) in `README.md` or a dedicated doc in `docs/`.
   - **Done‑when:**
-    1. Label stories use the `required` prop for indicators.
-    2. Label stories demonstrate disabled state via association, not manual styles.
+    1. The necessity of the `glance` command is determined (keep or remove).
+    2. Documentation exists explaining the hook's purpose or why it was removed.
+  - **Depends‑on:** none
+- [ ] **T011 · Refactor · P2: remediate post-commit hook logging and feedback**
+  - **Context:** cr-07 Audit and Remediate Risky Post-Commit Hook (Steps 2, 3: Logging & Feedback)
+  - **Action:**
+    1. If T010 determined the hook is necessary: Change log output redirection in `.husky/post-commit` to `.logs/husky/glance-post-commit.log`.
+    2. Ensure `.logs` directory is added to `.gitignore`.
+    3. Set appropriate file permissions (e.g., `chmod 600`) for the log file within the hook script or manually.
+    4. Modify the hook script to provide clearer console feedback on success/failure.
+  - **Done‑when:**
+    1. Hook logs securely to `.logs/` directory (if retained).
+    2. Hook provides clearer execution feedback to the console (if retained).
+    3. `.logs` directory is gitignored.
   - **Verification:**
-    1. Run Storybook, view Label stories for required/disabled states. Verify correct rendering and implementation.
-  - **Depends‑on:** T010
-- [x] **T014 · refactor · P1: update textarea stories to use label component and required prop**
-  - **Context:** cr‑02 Enforce Consistent Component Usage - Step 5 (Textarea Story)
+    1. Make a test commit locally (if hook retained).
+    2. Verify log file is created at `.logs/husky/glance-post-commit.log` with appropriate content and permissions.
+    3. Verify console output provides clear feedback.
+  - **Depends‑on:** [T010]
+- [ ] **T012 · Refactor · P2: update post-commit hook format for husky v10+ if needed**
+  - **Context:** cr-07 Audit and Remediate Risky Post-Commit Hook (Step 4: Necessity/Format)
   - **Action:**
-    1. Edit `components/ui/textarea.stories.tsx`, ensure `<Label>` is used consistently (lines ~72-73, ~100-101).
-    2. Remove raw `<span>` indicator (line ~94) and use the `required` prop on the associated `<Label>`.
+    1. If T010 determined the hook is necessary: Check current Husky version and hook script format in `.husky/post-commit`.
+    2. If using an older format and Husky v10+ is installed, update the script structure according to Husky v10 documentation.
   - **Done‑when:**
-    1. Textarea stories consistently use `<Label>`.
-    2. Required indicator is handled via the Label's `required` prop.
+    1. The post-commit hook script uses the format compatible with the installed Husky version (if retained).
   - **Verification:**
-    1. Run Storybook, view Textarea stories with labels/required indicators. Verify correct rendering and implementation.
-  - **Depends‑on:** T010
-- [x] **T015 · test · P2: audit all stories for remaining raw html button/label usage**
-  - **Context:** cr‑02 Enforce Consistent Component Usage - Step 6 (Audit)
-  - **Action:**
-    1. Review all `*.stories.tsx` files for inappropriate use of raw `<button>` or `<label>` where project components should be used.
-  - **Done‑when:**
-    1. Audit is complete; any remaining issues are documented or fixed.
-  - **Depends‑on:** T011, T012, T013, T014
+    1. Make a test commit locally (if hook retained and format updated).
+    2. Verify the hook executes correctly without format-related errors.
+  - **Depends‑on:** [T010]
 
-## Storybook / ArgTypes Documentation
+## Storybook & Components
 
-- [x] **T016 · refactor · P2: add standard props to button argtypes**
-  - **Context:** cr‑06 Complete Prop Documentation in `argTypes` - Step 1 (Button)
+- [ ] **T013 · Refactor · P0: remove unjustified global story margin decorator**
+  - **Context:** cr-15 Remove Unjustified Global Story Margin Decorator
   - **Action:**
-    1. Edit `components/ui/button.stories.tsx`, add `onClick` (control: false), `id`, `type` to `meta.argTypes`.
+    1. Edit `.storybook/preview.tsx`.
+    2. Remove the decorator applying the global `margin: "1rem"`.
   - **Done‑when:**
-    1. Specified standard props are documented in Button `argTypes`.
+    1. The global margin decorator is removed from `.storybook/preview.tsx`.
   - **Verification:**
-    1. Run Storybook, check Button "Controls"/"Docs" for added props.
-  - **Depends‑on:** T006
-- [x] **T017 · refactor · P2: add standard props to input argtypes**
-  - **Context:** cr‑06 Complete Prop Documentation in `argTypes` - Step 1 (Input)
-  - **Action:**
-    1. Edit `components/ui/input.stories.tsx`, add `onChange`, `onBlur`, `onFocus` (control: false), `id`, `name`, `placeholder`, `type`, `value`, `defaultValue`, `required`, `disabled`, `readOnly`, etc. to `meta.argTypes`.
-  - **Done‑when:**
-    1. Specified standard props are documented in Input `argTypes`.
-  - **Verification:**
-    1. Run Storybook, check Input "Controls"/"Docs" for added props.
-  - **Depends‑on:** T007
-- [x] **T018 · refactor · P2: add standard props to textarea argtypes**
-  - **Context:** cr‑06 Complete Prop Documentation in `argTypes` - Step 1 (Textarea)
-  - **Action:**
-    1. Edit `components/ui/textarea.stories.tsx`, add `onChange`, `onBlur`, `onFocus` (control: false), `id`, `name`, `placeholder`, `rows`, `value`, `defaultValue`, `required`, `disabled`, `readOnly`, etc. to `meta.argTypes`.
-  - **Done‑when:**
-    1. Specified standard props are documented in Textarea `argTypes`.
-  - **Verification:**
-    1. Run Storybook, check Textarea "Controls"/"Docs" for added props.
-  - **Depends‑on:** T008
-- [x] **T019 · refactor · P2: add standard props to label argtypes**
-  - **Context:** cr‑06 Complete Prop Documentation in `argTypes` - Step 1 (Label)
-  - **Action:**
-    1. Edit `components/ui/label.stories.tsx`, add `htmlFor`, `id` to `meta.argTypes`.
-  - **Done‑when:**
-    1. Specified standard props are documented in Label `argTypes`.
-  - **Verification:**
-    1. Run Storybook, check Label "Controls"/"Docs" for added props.
-  - **Depends‑on:** T009, T010
-- [x] **T020 · refactor · P2: add standard props to card component argtypes**
-  - **Context:** cr‑06 Complete Prop Documentation in `argTypes` - Step 1 (Card)
-  - **Action:**
-    1. Edit `components/ui/card.stories.tsx`, add common props like `id`, `className` to `meta.argTypes` for Card and its subcomponents.
-  - **Done‑when:**
-    1. Specified standard props are documented in Card `argTypes`.
-  - **Verification:**
-    1. Run Storybook, check Card "Controls"/"Docs" for added props.
+    1. Run Storybook locally.
+    2. Visually inspect several stories to confirm the global margin is gone. Apply local spacing within specific stories only if needed for demo purposes.
   - **Depends‑on:** none
+- [ ] **T014 · Refactor · P1: decouple storybook stories from `next/image`**
+  - **Context:** cr-02 Decouple Storybook from Next.js `next/image`
+  - **Action:**
+    1. Verify `.storybook/main.ts` includes `staticDirs: ['../public']` (or equivalent).
+    2. In `components/ui/button.stories.tsx`, remove `next/image` import and replace `<Image>` instances with standard `<img>` tags, ensuring `src` paths are relative to `/public`.
+  - **Done‑when:**
+    1. `components/ui/button.stories.tsx` no longer imports or uses `next/image`.
+    2. Images in affected button stories render correctly using `<img>` tags.
+  - **Verification:**
+    1. Run Storybook locally.
+    2. Navigate to the Button stories that previously used `next/image`.
+    3. Confirm the images load and display correctly.
+  - **Depends‑on:** none
+- [ ] **T015 · Chore · P1: clarify tailwind directive handling in storybook css**
+  - **Context:** cr-08 Clarify Tailwind Directive Handling in Storybook
+  - **Action:**
+    1. Edit `.storybook/preview.css`.
+    2. Add a prominent comment at the top explaining the reliance on `globals.css` import in `preview.tsx` for Tailwind directives.
+  - **Done‑when:**
+    1. A clarifying comment exists in `.storybook/preview.css`.
+  - **Verification:**
+    1. Run Storybook locally.
+    2. Visually verify that component styles remain correct and match the application appearance.
+  - **Depends‑on:** none
+- [ ] **T016 · Refactor · P1: use idiomatic react import style**
+  - **Context:** cr-16 Use Idiomatic React Import Style
+  - **Action:**
+    1. Identify files using `import * as React from "react";` (e.g., `button.stories.tsx`, `textarea.stories.tsx`, `.storybook/preview.tsx`).
+    2. If only JSX is used, remove the import.
+    3. If React APIs are used, change to `import React from "react";` or specific named imports (e.g., `import { useState } from "react";`).
+  - **Done‑when:**
+    1. React imports across the codebase follow standard, idiomatic patterns (no `import * as React`).
+  - **Verification:**
+    1. Lint the project and ensure no React import errors.
+    2. Build the project and Storybook successfully.
+  - **Depends‑on:** none
+- [ ] **T017 · Refactor · P1: refactor `Label` component to handle `required` prop internally**
+  - **Context:** cr-06 Enforce Consistent Use of Library Components in Stories (Step 1)
+  - **Action:**
+    1. Edit `components/ui/label.tsx`.
+    2. Ensure the component accepts a `required?: boolean` prop.
+    3. Implement logic to render the required indicator (e.g., asterisk) internally based on the `required` prop.
+  - **Done‑when:**
+    1. `Label` component accepts and correctly uses a `required` prop to display an indicator.
+  - **Verification:**
+    1. Run Storybook locally.
+    2. Add/modify a story for `Label` passing the `required` prop and verify the indicator appears correctly without breaking existing stories.
+  - **Depends‑on:** none
+- [ ] **T018 · Refactor · P1: remove css state simulation files and wrappers**
+  - **Context:** cr-04 Replace Fragile CSS State Simulation with Interaction Tests (Step 1)
+  - **Action:**
+    1. Delete `components/ui/button-states.css`, `input-states.css`, `textarea-states.css`.
+    2. Remove the `InteractiveState*` wrapper components and their usage from stories (`*.stories.tsx`).
+  - **Done‑when:**
+    1. State simulation CSS files and wrapper components are deleted from the codebase.
+  - **Verification:**
+    1. Search codebase for the deleted files/components to confirm removal.
+  - **Depends‑on:** none
+- [ ] **T019 · Refactor · P2: replace raw html elements in stories with library components**
+  - **Context:** cr-06 Enforce Consistent Use of Library Components in Stories (Step 2)
+  - **Action:**
+    1. Audit stories (`card.stories.tsx:101`, `input.stories.tsx:73-77`, `label.stories.tsx`, `textarea.stories.tsx`) for raw `<button>`, `<label>`, and manual required indicator `<span>`.
+    2. Replace all instances with the project's `Button` and `Label` components, using the `required` prop on `Label`.
+  - **Done‑when:**
+    1. No raw HTML elements corresponding to library components (`Button`, `Label`) exist in stories.
+    2. Stories correctly use the `Label` component's `required` prop.
+  - **Verification:**
+    1. Run Storybook locally.
+    2. Inspect the specified stories (Card, Input, Label, Textarea) in the browser dev tools to confirm no raw `<button>` or `<label>` elements are used where library components should be.
+    3. Visually confirm the appearance matches the previous state or intended design.
+  - **Depends‑on:** [T017]
+- [ ] **T020 · Feature · P2: implement interaction tests using `play` functions for component states**
+  - **Context:** cr-04 Replace Fragile CSS State Simulation with Interaction Tests (Step 2)
+  - **Action:**
+    1. Refactor affected stories (Button, Input, Textarea, etc.) to use Storybook's `play` function (`@storybook/addon-interactions`, `userEvent`) to trigger interactive states (`:hover`, `:focus`, `:active`).
+    2. Document that visual state verification relies on interaction tests where applicable.
+  - **Done‑when:**
+    1. Relevant stories use `play` functions to test interactive states.
+    2. Interaction tests pass in Storybook.
+  - **Verification:**
+    1. Run Storybook locally.
+    2. Navigate to affected component stories.
+    3. Use the "Interactions" addon panel to verify `play` functions execute successfully and simulate state changes visually.
+  - **Depends‑on:** [T018]
+- [ ] **T021 · Refactor · P2: refactor simple stories to use `args` property instead of `render`**
+  - **Context:** cr-12 Refactor Inconsistent Story Structure (`args` vs. `render`)
+  - **Action:**
+    1. Audit stories (`input.stories.tsx:64`, `label.stories.tsx`, `textarea.stories.tsx`).
+    2. Convert stories using `render` solely for basic prop setting to use the `args` property instead.
+  - **Done‑when:**
+    1. Simple prop variations in the specified stories consistently use the `args` property.
+    2. `render` is reserved for more complex compositions or logic.
+  - **Verification:**
+    1. Run Storybook and ensure affected stories render correctly.
+    2. Review code to confirm `args` usage.
+  - **Depends‑on:** none
+- [ ] **T022 · Refactor · P2: improve generic story names for clarity**
+  - **Context:** cr-17 Improve Generic Story Names for Clarity
+  - **Action:**
+    1. Review story names (`*.stories.tsx`) for generic terms like "Default", "Basic", "WithLabel".
+    2. Rename stories to be more descriptive of the state or variant shown (e.g., `Primary`, `InputWithAssociatedLabel`).
+  - **Done‑when:**
+    1. Story names in relevant `*.stories.tsx` files clearly describe the component state or scenario.
+  - **Verification:**
+    1. Run Storybook locally.
+    2. Review story navigation sidebar for improved clarity and descriptiveness.
+  - **Depends‑on:** none
+- [ ] **T023 · Test · P2: add stories covering edge cases for core components**
+  - **Context:** cr-11 Add Missing State and Edge Case Coverage in Stories
+  - **Action:**
+    1. Add new stories for `Button`, `Input`, `Textarea`, `Card`, `Label` demonstrating edge cases (long strings, empty content, wrapping text).
+    2. Ensure these stories render correctly and interaction tests (from T020) are applied where relevant.
+  - **Done‑when:**
+    1. New stories exist demonstrating specified edge cases for core components.
+    2. All stories render correctly and tests pass in Storybook.
+  - **Verification:**
+    1. Run Storybook locally.
+    2. Verify new edge case stories render correctly.
+    3. Use the "Interactions" panel to confirm tests pass for interactive states on these stories where applicable.
+  - **Depends‑on:** [T020]
 
-## Storybook / CardAction Component
+### Clarifications & Assumptions
 
-- [x] **T021 · refactor · P2: add tsdoc comments to cardaction component**
-  - **Context:** cr‑09 Document Custom `CardAction` Component - Step 1
-  - **Action:**
-    1. Add TSDoc comments to the `CardAction` component definition in `components/ui/card.tsx`.
-  - **Done‑when:**
-    1. `CardAction` component has TSDoc documentation explaining purpose and props.
-  - **Depends‑on:** none
-- [x] **T022 · refactor · P2: export cardaction component**
-  - **Context:** cr‑09 Document Custom `CardAction` Component - Step 2
-  - **Action:**
-    1. Ensure `CardAction` is exported from `components/ui/card.tsx`.
-  - **Done‑when:**
-    1. `CardAction` component is successfully exported and importable.
-  - **Depends‑on:** T021
-- [x] **T023 · refactor · P2: list cardaction in storybook meta subcomponents**
-  - **Context:** cr‑09 Document Custom `CardAction` Component - Step 3
-  - **Action:**
-    1. Edit `card.stories.tsx` and add `CardAction` to `meta.subcomponents` if desired for clarity.
-  - **Done‑when:**
-    1. `CardAction` is listed as a subcomponent in the Card story meta.
-  - **Verification:**
-    1. Run Storybook, check Card "Docs" tab to see `CardAction` listed.
-  - **Depends‑on:** T022
-
-## Storybook / Story Structure & Quality
-
-- [x] **T024 · refactor · P2: standardize input story structure (args vs render)**
-  - **Context:** cr‑07 Ensure Consistent Story Structure (Args vs. Render)
-  - **Action:**
-    1. Review `input.stories.tsx` and convert stories using `render` for simple prop changes to use `args`.
-  - **Done‑when:**
-    1. Input stories consistently use `args` for simple prop variations.
-  - **Depends‑on:** none
-- [x] **T025 · refactor · P2: standardize label story structure (args vs render)**
-  - **Context:** cr‑07 Ensure Consistent Story Structure (Args vs. Render)
-  - **Action:**
-    1. Review `label.stories.tsx` and convert stories using `render` for simple prop changes to use `args`.
-  - **Done‑when:**
-    1. Label stories consistently use `args` for simple prop variations.
-  - **Depends‑on:** none
-- [x] **T026 · refactor · P2: standardize textarea story structure (args vs render)**
-  - **Context:** cr‑07 Ensure Consistent Story Structure (Args vs. Render)
-  - **Action:**
-    1. Review `textarea.stories.tsx` and convert stories using `render` for simple prop changes to use `args`.
-  - **Done‑when:**
-    1. Textarea stories consistently use `args` for simple prop variations.
-  - **Depends‑on:** none
-- [x] **T027 · feature · P2: add interactive state stories for button**
-  - **Context:** cr‑08 Add Edge Case and State Coverage to Stories - Step 1
-  - **Action:**
-    1. Add stories to `button.stories.tsx` demonstrating `:hover`, `:focus`, `:active` states using pseudo-state addon or interaction tests. Name clearly (e.g., `HoverState`).
-  - **Done‑when:**
-    1. Button stories include visually verifiable interactive states.
-  - **Verification:**
-    1. Run Storybook, view new Button state stories, confirm visual correctness.
-  - **Depends‑on:** none
-- [x] **T028 · feature · P2: add interactive state stories for input/textarea**
-  - **Context:** cr‑08 Add Edge Case and State Coverage to Stories - Step 1
-  - **Action:**
-    1. Add stories to `input.stories.tsx` and `textarea.stories.tsx` demonstrating `:hover`, `:focus`, `:active` states. Name clearly.
-  - **Done‑when:**
-    1. Input/Textarea stories include visually verifiable interactive states.
-  - **Verification:**
-    1. Run Storybook, view new Input/Textarea state stories, confirm visual correctness.
-  - **Depends‑on:** none
-- [x] **T029 · feature · P2: add error state stories for input/textarea**
-  - **Context:** cr‑08 Add Edge Case and State Coverage to Stories - Step 2
-  - **Action:**
-    1. Add stories to `input.stories.tsx` and `textarea.stories.tsx` demonstrating error/invalid states (e.g., using `aria-invalid="true"`). Name clearly (e.g., `ErrorState`).
-  - **Done‑when:**
-    1. Input/Textarea stories include visually verifiable error states.
-  - **Verification:**
-    1. Run Storybook, view new Input/Textarea error state stories, confirm visual correctness.
-  - **Depends‑on:** none
-- [x] **T030 · feature · P2: add edge case stories for button (long text)**
-  - **Context:** cr‑08 Add Edge Case and State Coverage to Stories - Step 3
-  - **Action:**
-    1. Add story to `button.stories.tsx` demonstrating behavior with very long text content. Name clearly (e.g., `LongText`).
-  - **Done‑when:**
-    1. Button story exists for long text edge case.
-  - **Verification:**
-    1. Run Storybook, view new Button edge case story, confirm visual correctness (wrapping/truncation).
-  - **Depends‑on:** none
-- [x] **T031 · feature · P2: add edge case stories for input/textarea (long placeholder/value)**
-  - **Context:** cr‑08 Add Edge Case and State Coverage to Stories - Step 3
-  - **Action:**
-    1. Add stories to `input.stories.tsx` and `textarea.stories.tsx` demonstrating behavior with long placeholder/value text. Name clearly (e.g., `LongPlaceholder`).
-```
+- [ ] **Issue:** The specific `<commit-hash>^` needed for restoring deleted files (cr-05 / T004) is not provided and needs to be identified using `git log`.
+  - **Context:** cr-05
+  - **Blocking?:** no
+- [ ] **Issue:** The exact `pnpm` version for `package.json#packageManager` (cr-13 / T008) needs to be confirmed based on the project's current standard.
+  - **Context:** cr-13
+  - **Blocking?:** no
+- [ ] **Issue:** Line numbers referenced in PLAN.md (e.g., cr-02, cr-09, cr-06, cr-12, cr-18) may be inaccurate after code changes; locate code by context.
+  - **Context:** Multiple CRs
+  - **Blocking?:** no
+- [ ] **Issue:** Confirm if `CONTRIBUTING.md` exists before adding links (cr-14 / T003, cr-13 / T002, cr-05 / T004). `README.md` is the primary target.
+  - **Context:** cr-14, cr-13, cr-05
+  - **Blocking?:** no
+- [ ] **Issue:** Decision on necessity of `glance` command (cr-07 / T010) determines implementation path for T011, T012.
+  - **Context:** cr-07
+  - **Blocking?:** T011, T012 depend on T010's outcome.

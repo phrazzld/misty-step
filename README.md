@@ -5,6 +5,18 @@
 
 This is the marketing website for Misty Step, a technology consulting firm specializing in custom software development and technical consulting services.
 
+## Package Manager
+
+This project requires [pnpm](https://pnpm.io) as the package manager. npm and yarn are not supported.
+
+```bash
+# Install pnpm if you don't have it already
+npm install -g pnpm
+
+# Install dependencies
+pnpm install
+```
+
 ## Getting Started
 
 First, run the development server:
