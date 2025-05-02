@@ -96,7 +96,7 @@
   - **Verification:**
     1. Run `npm run test:coverage` (or equivalent) and check the report for story file entries.
   - **Depends‑on:** none
-- [ ] **T008 · Chore · P1: enforce pnpm usage via package.json**
+- [x] **T008 · Chore · P1: enforce pnpm usage via package.json**
   - **Context:** cr-13 Formalize and Enforce PNPM Usage (Enforcement part)
   - **Action:**
     1. Add `"packageManager": "pnpm@<version>"` to `package.json` (use correct project version).
