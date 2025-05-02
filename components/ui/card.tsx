@@ -53,6 +53,10 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">): 
  * to a Card header that align to the right side. It is intended to be used within a CardHeader
  * component and positions itself to span both title and description rows.
  *
+ * The component uses CSS grid positioning to ensure proper alignment of actions regardless
+ * of the header content height. It's automatically positioned in the top-right corner of
+ * the CardHeader.
+ *
  * @example
  * ```tsx
  * <Card>
@@ -67,8 +71,12 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">): 
  * </Card>
  * ```
  *
+ * @see CardHeader - The parent component where CardAction should be used
+ * @see Card - The root Card component
+ *
  * @param props - Standard HTML div props including className for additional styling
  * @param props.className - Optional CSS class names to apply to the action container
+ * @param props.children - The action elements (typically buttons or links) to display
  * @returns JSX element - A div with grid positioning for aligning actions within the card header
  */
 function CardAction({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element {

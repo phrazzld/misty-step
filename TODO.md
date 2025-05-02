@@ -56,7 +56,7 @@
     - CANCELLED: Task is no longer required.
   - **Depends‑on:** none
   - **NOTE:** Task cancelled as the files were intentionally deleted and should remain deleted.
-- [ ] **T005 · Chore · P1: document `CardAction` subcomponent api with tsdoc**
+- [x] **T005 · Chore · P1: document `CardAction` subcomponent api with tsdoc**
   - **Context:** cr-09 Document `CardAction` Subcomponent API
   - **Action:**
     1. Edit `components/ui/card.tsx`.
