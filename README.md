@@ -74,6 +74,7 @@ This project enforces code quality through:
 - Husky for pre-commit hooks
 - lint-staged for running linters on staged files
 - GitHub Actions CI for automated quality checks
+- Git hooks via Husky for pre-commit and post-commit automation
 
 ## Continuous Integration
 
@@ -87,6 +88,14 @@ A GitHub Actions workflow runs automatically on all pull requests and pushes to 
 6. Building the application
 
 All checks must pass for pull requests to be merged. See the workflow configuration in `.github/workflows/ci.yml`.
+
+## Documentation
+
+The project includes several important documentation files:
+
+- **Development Philosophy**: See `docs/DEVELOPMENT_PHILOSOPHY.md` and language-specific appendices
+- **Storybook Contribution**: See `docs/CONTRIBUTING-STORYBOOK.md` for guidelines on creating stories
+- **Glance Documentation**: See `docs/GLANCE-COMMAND.md` for information about the automated directory documentation tool
 
 ## Storybook
 

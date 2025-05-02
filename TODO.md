@@ -122,7 +122,7 @@
     1. Make a test commit locally.
     2. Observe terminal output; the shell prompt should appear on a new line after the hook's echo message.
   - **Depends‑on:** none
-- [ ] **T010 · Chore · P1: audit post-commit hook necessity and document findings**
+- [x] **T010 · Chore · P1: audit post-commit hook necessity and document findings**
   - **Context:** cr-07 Audit and Remediate Risky Post-Commit Hook (Step 1: Audit & Document)
   - **Action:**
     1. Investigate the purpose and necessity of the `glance` command in `.husky/post-commit`.
