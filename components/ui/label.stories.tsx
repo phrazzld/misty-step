@@ -137,12 +137,14 @@ export const Default: Story = {
     htmlFor: "default-input",
     children: "Default Label",
   },
-  render: (args) => (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label {...args} />
-      <Input id={args.htmlFor} placeholder="Enter text..." />
-    </div>
-  ),
+  decorators: [
+    (Story) => (
+      <div className="grid w-full max-w-sm items-center gap-1.5">
+        <Story />
+        <Input id="default-input" placeholder="Enter text..." />
+      </div>
+    ),
+  ],
 };
 
 export const Required: Story = {
@@ -151,12 +153,14 @@ export const Required: Story = {
     required: true,
     children: "Required Field",
   },
-  render: (args) => (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label {...args} />
-      <Input id={args.htmlFor} placeholder="Required field" required aria-required="true" />
-    </div>
-  ),
+  decorators: [
+    (Story) => (
+      <div className="grid w-full max-w-sm items-center gap-1.5">
+        <Story />
+        <Input id="required-input" placeholder="Required field" required aria-required="true" />
+      </div>
+    ),
+  ],
 };
 
 export const WithDescription: Story = {
@@ -164,15 +168,17 @@ export const WithDescription: Story = {
     htmlFor: "email-with-description",
     children: "Email Address",
   },
-  render: (args) => (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label {...args} />
-      <Input id={args.htmlFor} type="email" placeholder="email@example.com" />
-      <p className="text-xs text-muted-foreground">
-        We&apos;ll never share your email with anyone else.
-      </p>
-    </div>
-  ),
+  decorators: [
+    (Story) => (
+      <div className="grid w-full max-w-sm items-center gap-1.5">
+        <Story />
+        <Input id="email-with-description" type="email" placeholder="email@example.com" />
+        <p className="text-xs text-muted-foreground">
+          We&apos;ll never share your email with anyone else.
+        </p>
+      </div>
+    ),
+  ],
 };
 
 export const Disabled: Story = {
@@ -180,10 +186,12 @@ export const Disabled: Story = {
     htmlFor: "disabled-input",
     children: "Disabled Field",
   },
-  render: (args) => (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Label {...args} />
-      <Input id={args.htmlFor} placeholder="This field is disabled" disabled />
-    </div>
-  ),
+  decorators: [
+    (Story) => (
+      <div className="grid w-full max-w-sm items-center gap-1.5">
+        <Story />
+        <Input id="disabled-input" placeholder="This field is disabled" disabled />
+      </div>
+    ),
+  ],
 };

@@ -457,19 +457,22 @@ export const ErrorState: Story = {
       },
     },
   },
-  render: () => (
-    <div className="flex flex-col gap-4">
-      <div>
-        <Label className="mb-2">With aria-invalid attribute</Label>
-        <Input
-          aria-invalid="true"
-          placeholder="Invalid input value"
-          type="text"
-          defaultValue="Invalid data"
-        />
+  args: {
+    "aria-invalid": "true",
+    placeholder: "Invalid input value",
+    type: "text",
+    defaultValue: "Invalid data",
+  },
+  decorators: [
+    (Story) => (
+      <div className="flex flex-col gap-4">
+        <div>
+          <Label className="mb-2">With aria-invalid attribute</Label>
+          <Story />
+        </div>
       </div>
-    </div>
-  ),
+    ),
+  ],
 };
 
 export const WithLabelAndError: Story = {
@@ -482,27 +485,25 @@ export const WithLabelAndError: Story = {
       },
     },
   },
-  render: () => {
-    const inputId = "email-error-demo";
-    const errorId = "email-error-message";
-
-    return (
+  args: {
+    id: "email-error-demo",
+    type: "email",
+    placeholder: "name@example.com",
+    defaultValue: "invalid-email",
+    "aria-invalid": "true",
+    "aria-describedby": "email-error-message",
+  },
+  decorators: [
+    (Story) => (
       <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor={inputId}>Email address</Label>
-        <Input
-          id={inputId}
-          type="email"
-          placeholder="name@example.com"
-          defaultValue="invalid-email"
-          aria-invalid="true"
-          aria-describedby={errorId}
-        />
-        <p id={errorId} className="text-sm text-destructive">
+        <Label htmlFor="email-error-demo">Email address</Label>
+        <Story />
+        <p id="email-error-message" className="text-sm text-destructive">
           Please enter a valid email address
         </p>
       </div>
-    );
-  },
+    ),
+  ],
 };
 
 export const LongPlaceholder: Story = {

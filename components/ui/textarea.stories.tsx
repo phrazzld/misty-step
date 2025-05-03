@@ -249,12 +249,14 @@ export const WithLabel: Story = {
     placeholder: "Type your message here...",
     rows: 4,
   },
-  render: (args) => (
-    <div className="grid w-full max-w-sm gap-1.5">
-      <Label htmlFor={args.id}>Your message</Label>
-      <Textarea {...args} />
-    </div>
-  ),
+  decorators: [
+    (Story) => (
+      <div className="grid w-full max-w-sm gap-1.5">
+        <Label htmlFor="message">Your message</Label>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 // Component that uses useState to track character count
@@ -292,14 +294,16 @@ export const Required: Story = {
     "aria-required": "true",
     rows: 4,
   },
-  render: (args) => (
-    <div className="grid w-full max-w-sm gap-1.5">
-      <Label htmlFor={args.id} required>
-        Message
-      </Label>
-      <Textarea {...args} />
-    </div>
-  ),
+  decorators: [
+    (Story) => (
+      <div className="grid w-full max-w-sm gap-1.5">
+        <Label htmlFor="required-message" required>
+          Message
+        </Label>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 // Interactive state stories using play functions to replace the old CSS-based simulation
@@ -433,19 +437,22 @@ export const ErrorState: Story = {
       },
     },
   },
-  render: () => (
-    <div className="flex flex-col gap-4">
-      <div>
-        <Label className="mb-2">With aria-invalid attribute</Label>
-        <Textarea
-          aria-invalid="true"
-          placeholder="Invalid textarea content"
-          rows={4}
-          defaultValue="This content has validation errors"
-        />
+  args: {
+    "aria-invalid": "true",
+    placeholder: "Invalid textarea content",
+    rows: 4,
+    defaultValue: "This content has validation errors",
+  },
+  decorators: [
+    (Story) => (
+      <div className="flex flex-col gap-4">
+        <div>
+          <Label className="mb-2">With aria-invalid attribute</Label>
+          <Story />
+        </div>
       </div>
-    </div>
-  ),
+    ),
+  ],
 };
 
 export const WithLabelAndError: Story = {
@@ -458,27 +465,25 @@ export const WithLabelAndError: Story = {
       },
     },
   },
-  render: () => {
-    const textareaId = "message-error-demo";
-    const errorId = "message-error-text";
-
-    return (
+  args: {
+    id: "message-error-demo",
+    placeholder: "Type your message here...",
+    rows: 4,
+    defaultValue: "Message is too short",
+    "aria-invalid": "true",
+    "aria-describedby": "message-error-text",
+  },
+  decorators: [
+    (Story) => (
       <div className="grid w-full max-w-sm gap-1.5">
-        <Label htmlFor={textareaId}>Your message</Label>
-        <Textarea
-          id={textareaId}
-          placeholder="Type your message here..."
-          rows={4}
-          defaultValue="Message is too short"
-          aria-invalid="true"
-          aria-describedby={errorId}
-        />
-        <p id={errorId} className="text-sm text-destructive">
+        <Label htmlFor="message-error-demo">Your message</Label>
+        <Story />
+        <p id="message-error-text" className="text-sm text-destructive">
           Message must be at least 20 characters long
         </p>
       </div>
-    );
-  },
+    ),
+  ],
 };
 
 export const LongPlaceholder: Story = {

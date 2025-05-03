@@ -257,7 +257,7 @@
     2. Navigate to affected component stories.
     3. Use the "Interactions" addon panel to verify `play` functions execute successfully and simulate state changes visually.
   - **Depends‑on:** [T018]
-- [ ] **T021 · Refactor · P2: refactor simple stories to use `args` property instead of `render`**
+- [x] **T021 · Refactor · P2: refactor simple stories to use `args` property instead of `render`**
   - **Context:** cr-12 Refactor Inconsistent Story Structure (`args` vs. `render`)
   - **Action:**
     1. Audit stories (`input.stories.tsx:64`, `label.stories.tsx`, `textarea.stories.tsx`).
