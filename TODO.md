@@ -186,7 +186,7 @@
     3. Confirm the images load and display correctly.
   - **Depends‑on:** none
   - **NOTE:** Upon thorough investigation, no instances of `next/image` were found in any of the Storybook story files. The stories were already properly decoupled from Next.js `next/image`. The `.storybook/main.ts` file already correctly includes `staticDirs: ['../public']`, ensuring proper static asset handling.
-- [ ] **T015 · Chore · P1: clarify tailwind directive handling in storybook css**
+- [x] **T015 · Chore · P1: clarify tailwind directive handling in storybook css**
   - **Context:** cr-08 Clarify Tailwind Directive Handling in Storybook
   - **Action:**
     1. Edit `.storybook/preview.css`.
