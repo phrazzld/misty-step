@@ -161,7 +161,7 @@
 
 ## Storybook & Components
 
-- [ ] **T013 · Refactor · P0: remove unjustified global story margin decorator**
+- [x] **T013 · Refactor · P0: remove unjustified global story margin decorator**
   - **Context:** cr-15 Remove Unjustified Global Story Margin Decorator
   - **Action:**
     1. Edit `.storybook/preview.tsx`.
