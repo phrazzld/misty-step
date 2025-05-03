@@ -1,4 +1,4 @@
-import * as React from "react";
+import { createRef } from "react";
 import { describe, it, expect } from "vitest";
 
 import { render, screen } from "@/test/utils";
@@ -45,7 +45,7 @@ describe("Label", () => {
   });
 
   it("forwards ref to the label element", () => {
-    const ref = React.createRef<HTMLLabelElement>();
+    const ref = createRef<HTMLLabelElement>();
     render(
       <Label ref={ref} htmlFor="test-ref">
         Ref Test
@@ -53,5 +53,31 @@ describe("Label", () => {
     );
     expect(ref.current).not.toBeNull();
     expect(ref.current).toEqual(screen.getByText("Ref Test"));
+  });
+
+  it("displays an asterisk when required prop is true", () => {
+    render(
+      <Label htmlFor="required-field" required>
+        Required Field
+      </Label>
+    );
+    expect(screen.getByText("Required Field")).toBeInTheDocument();
+    const asterisk = screen.getByText("*");
+    expect(asterisk).toBeInTheDocument();
+    expect(asterisk).toHaveClass("text-destructive");
+  });
+
+  it("does not display an asterisk when required prop is false or undefined", () => {
+    render(<Label htmlFor="optional-field">Optional Field</Label>);
+    expect(screen.getByText("Optional Field")).toBeInTheDocument();
+    expect(screen.queryByText("*")).not.toBeInTheDocument();
+
+    render(
+      <Label htmlFor="explicitly-optional" required={false}>
+        Explicitly Optional
+      </Label>
+    );
+    expect(screen.getByText("Explicitly Optional")).toBeInTheDocument();
+    expect(screen.queryByText("*")).not.toBeInTheDocument();
   });
 });

@@ -209,7 +209,7 @@
     1. Lint the project and ensure no React import errors.
     2. Build the project and Storybook successfully.
   - **Depends‑on:** none
-- [ ] **T017 · Refactor · P1: refactor `Label` component to handle `required` prop internally**
+- [x] **T017 · Refactor · P1: refactor `Label` component to handle `required` prop internally**
   - **Context:** cr-06 Enforce Consistent Use of Library Components in Stories (Step 1)
   - **Action:**
     1. Edit `components/ui/label.tsx`.
