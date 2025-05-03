@@ -231,7 +231,7 @@
   - **Verification:**
     1. Search codebase for the deleted files/components to confirm removal.
   - **Depends‑on:** none
-- [ ] **T019 · Refactor · P2: replace raw html elements in stories with library components**
+- [x] **T019 · Refactor · P2: replace raw html elements in stories with library components**
   - **Context:** cr-06 Enforce Consistent Use of Library Components in Stories (Step 2)
   - **Action:**
     1. Audit stories (`card.stories.tsx:101`, `input.stories.tsx:73-77`, `label.stories.tsx`, `textarea.stories.tsx`) for raw `<button>`, `<label>`, and manual required indicator `<span>`.

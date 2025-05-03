@@ -352,7 +352,7 @@ export const ErrorState: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
       <div>
-        <p className="text-sm font-medium mb-2">With aria-invalid attribute</p>
+        <Label className="mb-2">With aria-invalid attribute</Label>
         <Input
           aria-invalid="true"
           placeholder="Invalid input value"
@@ -410,7 +410,7 @@ export const LongPlaceholder: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
       <div>
-        <p className="text-sm font-medium mb-2">Default Width</p>
+        <Label className="mb-2">Default Width</Label>
         <Input
           placeholder="This is an exceptionally long placeholder text that demonstrates how the input component handles text that exceeds the typical width of an input field"
           type="text"
@@ -421,7 +421,7 @@ export const LongPlaceholder: Story = {
       </div>
 
       <div>
-        <p className="text-sm font-medium mb-2">Constrained Width</p>
+        <Label className="mb-2">Constrained Width</Label>
         <div className="max-w-sm">
           <Input
             placeholder="This is an exceptionally long placeholder text that demonstrates how the input component handles text that exceeds the typical width of an input field"
@@ -434,7 +434,7 @@ export const LongPlaceholder: Story = {
       </div>
 
       <div>
-        <p className="text-sm font-medium mb-2">With Label</p>
+        <Label className="mb-2">With Label</Label>
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="long-placeholder">Username</Label>
           <Input
@@ -461,7 +461,7 @@ export const LongValue: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
       <div>
-        <p className="text-sm font-medium mb-2">Default Width with Long Value</p>
+        <Label className="mb-2">Default Width with Long Value</Label>
         <Input
           type="text"
           defaultValue="This is an exceptionally long input value that demonstrates how the input component handles text that exceeds the typical width of an input field"
@@ -472,7 +472,7 @@ export const LongValue: Story = {
       </div>
 
       <div>
-        <p className="text-sm font-medium mb-2">Constrained Width with Long Value</p>
+        <Label className="mb-2">Constrained Width with Long Value</Label>
         <div className="max-w-xs">
           <Input
             type="text"
@@ -482,7 +482,7 @@ export const LongValue: Story = {
       </div>
 
       <div>
-        <p className="text-sm font-medium mb-2">Long Email Address</p>
+        <Label className="mb-2">Long Email Address</Label>
         <div className="max-w-sm">
           <Input
             type="email"
@@ -495,17 +495,17 @@ export const LongValue: Story = {
       </div>
 
       <div>
-        <p className="text-sm font-medium mb-2">Different Input Types</p>
+        <Label className="mb-2">Different Input Types</Label>
         <div className="grid grid-cols-1 gap-4">
           <div>
-            <p className="text-xs mb-1">URL Type</p>
+            <Label className="text-xs mb-1">URL Type</Label>
             <Input
               type="url"
               defaultValue="https://extremely-long-subdomain-with-many-parts.very-long-domain-name-with-multiple-words.example.com/very/long/path/with/many/segments/and/a/very/long/query/string?param1=value1&param2=value2&param3=value3"
             />
           </div>
           <div>
-            <p className="text-xs mb-1">Search Type</p>
+            <Label className="text-xs mb-1">Search Type</Label>
             <Input
               type="search"
               defaultValue="extremely long search query with many keywords and phrases to demonstrate how search inputs handle long content within the visible area"

@@ -318,7 +318,7 @@ export const ErrorState: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
       <div>
-        <p className="text-sm font-medium mb-2">With aria-invalid attribute</p>
+        <Label className="mb-2">With aria-invalid attribute</Label>
         <Textarea
           aria-invalid="true"
           placeholder="Invalid textarea content"
@@ -376,7 +376,7 @@ export const LongPlaceholder: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
       <div>
-        <p className="text-sm font-medium mb-2">Default Width</p>
+        <Label className="mb-2">Default Width</Label>
         <Textarea
           placeholder="This is an exceptionally long placeholder text that demonstrates how the textarea component handles text that exceeds the typical width of a single line. Unlike single-line inputs, textareas naturally wrap content to multiple lines, making them suitable for longer text content that needs to be readable without scrolling horizontally."
           rows={4}
@@ -387,7 +387,7 @@ export const LongPlaceholder: Story = {
       </div>
 
       <div>
-        <p className="text-sm font-medium mb-2">Constrained Width</p>
+        <Label className="mb-2">Constrained Width</Label>
         <div className="max-w-sm">
           <Textarea
             placeholder="This is an exceptionally long placeholder text that demonstrates how the textarea component handles text that exceeds the typical width of a single line. Unlike single-line inputs, textareas naturally wrap content to multiple lines, making them suitable for longer text content that needs to be readable without scrolling horizontally."
@@ -400,17 +400,17 @@ export const LongPlaceholder: Story = {
       </div>
 
       <div>
-        <p className="text-sm font-medium mb-2">With Different Row Settings</p>
+        <Label className="mb-2">With Different Row Settings</Label>
         <div className="grid grid-cols-1 gap-4">
           <div>
-            <p className="text-xs mb-1">2 Rows</p>
+            <Label className="text-xs mb-1">2 Rows</Label>
             <Textarea
               placeholder="This is an exceptionally long placeholder text that demonstrates how the textarea component handles text with limited vertical space, showing only a portion of the content initially."
               rows={2}
             />
           </div>
           <div>
-            <p className="text-xs mb-1">8 Rows</p>
+            <Label className="text-xs mb-1">8 Rows</Label>
             <Textarea
               placeholder="This is an exceptionally long placeholder text that demonstrates how the textarea component handles text with more vertical space, showing more content at once. When placeholder text is long but the textarea has sufficient vertical space, it can display more of the content without requiring scrolling."
               rows={8}
@@ -435,7 +435,7 @@ export const LongValue: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
       <div>
-        <p className="text-sm font-medium mb-2">Standard Paragraph</p>
+        <Label className="mb-2">Standard Paragraph</Label>
         <Textarea
           rows={4}
           defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus ac risus dignissim, at gravida urna semper. Nulla tincidunt vestibulum mauris, sit amet vestibulum mi aliquet in. Pellentesque aliquet tincidunt vestibulum. Aliquam a egestas dui. Maecenas varius sollicitudin tristique. Etiam condimentum varius massa vel consectetur. Aenean imperdiet augue velit, vitae posuere felis convallis ac. Maecenas quis lacinia lacus, vel congue lorem. Cras ut odio et magna molestie luctus. In nec dictum dolor. Ut sit amet fermentum quam."
@@ -447,7 +447,7 @@ export const LongValue: Story = {
       </div>
 
       <div>
-        <p className="text-sm font-medium mb-2">Very Long Single Line</p>
+        <Label className="mb-2">Very Long Single Line</Label>
         <Textarea
           rows={3}
           defaultValue="This is an extremely long line of text without any line breaks that demonstrates how the textarea handles text that would normally extend far beyond the horizontal boundaries of the container and shows how the text wrapping behavior works for continuous strings of text without natural breaking points in the content."
@@ -458,7 +458,7 @@ export const LongValue: Story = {
       </div>
 
       <div>
-        <p className="text-sm font-medium mb-2">Content With Line Breaks</p>
+        <Label className="mb-2">Content With Line Breaks</Label>
         <Textarea
           rows={8}
           defaultValue={`First line: relatively short line
@@ -473,7 +473,7 @@ Fifth line: another line with moderate length`}
       </div>
 
       <div>
-        <p className="text-sm font-medium mb-2">Constrained Width</p>
+        <Label className="mb-2">Constrained Width</Label>
         <div className="max-w-xs">
           <Textarea
             rows={6}
