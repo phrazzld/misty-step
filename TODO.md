@@ -221,7 +221,7 @@
     1. Run Storybook locally.
     2. Add/modify a story for `Label` passing the `required` prop and verify the indicator appears correctly without breaking existing stories.
   - **Depends‑on:** none
-- [ ] **T018 · Refactor · P1: remove css state simulation files and wrappers**
+- [x] **T018 · Refactor · P1: remove css state simulation files and wrappers**
   - **Context:** cr-04 Replace Fragile CSS State Simulation with Interaction Tests (Step 1)
   - **Action:**
     1. Delete `components/ui/button-states.css`, `input-states.css`, `textarea-states.css`.
