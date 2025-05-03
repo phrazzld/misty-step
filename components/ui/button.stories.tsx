@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "@storybook/test";
 
 import { Button } from "./button";
 
@@ -283,9 +284,143 @@ export const AsChild: Story = {
   },
 };
 
-// Note: Interactive state stories (HoverState, FocusState, ActiveState) have been removed
-// as part of T018. These will be replaced with interaction tests using Storybook's
-// `play` function in a future task (T020).
+// Interactive state stories using play functions to replace the old CSS-based simulation
+export const HoverInteraction: Story = {
+  name: "Hover State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates the button's hover state through an actual user interaction. The play function will hover over the button to show its hover styling.",
+      },
+    },
+  },
+  args: {
+    children: "Hover me",
+    variant: "default",
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    // Get the button
+    const button = canvas.getByRole("button");
+
+    // Hover over the button
+    await step("Hover the button", async () => {
+      await userEvent.hover(button);
+
+      // Verify the button has hover styling (optional - visual confirmation is primary)
+      await expect(button).toBeInTheDocument();
+    });
+  },
+};
+
+export const FocusInteraction: Story = {
+  name: "Focus State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates the button's focus state through an actual user interaction. The play function will focus the button to show its focus styling.",
+      },
+    },
+  },
+  args: {
+    children: "Focus me",
+    variant: "default",
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    // Get the button
+    const button = canvas.getByRole("button");
+
+    // Focus the button
+    await step("Focus the button", async () => {
+      await userEvent.tab();
+
+      // Verify the button has focus
+      await expect(button).toHaveFocus();
+    });
+  },
+};
+
+export const ActiveInteraction: Story = {
+  name: "Active State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates the button's active state through an actual user interaction. The play function will click the button to show its active styling.",
+      },
+    },
+  },
+  args: {
+    children: "Click me",
+    variant: "default",
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    // Get the button
+    const button = canvas.getByRole("button");
+
+    // Click the button (mousedown shows the active state)
+    await step("Click the button", async () => {
+      // Use pointer events for more precise control
+      await userEvent.pointer({ keys: "[MouseLeft>]", target: button });
+
+      // Note: We're not releasing the mouse button immediately to show the active state
+      // In a real interaction, you would complete the click with:
+      // await userEvent.pointer({ keys: "[/MouseLeft]", target: button });
+    });
+  },
+};
+
+export const AllInteractionsSequence: Story = {
+  name: "All Interactions",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates all button interactions in sequence: hover, focus, and active states. The play function shows each state with a short delay between them.",
+      },
+    },
+  },
+  args: {
+    children: "Interact with me",
+    variant: "default",
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+
+    // 1. Hover state
+    await step("Hover the button", async () => {
+      await userEvent.hover(button);
+      // Wait a moment to see the hover state
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    });
+
+    // 2. Focus state
+    await step("Focus the button", async () => {
+      await userEvent.tab();
+      await expect(button).toHaveFocus();
+      // Wait a moment to see the focus state
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    });
+
+    // 3. Active state (without completing the click)
+    await step("Press the button", async () => {
+      await userEvent.pointer({ keys: "[MouseLeft>]", target: button });
+      // Wait a moment to see the active state
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // Complete the click
+      await userEvent.pointer({ keys: "[/MouseLeft]", target: button });
+    });
+  },
+};
 
 export const LongText: Story = {
   name: "Long Text",

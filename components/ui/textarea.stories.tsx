@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "@storybook/test";
 import { useState, ReactElement } from "react";
 
 import { Label } from "./label";
@@ -301,9 +302,126 @@ export const Required: Story = {
   ),
 };
 
-// Note: Interactive state stories (HoverState, FocusState, ActiveState) have been removed
-// as part of T018. These will be replaced with interaction tests using Storybook's
-// `play` function in a future task (T020).
+// Interactive state stories using play functions to replace the old CSS-based simulation
+export const HoverInteraction: Story = {
+  name: "Hover State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates the textarea's hover state through an actual user interaction. The play function will hover over the textarea to show its hover styling.",
+      },
+    },
+  },
+  args: {
+    placeholder: "Hover over me",
+    rows: 4,
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    // Get the textarea
+    const textarea = canvas.getByPlaceholderText("Hover over me");
+
+    // Hover over the textarea
+    await step("Hover over the textarea", async () => {
+      await userEvent.hover(textarea);
+
+      // Verify the textarea is being hovered (visual confirmation is primary)
+      await expect(textarea).toBeInTheDocument();
+    });
+  },
+};
+
+export const FocusInteraction: Story = {
+  name: "Focus State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates the textarea's focus state through an actual user interaction. The play function will focus the textarea and type some text to show the focus styling and interaction.",
+      },
+    },
+  },
+  args: {
+    placeholder: "Click me or press Tab",
+    rows: 4,
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    // Get the textarea
+    const textarea = canvas.getByPlaceholderText("Click me or press Tab");
+
+    // Focus the textarea
+    await step("Focus the textarea", async () => {
+      await userEvent.tab();
+
+      // Verify the textarea has focus
+      await expect(textarea).toHaveFocus();
+    });
+
+    // Type something to demonstrate the focus state
+    await step("Type in the textarea", async () => {
+      await userEvent.type(
+        textarea,
+        "This textarea is now focused.\nYou can type multiple lines of text."
+      );
+
+      // Verify the typed content
+      await expect(textarea).toHaveValue(
+        "This textarea is now focused.\nYou can type multiple lines of text."
+      );
+    });
+  },
+};
+
+export const AllInteractionsSequence: Story = {
+  name: "All Interactions",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates all textarea interactions in sequence: hover, focus, and typing interactions with multi-line input. The play function shows each state with a short delay between them.",
+      },
+    },
+  },
+  args: {
+    placeholder: "Interact with me",
+    rows: 4,
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const textarea = canvas.getByPlaceholderText("Interact with me");
+
+    // 1. Hover state
+    await step("Hover over the textarea", async () => {
+      await userEvent.hover(textarea);
+      // Wait a moment to see the hover state
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    });
+
+    // 2. Focus state
+    await step("Focus the textarea", async () => {
+      await userEvent.click(textarea);
+      await expect(textarea).toHaveFocus();
+      // Wait a moment to see the focus state
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    });
+
+    // 3. Type some multi-line text
+    await step("Type in the textarea", async () => {
+      await userEvent.type(textarea, "This is line one.\nThis is line two.\nThis is line three.", {
+        delay: 100,
+      });
+
+      // Verify the typed content
+      await expect(textarea).toHaveValue(
+        "This is line one.\nThis is line two.\nThis is line three."
+      );
+    });
+  },
+};
 
 export const ErrorState: Story = {
   name: "Error State",

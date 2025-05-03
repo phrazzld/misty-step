@@ -244,7 +244,7 @@
     2. Inspect the specified stories (Card, Input, Label, Textarea) in the browser dev tools to confirm no raw `<button>` or `<label>` elements are used where library components should be.
     3. Visually confirm the appearance matches the previous state or intended design.
   - **Depends‑on:** [T017]
-- [ ] **T020 · Feature · P2: implement interaction tests using `play` functions for component states**
+- [x] **T020 · Feature · P2: implement interaction tests using `play` functions for component states**
   - **Context:** cr-04 Replace Fragile CSS State Simulation with Interaction Tests (Step 2)
   - **Action:**
     1. Refactor affected stories (Button, Input, Textarea, etc.) to use Storybook's `play` function (`@storybook/addon-interactions`, `userEvent`) to trigger interactive states (`:hover`, `:focus`, `:active`).

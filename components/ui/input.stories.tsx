@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "@storybook/test";
 
 import { Input } from "./input";
 import { Label } from "./label";
@@ -335,9 +336,116 @@ export const Required: Story = {
   },
 };
 
-// Note: Interactive state stories (HoverState, FocusState, ActiveState) have been removed
-// as part of T018. These will be replaced with interaction tests using Storybook's
-// `play` function in a future task (T020).
+// Interactive state stories using play functions to replace the old CSS-based simulation
+export const HoverInteraction: Story = {
+  name: "Hover State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates the input's hover state through an actual user interaction. The play function will hover over the input to show its hover styling.",
+      },
+    },
+  },
+  args: {
+    placeholder: "Hover over me",
+    type: "text",
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    // Get the input
+    const input = canvas.getByPlaceholderText("Hover over me");
+
+    // Hover over the input
+    await step("Hover over the input", async () => {
+      await userEvent.hover(input);
+
+      // Verify the input is being hovered (visual confirmation is primary)
+      await expect(input).toBeInTheDocument();
+    });
+  },
+};
+
+export const FocusInteraction: Story = {
+  name: "Focus State",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates the input's focus state through an actual user interaction. The play function will focus the input and type some text to show the focus styling and interaction.",
+      },
+    },
+  },
+  args: {
+    placeholder: "Click me or press Tab",
+    type: "text",
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    // Get the input
+    const input = canvas.getByPlaceholderText("Click me or press Tab");
+
+    // Focus the input
+    await step("Focus the input", async () => {
+      await userEvent.tab();
+
+      // Verify the input has focus
+      await expect(input).toHaveFocus();
+    });
+
+    // Type something to demonstrate the focus state
+    await step("Type in the input", async () => {
+      await userEvent.type(input, "This input is now focused");
+
+      // Verify the typed content
+      await expect(input).toHaveValue("This input is now focused");
+    });
+  },
+};
+
+export const AllInteractionsSequence: Story = {
+  name: "All Interactions",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This demonstrates all input interactions in sequence: hover, focus, and typing interactions. The play function shows each state with a short delay between them.",
+      },
+    },
+  },
+  args: {
+    placeholder: "Interact with me",
+    type: "text",
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByPlaceholderText("Interact with me");
+
+    // 1. Hover state
+    await step("Hover over the input", async () => {
+      await userEvent.hover(input);
+      // Wait a moment to see the hover state
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    });
+
+    // 2. Focus state
+    await step("Focus the input", async () => {
+      await userEvent.click(input);
+      await expect(input).toHaveFocus();
+      // Wait a moment to see the focus state
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    });
+
+    // 3. Type some text
+    await step("Type in the input", async () => {
+      await userEvent.type(input, "Hello, world!", { delay: 100 });
+      // Verify the typed content
+      await expect(input).toHaveValue("Hello, world!");
+    });
+  },
+};
 
 export const ErrorState: Story = {
   name: "Error State",
