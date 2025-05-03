@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 # Ensure log directory exists with proper permissions
 LOG_DIR=".logs/husky"
 LOG_FILE="$LOG_DIR/glance-post-commit.log"

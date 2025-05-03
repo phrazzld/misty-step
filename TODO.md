@@ -147,7 +147,7 @@
     2. Verify log file is created at `.logs/husky/glance-post-commit.log` with appropriate content and permissions.
     3. Verify console output provides clear feedback.
   - **Depends‑on:** [T010]
-- [ ] **T012 · Refactor · P2: update post-commit hook format for husky v10+ if needed**
+- [x] **T012 · Refactor · P2: update post-commit hook format for husky v10+ if needed**
   - **Context:** cr-07 Audit and Remediate Risky Post-Commit Hook (Step 4: Necessity/Format)
   - **Action:**
     1. If T010 determined the hook is necessary: Check current Husky version and hook script format in `.husky/post-commit`.
