@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
+import { ComponentProps, ReactElement } from "react";
 
 import { Button } from "./button";
 import "./button-states.css";
@@ -11,10 +11,10 @@ const InteractiveStateButton = ({
   state,
   variant = "default",
   ...props
-}: React.ComponentProps<typeof Button> & {
+}: ComponentProps<typeof Button> & {
   state: "hover" | "focus" | "active";
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
-}): React.ReactElement => {
+}): ReactElement => {
   const stateClass = `simulate-${state} variant-${variant}`;
   return (
     <Button className={`${className || ""} ${stateClass}`} variant={variant} {...props}>

@@ -1,14 +1,15 @@
 import * as LabelPrimitive from "@radix-ui/react-label";
-import * as React from "react";
+import { forwardRef } from "react";
+import type { ComponentPropsWithoutRef, ElementRef } from "react";
 
 import { cn } from "@/lib/utils";
 
-interface LabelProps extends React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> {
+interface LabelProps extends ComponentPropsWithoutRef<typeof LabelPrimitive.Root> {
   /** Whether to show a required indicator (*) */
   required?: boolean;
 }
 
-const Label = React.forwardRef<React.ElementRef<typeof LabelPrimitive.Root>, LabelProps>(
+const Label = forwardRef<ElementRef<typeof LabelPrimitive.Root>, LabelProps>(
   ({ className, required, children, ...props }, ref) => {
     return (
       <LabelPrimitive.Root

@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
+import { ComponentProps, ReactElement } from "react";
 
 import { Input } from "./input";
 import { Label } from "./label";
@@ -11,9 +11,9 @@ const InteractiveStateInput = ({
   className,
   state,
   ...props
-}: React.ComponentProps<typeof Input> & {
+}: ComponentProps<typeof Input> & {
   state: "hover" | "focus" | "active" | "error";
-}): React.ReactElement => {
+}): ReactElement => {
   const stateClass = `simulate-${state}`;
   return <Input className={`${className || ""} ${stateClass}`} {...props} />;
 };

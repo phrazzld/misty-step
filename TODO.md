@@ -197,7 +197,7 @@
     1. Run Storybook locally.
     2. Visually verify that component styles remain correct and match the application appearance.
   - **Depends‑on:** none
-- [ ] **T016 · Refactor · P1: use idiomatic react import style**
+- [x] **T016 · Refactor · P1: use idiomatic react import style**
   - **Context:** cr-16 Use Idiomatic React Import Style
   - **Action:**
     1. Identify files using `import * as React from "react";` (e.g., `button.stories.tsx`, `textarea.stories.tsx`, `.storybook/preview.tsx`).

@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
+import { ComponentProps, ReactElement, useState } from "react";
 
 import { Label } from "./label";
 import { Textarea } from "./textarea";
@@ -11,9 +11,9 @@ const InteractiveStateTextarea = ({
   className,
   state,
   ...props
-}: React.ComponentProps<typeof Textarea> & {
+}: ComponentProps<typeof Textarea> & {
   state: "hover" | "focus" | "active" | "error";
-}): React.ReactElement => {
+}): ReactElement => {
   const stateClass = `simulate-${state}`;
   return <Textarea className={`${className || ""} ${stateClass}`} {...props} />;
 };
@@ -271,8 +271,8 @@ export const WithLabel: Story = {
 };
 
 // Component that uses useState to track character count
-const TextareaWithCounter = (): React.ReactElement => {
-  const [value, setValue] = React.useState("");
+const TextareaWithCounter = (): ReactElement => {
+  const [value, setValue] = useState("");
   const maxLength = 200;
 
   return (
