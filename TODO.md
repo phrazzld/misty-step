@@ -280,7 +280,7 @@
     1. Run Storybook locally.
     2. Review story navigation sidebar for improved clarity and descriptiveness.
   - **Depends‑on:** none
-- [ ] **T023 · Test · P2: add stories covering edge cases for core components**
+- [x] **T023 · Test · P2: add stories covering edge cases for core components**
   - **Context:** cr-11 Add Missing State and Edge Case Coverage in Stories
   - **Action:**
     1. Add new stories for `Button`, `Input`, `Textarea`, `Card`, `Label` demonstrating edge cases (long strings, empty content, wrapping text).
@@ -293,21 +293,3 @@
     2. Verify new edge case stories render correctly.
     3. Use the "Interactions" panel to confirm tests pass for interactive states on these stories where applicable.
   - **Depends‑on:** [T020]
-
-### Clarifications & Assumptions
-
-- [ ] **Issue:** The specific `<commit-hash>^` needed for restoring deleted files (cr-05 / T004) is not provided and needs to be identified using `git log`.
-  - **Context:** cr-05
-  - **Blocking?:** no
-- [ ] **Issue:** The exact `pnpm` version for `package.json#packageManager` (cr-13 / T008) needs to be confirmed based on the project's current standard.
-  - **Context:** cr-13
-  - **Blocking?:** no
-- [ ] **Issue:** Line numbers referenced in PLAN.md (e.g., cr-02, cr-09, cr-06, cr-12, cr-18) may be inaccurate after code changes; locate code by context.
-  - **Context:** Multiple CRs
-  - **Blocking?:** no
-- [ ] **Issue:** Confirm if `CONTRIBUTING.md` exists before adding links (cr-14 / T003, cr-13 / T002, cr-05 / T004). `README.md` is the primary target.
-  - **Context:** cr-14, cr-13, cr-05
-  - **Blocking?:** no
-- [ ] **Issue:** Decision on necessity of `glance` command (cr-07 / T010) determines implementation path for T011, T012.
-  - **Context:** cr-07
-  - **Blocking?:** T011, T012 depend on T010's outcome.

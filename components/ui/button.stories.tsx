@@ -503,3 +503,56 @@ export const LongText: Story = {
     </div>
   ),
 };
+
+// Edge case stories
+
+export const EmptyButton: Story = {
+  name: "Empty Button",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A button with empty content to test handling of empty children. The button should maintain minimum clickable dimensions for accessibility even without content.",
+      },
+    },
+  },
+  args: {
+    children: "",
+    variant: "default",
+    "aria-label": "Empty button",
+  },
+};
+
+export const SpecialCharacters: Story = {
+  name: "Button with Special Characters",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A button with various special characters and emojis to verify proper rendering and handling of non-standard text content.",
+      },
+    },
+  },
+  args: {
+    children: "→ Click & Save! ←  🚀 ★ é ç ñ",
+    variant: "default",
+  },
+};
+
+export const AccessibilityEdgeCase: Story = {
+  name: "Button with Extremely Long Aria Label",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A button with an extremely long aria-label to test how screen readers and accessibility tools handle verbose descriptions. This tests the component's compatibility with assistive technologies when given unusually descriptive labels.",
+      },
+    },
+  },
+  args: {
+    children: "Submit",
+    variant: "default",
+    "aria-label":
+      "This is an extremely long accessibility label that provides an extensive description of what this button does when activated by the user. It contains significantly more text than would typically be used in a production environment to test how screen readers and other assistive technologies handle verbose descriptions.",
+  },
+};

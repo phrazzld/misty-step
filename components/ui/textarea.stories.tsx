@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "@storybook/test";
 import { useState, ReactElement } from "react";
@@ -605,6 +606,148 @@ Fifth line: another line with moderate length`}
             defaultValue="When a textarea is constrained to a narrow width, long words and content must wrap more frequently. This demonstrates how the component handles a higher ratio of wrapping in limited horizontal space while still maintaining readability."
           />
         </div>
+      </div>
+    </div>
+  ),
+};
+
+// Additional edge case stories
+
+export const EmptyTextarea: Story = {
+  name: "Empty Textarea",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A textarea with empty content to test how the component handles empty values while maintaining proper dimensions.",
+      },
+    },
+  },
+  args: {
+    placeholder: "Type your message here...",
+    defaultValue: "",
+    rows: 4,
+  },
+};
+
+export const SpecialCharactersTextarea: Story = {
+  name: "Textarea with Special Characters",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A textarea with various special characters, emojis, and international characters to verify proper rendering and handling.",
+      },
+    },
+  },
+  args: {
+    rows: 4,
+    defaultValue:
+      "Line 1: → Special & Unicode € Characters 🚀 ★\nLine 2: é ç ñ ö ü ß\nLine 3: 你好 こんにちは 안녕하세요\nLine 4: ♠ ♥ ♦ ♣ ♤ ♧ ♡ ♢",
+  },
+};
+
+export const ResizeHandling: Story = {
+  name: "Textarea Resize Handling",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates how textarea handles different resize behavior settings. This is useful for testing user experience when manual resizing is allowed or restricted.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-6">
+      <div>
+        <Label className="mb-2">Default (Both Directions)</Label>
+        <Textarea
+          placeholder="This textarea can be resized in both directions by default"
+          rows={3}
+        />
+        <p className="text-xs text-muted-foreground mt-2">
+          Browser default allows resizing in both directions
+        </p>
+      </div>
+
+      <div>
+        <Label className="mb-2">Vertical Only</Label>
+        <Textarea
+          placeholder="This textarea can only be resized vertically"
+          rows={3}
+          style={{ resize: "vertical" }}
+        />
+        <p className="text-xs text-muted-foreground mt-2">
+          Restricted to vertical resizing only via CSS
+        </p>
+      </div>
+
+      <div>
+        <Label className="mb-2">Horizontal Only</Label>
+        <Textarea
+          placeholder="This textarea can only be resized horizontally"
+          rows={3}
+          style={{ resize: "horizontal" }}
+        />
+        <p className="text-xs text-muted-foreground mt-2">
+          Restricted to horizontal resizing only via CSS
+        </p>
+      </div>
+
+      <div>
+        <Label className="mb-2">No Resize</Label>
+        <Textarea
+          placeholder="This textarea cannot be resized by the user"
+          rows={3}
+          style={{ resize: "none" }}
+        />
+        <p className="text-xs text-muted-foreground mt-2">
+          Resizing is disabled completely via CSS
+        </p>
+      </div>
+    </div>
+  ),
+};
+
+export const AccessibilityEdgeCaseTextarea: Story = {
+  name: "Textarea with Accessibility Edge Cases",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Tests how textarea handles extremely long accessibility attributes to ensure compatibility with assistive technologies.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-6">
+      <div>
+        <Label htmlFor="textarea-long-aria-label">With Extremely Long ARIA Label</Label>
+        <Textarea
+          id="textarea-long-aria-label"
+          rows={4}
+          aria-label="This is an extremely long accessibility label that provides an extensive description of what this textarea is for and how it should be used by the user. It contains significantly more text than would typically be used in a production environment to test how screen readers and other assistive technologies handle verbose descriptions for multiline text input fields."
+          placeholder="Textarea with extremely long aria-label"
+        />
+      </div>
+
+      <div>
+        <Label htmlFor="textarea-long-describedby">With Long Description</Label>
+        <Textarea
+          id="textarea-long-describedby"
+          rows={4}
+          aria-describedby="textarea-very-long-description"
+          placeholder="Textarea with long aria-describedby reference"
+        />
+        <p id="textarea-very-long-description" className="text-xs text-muted-foreground mt-1">
+          This is an extremely long description that provides detailed instructions and context for
+          the textarea field above. It contains significantly more explanatory text than would
+          normally be used in a typical form to test how assistive technologies handle verbose
+          descriptions and whether they&apos;re properly associated with the textarea element
+          through the aria-describedby attribute. It includes details about what the user should
+          enter, formatting guidelines, and other information that would help someone understand how
+          to use this particular text input area.
+        </p>
       </div>
     </div>
   ),

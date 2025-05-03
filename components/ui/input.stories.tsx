@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "@storybook/test";
 
@@ -623,6 +624,82 @@ export const LongValue: Story = {
             />
           </div>
         </div>
+      </div>
+    </div>
+  ),
+};
+
+// Edge case stories
+
+export const EmptyValue: Story = {
+  name: "Empty Value Input",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "An input with an explicitly empty value to test how the component handles empty strings.",
+      },
+    },
+  },
+  args: {
+    type: "text",
+    placeholder: "Type something...",
+    defaultValue: "",
+  },
+};
+
+export const SpecialCharactersInput: Story = {
+  name: "Input with Special Characters",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "An input with special characters and emojis to test rendering and handling of non-standard text.",
+      },
+    },
+  },
+  args: {
+    type: "text",
+    defaultValue: "→ Special & Unicode € Characters 🚀 ★ é ç ñ",
+  },
+};
+
+export const AccessibilityEdgeCaseInput: Story = {
+  name: "Input with Accessibility Edge Cases",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "An input with extremely long accessibility attributes to test compatibility with assistive technologies.",
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <Label htmlFor="long-aria-label">Input with Long ARIA Label</Label>
+        <Input
+          id="long-aria-label"
+          type="text"
+          aria-label="This is an extremely long accessibility label that provides a very detailed description of what this input field is for and how it should be used. It contains significantly more text than would typically be used in production to test screen reader behavior with verbose descriptions."
+          placeholder="Input with long aria-label"
+        />
+      </div>
+      <div>
+        <Label htmlFor="long-aria-describedby">Input with Long Description</Label>
+        <Input
+          id="long-aria-describedby"
+          type="text"
+          aria-describedby="very-long-description"
+          placeholder="Input with long description"
+        />
+        <p id="very-long-description" className="text-xs text-muted-foreground mt-1">
+          This is an extremely long description that provides detailed instructions and context for
+          the input field above. It contains significantly more explanatory text than would normally
+          be used in a typical form to test how assistive technologies handle verbose descriptions
+          and whether they&apos;re properly associated with the input element through the
+          aria-describedby attribute.
+        </p>
       </div>
     </div>
   ),
