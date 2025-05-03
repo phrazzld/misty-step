@@ -222,7 +222,8 @@ const meta: Meta<typeof Textarea> = {
 export default meta;
 type Story = StoryObj<typeof Textarea>;
 
-export const Default: Story = {
+export const BasicTextarea: Story = {
+  name: "Basic Multiline Input",
   args: {
     rows: 4,
   },
@@ -243,7 +244,8 @@ export const Disabled: Story = {
   },
 };
 
-export const WithLabel: Story = {
+export const TextareaWithLabel: Story = {
+  name: "Textarea with Associated Label",
   args: {
     id: "message",
     placeholder: "Type your message here...",

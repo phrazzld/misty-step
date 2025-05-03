@@ -159,7 +159,8 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
+export const Primary: Story = {
+  name: "Primary Button",
   args: {
     children: "Button",
     variant: "default",
@@ -248,7 +249,8 @@ export const Disabled: Story = {
   },
 };
 
-export const WithIcon: Story = {
+export const IconButton: Story = {
+  name: "Button with Icon and Text",
   args: {
     children: (
       <>

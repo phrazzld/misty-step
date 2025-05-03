@@ -269,7 +269,7 @@
     1. Run Storybook and ensure affected stories render correctly.
     2. Review code to confirm `args` usage.
   - **Depends‑on:** none
-- [ ] **T022 · Refactor · P2: improve generic story names for clarity**
+- [x] **T022 · Refactor · P2: improve generic story names for clarity**
   - **Context:** cr-17 Improve Generic Story Names for Clarity
   - **Action:**
     1. Review story names (`*.stories.tsx`) for generic terms like "Default", "Basic", "WithLabel".

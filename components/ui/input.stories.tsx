@@ -269,7 +269,8 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof Input>;
 
-export const Default: Story = {
+export const BasicText: Story = {
+  name: "Basic Text Input",
   args: {
     type: "text",
   },
@@ -311,7 +312,8 @@ export const TypeEmail: Story = {
   },
 };
 
-export const WithLabel: Story = {
+export const InputWithLabel: Story = {
+  name: "Input Field with Label",
   args: {
     type: "email",
     id: "email-demo",

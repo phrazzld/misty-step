@@ -132,7 +132,8 @@ const meta: Meta<typeof Label> = {
 export default meta;
 type Story = StoryObj<typeof Label>;
 
-export const Default: Story = {
+export const StandardLabel: Story = {
+  name: "Standard Label with Input",
   args: {
     htmlFor: "default-input",
     children: "Default Label",

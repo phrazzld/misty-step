@@ -121,7 +121,8 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<typeof Card>;
 
-export const Basic: Story = {
+export const ContentOnly: Story = {
+  name: "Simple Content Card",
   render: () => (
     <Card className="max-w-md">
       <CardContent>
