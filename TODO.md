@@ -101,7 +101,7 @@
   - **Verification:**
     1. Run `pnpm lint`, `pnpm format:check`, `pnpm typecheck` individually to confirm they work.
   - **Depends‑on:** [T005, T006, T007, T008, T009]
-- [ ] **T011 · Feature · P1: create GitHub Actions CI workflow for code quality**
+- [x] **T011 · Feature · P1: create GitHub Actions CI workflow for code quality**
   - **Context:** PLAN.md > Detailed Build Steps > 6. Create CI Check
   - **Action:**
     1. Create `.github/workflows/code-quality.yml`.
