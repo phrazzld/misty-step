@@ -5,6 +5,18 @@
 
 This is the marketing website for Misty Step, a technology consulting firm specializing in custom software development and technical consulting services.
 
+## Package Manager
+
+This project requires [pnpm](https://pnpm.io) as the package manager. npm and yarn are not supported.
+
+```bash
+# Install pnpm if you don't have it already
+npm install -g pnpm
+
+# Install dependencies
+pnpm install
+```
+
 ## Getting Started
 
 First, run the development server:
@@ -62,6 +74,7 @@ This project enforces code quality through:
 - Husky for pre-commit hooks
 - lint-staged for running linters on staged files
 - GitHub Actions CI for automated quality checks
+- Git hooks via Husky for pre-commit and post-commit automation
 
 ## Continuous Integration
 
@@ -76,6 +89,14 @@ A GitHub Actions workflow runs automatically on all pull requests and pushes to 
 
 All checks must pass for pull requests to be merged. See the workflow configuration in `.github/workflows/ci.yml`.
 
+## Documentation
+
+The project includes several important documentation files:
+
+- **Development Philosophy**: See `docs/DEVELOPMENT_PHILOSOPHY.md` and language-specific appendices
+- **Storybook Contribution**: See `docs/CONTRIBUTING-STORYBOOK.md` for guidelines on creating stories
+- **Glance Documentation**: See `docs/GLANCE-COMMAND.md` for information about the automated directory documentation tool
+
 ## Storybook
 
 This project uses Storybook for UI component development and documentation. Storybook provides an isolated environment to build, test, and document UI components outside the main application.
@@ -89,6 +110,8 @@ Storybook includes the following features:
 - Theme switching (light/dark mode)
 - Accessibility testing via addon-a11y
 - Responsive testing
+
+For detailed guidelines on creating and maintaining Storybook stories, see [Storybook Contribution Guidelines](./docs/CONTRIBUTING-STORYBOOK.md).
 
 ## Commands
 

@@ -1,8 +1,8 @@
-import * as React from "react";
+import type { ComponentProps, JSX } from "react";
 
 import { cn } from "@/lib/utils";
 
-function Card({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element {
+function Card({ className, ...props }: ComponentProps<"div">): JSX.Element {
   return (
     <div
       data-slot="card"
@@ -15,7 +15,7 @@ function Card({ className, ...props }: React.ComponentProps<"div">): React.JSX.E
   );
 }
 
-function CardHeader({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element {
+function CardHeader({ className, ...props }: ComponentProps<"div">): JSX.Element {
   return (
     <div
       data-slot="card-header"
@@ -28,7 +28,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">): React
   );
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element {
+function CardTitle({ className, ...props }: ComponentProps<"div">): JSX.Element {
   return (
     <div
       data-slot="card-title"
@@ -38,7 +38,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">): React.
   );
 }
 
-function CardDescription({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element {
+function CardDescription({ className, ...props }: ComponentProps<"div">): JSX.Element {
   return (
     <div
       data-slot="card-description"
@@ -48,7 +48,38 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">): 
   );
 }
 
-function CardAction({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element {
+/**
+ * CardAction is a specialized component designed to add action elements (buttons or links)
+ * to a Card header that align to the right side. It is intended to be used within a CardHeader
+ * component and positions itself to span both title and description rows.
+ *
+ * The component uses CSS grid positioning to ensure proper alignment of actions regardless
+ * of the header content height. It's automatically positioned in the top-right corner of
+ * the CardHeader.
+ *
+ * @example
+ * ```tsx
+ * <Card>
+ *   <CardHeader>
+ *     <CardTitle>Card Title</CardTitle>
+ *     <CardDescription>Card description text</CardDescription>
+ *     <CardAction>
+ *       <Button variant="default" size="sm">Action</Button>
+ *     </CardAction>
+ *   </CardHeader>
+ *   <CardContent>Main content</CardContent>
+ * </Card>
+ * ```
+ *
+ * @see CardHeader - The parent component where CardAction should be used
+ * @see Card - The root Card component
+ *
+ * @param props - Standard HTML div props including className for additional styling
+ * @param props.className - Optional CSS class names to apply to the action container
+ * @param props.children - The action elements (typically buttons or links) to display
+ * @returns JSX element - A div with grid positioning for aligning actions within the card header
+ */
+function CardAction({ className, ...props }: ComponentProps<"div">): JSX.Element {
   return (
     <div
       data-slot="card-action"
@@ -58,11 +89,11 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">): React
   );
 }
 
-function CardContent({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element {
+function CardContent({ className, ...props }: ComponentProps<"div">): JSX.Element {
   return <div data-slot="card-content" className={cn("px-6", className)} {...props} />;
 }
 
-function CardFooter({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element {
+function CardFooter({ className, ...props }: ComponentProps<"div">): JSX.Element {
   return (
     <div
       data-slot="card-footer"

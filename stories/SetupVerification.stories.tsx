@@ -28,4 +28,6 @@ export default meta;
 type Story = StoryObj<typeof SuperBasicButton>;
 
 // Minimal story that should just work
-export const Default: Story = {};
+export const StorybookSetupTest: Story = {
+  name: "Storybook Setup Verification",
+};

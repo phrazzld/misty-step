@@ -1,3 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/**
+ * STORYBOOK CSS STYLING ARCHITECTURE
+ * 
+ * IMPORTANT: This file does NOT contain Tailwind directives or classes.
+ * 
+ * Tailwind CSS is imported through the following architecture:
+ * 1. The main Tailwind directives (@import "tailwindcss", @layer, etc.) are defined in '../app/globals.css'
+ * 2. That file is imported in 'preview.tsx' alongside this CSS file
+ * 3. This separation ensures that:
+ *    - Storybook components receive the same Tailwind styling as the main application
+ *    - Changes to the app's design system are automatically reflected in Storybook
+ *    - Storybook-specific styling (below) stays separate from the app's styling concerns
+ * 
+ * This file contains ONLY Storybook-specific styling overrides that aren't 
+ * part of the main application styling.
+ */
+
+/* Additional styles for Storybook */
+.sbdocs-content {
+  max-width: 1200px;
+}
+
+.sbdocs-title {
+  margin-bottom: 2rem;
+}
+
+/* Ensure proper spacing in preview */
+.sb-story {
+  padding: 1rem;
+}

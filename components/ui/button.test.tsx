@@ -1,4 +1,4 @@
-import * as React from "react";
+import { createRef } from "react";
 import { describe, it, expect } from "vitest";
 
 import { render, screen } from "@/test/utils";
@@ -71,7 +71,7 @@ describe("Button", () => {
   });
 
   it("forwards ref to the underlying element", () => {
-    const ref = React.createRef<HTMLButtonElement>();
+    const ref = createRef<HTMLButtonElement>();
     render(<Button ref={ref}>Ref Button</Button>);
 
     expect(ref.current).not.toBeNull();
@@ -80,7 +80,7 @@ describe("Button", () => {
   });
 
   it("forwards ref when asChild is true", () => {
-    const ref = React.createRef<HTMLAnchorElement>();
+    const ref = createRef<HTMLAnchorElement>();
     render(
       <Button asChild>
         <a ref={ref} href="#test-ref">

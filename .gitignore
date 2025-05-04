@@ -42,6 +42,8 @@ next-env.d.ts
 
 # thinktank outputs
 thinktank_*/
+CODE_REVIEW.md
+*-plan.md
 
 # task prompts
 TASK-PROMPT.md
@@ -50,3 +52,9 @@ TASK-*-verification.md
 # storybook
 *storybook.log
 storybook-static/
+**/glance.md
+
+# log files
+/.logs
+
+**/.claude/settings.local.json
