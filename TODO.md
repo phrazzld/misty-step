@@ -18,7 +18,7 @@
     1. Packages are listed in `devDependencies` in `package.json`.
     2. `pnpm-lock.yaml` is updated.
   - **Depends‑on:** [T001]
-- [ ] **T003 · Chore · P0: install Prettier and ESLint integration plugins**
+- [x] **T003 · Chore · P0: install Prettier and ESLint integration plugins**
   - **Context:** PLAN.md > Detailed Build Steps > 2. Set up Prettier
   - **Action:**
     1. Run `pnpm add -D prettier eslint-config-prettier eslint-plugin-prettier`.
