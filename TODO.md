@@ -49,7 +49,7 @@
   - **Verification:**
     1. Introduce distinct TS, React, and import errors; confirm ESLint reports them.
   - **Depends‑on:** [T001, T002, T003]
-- [ ] **T006 · Chore · P1: configure Prettier formatting rules**
+- [x] **T006 · Chore · P1: configure Prettier formatting rules**
   - **Context:** PLAN.md > Detailed Build Steps > 2. Set up Prettier
   - **Action:**
     1. Create `.prettierrc.json` with standard formatting rules (semi, singleQuote, trailingComma, etc.).
