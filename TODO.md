@@ -67,7 +67,7 @@
     1. `tsconfig.json` reflects strict settings and required configurations.
     2. Running `pnpm tsc --noEmit` performs strict type checks.
   - **Depends‑on:** none
-- [ ] **T008 · Chore · P1: initialize Husky and configure pre-commit hook**
+- [x] **T008 · Chore · P1: initialize Husky and configure pre-commit hook**
   - **Context:** PLAN.md > Detailed Build Steps > 4. Configure Husky and lint-staged
   - **Action:**
     1. Run `pnpm dlx husky init` to initialize Husky.
