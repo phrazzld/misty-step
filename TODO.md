@@ -26,7 +26,7 @@
     1. Packages are listed in `devDependencies` in `package.json`.
     2. `pnpm-lock.yaml` is updated.
   - **Depends‑on:** [T001]
-- [ ] **T004 · Chore · P0: install Husky and lint-staged**
+- [x] **T004 · Chore · P0: install Husky and lint-staged**
   - **Context:** PLAN.md > Detailed Build Steps > 4. Configure Husky and lint-staged
   - **Action:**
     1. Run `pnpm add -D husky lint-staged`.
