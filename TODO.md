@@ -58,7 +58,7 @@
     1. `.prettierrc.json` and `.prettierignore` exist with correct settings.
     2. Running `pnpm prettier --check .` validates files according to rules and ignores specified patterns.
   - **Depends‑on:** [T003]
-- [ ] **T007 · Refactor · P1: configure TypeScript for strict type-checking**
+- [x] **T007 · Refactor · P1: configure TypeScript for strict type-checking**
   - **Context:** PLAN.md > Detailed Build Steps > 3. Configure TypeScript; Development Philosophy Appendix: TypeScript
   - **Action:**
     1. Update `tsconfig.json` to set `"strict": true` and enable related strict flags.
