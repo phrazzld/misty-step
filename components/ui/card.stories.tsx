@@ -231,11 +231,11 @@ export const EmptyContent: Story = {
     <div className="max-w-md">
       <Card>
         <CardHeader>
-          <CardTitle></CardTitle>
-          <CardDescription></CardDescription>
+          <CardTitle />
+          <CardDescription />
         </CardHeader>
-        <CardContent></CardContent>
-        <CardFooter></CardFooter>
+        <CardContent />
+        <CardFooter />
       </Card>
     </div>
   ),

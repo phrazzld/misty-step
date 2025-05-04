@@ -37,7 +37,7 @@
 
 ## Tool Configuration
 
-- [ ] **T005 · Chore · P1: configure ESLint flat config with strict rules**
+- [x] **T005 · Chore · P1: configure ESLint flat config with strict rules**
   - **Context:** PLAN.md > Detailed Build Steps > 1. Set up ESLint; Development Philosophy Appendices
   - **Action:**
     1. Create `eslint.config.mjs` using flat config format.

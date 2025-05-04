@@ -1,6 +1,8 @@
 import { render } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 
+import { metadata, default as RootLayout } from "./layout";
+
 // Mock the globals.css import to avoid PostCSS loading issues
 vi.mock("./globals.css", () => ({}));
 
@@ -13,8 +15,6 @@ vi.mock("next/font/google", () => ({
     variable: "--font-geist-mono",
   }),
 }));
-
-import { metadata, default as RootLayout } from "./layout";
 
 describe("Layout", () => {
   it("has the correct metadata", () => {
