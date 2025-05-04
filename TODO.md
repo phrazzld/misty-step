@@ -10,7 +10,7 @@
     1. Packages are listed in `devDependencies` in `package.json`.
     2. `pnpm-lock.yaml` is updated.
   - **Depends‑on:** none
-- [ ] **T002 · Chore · P0: install ESLint React/JSX/Import plugins**
+- [x] **T002 · Chore · P0: install ESLint React/JSX/Import plugins**
   - **Context:** PLAN.md > Detailed Build Steps > 1. Set up ESLint
   - **Action:**
     1. Run `pnpm add -D eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y eslint-plugin-import`.
