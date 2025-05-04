@@ -76,7 +76,7 @@
     1. `.husky/pre-commit` script exists and invokes `lint-staged`.
     2. `prepare` script in `package.json` is correctly set by Husky.
   - **Depends‑on:** [T004]
-- [ ] **T009 · Chore · P1: configure lint-staged for staged files**
+- [x] **T009 · Chore · P1: configure lint-staged for staged files**
   - **Context:** PLAN.md > Detailed Build Steps > 4. Configure Husky and lint-staged
   - **Action:**
     1. Create `.lintstagedrc.json`.
