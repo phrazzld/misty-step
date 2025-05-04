@@ -91,7 +91,7 @@
 
 ## Build Scripts & CI
 
-- [ ] **T010 · Chore · P1: add code quality npm scripts**
+- [x] **T010 · Chore · P1: add code quality npm scripts**
   - **Context:** PLAN.md > Detailed Build Steps > 5. Add npm Scripts
   - **Action:**
     1. Add `lint`, `lint:fix`, `format`, `format:check`, `typecheck` scripts to `package.json`.
