@@ -114,7 +114,7 @@
 
 ## Testing & Validation
 
-- [ ] **T012 · Test · P1: test pre-commit hook end-to-end**
+- [x] **T012 · Test · P1: test pre-commit hook end-to-end**
   - **Context:** PLAN.md > Testing Strategy > Pre-commit Hook Testing; Risk Matrix
   - **Action:**
     1. Stage files with intentional (auto-fixable) formatting and linting errors. Attempt commit, verify fixes are applied and commit succeeds.
@@ -125,7 +125,7 @@
   - **Verification:**
     1. Observe git commit output and resulting commit status for each test case.
   - **Depends‑on:** [T008, T009]
-- [ ] **T013 · Test · P1: test CI pipeline behavior**
+- [x] **T013 · Test · P1: test CI pipeline behavior**
   - **Context:** PLAN.md > Testing Strategy > CI Pipeline Testing; Risk Matrix
   - **Action:**
     1. Create a test PR with code containing formatting/linting/type errors. Verify CI workflow runs and fails, reporting the errors.
