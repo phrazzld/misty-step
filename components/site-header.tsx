@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import { DarkModeToggle } from "@/components/dark-mode-toggle";
-import { Button } from "@/components/ui/button";
+import { DarkModeToggle } from '@/components/dark-mode-toggle';
+import { Button } from '@/components/ui/button';
 
 export function SiteHeader(): React.JSX.Element {
   return (

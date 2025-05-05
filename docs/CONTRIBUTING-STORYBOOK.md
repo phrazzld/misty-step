@@ -41,19 +41,19 @@ Our Storybook implementation includes the following addons:
 All stories must follow Component Story Format 3 with TypeScript:
 
 ```typescript
-import type { Meta, StoryObj } from "@storybook/react";
-import { Component } from "./component";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Component } from './component';
 
 // Meta definition
 const meta: Meta<typeof Component> = {
-  title: "Category/Component",
+  title: 'Category/Component',
   component: Component,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     // Define controls for component props
     propName: {
-      control: "boolean", // or "text", "select", "number", etc.
-      description: "Description of this prop",
+      control: 'boolean', // or "text", "select", "number", etc.
+      description: 'Description of this prop',
     },
   },
 };

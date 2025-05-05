@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 export function DarkModeToggle(): React.JSX.Element {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     // Check if the user prefers dark mode
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setIsDarkMode(prefersDark);
 
     // Apply initial theme
     if (prefersDark) {
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove('dark');
     }
   }, []);
 
@@ -25,9 +25,9 @@ export function DarkModeToggle(): React.JSX.Element {
     setIsDarkMode(newDarkMode);
 
     if (newDarkMode) {
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove('dark');
     }
   };
 
@@ -36,9 +36,9 @@ export function DarkModeToggle(): React.JSX.Element {
       variant="outline"
       size="sm"
       onClick={toggleDarkMode}
-      title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
     >
-      {isDarkMode ? "🌞" : "🌙"}
+      {isDarkMode ? '🌞' : '🌙'}
     </Button>
   );
 }

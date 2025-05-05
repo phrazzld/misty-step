@@ -1,5 +1,5 @@
-import { BrainCog, Code2, CloudCog, LineChart } from "lucide-react";
-import React from "react";
+import { BrainCog, Code2, CloudCog, LineChart } from 'lucide-react';
+import React from 'react';
 
 export const StrategicConsultingIcon = (): React.JSX.Element => (
   <BrainCog className="w-6 h-6 text-primary" />

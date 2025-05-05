@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import {
   StrategicConsultingIcon,
   SoftwareDevelopmentIcon,
   CloudDevOpsIcon,
   DataAnalyticsIcon,
-} from "@/lib/content/service-icons";
-import { coreServices } from "@/lib/content/services";
+} from '@/lib/content/service-icons';
+import { coreServices } from '@/lib/content/services';
 
 export function Services(): React.JSX.Element {
   // Map of service IDs to their icon components
   const iconMap: Record<string, React.ReactNode> = {
-    "strategic-technology-consulting": <StrategicConsultingIcon />,
-    "custom-software-development": <SoftwareDevelopmentIcon />,
-    "cloud-devops-solutions": <CloudDevOpsIcon />,
-    "data-analytics-ai": <DataAnalyticsIcon />,
+    'strategic-technology-consulting': <StrategicConsultingIcon />,
+    'custom-software-development': <SoftwareDevelopmentIcon />,
+    'cloud-devops-solutions': <CloudDevOpsIcon />,
+    'data-analytics-ai': <DataAnalyticsIcon />,
   };
 
   return (

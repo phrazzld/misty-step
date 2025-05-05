@@ -59,6 +59,9 @@ jobs:
           echo "INSTALL_TIME=$((end_time-start_time))" >> $GITHUB_OUTPUT
           echo "Installation time: $((end_time-start_time)) seconds"
 
+      - name: Check formatting
+        run: pnpm format:check
+
       - name: Lint
         run: pnpm lint
 

@@ -1,46 +1,46 @@
-import * as React from "react";
-import { describe, it, expect } from "vitest";
+import * as React from 'react';
+import { describe, it, expect } from 'vitest';
 
-import { render, screen } from "@/test/utils";
+import { render, screen } from '@/test/utils';
 
-import { Input } from "./input";
+import { Input } from './input';
 
-describe("Input", () => {
-  it("renders correctly with default props", () => {
+describe('Input', () => {
+  it('renders correctly with default props', () => {
     render(<Input placeholder="Enter text" />);
-    expect(screen.getByPlaceholderText("Enter text")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Enter text')).toBeInTheDocument();
   });
 
-  it("applies the correct type attribute", () => {
+  it('applies the correct type attribute', () => {
     render(<Input type="email" placeholder="Email" />);
-    expect(screen.getByPlaceholderText("Email")).toHaveAttribute("type", "email");
+    expect(screen.getByPlaceholderText('Email')).toHaveAttribute('type', 'email');
   });
 
-  it("applies additional className", () => {
+  it('applies additional className', () => {
     render(<Input className="custom-class" placeholder="Test" />);
-    expect(screen.getByPlaceholderText("Test")).toHaveClass("custom-class");
+    expect(screen.getByPlaceholderText('Test')).toHaveClass('custom-class');
   });
 
-  it("applies disabled state", () => {
+  it('applies disabled state', () => {
     render(<Input disabled placeholder="Disabled input" />);
-    const input = screen.getByPlaceholderText("Disabled input");
+    const input = screen.getByPlaceholderText('Disabled input');
     expect(input).toBeDisabled();
   });
 
-  it("passes additional props", () => {
+  it('passes additional props', () => {
     render(<Input data-testid="test-input" placeholder="Test" />);
-    expect(screen.getByTestId("test-input")).toBeInTheDocument();
+    expect(screen.getByTestId('test-input')).toBeInTheDocument();
   });
 
-  it("handles validation attributes", () => {
+  it('handles validation attributes', () => {
     render(<Input required placeholder="Required input" />);
-    expect(screen.getByPlaceholderText("Required input")).toHaveAttribute("required");
+    expect(screen.getByPlaceholderText('Required input')).toHaveAttribute('required');
   });
 
-  it("forwards ref to the input element", () => {
+  it('forwards ref to the input element', () => {
     const ref = React.createRef<HTMLInputElement>();
     render(<Input ref={ref} placeholder="Ref test" />);
     expect(ref.current).not.toBeNull();
-    expect(ref.current).toEqual(screen.getByPlaceholderText("Ref test"));
+    expect(ref.current).toEqual(screen.getByPlaceholderText('Ref test'));
   });
 });

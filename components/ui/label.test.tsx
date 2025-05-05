@@ -1,83 +1,83 @@
-import { createRef } from "react";
-import { describe, it, expect } from "vitest";
+import { createRef } from 'react';
+import { describe, it, expect } from 'vitest';
 
-import { render, screen } from "@/test/utils";
+import { render, screen } from '@/test/utils';
 
-import { Label } from "./label";
+import { Label } from './label';
 
-describe("Label", () => {
-  it("renders correctly with default props", () => {
+describe('Label', () => {
+  it('renders correctly with default props', () => {
     render(<Label htmlFor="test-input">Test Label</Label>);
-    expect(screen.getByText("Test Label")).toBeInTheDocument();
+    expect(screen.getByText('Test Label')).toBeInTheDocument();
   });
 
-  it("applies the correct htmlFor attribute", () => {
+  it('applies the correct htmlFor attribute', () => {
     render(<Label htmlFor="email-input">Email</Label>);
-    expect(screen.getByText("Email")).toHaveAttribute("for", "email-input");
+    expect(screen.getByText('Email')).toHaveAttribute('for', 'email-input');
   });
 
-  it("applies additional className", () => {
+  it('applies additional className', () => {
     render(
       <Label className="custom-class" htmlFor="test">
         Test Label
-      </Label>
+      </Label>,
     );
-    expect(screen.getByText("Test Label")).toHaveClass("custom-class");
+    expect(screen.getByText('Test Label')).toHaveClass('custom-class');
   });
 
-  it("passes additional props", () => {
+  it('passes additional props', () => {
     render(
       <Label data-testid="test-label" htmlFor="test">
         Test Label
-      </Label>
+      </Label>,
     );
-    expect(screen.getByTestId("test-label")).toBeInTheDocument();
+    expect(screen.getByTestId('test-label')).toBeInTheDocument();
   });
 
-  it("renders with children correctly", () => {
+  it('renders with children correctly', () => {
     render(
       <Label htmlFor="test">
         <span>Complex</span> Label
-      </Label>
+      </Label>,
     );
-    expect(screen.getByText("Complex")).toBeInTheDocument();
-    expect(screen.getByText("Label", { exact: false })).toBeInTheDocument();
+    expect(screen.getByText('Complex')).toBeInTheDocument();
+    expect(screen.getByText('Label', { exact: false })).toBeInTheDocument();
   });
 
-  it("forwards ref to the label element", () => {
+  it('forwards ref to the label element', () => {
     const ref = createRef<HTMLLabelElement>();
     render(
       <Label ref={ref} htmlFor="test-ref">
         Ref Test
-      </Label>
+      </Label>,
     );
     expect(ref.current).not.toBeNull();
-    expect(ref.current).toEqual(screen.getByText("Ref Test"));
+    expect(ref.current).toEqual(screen.getByText('Ref Test'));
   });
 
-  it("displays an asterisk when required prop is true", () => {
+  it('displays an asterisk when required prop is true', () => {
     render(
       <Label htmlFor="required-field" required>
         Required Field
-      </Label>
+      </Label>,
     );
-    expect(screen.getByText("Required Field")).toBeInTheDocument();
-    const asterisk = screen.getByText("*");
+    expect(screen.getByText('Required Field')).toBeInTheDocument();
+    const asterisk = screen.getByText('*');
     expect(asterisk).toBeInTheDocument();
-    expect(asterisk).toHaveClass("text-destructive");
+    expect(asterisk).toHaveClass('text-destructive');
   });
 
-  it("does not display an asterisk when required prop is false or undefined", () => {
+  it('does not display an asterisk when required prop is false or undefined', () => {
     render(<Label htmlFor="optional-field">Optional Field</Label>);
-    expect(screen.getByText("Optional Field")).toBeInTheDocument();
-    expect(screen.queryByText("*")).not.toBeInTheDocument();
+    expect(screen.getByText('Optional Field')).toBeInTheDocument();
+    expect(screen.queryByText('*')).not.toBeInTheDocument();
 
     render(
       <Label htmlFor="explicitly-optional" required={false}>
         Explicitly Optional
-      </Label>
+      </Label>,
     );
-    expect(screen.getByText("Explicitly Optional")).toBeInTheDocument();
-    expect(screen.queryByText("*")).not.toBeInTheDocument();
+    expect(screen.getByText('Explicitly Optional')).toBeInTheDocument();
+    expect(screen.queryByText('*')).not.toBeInTheDocument();
   });
 });

@@ -1,34 +1,34 @@
-import { render } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { render } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 
-import { metadata, default as RootLayout } from "./layout";
+import { metadata, default as RootLayout } from './layout';
 
 // Mock the globals.css import to avoid PostCSS loading issues
-vi.mock("./globals.css", () => ({}));
+vi.mock('./globals.css', () => ({}));
 
 // Mock the next/font/google
-vi.mock("next/font/google", () => ({
+vi.mock('next/font/google', () => ({
   Geist: () => ({
-    variable: "--font-geist-sans",
+    variable: '--font-geist-sans',
   }),
   Geist_Mono: () => ({
-    variable: "--font-geist-mono",
+    variable: '--font-geist-mono',
   }),
 }));
 
-describe("Layout", () => {
-  it("has the correct metadata", () => {
-    expect(metadata.title).toBe("Misty Step - Professional Technology Consulting Services");
+describe('Layout', () => {
+  it('has the correct metadata', () => {
+    expect(metadata.title).toBe('Misty Step - Professional Technology Consulting Services');
     expect(metadata.description).toBe(
-      "Software development and technical consulting services that transform your business challenges into effective digital solutions. Expert guidance when you need it most."
+      'Software development and technical consulting services that transform your business challenges into effective digital solutions. Expert guidance when you need it most.',
     );
   });
 
-  it("renders correctly with children", () => {
+  it('renders correctly with children', () => {
     const { container } = render(
       <RootLayout>
         <div data-testid="test-child">Test Child</div>
-      </RootLayout>
+      </RootLayout>,
     );
 
     // In React Testing Library, the rendered component is inside a div wrapper,
@@ -37,7 +37,7 @@ describe("Layout", () => {
 
     // Check that our test child is rendered
     expect(container.querySelector('[data-testid="test-child"]')).toBeInTheDocument();
-    expect(container.querySelector('[data-testid="test-child"]')?.textContent).toBe("Test Child");
+    expect(container.querySelector('[data-testid="test-child"]')?.textContent).toBe('Test Child');
 
     // Check for the presence of the font variable classes in the rendered output
     const bodyClasses = container.firstChild?.textContent;

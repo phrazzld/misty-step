@@ -1,48 +1,48 @@
-import type { ComponentProps, JSX } from "react";
+import type { ComponentProps, JSX } from 'react';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-function Card({ className, ...props }: ComponentProps<"div">): JSX.Element {
+function Card({ className, ...props }: ComponentProps<'div'>): JSX.Element {
   return (
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
-        className
+        'bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm',
+        className,
       )}
       {...props}
     />
   );
 }
 
-function CardHeader({ className, ...props }: ComponentProps<"div">): JSX.Element {
+function CardHeader({ className, ...props }: ComponentProps<'div'>): JSX.Element {
   return (
     <div
       data-slot="card-header"
       className={cn(
-        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
-        className
+        '@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6',
+        className,
       )}
       {...props}
     />
   );
 }
 
-function CardTitle({ className, ...props }: ComponentProps<"div">): JSX.Element {
+function CardTitle({ className, ...props }: ComponentProps<'div'>): JSX.Element {
   return (
     <div
       data-slot="card-title"
-      className={cn("leading-none font-semibold", className)}
+      className={cn('leading-none font-semibold', className)}
       {...props}
     />
   );
 }
 
-function CardDescription({ className, ...props }: ComponentProps<"div">): JSX.Element {
+function CardDescription({ className, ...props }: ComponentProps<'div'>): JSX.Element {
   return (
     <div
       data-slot="card-description"
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn('text-muted-foreground text-sm', className)}
       {...props}
     />
   );
@@ -79,25 +79,25 @@ function CardDescription({ className, ...props }: ComponentProps<"div">): JSX.El
  * @param props.children - The action elements (typically buttons or links) to display
  * @returns JSX element - A div with grid positioning for aligning actions within the card header
  */
-function CardAction({ className, ...props }: ComponentProps<"div">): JSX.Element {
+function CardAction({ className, ...props }: ComponentProps<'div'>): JSX.Element {
   return (
     <div
       data-slot="card-action"
-      className={cn("col-start-2 row-span-2 row-start-1 self-start justify-self-end", className)}
+      className={cn('col-start-2 row-span-2 row-start-1 self-start justify-self-end', className)}
       {...props}
     />
   );
 }
 
-function CardContent({ className, ...props }: ComponentProps<"div">): JSX.Element {
-  return <div data-slot="card-content" className={cn("px-6", className)} {...props} />;
+function CardContent({ className, ...props }: ComponentProps<'div'>): JSX.Element {
+  return <div data-slot="card-content" className={cn('px-6', className)} {...props} />;
 }
 
-function CardFooter({ className, ...props }: ComponentProps<"div">): JSX.Element {
+function CardFooter({ className, ...props }: ComponentProps<'div'>): JSX.Element {
   return (
     <div
       data-slot="card-footer"
-      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      className={cn('flex items-center px-6 [.border-t]:pt-6', className)}
       {...props}
     />
   );

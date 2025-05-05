@@ -138,7 +138,7 @@
 
 ## Codebase Alignment & Documentation
 
-- [ ] **T014 · Refactor · P2: apply formatting and lint fixes to entire codebase**
+- [x] **T014 · Refactor · P2: apply formatting and lint fixes to entire codebase**
   - **Context:** PLAN.md > Risk Matrix > Inconsistency with existing codebase
   - **Action:**
     1. Run `pnpm format` to apply Prettier formatting across all applicable files.

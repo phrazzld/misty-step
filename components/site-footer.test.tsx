@@ -1,14 +1,14 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 
-import { render, screen } from "@/test/utils";
+import { render, screen } from '@/test/utils';
 
-import { SiteFooter } from "./site-footer";
+import { SiteFooter } from './site-footer';
 
 // Mock the current year for consistent testing
-describe("SiteFooter", () => {
+describe('SiteFooter', () => {
   // Save original Date implementation
   const OriginalDate = global.Date;
-  const mockDate = new Date("2024-01-01");
+  const mockDate = new Date('2024-01-01');
 
   beforeEach(() => {
     // Mock Date to return fixed date
@@ -28,56 +28,56 @@ describe("SiteFooter", () => {
     global.Date = OriginalDate;
   });
 
-  it("renders the site logo", () => {
+  it('renders the site logo', () => {
     render(<SiteFooter />);
-    const logo = screen.getByAltText("Misty Step Logo");
+    const logo = screen.getByAltText('Misty Step Logo');
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute("src", "/images/logo.svg");
+    expect(logo).toHaveAttribute('src', '/images/logo.svg');
   });
 
-  it("renders the company name", () => {
+  it('renders the company name', () => {
     render(<SiteFooter />);
-    expect(screen.getByText("Misty Step")).toBeInTheDocument();
+    expect(screen.getByText('Misty Step')).toBeInTheDocument();
   });
 
-  it("renders navigation links", () => {
+  it('renders navigation links', () => {
     render(<SiteFooter />);
 
-    const servicesLink = screen.getByText("Services");
+    const servicesLink = screen.getByText('Services');
     expect(servicesLink).toBeInTheDocument();
-    expect(servicesLink).toHaveAttribute("href", "#services");
+    expect(servicesLink).toHaveAttribute('href', '#services');
 
-    const aboutLink = screen.getByText("About");
+    const aboutLink = screen.getByText('About');
     expect(aboutLink).toBeInTheDocument();
-    expect(aboutLink).toHaveAttribute("href", "#about");
+    expect(aboutLink).toHaveAttribute('href', '#about');
 
-    const contactLink = screen.getByText("Contact");
+    const contactLink = screen.getByText('Contact');
     expect(contactLink).toBeInTheDocument();
-    expect(contactLink).toHaveAttribute("href", "#contact");
+    expect(contactLink).toHaveAttribute('href', '#contact');
   });
 
-  it("renders the copyright notice with correct year", () => {
+  it('renders the copyright notice with correct year', () => {
     render(<SiteFooter />);
-    expect(screen.getByText("© 2024 Misty Step. All rights reserved.")).toBeInTheDocument();
+    expect(screen.getByText('© 2024 Misty Step. All rights reserved.')).toBeInTheDocument();
   });
 
-  it("has the expected layout structure", () => {
+  it('has the expected layout structure', () => {
     render(<SiteFooter />);
 
     // Check that the footer has the right classes
-    const footer = screen.getByRole("contentinfo");
-    expect(footer).toHaveClass("bg-background");
-    expect(footer).toHaveClass("border-t");
+    const footer = screen.getByRole('contentinfo');
+    expect(footer).toHaveClass('bg-background');
+    expect(footer).toHaveClass('border-t');
 
     // Check for container div
-    const container = footer.querySelector(".container");
+    const container = footer.querySelector('.container');
     expect(container).toBeInTheDocument();
 
     // Check for layout sections
-    const topSection = container?.querySelector(".flex.flex-col.md\\:flex-row");
+    const topSection = container?.querySelector('.flex.flex-col.md\\:flex-row');
     expect(topSection).toBeInTheDocument();
 
-    const bottomSection = container?.querySelector(".mt-8.pt-8.border-t");
+    const bottomSection = container?.querySelector('.mt-8.pt-8.border-t');
     expect(bottomSection).toBeInTheDocument();
   });
 });

@@ -1,118 +1,118 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { expect, userEvent, within } from "@storybook/test";
-import { useState, ReactElement } from "react";
+import type { Meta, StoryObj } from '@storybook/react';
+import { expect, userEvent, within } from '@storybook/test';
+import { useState, ReactElement } from 'react';
 
-import { Label } from "./label";
-import { Textarea } from "./textarea";
+import { Label } from './label';
+import { Textarea } from './textarea';
 
 const meta: Meta<typeof Textarea> = {
-  title: "UI/Textarea",
+  title: 'UI/Textarea',
   component: Textarea,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     // Text attributes
     placeholder: {
-      control: "text",
-      description: "Placeholder text for the textarea",
+      control: 'text',
+      description: 'Placeholder text for the textarea',
     },
     value: {
-      control: "text",
-      description: "The controlled value of the textarea",
+      control: 'text',
+      description: 'The controlled value of the textarea',
     },
     defaultValue: {
-      control: "text",
-      description: "The default value of the textarea (uncontrolled)",
+      control: 'text',
+      description: 'The default value of the textarea (uncontrolled)',
     },
 
     // Sizing
     rows: {
-      control: { type: "number", min: 2, max: 20 },
-      description: "Number of visible text lines",
+      control: { type: 'number', min: 2, max: 20 },
+      description: 'Number of visible text lines',
     },
     cols: {
-      control: "number",
-      description: "Number of visible character columns",
+      control: 'number',
+      description: 'Number of visible character columns',
     },
 
     // Identification
     id: {
-      control: "text",
-      description: "Unique identifier for the textarea",
+      control: 'text',
+      description: 'Unique identifier for the textarea',
     },
     name: {
-      control: "text",
-      description: "Name of the textarea, used when submitting forms",
+      control: 'text',
+      description: 'Name of the textarea, used when submitting forms',
     },
 
     // TextArea states
     disabled: {
-      control: "boolean",
-      description: "Whether the textarea is disabled",
+      control: 'boolean',
+      description: 'Whether the textarea is disabled',
     },
     required: {
-      control: "boolean",
+      control: 'boolean',
       description:
-        "Indicates that user input is required on the textarea before a form can be submitted",
+        'Indicates that user input is required on the textarea before a form can be submitted',
     },
     readOnly: {
-      control: "boolean",
-      description: "Indicates whether the textarea value can be modified",
+      control: 'boolean',
+      description: 'Indicates whether the textarea value can be modified',
     },
 
     // Form attributes
     form: {
-      control: "text",
+      control: 'text',
       description:
-        "Associates the textarea with a form (by form id) even when not nested inside the form",
+        'Associates the textarea with a form (by form id) even when not nested inside the form',
     },
 
     // Accessibility attributes
-    "aria-required": {
-      control: "boolean",
+    'aria-required': {
+      control: 'boolean',
       description:
         "Indicates to screen readers that textarea is required. Use alongside HTML 'required' attribute for both validation and accessibility.",
     },
-    "aria-invalid": {
-      control: "boolean",
+    'aria-invalid': {
+      control: 'boolean',
       description:
-        "Indicates the entered value does not conform to the format expected by the application",
+        'Indicates the entered value does not conform to the format expected by the application',
     },
-    "aria-describedby": {
-      control: "text",
-      description: "Identifies the element(s) that describes the textarea",
+    'aria-describedby': {
+      control: 'text',
+      description: 'Identifies the element(s) that describes the textarea',
     },
-    "aria-label": {
-      control: "text",
+    'aria-label': {
+      control: 'text',
       description:
         "Provides an accessible name for the textarea when a visible label isn't present",
     },
-    "aria-labelledby": {
-      control: "text",
-      description: "Identifies the element that labels the textarea",
+    'aria-labelledby': {
+      control: 'text',
+      description: 'Identifies the element that labels the textarea',
     },
-    "aria-errormessage": {
-      control: "text",
-      description: "Identifies the element that provides an error message for the textarea",
+    'aria-errormessage': {
+      control: 'text',
+      description: 'Identifies the element that provides an error message for the textarea',
     },
-    "aria-multiline": {
-      control: "boolean",
-      description: "Indicates that the textarea accepts multiple lines of input",
+    'aria-multiline': {
+      control: 'boolean',
+      description: 'Indicates that the textarea accepts multiple lines of input',
       defaultValue: true,
     },
-    "aria-placeholder": {
-      control: "text",
+    'aria-placeholder': {
+      control: 'text',
       description:
-        "Defines the placeholder text for assistive technologies (use alongside HTML placeholder)",
+        'Defines the placeholder text for assistive technologies (use alongside HTML placeholder)',
     },
-    "aria-readonly": {
-      control: "boolean",
-      description: "Indicates the textarea is not editable (use alongside HTML readOnly)",
+    'aria-readonly': {
+      control: 'boolean',
+      description: 'Indicates the textarea is not editable (use alongside HTML readOnly)',
     },
 
     // Styling
     className: {
-      control: "text",
-      description: "Additional CSS class names",
+      control: 'text',
+      description: 'Additional CSS class names',
     },
 
     // Event handlers - control: false means they won't appear in controls panel
@@ -122,59 +122,59 @@ const meta: Meta<typeof Textarea> = {
     },
     onBlur: {
       control: false,
-      description: "Function called when the textarea loses focus",
+      description: 'Function called when the textarea loses focus',
     },
     onFocus: {
       control: false,
-      description: "Function called when the textarea receives focus",
+      description: 'Function called when the textarea receives focus',
     },
     onInput: {
       control: false,
-      description: "Function called when the value of the textarea changes",
+      description: 'Function called when the value of the textarea changes',
     },
     onInvalid: {
       control: false,
-      description: "Function called when the textarea fails validation",
+      description: 'Function called when the textarea fails validation',
     },
     onKeyDown: {
       control: false,
-      description: "Function called when a key is pressed down in the textarea",
+      description: 'Function called when a key is pressed down in the textarea',
     },
     onKeyUp: {
       control: false,
-      description: "Function called when a key is released in the textarea",
+      description: 'Function called when a key is released in the textarea',
     },
     onSelect: {
       control: false,
-      description: "Function called when text is selected within the textarea",
+      description: 'Function called when text is selected within the textarea',
     },
 
     // Additional HTML attributes
     autoComplete: {
-      control: "select",
-      options: ["on", "off"],
-      description: "Hint for form autofill feature",
+      control: 'select',
+      options: ['on', 'off'],
+      description: 'Hint for form autofill feature',
     },
     autoFocus: {
-      control: "boolean",
-      description: "Textarea should automatically get focus when the page loads",
+      control: 'boolean',
+      description: 'Textarea should automatically get focus when the page loads',
     },
     maxLength: {
-      control: "number",
-      description: "Maximum length of the textarea value",
+      control: 'number',
+      description: 'Maximum length of the textarea value',
     },
     minLength: {
-      control: "number",
-      description: "Minimum length of the textarea value",
+      control: 'number',
+      description: 'Minimum length of the textarea value',
     },
     spellCheck: {
-      control: "boolean",
-      description: "Whether to enable spell checking for the textarea",
+      control: 'boolean',
+      description: 'Whether to enable spell checking for the textarea',
     },
     wrap: {
-      control: "select",
-      options: ["hard", "soft", "off"],
-      description: "Indicates how the text should be wrapped when submitting in a form",
+      control: 'select',
+      options: ['hard', 'soft', 'off'],
+      description: 'Indicates how the text should be wrapped when submitting in a form',
     },
     // Resize property (applied via style object)
     // Note: This is intentionally commented out as it's handled through the style prop
@@ -185,36 +185,36 @@ const meta: Meta<typeof Textarea> = {
     //     "Controls how the textarea can be resized by the user (applies via style object)",
     // },
     enterKeyHint: {
-      control: "select",
-      options: ["enter", "done", "go", "next", "previous", "search", "send"],
-      description: "Hint for what action the Enter key will perform",
+      control: 'select',
+      options: ['enter', 'done', 'go', 'next', 'previous', 'search', 'send'],
+      description: 'Hint for what action the Enter key will perform',
     },
     inputMode: {
-      control: "select",
-      options: ["none", "text", "decimal", "numeric", "tel", "search", "email", "url"],
+      control: 'select',
+      options: ['none', 'text', 'decimal', 'numeric', 'tel', 'search', 'email', 'url'],
       description:
-        "Hint to browsers for which input mechanism to show (e.g., virtual keyboard type)",
+        'Hint to browsers for which input mechanism to show (e.g., virtual keyboard type)',
     },
     tabIndex: {
-      control: "number",
-      description: "Controls the tab order of the textarea",
+      control: 'number',
+      description: 'Controls the tab order of the textarea',
     },
     title: {
-      control: "text",
-      description: "Tooltip text that appears when hovering over the textarea",
+      control: 'text',
+      description: 'Tooltip text that appears when hovering over the textarea',
     },
     dirName: {
-      control: "text",
-      description: "Name of form field to use for sending the text direction of the textarea",
+      control: 'text',
+      description: 'Name of form field to use for sending the text direction of the textarea',
     },
     dir: {
-      control: "select",
-      options: ["ltr", "rtl", "auto"],
-      description: "The text direction of the textarea content",
+      control: 'select',
+      options: ['ltr', 'rtl', 'auto'],
+      description: 'The text direction of the textarea content',
     },
     lang: {
-      control: "text",
-      description: "The language of the textarea content",
+      control: 'text',
+      description: 'The language of the textarea content',
     },
   },
 };
@@ -223,7 +223,7 @@ export default meta;
 type Story = StoryObj<typeof Textarea>;
 
 export const BasicTextarea: Story = {
-  name: "Basic Multiline Input",
+  name: 'Basic Multiline Input',
   args: {
     rows: 4,
   },
@@ -231,24 +231,24 @@ export const BasicTextarea: Story = {
 
 export const Placeholder: Story = {
   args: {
-    placeholder: "Type your message here...",
+    placeholder: 'Type your message here...',
     rows: 4,
   },
 };
 
 export const Disabled: Story = {
   args: {
-    placeholder: "This textarea is disabled",
+    placeholder: 'This textarea is disabled',
     disabled: true,
     rows: 4,
   },
 };
 
 export const TextareaWithLabel: Story = {
-  name: "Textarea with Associated Label",
+  name: 'Textarea with Associated Label',
   args: {
-    id: "message",
-    placeholder: "Type your message here...",
+    id: 'message',
+    placeholder: 'Type your message here...',
     rows: 4,
   },
   decorators: [
@@ -263,7 +263,7 @@ export const TextareaWithLabel: Story = {
 
 // Component that uses useState to track character count
 const TextareaWithCounter = (): ReactElement => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const maxLength = 200;
 
   return (
@@ -290,10 +290,10 @@ export const WithCharacterCount: Story = {
 
 export const Required: Story = {
   args: {
-    id: "required-message",
-    placeholder: "This field is required",
+    id: 'required-message',
+    placeholder: 'This field is required',
     required: true,
-    "aria-required": "true",
+    'aria-required': 'true',
     rows: 4,
   },
   decorators: [
@@ -310,7 +310,7 @@ export const Required: Story = {
 
 // Interactive state stories using play functions to replace the old CSS-based simulation
 export const HoverInteraction: Story = {
-  name: "Hover State",
+  name: 'Hover State',
   parameters: {
     docs: {
       description: {
@@ -320,17 +320,17 @@ export const HoverInteraction: Story = {
     },
   },
   args: {
-    placeholder: "Hover over me",
+    placeholder: 'Hover over me',
     rows: 4,
   },
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
     // Get the textarea
-    const textarea = canvas.getByPlaceholderText("Hover over me");
+    const textarea = canvas.getByPlaceholderText('Hover over me');
 
     // Hover over the textarea
-    await step("Hover over the textarea", async () => {
+    await step('Hover over the textarea', async () => {
       await userEvent.hover(textarea);
 
       // Verify the textarea is being hovered (visual confirmation is primary)
@@ -340,7 +340,7 @@ export const HoverInteraction: Story = {
 };
 
 export const FocusInteraction: Story = {
-  name: "Focus State",
+  name: 'Focus State',
   parameters: {
     docs: {
       description: {
@@ -350,17 +350,17 @@ export const FocusInteraction: Story = {
     },
   },
   args: {
-    placeholder: "Click me or press Tab",
+    placeholder: 'Click me or press Tab',
     rows: 4,
   },
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
     // Get the textarea
-    const textarea = canvas.getByPlaceholderText("Click me or press Tab");
+    const textarea = canvas.getByPlaceholderText('Click me or press Tab');
 
     // Focus the textarea
-    await step("Focus the textarea", async () => {
+    await step('Focus the textarea', async () => {
       await userEvent.tab();
 
       // Verify the textarea has focus
@@ -368,47 +368,47 @@ export const FocusInteraction: Story = {
     });
 
     // Type something to demonstrate the focus state
-    await step("Type in the textarea", async () => {
+    await step('Type in the textarea', async () => {
       await userEvent.type(
         textarea,
-        "This textarea is now focused.\nYou can type multiple lines of text."
+        'This textarea is now focused.\nYou can type multiple lines of text.',
       );
 
       // Verify the typed content
       await expect(textarea).toHaveValue(
-        "This textarea is now focused.\nYou can type multiple lines of text."
+        'This textarea is now focused.\nYou can type multiple lines of text.',
       );
     });
   },
 };
 
 export const AllInteractionsSequence: Story = {
-  name: "All Interactions",
+  name: 'All Interactions',
   parameters: {
     docs: {
       description: {
         story:
-          "This demonstrates all textarea interactions in sequence: hover, focus, and typing interactions with multi-line input. The play function shows each state with a short delay between them.",
+          'This demonstrates all textarea interactions in sequence: hover, focus, and typing interactions with multi-line input. The play function shows each state with a short delay between them.',
       },
     },
   },
   args: {
-    placeholder: "Interact with me",
+    placeholder: 'Interact with me',
     rows: 4,
   },
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-    const textarea = canvas.getByPlaceholderText("Interact with me");
+    const textarea = canvas.getByPlaceholderText('Interact with me');
 
     // 1. Hover state
-    await step("Hover over the textarea", async () => {
+    await step('Hover over the textarea', async () => {
       await userEvent.hover(textarea);
       // Wait a moment to see the hover state
       await new Promise((resolve) => setTimeout(resolve, 1000));
     });
 
     // 2. Focus state
-    await step("Focus the textarea", async () => {
+    await step('Focus the textarea', async () => {
       await userEvent.click(textarea);
       await expect(textarea).toHaveFocus();
       // Wait a moment to see the focus state
@@ -416,34 +416,34 @@ export const AllInteractionsSequence: Story = {
     });
 
     // 3. Type some multi-line text
-    await step("Type in the textarea", async () => {
-      await userEvent.type(textarea, "This is line one.\nThis is line two.\nThis is line three.", {
+    await step('Type in the textarea', async () => {
+      await userEvent.type(textarea, 'This is line one.\nThis is line two.\nThis is line three.', {
         delay: 100,
       });
 
       // Verify the typed content
       await expect(textarea).toHaveValue(
-        "This is line one.\nThis is line two.\nThis is line three."
+        'This is line one.\nThis is line two.\nThis is line three.',
       );
     });
   },
 };
 
 export const ErrorState: Story = {
-  name: "Error State",
+  name: 'Error State',
   parameters: {
     docs: {
       description: {
         story:
-          "This shows how the textarea looks when it has an error or invalid state. The error state is achieved with the aria-invalid attribute, which can be applied to any textarea to indicate validation failure.",
+          'This shows how the textarea looks when it has an error or invalid state. The error state is achieved with the aria-invalid attribute, which can be applied to any textarea to indicate validation failure.',
       },
     },
   },
   args: {
-    "aria-invalid": "true",
-    placeholder: "Invalid textarea content",
+    'aria-invalid': 'true',
+    placeholder: 'Invalid textarea content',
     rows: 4,
-    defaultValue: "This content has validation errors",
+    defaultValue: 'This content has validation errors',
   },
   decorators: [
     (Story) => (
@@ -458,22 +458,22 @@ export const ErrorState: Story = {
 };
 
 export const WithLabelAndError: Story = {
-  name: "With Label and Error",
+  name: 'With Label and Error',
   parameters: {
     docs: {
       description: {
         story:
-          "This shows how to display a textarea with an error state alongside a label and error message. The aria-describedby attribute connects the textarea to its error message.",
+          'This shows how to display a textarea with an error state alongside a label and error message. The aria-describedby attribute connects the textarea to its error message.',
       },
     },
   },
   args: {
-    id: "message-error-demo",
-    placeholder: "Type your message here...",
+    id: 'message-error-demo',
+    placeholder: 'Type your message here...',
     rows: 4,
-    defaultValue: "Message is too short",
-    "aria-invalid": "true",
-    "aria-describedby": "message-error-text",
+    defaultValue: 'Message is too short',
+    'aria-invalid': 'true',
+    'aria-describedby': 'message-error-text',
   },
   decorators: [
     (Story) => (
@@ -489,12 +489,12 @@ export const WithLabelAndError: Story = {
 };
 
 export const LongPlaceholder: Story = {
-  name: "Long Placeholder",
+  name: 'Long Placeholder',
   parameters: {
     docs: {
       description: {
         story:
-          "This demonstrates how the textarea handles exceptionally long placeholder text. Unlike inputs, textareas naturally wrap content to multiple lines.",
+          'This demonstrates how the textarea handles exceptionally long placeholder text. Unlike inputs, textareas naturally wrap content to multiple lines.',
       },
     },
   },
@@ -548,12 +548,12 @@ export const LongPlaceholder: Story = {
 };
 
 export const LongValue: Story = {
-  name: "Long Value",
+  name: 'Long Value',
   parameters: {
     docs: {
       description: {
         story:
-          "This demonstrates how the textarea handles exceptionally long text content. Textareas are designed specifically for multi-line content and automatically handle text wrapping and scrolling.",
+          'This demonstrates how the textarea handles exceptionally long text content. Textareas are designed specifically for multi-line content and automatically handle text wrapping and scrolling.',
       },
     },
   },
@@ -613,46 +613,46 @@ Fifth line: another line with moderate length`}
 // Additional edge case stories
 
 export const EmptyTextarea: Story = {
-  name: "Empty Textarea",
+  name: 'Empty Textarea',
   parameters: {
     docs: {
       description: {
         story:
-          "A textarea with empty content to test how the component handles empty values while maintaining proper dimensions.",
+          'A textarea with empty content to test how the component handles empty values while maintaining proper dimensions.',
       },
     },
   },
   args: {
-    placeholder: "Type your message here...",
-    defaultValue: "",
+    placeholder: 'Type your message here...',
+    defaultValue: '',
     rows: 4,
   },
 };
 
 export const SpecialCharactersTextarea: Story = {
-  name: "Textarea with Special Characters",
+  name: 'Textarea with Special Characters',
   parameters: {
     docs: {
       description: {
         story:
-          "A textarea with various special characters, emojis, and international characters to verify proper rendering and handling.",
+          'A textarea with various special characters, emojis, and international characters to verify proper rendering and handling.',
       },
     },
   },
   args: {
     rows: 4,
     defaultValue:
-      "Line 1: → Special & Unicode € Characters 🚀 ★\nLine 2: é ç ñ ö ü ß\nLine 3: 你好 こんにちは 안녕하세요\nLine 4: ♠ ♥ ♦ ♣ ♤ ♧ ♡ ♢",
+      'Line 1: → Special & Unicode € Characters 🚀 ★\nLine 2: é ç ñ ö ü ß\nLine 3: 你好 こんにちは 안녕하세요\nLine 4: ♠ ♥ ♦ ♣ ♤ ♧ ♡ ♢',
   },
 };
 
 export const ResizeHandling: Story = {
-  name: "Textarea Resize Handling",
+  name: 'Textarea Resize Handling',
   parameters: {
     docs: {
       description: {
         story:
-          "Demonstrates how textarea handles different resize behavior settings. This is useful for testing user experience when manual resizing is allowed or restricted.",
+          'Demonstrates how textarea handles different resize behavior settings. This is useful for testing user experience when manual resizing is allowed or restricted.',
       },
     },
   },
@@ -674,7 +674,7 @@ export const ResizeHandling: Story = {
         <Textarea
           placeholder="This textarea can only be resized vertically"
           rows={3}
-          style={{ resize: "vertical" }}
+          style={{ resize: 'vertical' }}
         />
         <p className="text-xs text-muted-foreground mt-2">
           Restricted to vertical resizing only via CSS
@@ -686,7 +686,7 @@ export const ResizeHandling: Story = {
         <Textarea
           placeholder="This textarea can only be resized horizontally"
           rows={3}
-          style={{ resize: "horizontal" }}
+          style={{ resize: 'horizontal' }}
         />
         <p className="text-xs text-muted-foreground mt-2">
           Restricted to horizontal resizing only via CSS
@@ -698,7 +698,7 @@ export const ResizeHandling: Story = {
         <Textarea
           placeholder="This textarea cannot be resized by the user"
           rows={3}
-          style={{ resize: "none" }}
+          style={{ resize: 'none' }}
         />
         <p className="text-xs text-muted-foreground mt-2">
           Resizing is disabled completely via CSS
@@ -709,12 +709,12 @@ export const ResizeHandling: Story = {
 };
 
 export const AccessibilityEdgeCaseTextarea: Story = {
-  name: "Textarea with Accessibility Edge Cases",
+  name: 'Textarea with Accessibility Edge Cases',
   parameters: {
     docs: {
       description: {
         story:
-          "Tests how textarea handles extremely long accessibility attributes to ensure compatibility with assistive technologies.",
+          'Tests how textarea handles extremely long accessibility attributes to ensure compatibility with assistive technologies.',
       },
     },
   },

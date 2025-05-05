@@ -1,4 +1,4 @@
-import pino from "pino";
+import pino from 'pino';
 
 /**
  * Configured Pino logger instance for structured logging
@@ -10,8 +10,8 @@ import pino from "pino";
  * - Configurable level via environment variable
  */
 const logger = pino({
-  name: "marketing-site",
-  level: process.env.LOG_LEVEL || "info",
+  name: 'marketing-site',
+  level: process.env.LOG_LEVEL || 'info',
   timestamp: pino.stdTimeFunctions.isoTime,
   formatters: {
     level: (label) => {
@@ -19,15 +19,15 @@ const logger = pino({
     },
   },
   base: {
-    service_name: "marketing-site",
+    service_name: 'marketing-site',
   },
   transport:
-    process.env.NODE_ENV === "development"
+    process.env.NODE_ENV === 'development'
       ? {
-          target: "pino-pretty",
+          target: 'pino-pretty',
           options: {
             colorize: true,
-            translateTime: "SYS:standard",
+            translateTime: 'SYS:standard',
           },
         }
       : undefined,
