@@ -158,7 +158,7 @@
   - **Done‑when:**
     1. `README.md` contains a clear, comprehensive section on using and understanding the code quality tooling.
   - **Depends‑on:** [T010, T012]
-- [ ] **T016 · Documentation · P3: add explanatory comments to config files**
+- [x] **T016 · Documentation · P3: add explanatory comments to config files**
   - **Context:** PLAN.md > Documentation > TSDoc Comments
   - **Action:**
     1. Add comments (JSDoc/TSDoc style where applicable) to `eslint.config.mjs`, `.prettierrc.json`, and `tsconfig.json` explaining key configurations or non-obvious choices.
