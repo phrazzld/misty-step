@@ -148,7 +148,7 @@
     1. `pnpm format:check` and `pnpm lint` report no errors on the main branch (ignoring non-auto-fixable lint errors for now).
     2. A commit containing the initial formatting/linting fixes is created.
   - **Depends‑on:** [T010]
-- [ ] **T015 · Documentation · P2: document code quality tools in README**
+- [x] **T015 · Documentation · P2: document code quality tools in README**
   - **Context:** PLAN.md > Documentation > README Updates; Environmental Considerations
   - **Action:**
     1. Add a "Code Quality" section to `README.md`.
