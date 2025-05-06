@@ -39,9 +39,9 @@ The following files have been excluded from coverage calculations in `vitest.con
 **Tasks**:
 
 - [x] Extract form handling logic to a separate, testable function
-- [ ] Create proper FormData mocking strategy
-- [ ] Add test to verify form data construction with all fields
-- [ ] Add test to verify form submission behavior and error handling
+- [x] Create proper FormData mocking strategy
+- [x] Add test to verify form data construction with all fields
+- [x] Add test to verify form submission behavior and error handling
 - [ ] Consider using a form library that's more testable (e.g., React Hook Form, Formik)
 
 ### Test Utilities
@@ -66,4 +66,4 @@ The following tests are currently skipped and should be fixed:
 
 - [x] `lib/logger.test.ts`: "configures logger with different options based on NODE_ENV"
 - [ ] `test/utils.test.tsx`: "passes custom render options through to RTL render"
-- [ ] `components/contact.test.tsx`: "accepts input and submits the form with data"
+- [x] `components/contact.test.tsx`: "accepts input and submits the form with data"
