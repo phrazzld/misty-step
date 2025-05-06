@@ -9,7 +9,7 @@ import {
 } from '@/lib/content/service-icons';
 import { coreServices } from '@/lib/content/services';
 
-export function Services(): React.JSX.Element {
+export function Services(): React.ReactElement {
   // Map of service IDs to their icon components
   const iconMap: Record<string, React.ReactNode> = {
     'strategic-technology-consulting': <StrategicConsultingIcon />,

@@ -57,7 +57,7 @@ const AllTheProviders = ({
   children: React.ReactNode;
   theme?: Theme;
   prefersDarkMode?: boolean;
-}): React.JSX.Element => {
+}): React.ReactElement => {
   // If prefersDarkMode is true, mock the system preference
   if (prefersDarkMode) {
     mockDarkModePreference(true);

@@ -4,6 +4,14 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 // Import after the mock is set up
 import logger, { createLogger, createConfiguredLogger } from './logger';
 
+// Define the type for our mock pino function with additional properties
+type MockPinoFn = ReturnType<typeof vi.fn> & {
+  lastOptions: Record<string, any>;
+  stdTimeFunctions: {
+    isoTime: string;
+  };
+};
+
 // We need to mock pino before importing our logger
 vi.mock('pino', () => {
   const mockPinoInstance = {
@@ -16,9 +24,9 @@ vi.mock('pino', () => {
 
   const mockPino = vi.fn().mockImplementation((options) => {
     // Store the options for testing
-    mockPino.lastOptions = options;
+    (mockPino as MockPinoFn).lastOptions = options;
     return mockPinoInstance;
-  });
+  }) as MockPinoFn;
 
   // Add a place to store the last options
   mockPino.lastOptions = {};
@@ -35,7 +43,7 @@ vi.mock('pino', () => {
 
 describe('logger', () => {
   // Get the mocked pino function
-  const mockPino = pino as unknown as jest.Mock & { lastOptions: any };
+  const mockPino = pino as unknown as MockPinoFn;
 
   beforeEach(() => {
     // Reset the lastOptions before each test

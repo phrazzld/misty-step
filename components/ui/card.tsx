@@ -1,8 +1,8 @@
-import type { ComponentProps, JSX } from 'react';
+import React, { type ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils';
 
-function Card({ className, ...props }: ComponentProps<'div'>): JSX.Element {
+function Card({ className, ...props }: ComponentProps<'div'>): React.ReactElement {
   return (
     <div
       data-slot="card"
@@ -15,7 +15,7 @@ function Card({ className, ...props }: ComponentProps<'div'>): JSX.Element {
   );
 }
 
-function CardHeader({ className, ...props }: ComponentProps<'div'>): JSX.Element {
+function CardHeader({ className, ...props }: ComponentProps<'div'>): React.ReactElement {
   return (
     <div
       data-slot="card-header"
@@ -28,7 +28,7 @@ function CardHeader({ className, ...props }: ComponentProps<'div'>): JSX.Element
   );
 }
 
-function CardTitle({ className, ...props }: ComponentProps<'div'>): JSX.Element {
+function CardTitle({ className, ...props }: ComponentProps<'div'>): React.ReactElement {
   return (
     <div
       data-slot="card-title"
@@ -38,7 +38,7 @@ function CardTitle({ className, ...props }: ComponentProps<'div'>): JSX.Element 
   );
 }
 
-function CardDescription({ className, ...props }: ComponentProps<'div'>): JSX.Element {
+function CardDescription({ className, ...props }: ComponentProps<'div'>): React.ReactElement {
   return (
     <div
       data-slot="card-description"
@@ -77,9 +77,9 @@ function CardDescription({ className, ...props }: ComponentProps<'div'>): JSX.El
  * @param props - Standard HTML div props including className for additional styling
  * @param props.className - Optional CSS class names to apply to the action container
  * @param props.children - The action elements (typically buttons or links) to display
- * @returns JSX element - A div with grid positioning for aligning actions within the card header
+ * @returns React.ReactElement - A div with grid positioning for aligning actions within the card header
  */
-function CardAction({ className, ...props }: ComponentProps<'div'>): JSX.Element {
+function CardAction({ className, ...props }: ComponentProps<'div'>): React.ReactElement {
   return (
     <div
       data-slot="card-action"
@@ -89,11 +89,11 @@ function CardAction({ className, ...props }: ComponentProps<'div'>): JSX.Element
   );
 }
 
-function CardContent({ className, ...props }: ComponentProps<'div'>): JSX.Element {
+function CardContent({ className, ...props }: ComponentProps<'div'>): React.ReactElement {
   return <div data-slot="card-content" className={cn('px-6', className)} {...props} />;
 }
 
-function CardFooter({ className, ...props }: ComponentProps<'div'>): JSX.Element {
+function CardFooter({ className, ...props }: ComponentProps<'div'>): React.ReactElement {
   return (
     <div
       data-slot="card-footer"

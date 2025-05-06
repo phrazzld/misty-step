@@ -42,10 +42,10 @@ describe('Layout', () => {
 
     // Verify that it's an html element
     expect(layout.type).toBe('html');
-    expect(layout.props.lang).toBe('en');
+    expect((layout.props as Record<string, any>).lang).toBe('en');
 
     // Verify that it contains a body element with children
-    const body = layout.props.children;
+    const body = (layout.props as Record<string, any>).children;
     expect(body.type).toBe('body');
     expect(body.props.className).toContain('--font-geist-sans');
     expect(body.props.className).toContain('--font-geist-mono');

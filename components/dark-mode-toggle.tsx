@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/lib/theme';
 
-export function DarkModeToggle(): React.JSX.Element {
+export function DarkModeToggle(): React.ReactElement {
   const { theme, toggleTheme } = useTheme();
   const isDarkMode = theme === 'dark';
 

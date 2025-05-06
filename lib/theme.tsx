@@ -59,7 +59,7 @@ export const ThemeProvider = ({
   children,
   defaultTheme,
   disableSystemPreference = false,
-}: ThemeProviderProps): JSX.Element => {
+}: ThemeProviderProps): React.ReactElement => {
   // State for the current theme
   const [theme, setThemeState] = useState<Theme>(defaultTheme || 'light');
 

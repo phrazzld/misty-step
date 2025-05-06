@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 
-export function Hero(): React.JSX.Element {
+export function Hero(): React.ReactElement {
   return (
     <section className="flex-grow flex items-center justify-center bg-gradient-to-b from-background to-accent/10 py-20">
       <div className="container mx-auto px-4 flex flex-col items-center text-center">

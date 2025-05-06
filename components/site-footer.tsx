@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export function SiteFooter(): React.JSX.Element {
+export function SiteFooter(): React.ReactElement {
   return (
     <footer className="bg-background border-t border-border py-12">
       <div className="container mx-auto px-4">

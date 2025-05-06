@@ -29,7 +29,7 @@ interface ContactFormFields {
 /**
  * Form submission alert component
  */
-function SubmitAlert({ result }: { result: SubmitResult | null }): React.JSX.Element | null {
+function SubmitAlert({ result }: { result: SubmitResult | null }): React.ReactElement | null {
   if (!result) {
     return null;
   }
@@ -48,7 +48,7 @@ function SubmitAlert({ result }: { result: SubmitResult | null }): React.JSX.Ele
 /**
  * Contact form component
  */
-export function Contact(): React.JSX.Element {
+export function Contact(): React.ReactElement {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
 
