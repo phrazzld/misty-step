@@ -24,8 +24,8 @@ The following files have been excluded from coverage calculations in `vitest.con
 **Tasks**:
 
 - [x] Refactor logger to accept environment as a parameter rather than directly accessing NODE_ENV
-- [ ] Create proper test isolation for environment configuration
-- [ ] Add tests to verify different transport configurations based on environment
+- [x] Create proper test isolation for environment configuration
+- [x] Add tests to verify different transport configurations based on environment
 
 ### Contact Form Handling
 
@@ -64,6 +64,6 @@ The following files have been excluded from coverage calculations in `vitest.con
 
 The following tests are currently skipped and should be fixed:
 
-- [ ] `lib/logger.test.ts`: "configures logger with different options based on NODE_ENV"
+- [x] `lib/logger.test.ts`: "configures logger with different options based on NODE_ENV"
 - [ ] `test/utils.test.tsx`: "passes custom render options through to RTL render"
 - [ ] `components/contact.test.tsx`: "accepts input and submits the form with data"
