@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-import logger, { createLogger } from './logger';
+import logger, { createLogger, createConfiguredLogger } from './logger';
 
 describe('logger', () => {
   // Spy on the underlying methods
@@ -53,12 +53,31 @@ describe('logger', () => {
     expect(emptyLogger).toBeDefined();
   });
 
-  // Testing environment-specific behavior is tricky due to module caching
-  // Since we've excluded logger.ts from coverage, we'll skip this test
+  describe('createConfiguredLogger', () => {
+    it('creates a configured logger instance', () => {
+      const testLogger = createConfiguredLogger();
+      expect(testLogger).toBeDefined();
+      expect(typeof testLogger.info).toBe('function');
+    });
 
-  it.skip('configures logger with different options based on NODE_ENV', () => {
-    // This test has been disabled since logger.ts is excluded from coverage requirements
-    // The test was failing due to module resolution issues
-    expect(true).toBe(true);
+    it('accepts environment parameter', () => {
+      // Testing that the function accepts the parameters
+      // We can't directly test the transport configuration without mocking pino
+      const devLogger = createConfiguredLogger({ environment: 'development' });
+      const prodLogger = createConfiguredLogger({ environment: 'production' });
+
+      expect(devLogger).toBeDefined();
+      expect(prodLogger).toBeDefined();
+    });
+
+    it('accepts level parameter', () => {
+      const debugLogger = createConfiguredLogger({ level: 'debug' });
+      expect(debugLogger).toBeDefined();
+    });
+
+    it('accepts serviceName parameter', () => {
+      const customServiceLogger = createConfiguredLogger({ serviceName: 'test-service' });
+      expect(customServiceLogger).toBeDefined();
+    });
   });
 });

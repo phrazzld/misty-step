@@ -23,7 +23,7 @@ The following files have been excluded from coverage calculations in `vitest.con
 
 **Tasks**:
 
-- [ ] Refactor logger to accept environment as a parameter rather than directly accessing NODE_ENV
+- [x] Refactor logger to accept environment as a parameter rather than directly accessing NODE_ENV
 - [ ] Create proper test isolation for environment configuration
 - [ ] Add tests to verify different transport configurations based on environment
 
