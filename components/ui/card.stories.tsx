@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import Image from "next/image";
+import type { Meta, StoryObj } from '@storybook/react';
+import Image from 'next/image';
 
-import { Button } from "./button";
+import { Button } from './button';
 import {
   Card,
   CardHeader,
@@ -10,101 +10,101 @@ import {
   CardDescription,
   CardContent,
   CardAction,
-} from "./card";
+} from './card';
 
 const meta: Meta<typeof Card> = {
-  title: "UI/Card",
+  title: 'UI/Card',
   component: Card,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     // Standard HTML div props (Card is a div)
     id: {
-      control: "text",
-      description: "Unique identifier for the card element",
+      control: 'text',
+      description: 'Unique identifier for the card element',
     },
     className: {
-      control: "text",
-      description: "Additional CSS class names",
+      control: 'text',
+      description: 'Additional CSS class names',
     },
 
     // Event handlers
     onClick: {
       control: false,
-      description: "Function called when the card is clicked",
+      description: 'Function called when the card is clicked',
     },
     onKeyDown: {
       control: false,
-      description: "Function called when a key is pressed while the card has focus",
+      description: 'Function called when a key is pressed while the card has focus',
     },
     onFocus: {
       control: false,
-      description: "Function called when the card receives focus",
+      description: 'Function called when the card receives focus',
     },
     onBlur: {
       control: false,
-      description: "Function called when the card loses focus",
+      description: 'Function called when the card loses focus',
     },
     onMouseEnter: {
       control: false,
-      description: "Function called when mouse pointer enters the card",
+      description: 'Function called when mouse pointer enters the card',
     },
     onMouseLeave: {
       control: false,
-      description: "Function called when mouse pointer leaves the card",
+      description: 'Function called when mouse pointer leaves the card',
     },
 
     // Accessibility attributes
     role: {
-      control: "select",
-      options: ["region", "group", "article", "figure", "presentation", "none"],
-      description: "ARIA role attribute for accessibility",
+      control: 'select',
+      options: ['region', 'group', 'article', 'figure', 'presentation', 'none'],
+      description: 'ARIA role attribute for accessibility',
     },
-    "aria-label": {
-      control: "text",
-      description: "Accessible label for the card, if title is not visible",
+    'aria-label': {
+      control: 'text',
+      description: 'Accessible label for the card, if title is not visible',
     },
-    "aria-labelledby": {
-      control: "text",
-      description: "ID of an element (typically CardTitle) that labels this card",
+    'aria-labelledby': {
+      control: 'text',
+      description: 'ID of an element (typically CardTitle) that labels this card',
     },
-    "aria-describedby": {
-      control: "text",
-      description: "ID of an element (typically CardDescription) that describes this card",
+    'aria-describedby': {
+      control: 'text',
+      description: 'ID of an element (typically CardDescription) that describes this card',
     },
-    "aria-details": {
-      control: "text",
-      description: "ID of an element providing more detailed information about the card",
+    'aria-details': {
+      control: 'text',
+      description: 'ID of an element providing more detailed information about the card',
     },
-    "aria-hidden": {
-      control: "boolean",
-      description: "Whether to hide the card from screen readers",
+    'aria-hidden': {
+      control: 'boolean',
+      description: 'Whether to hide the card from screen readers',
     },
 
     // Common HTML attributes
     tabIndex: {
-      control: "number",
-      description: "Tab order of the element",
+      control: 'number',
+      description: 'Tab order of the element',
     },
     style: {
       control: false,
-      description: "Inline styles for the card element",
+      description: 'Inline styles for the card element',
     },
     lang: {
-      control: "text",
-      description: "The language of the card content",
+      control: 'text',
+      description: 'The language of the card content',
     },
     dir: {
-      control: "select",
-      options: ["ltr", "rtl", "auto"],
-      description: "The text direction of the card content",
+      control: 'select',
+      options: ['ltr', 'rtl', 'auto'],
+      description: 'The text direction of the card content',
     },
     title: {
-      control: "text",
-      description: "Tooltip text that appears when hovering over the card",
+      control: 'text',
+      description: 'Tooltip text that appears when hovering over the card',
     },
     hidden: {
-      control: "boolean",
-      description: "Hides the card visually and from screen readers",
+      control: 'boolean',
+      description: 'Hides the card visually and from screen readers',
     },
 
     // Note: Data attributes are removed as they're causing TypeScript errors with Storybook's ArgTypes
@@ -123,7 +123,7 @@ export default meta;
 type Story = StoryObj<typeof Card>;
 
 export const ContentOnly: Story = {
-  name: "Simple Content Card",
+  name: 'Simple Content Card',
   render: () => (
     <Card className="max-w-md">
       <CardContent>
@@ -218,12 +218,12 @@ export const FullExample: Story = {
 // Edge case stories
 
 export const EmptyContent: Story = {
-  name: "Card with Empty Content",
+  name: 'Card with Empty Content',
   parameters: {
     docs: {
       description: {
         story:
-          "A card with completely empty content sections to test how the component handles empty values while maintaining structure.",
+          'A card with completely empty content sections to test how the component handles empty values while maintaining structure.',
       },
     },
   },
@@ -231,23 +231,23 @@ export const EmptyContent: Story = {
     <div className="max-w-md">
       <Card>
         <CardHeader>
-          <CardTitle></CardTitle>
-          <CardDescription></CardDescription>
+          <CardTitle />
+          <CardDescription />
         </CardHeader>
-        <CardContent></CardContent>
-        <CardFooter></CardFooter>
+        <CardContent />
+        <CardFooter />
       </Card>
     </div>
   ),
 };
 
 export const LongContent: Story = {
-  name: "Card with Extremely Long Content",
+  name: 'Card with Extremely Long Content',
   parameters: {
     docs: {
       description: {
         story:
-          "A card with exceptionally long content in various sections to test text overflow and wrapping behavior.",
+          'A card with exceptionally long content in various sections to test text overflow and wrapping behavior.',
       },
     },
   },
@@ -296,12 +296,12 @@ export const LongContent: Story = {
 };
 
 export const NestedCards: Story = {
-  name: "Nested Cards",
+  name: 'Nested Cards',
   parameters: {
     docs: {
       description: {
         story:
-          "Cards nested within other cards to test how the component handles nested structures and maintains proper spacing and borders.",
+          'Cards nested within other cards to test how the component handles nested structures and maintains proper spacing and borders.',
       },
     },
   },
@@ -347,12 +347,12 @@ export const NestedCards: Story = {
 };
 
 export const MixedContent: Story = {
-  name: "Card with Mixed Content Types",
+  name: 'Card with Mixed Content Types',
   parameters: {
     docs: {
       description: {
         story:
-          "A card containing mixed content types including text, lists, a table, and an image to test layout flexibility.",
+          'A card containing mixed content types including text, lists, a table, and an image to test layout flexibility.',
       },
     },
   },
@@ -424,12 +424,12 @@ export const MixedContent: Story = {
 };
 
 export const AccessibilityEdgeCaseCard: Story = {
-  name: "Card with Accessibility Edge Cases",
+  name: 'Card with Accessibility Edge Cases',
   parameters: {
     docs: {
       description: {
         story:
-          "A card with various accessibility attributes to test compatibility with assistive technologies.",
+          'A card with various accessibility attributes to test compatibility with assistive technologies.',
       },
     },
   },

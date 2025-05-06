@@ -1,47 +1,54 @@
-import { render } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi } from 'vitest';
+
+import { metadata, default as RootLayout } from './layout';
 
 // Mock the globals.css import to avoid PostCSS loading issues
-vi.mock("./globals.css", () => ({}));
+vi.mock('./globals.css', () => ({}));
 
 // Mock the next/font/google
-vi.mock("next/font/google", () => ({
+vi.mock('next/font/google', () => ({
   Geist: () => ({
-    variable: "--font-geist-sans",
+    variable: '--font-geist-sans',
   }),
   Geist_Mono: () => ({
-    variable: "--font-geist-mono",
+    variable: '--font-geist-mono',
   }),
 }));
 
-import { metadata, default as RootLayout } from "./layout";
-
-describe("Layout", () => {
-  it("has the correct metadata", () => {
-    expect(metadata.title).toBe("Misty Step - Professional Technology Consulting Services");
+describe('Layout', () => {
+  it('has the correct metadata', () => {
+    expect(metadata.title).toBe('Misty Step - Professional Technology Consulting Services');
     expect(metadata.description).toBe(
-      "Software development and technical consulting services that transform your business challenges into effective digital solutions. Expert guidance when you need it most."
+      'Software development and technical consulting services that transform your business challenges into effective digital solutions. Expert guidance when you need it most.',
     );
   });
 
-  it("renders correctly with children", () => {
-    const { container } = render(
-      <RootLayout>
-        <div data-testid="test-child">Test Child</div>
-      </RootLayout>
-    );
+  it('renders with correct font classes', () => {
+    // We don't need TestComponent approach, just introspect layout directly
+    // Comment left to show previous attempt strategy
 
-    // In React Testing Library, the rendered component is inside a div wrapper,
-    // so we can't directly access the html element
-    // Instead, check that the body contains the expected children and classes
+    // Use JSDOM's document API instead of rendering the actual layout
+    // This avoids the hydration warning from rendering <html> in a <div>
+    const div = document.createElement('div');
+    div.innerHTML =
+      '<div data-test-body-classes="--font-geist-sans --font-geist-mono antialiased" />';
+    document.body.appendChild(div);
 
-    // Check that our test child is rendered
-    expect(container.querySelector('[data-testid="test-child"]')).toBeInTheDocument();
-    expect(container.querySelector('[data-testid="test-child"]')?.textContent).toBe("Test Child");
+    // Verify layout structure and content
+    expect(RootLayout.name).toBe('RootLayout');
 
-    // Check for the presence of the font variable classes in the rendered output
-    const bodyClasses = container.firstChild?.textContent;
-    // Just verify that the component renders without crashing
-    expect(bodyClasses).toBeDefined();
+    // We're introspecting the layout component structure
+    const layout = RootLayout({ children: <div>Test Child</div> });
+
+    // Verify that it's an html element
+    expect(layout.type).toBe('html');
+    expect((layout.props as Record<string, any>).lang).toBe('en');
+
+    // Verify that it contains a body element with children
+    const body = (layout.props as Record<string, any>).children;
+    expect(body.type).toBe('body');
+    expect(body.props.className).toContain('--font-geist-sans');
+    expect(body.props.className).toContain('--font-geist-mono');
+    expect(body.props.className).toContain('antialiased');
   });
 });

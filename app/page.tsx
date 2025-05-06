@@ -1,10 +1,10 @@
-import { Contact } from "@/components/contact";
-import { Hero } from "@/components/hero";
-import { Services } from "@/components/services";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { Contact } from '@/components/contact';
+import { Hero } from '@/components/hero';
+import { Services } from '@/components/services';
+import { SiteFooter } from '@/components/site-footer';
+import { SiteHeader } from '@/components/site-header';
 
-export default function Home(): React.JSX.Element {
+export default function Home(): React.ReactElement {
   return (
     <div className="flex flex-col min-h-screen">
       <SiteHeader />

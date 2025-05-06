@@ -66,19 +66,112 @@ pnpm test:ui
 
 ## Code Quality
 
-This project enforces code quality through:
+This project enforces code quality through a comprehensive suite of tools that work together to ensure consistent, maintainable, and type-safe code.
 
-- TypeScript with strict settings
-- ESLint for linting
-- Prettier for code formatting
-- Husky for pre-commit hooks
-- lint-staged for running linters on staged files
-- GitHub Actions CI for automated quality checks
-- Git hooks via Husky for pre-commit and post-commit automation
+### Overview of Tools
+
+- **TypeScript**: Provides static type checking with strict configuration for enhanced code reliability
+- **ESLint**: Enforces code quality rules and best practices
+- **Prettier**: Ensures consistent code formatting across the project
+- **Husky**: Manages Git hooks for pre-commit and post-commit automation
+- **lint-staged**: Runs linters and formatters only on staged files for efficient pre-commit checks
+- **GitHub Actions**: Runs automated quality checks on pull requests and pushes
+
+#### Key ESLint Rules
+
+The project enforces strict code quality rules including:
+
+- No use of `any` type in TypeScript
+- No unused variables (prefixing with `_` is allowed for intentionally unused variables)
+- No non-null assertions (use proper type guards instead)
+- No console logging (use the structured logger in `lib/logger.ts` instead)
+- No parameter reassignment to enforce immutability
+- React-specific rules for hooks, keys, and performance
+- File length limits (warning at 500 lines)
+- Function complexity limits (cyclomatic complexity warning at 10)
+
+### Code Quality Scripts
+
+The following npm scripts are available for manual code quality checks:
+
+- `pnpm lint` - Run ESLint to check for code quality issues
+- `pnpm lint:fix` - Run ESLint with automatic fixing of issues where possible
+- `pnpm format` - Run Prettier to format all files
+- `pnpm format:check` - Run Prettier in check mode (without modifying files)
+- `pnpm typecheck` - Run TypeScript compiler in type-check mode (no emitting)
+
+Example usage:
+
+```bash
+# Check code quality before committing
+pnpm format:check && pnpm lint && pnpm typecheck
+
+# Fix formatting and auto-fixable lint issues
+pnpm format && pnpm lint:fix
+```
+
+### Pre-commit Hook Workflow
+
+The project uses Husky to manage Git hooks and lint-staged to optimize the pre-commit process:
+
+1. When you run `git commit`, the pre-commit hook is triggered
+2. lint-staged runs Prettier and ESLint only on staged files
+3. Prettier formats the files first
+4. ESLint checks for issues and fixes auto-fixable problems
+5. If there are unfixable issues, the commit is aborted with error messages
+6. If all checks pass, the commit proceeds normally
+
+This ensures that all committed code meets the project's quality standards.
+
+### Configuration Files
+
+- `.prettierrc.json` - Prettier configuration
+- `eslint.config.mjs` - ESLint flat configuration (ESLint v9+)
+- `tsconfig.json` - TypeScript compiler configuration
+- `.lintstagedrc.json` - lint-staged configuration
+- `.husky/pre-commit` - Husky pre-commit hook script
+
+### Recommended Editor Setup
+
+#### VS Code Extensions
+
+For the best development experience, we recommend the following VS Code extensions:
+
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [TypeScript Error Translator](https://marketplace.visualstudio.com/items?itemName=mattpocock.ts-error-translator)
+- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+
+#### Recommended VS Code Settings
+
+Add these to your VS Code settings (either user or workspace) for an optimal experience:
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "typescript.preferences.importModuleSpecifier": "relative"
+}
+```
 
 ## Continuous Integration
 
-A GitHub Actions workflow runs automatically on all pull requests and pushes to main branch. The CI pipeline performs the following checks:
+The project uses two GitHub Actions workflows that run automatically on all pull requests and pushes to the main branch:
+
+### Code Quality Workflow
+
+The code quality workflow (`.github/workflows/code-quality.yml`) focuses on code style and quality:
+
+1. Formatting check with Prettier
+2. Linting with ESLint
+3. Type checking with TypeScript
+
+### Main CI Workflow
+
+The main CI workflow (`.github/workflows/ci.yml`) performs comprehensive checks:
 
 1. Linting with ESLint
 2. Type checking with TypeScript
@@ -87,7 +180,7 @@ A GitHub Actions workflow runs automatically on all pull requests and pushes to 
 5. Security auditing with pnpm audit
 6. Building the application
 
-All checks must pass for pull requests to be merged. See the workflow configuration in `.github/workflows/ci.yml`.
+All checks must pass for pull requests to be merged.
 
 ## Documentation
 
@@ -115,12 +208,28 @@ For detailed guidelines on creating and maintaining Storybook stories, see [Stor
 
 ## Commands
 
+### Development Commands
+
 - `pnpm dev` - Start the development server
 - `pnpm build` - Build the site for production
 - `pnpm start` - Start the production server
+
+### Code Quality Commands
+
 - `pnpm lint` - Lint the code
+- `pnpm lint:fix` - Lint the code and fix auto-fixable issues
 - `pnpm format` - Format the code
+- `pnpm format:check` - Check if code is formatted
 - `pnpm typecheck` - Type-check the code
+
+### Testing Commands
+
 - `pnpm test` - Run the tests
+- `pnpm test:watch` - Run tests in watch mode
+- `pnpm test:coverage` - Run tests with coverage report
+- `pnpm test:ui` - Run tests with UI
+
+### Storybook Commands
+
 - `pnpm storybook` - Start the Storybook development server
 - `pnpm build-storybook` - Build static Storybook

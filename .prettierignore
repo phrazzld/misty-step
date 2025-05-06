@@ -1,6 +1,7 @@
 # Ignore symlinked files
 docs/DEVELOPMENT_PHILOSOPHY.md
 docs/DEVELOPMENT_PHILOSOPHY_APPENDIX_TYPESCRIPT.md
+docs/DEVELOPMENT_PHILOSOPHY_APPENDIX_FRONTEND.md
 docs/prompts/
 
 # Build output
@@ -8,9 +9,20 @@ docs/prompts/
 out/
 build/
 dist/
+storybook-static/
+coverage/
 
 # Node modules
 node_modules/
+
+# Version control, tooling, and IDE
+.git/
+.husky/
+.vscode/
+
+# Generated files
+pnpm-lock.yaml
+*.log
 
 # Misc
 .DS_Store

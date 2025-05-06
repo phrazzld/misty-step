@@ -1,73 +1,73 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi } from 'vitest';
 
-import { render, screen } from "@/test/utils";
+import { render, screen } from '@/test/utils';
 
-import { SiteHeader } from "./site-header";
+import { SiteHeader } from './site-header';
 
 // Mock the DarkModeToggle component
-vi.mock("@/components/dark-mode-toggle", () => ({
+vi.mock('@/components/dark-mode-toggle', () => ({
   DarkModeToggle: () => <div data-testid="dark-mode-toggle">DarkModeToggle</div>,
 }));
 
-describe("SiteHeader", () => {
-  it("renders the logo and site name", () => {
+describe('SiteHeader', () => {
+  it('renders the logo and site name', () => {
     render(<SiteHeader />);
 
-    const logo = screen.getByAltText("Misty Step Logo");
+    const logo = screen.getByAltText('Misty Step Logo');
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute("src", "/images/logo.svg");
+    expect(logo).toHaveAttribute('src', '/images/logo.svg');
 
-    const siteName = screen.getByText("Misty Step");
+    const siteName = screen.getByText('Misty Step');
     expect(siteName).toBeInTheDocument();
   });
 
-  it("renders the navigation links", () => {
+  it('renders the navigation links', () => {
     render(<SiteHeader />);
 
-    const servicesLink = screen.getByRole("link", { name: "Services" });
+    const servicesLink = screen.getByRole('link', { name: 'Services' });
     expect(servicesLink).toBeInTheDocument();
-    expect(servicesLink).toHaveAttribute("href", "#services");
+    expect(servicesLink).toHaveAttribute('href', '#services');
 
-    const aboutLink = screen.getByRole("link", { name: "About" });
+    const aboutLink = screen.getByRole('link', { name: 'About' });
     expect(aboutLink).toBeInTheDocument();
-    expect(aboutLink).toHaveAttribute("href", "#about");
+    expect(aboutLink).toHaveAttribute('href', '#about');
 
-    const contactLink = screen.getByRole("link", { name: "Contact" });
+    const contactLink = screen.getByRole('link', { name: 'Contact' });
     expect(contactLink).toBeInTheDocument();
-    expect(contactLink).toHaveAttribute("href", "#contact");
+    expect(contactLink).toHaveAttribute('href', '#contact');
   });
 
-  it("renders the DarkModeToggle component", () => {
+  it('renders the DarkModeToggle component', () => {
     render(<SiteHeader />);
 
-    const darkModeToggle = screen.getByTestId("dark-mode-toggle");
+    const darkModeToggle = screen.getByTestId('dark-mode-toggle');
     expect(darkModeToggle).toBeInTheDocument();
   });
 
-  it("has a Get Started button linking to contact section", () => {
+  it('has a Get Started button linking to contact section', () => {
     render(<SiteHeader />);
 
-    const getStartedButton = screen.getByRole("link", { name: "Get Started" });
+    const getStartedButton = screen.getByRole('link', { name: 'Get Started' });
     expect(getStartedButton).toBeInTheDocument();
-    expect(getStartedButton).toHaveAttribute("href", "#contact");
+    expect(getStartedButton).toHaveAttribute('href', '#contact');
   });
 
-  it("has the expected layout structure", () => {
+  it('has the expected layout structure', () => {
     render(<SiteHeader />);
 
     // Check header has appropriate classes
-    const header = screen.getByRole("banner");
-    expect(header).toHaveClass("sticky");
-    expect(header).toHaveClass("bg-background/80");
+    const header = screen.getByRole('banner');
+    expect(header).toHaveClass('sticky');
+    expect(header).toHaveClass('bg-background/80');
 
     // Check for navigation
-    const nav = header.querySelector("nav");
+    const nav = header.querySelector('nav');
     expect(nav).toBeInTheDocument();
-    expect(nav).toHaveClass("hidden");
-    expect(nav).toHaveClass("md:flex");
+    expect(nav).toHaveClass('hidden');
+    expect(nav).toHaveClass('md:flex');
 
     // Check for container
-    const container = header.querySelector(".container");
+    const container = header.querySelector('.container');
     expect(container).toBeInTheDocument();
   });
 });

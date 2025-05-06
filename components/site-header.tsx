@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import { DarkModeToggle } from "@/components/dark-mode-toggle";
-import { Button } from "@/components/ui/button";
+import { DarkModeToggle } from '@/components/dark-mode-toggle';
+import { Button } from '@/components/ui/button';
 
-export function SiteHeader(): React.JSX.Element {
+export function SiteHeader(): React.ReactElement {
   return (
     <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">

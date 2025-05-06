@@ -1,45 +1,184 @@
 {
+  /**
+   * TypeScript Configuration for Marketing Website
+   *
+   * This configuration enforces strict type checking and ensures type safety
+   * throughout the codebase while integrating with Next.js requirements.
+   *
+   * The settings follow the Development Philosophy (v3) TypeScript appendix.
+   */
   "compilerOptions": {
-    // Strict type checking options - REQUIRED
+    /**
+     * Strict Type Checking Options
+     *
+     * These settings enforce rigorous type checking to catch potential errors
+     * at compile time rather than runtime.
+     */
+
+    // Master switch for all strict type checking options
     "strict": true,
+
+    // Disallow expressions implicitly typed as 'any'
+    // Prevents the inadvertent use of 'any' type
     "noImplicitAny": true,
+
+    // Enable strict null checking
+    // Prevents 'null' and 'undefined' from being assigned to other types unless explicitly allowed
     "strictNullChecks": true,
+
+    // Enable strict checking of function types
+    // Ensures contravariance and covariance are properly checked
     "strictFunctionTypes": true,
+
+    // Check for correct usage of 'this' in function calls
+    // Prevents 'this' from being used in contexts where its type is implied as 'any'
     "strictBindCallApply": true,
+
+    // Ensure class properties are initialized in constructor
+    // Prevents class properties from being undefined after initialization
     "strictPropertyInitialization": true,
+
+    // Raise error on 'this' expressions with an implied 'any' type
+    // Ensures 'this' is correctly typed in all contexts
     "noImplicitThis": true,
+
+    // Catch variables in catch clauses are typed as 'unknown' instead of 'any'
+    // Safer typing for error handling
     "useUnknownInCatchVariables": true,
+
+    // Parse in strict mode and emit "use strict" for each source file
+    // Enforces ECMAScript strict mode semantics
     "alwaysStrict": true,
-    // Essential options for modern Next.js development
+
+    /**
+     * Next.js and Modern JavaScript Configuration
+     *
+     * Settings required for Next.js and modern ECMAScript features
+     */
+
+    // ECMAScript target version for generated JavaScript
+    // ES2020 provides modern features while maintaining broad browser compatibility
     "target": "ES2020",
+
+    // Libraries to include in the compilation
+    // Includes DOM and latest ECMAScript features
     "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
+
+    // Module code generation method
+    // NodeNext for compatibility with Next.js and ESM imports
+    "module": "NodeNext",
+
+    // Module resolution strategy
+    // NodeNext for proper resolution of ESM imports
+    "moduleResolution": "NodeNext",
+
+    // Enable importing CommonJS modules using ECMAScript import syntax
+    // Allows seamless integration of CommonJS and ESM modules
     "esModuleInterop": true,
+
+    // Disallow inconsistently-cased references to the same file
+    // Ensures consistent imports on case-sensitive file systems
     "forceConsistentCasingInFileNames": true,
+
+    // Skip type checking of declaration files in node_modules
+    // Improves compilation performance
     "skipLibCheck": true,
+
+    // Ensure each file can be safely transpiled without relying on other imports
+    // Required for transpilers like Babel
     "isolatedModules": true,
+
+    /**
+     * Code Quality and Error Prevention
+     *
+     * Additional checks to enforce code quality standards
+     */
+
+    // Report errors on unused local variables
+    // Prevents clutter and potential bugs from unused variables
     "noUnusedLocals": true,
+
+    // Report errors on unused parameters in functions
+    // Encourages clean function signatures
     "noUnusedParameters": true,
+
+    // Report error when not all code paths in function return a value
+    // Prevents potential undefined returns
     "noImplicitReturns": true,
+
+    // Report errors for fallthrough cases in switch statements
+    // Ensures explicit handling of switch cases
     "noFallthroughCasesInSwitch": true,
+
+    // Allow importing JSON modules
+    // Enables type-safe JSON imports
     "resolveJsonModule": true,
+
+    /**
+     * Next.js and React Configuration
+     *
+     * Settings specifically required for Next.js and React
+     */
+
+    // Preserve JSX for Next.js transformation
+    // Next.js handles JSX transformation
     "jsx": "preserve",
+
+    // Enable incremental compilation
+    // Improves build performance by reusing prior compilation
     "incremental": true,
-    // Next.js requires these
+
+    // Allow JavaScript files to be compiled
+    // Required for Next.js which includes some JS files
     "allowJs": true,
+
+    // TypeScript plugins
+    // Enables the Next.js TypeScript plugin for enhanced type checking
     "plugins": [
       {
         "name": "next"
       }
     ],
-    // Path aliases
+
+    /**
+     * Project Structure Configuration
+     *
+     * Settings for project organization and import paths
+     */
+
+    // Base directory for resolving non-relative module names
+    // Enables absolute imports from project root
     "baseUrl": ".",
+
+    // Path aliases for import simplification
+    // '@' alias points to the project root
     "paths": {
       "@/*": ["./*"]
     },
+
+    // Do not emit output files
+    // Next.js handles the compilation process
     "noEmit": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+
+  /**
+   * Files to Include in Compilation
+   *
+   * Specifies which files should be processed by TypeScript
+   */
+  "include": [
+    "next-env.d.ts", // Next.js type definitions
+    "**/*.ts", // All TypeScript files
+    "**/*.tsx", // All TypeScript React files
+    ".next/types/**/*.ts" // Next.js generated types
+  ],
+
+  /**
+   * Files to Exclude from Compilation
+   *
+   * Specifies which files should be ignored by TypeScript
+   */
+  "exclude": [
+    "node_modules" // Skip third-party dependencies
+  ]
 }

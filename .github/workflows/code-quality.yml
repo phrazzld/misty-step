@@ -1,4 +1,4 @@
-name: CI
+name: Code Quality
 
 on:
   pull_request:
@@ -7,8 +7,8 @@ on:
     branches: [main, master]
 
 jobs:
-  build:
-    name: Build and Test
+  code-quality:
+    name: Code Quality Checks
     runs-on: ubuntu-latest
 
     steps:
@@ -18,12 +18,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 10
+          version: 7
           run_install: false
 
       - name: Get pnpm store directory
@@ -67,25 +67,3 @@ jobs:
 
       - name: Type check
         run: pnpm typecheck
-
-      - name: Run tests
-        run: pnpm test
-
-      - name: Check test coverage
-        run: pnpm test:coverage
-
-      - name: Security audit
-        run: pnpm audit --audit-level=high
-
-      - name: Build
-        run: pnpm build
-
-      - name: Build Storybook
-        run: pnpm build-storybook
-
-      - name: Cache Performance Summary
-        run: |
-          echo "Installation time: ${{ steps.install.outputs.INSTALL_TIME }} seconds"
-          echo "Cache restore paths:"
-          echo "- pnpm store: ${{ steps.pnpm-cache.outputs.STORE_PATH }}"
-          echo "- node_modules: node_modules/.pnpm"

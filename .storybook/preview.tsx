@@ -1,8 +1,8 @@
-import { withThemeByClassName } from "@storybook/addon-themes";
-import type { Preview } from "@storybook/react";
+import { withThemeByClassName } from '@storybook/addon-themes';
+import type { Preview } from '@storybook/react';
 
-import "./preview.css";
-import "../app/globals.css"; // Use the main app's CSS directly
+import './preview.css';
+import '../app/globals.css'; // Use the main app's CSS directly
 
 const preview: Preview = {
   parameters: {
@@ -15,9 +15,9 @@ const preview: Preview = {
   },
   decorators: [
     withThemeByClassName({
-      themes: { light: "", dark: "dark" },
-      defaultTheme: "light",
-      parentSelector: "html",
+      themes: { light: '', dark: 'dark' },
+      defaultTheme: 'light',
+      parentSelector: 'html',
     }),
   ],
 };

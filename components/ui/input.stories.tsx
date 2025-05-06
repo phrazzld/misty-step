@@ -1,145 +1,144 @@
-/* eslint-disable max-lines */
-import type { Meta, StoryObj } from "@storybook/react";
-import { expect, userEvent, within } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { expect, userEvent, within } from '@storybook/test';
 
-import { Input } from "./input";
-import { Label } from "./label";
+import { Input } from './input';
+import { Label } from './label';
 
 const meta: Meta<typeof Input> = {
-  title: "UI/Input",
+  title: 'UI/Input',
   component: Input,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     // Input type
     type: {
-      control: "select",
+      control: 'select',
       options: [
-        "text",
-        "password",
-        "email",
-        "number",
-        "tel",
-        "url",
-        "search",
-        "date",
-        "time",
-        "datetime-local",
-        "month",
-        "week",
-        "color",
-        "file",
-        "hidden",
+        'text',
+        'password',
+        'email',
+        'number',
+        'tel',
+        'url',
+        'search',
+        'date',
+        'time',
+        'datetime-local',
+        'month',
+        'week',
+        'color',
+        'file',
+        'hidden',
       ],
-      description: "The type of input",
+      description: 'The type of input',
     },
 
     // Text attributes
     value: {
-      control: "text",
-      description: "The controlled value of the input",
+      control: 'text',
+      description: 'The controlled value of the input',
     },
     defaultValue: {
-      control: "text",
-      description: "The default value of the input (uncontrolled)",
+      control: 'text',
+      description: 'The default value of the input (uncontrolled)',
     },
 
     // Identification
     id: {
-      control: "text",
-      description: "Unique identifier for the input",
+      control: 'text',
+      description: 'Unique identifier for the input',
     },
     name: {
-      control: "text",
-      description: "Name of the input, used when submitting forms",
+      control: 'text',
+      description: 'Name of the input, used when submitting forms',
     },
 
     // Input states
     disabled: {
-      control: "boolean",
-      description: "Whether the input is disabled",
+      control: 'boolean',
+      description: 'Whether the input is disabled',
     },
     required: {
-      control: "boolean",
+      control: 'boolean',
       description:
-        "Indicates that user input is required on the input before a form can be submitted",
+        'Indicates that user input is required on the input before a form can be submitted',
     },
     readOnly: {
-      control: "boolean",
-      description: "Indicates whether the input value can be modified",
+      control: 'boolean',
+      description: 'Indicates whether the input value can be modified',
     },
 
     // Form attributes
     form: {
-      control: "text",
+      control: 'text',
       description:
-        "Associates the input with a form (by form id) even when not nested inside the form",
+        'Associates the input with a form (by form id) even when not nested inside the form',
     },
     formAction: {
-      control: "text",
-      description: "URL where form data will be submitted if this input submits a form",
+      control: 'text',
+      description: 'URL where form data will be submitted if this input submits a form',
     },
     formEncType: {
-      control: "select",
-      options: ["application/x-www-form-urlencoded", "multipart/form-data", "text/plain"],
-      description: "Encoding type to use when submitting form data",
+      control: 'select',
+      options: ['application/x-www-form-urlencoded', 'multipart/form-data', 'text/plain'],
+      description: 'Encoding type to use when submitting form data',
     },
     formMethod: {
-      control: "select",
-      options: ["get", "post", "dialog"],
-      description: "HTTP method to use when submitting form data",
+      control: 'select',
+      options: ['get', 'post', 'dialog'],
+      description: 'HTTP method to use when submitting form data',
     },
     formNoValidate: {
-      control: "boolean",
-      description: "Bypass form validation when submitting",
+      control: 'boolean',
+      description: 'Bypass form validation when submitting',
     },
     formTarget: {
-      control: "text",
-      description: "Where to display the response after form submission",
+      control: 'text',
+      description: 'Where to display the response after form submission',
     },
 
     // Accessibility attributes
-    "aria-required": {
-      control: "boolean",
+    'aria-required': {
+      control: 'boolean',
       description:
         "Indicates to screen readers that input is required. Use alongside HTML 'required' attribute for both validation and accessibility.",
     },
-    "aria-invalid": {
-      control: "boolean",
+    'aria-invalid': {
+      control: 'boolean',
       description:
-        "Indicates the entered value does not conform to the format expected by the application",
+        'Indicates the entered value does not conform to the format expected by the application',
     },
-    "aria-describedby": {
-      control: "text",
-      description: "Identifies the element(s) that describes the input",
+    'aria-describedby': {
+      control: 'text',
+      description: 'Identifies the element(s) that describes the input',
     },
-    "aria-label": {
-      control: "text",
+    'aria-label': {
+      control: 'text',
       description: "Provides an accessible name for the input when a visible label isn't present",
     },
-    "aria-labelledby": {
-      control: "text",
-      description: "Identifies the element that labels the input",
+    'aria-labelledby': {
+      control: 'text',
+      description: 'Identifies the element that labels the input',
     },
-    "aria-errormessage": {
-      control: "text",
-      description: "Identifies the element that provides an error message for the input",
+    'aria-errormessage': {
+      control: 'text',
+      description: 'Identifies the element that provides an error message for the input',
     },
-    "aria-autocomplete": {
-      control: "select",
-      options: ["none", "inline", "list", "both"],
-      description: "Indicates whether and how autocomplete suggestions are provided",
+    'aria-autocomplete': {
+      control: 'select',
+      options: ['none', 'inline', 'list', 'both'],
+      description: 'Indicates whether and how autocomplete suggestions are provided',
     },
-    "aria-haspopup": {
-      control: "select",
-      options: ["false", "true", "menu", "listbox", "tree", "grid", "dialog"],
+    'aria-haspopup': {
+      control: 'select',
+      options: ['false', 'true', 'menu', 'listbox', 'tree', 'grid', 'dialog'],
       description:
-        "Indicates the availability and type of interactive popup element that can be triggered",
+        'Indicates the availability and type of interactive popup element that can be triggered',
     },
 
     // Styling
     className: {
-      control: "text",
-      description: "Additional CSS class names",
+      control: 'text',
+      description: 'Additional CSS class names',
     },
 
     // Event handlers - control: false means they won't appear in controls panel
@@ -149,120 +148,120 @@ const meta: Meta<typeof Input> = {
     },
     onBlur: {
       control: false,
-      description: "Function called when the input loses focus",
+      description: 'Function called when the input loses focus',
     },
     onFocus: {
       control: false,
-      description: "Function called when the input receives focus",
+      description: 'Function called when the input receives focus',
     },
     onInput: {
       control: false,
-      description: "Function called when the value of the input changes",
+      description: 'Function called when the value of the input changes',
     },
     onInvalid: {
       control: false,
-      description: "Function called when the input fails validation",
+      description: 'Function called when the input fails validation',
     },
     onKeyDown: {
       control: false,
-      description: "Function called when a key is pressed down in the input",
+      description: 'Function called when a key is pressed down in the input',
     },
     onKeyUp: {
       control: false,
-      description: "Function called when a key is released in the input",
+      description: 'Function called when a key is released in the input',
     },
 
     // Additional HTML attributes
     autoComplete: {
-      control: "select",
+      control: 'select',
       options: [
-        "on",
-        "off",
-        "name",
-        "email",
-        "username",
-        "current-password",
-        "new-password",
-        "one-time-code",
-        "tel",
-        "street-address",
-        "country",
-        "postal-code",
+        'on',
+        'off',
+        'name',
+        'email',
+        'username',
+        'current-password',
+        'new-password',
+        'one-time-code',
+        'tel',
+        'street-address',
+        'country',
+        'postal-code',
       ],
-      description: "Hint for form autofill feature",
+      description: 'Hint for form autofill feature',
     },
     autoFocus: {
-      control: "boolean",
-      description: "Input should automatically get focus when the page loads",
+      control: 'boolean',
+      description: 'Input should automatically get focus when the page loads',
     },
     min: {
-      control: "text",
-      description: "Minimum value for number, date, time, and range inputs",
+      control: 'text',
+      description: 'Minimum value for number, date, time, and range inputs',
     },
     max: {
-      control: "text",
-      description: "Maximum value for number, date, time, and range inputs",
+      control: 'text',
+      description: 'Maximum value for number, date, time, and range inputs',
     },
     step: {
-      control: "text",
-      description: "Granularity increment for number, date, time, and range inputs",
+      control: 'text',
+      description: 'Granularity increment for number, date, time, and range inputs',
     },
     maxLength: {
-      control: "number",
-      description: "Maximum length of the input value",
+      control: 'number',
+      description: 'Maximum length of the input value',
     },
     minLength: {
-      control: "number",
-      description: "Minimum length of the input value",
+      control: 'number',
+      description: 'Minimum length of the input value',
     },
     pattern: {
-      control: "text",
+      control: 'text',
       description: "Regular expression pattern the input's value must match",
     },
     accept: {
-      control: "text",
-      description: "Types of files that can be selected with a file input",
+      control: 'text',
+      description: 'Types of files that can be selected with a file input',
     },
     capture: {
-      control: "select",
-      options: ["user", "environment"],
+      control: 'select',
+      options: ['user', 'environment'],
       description: "Which camera to use for file inputs of type 'file' (for mobile devices)",
     },
     multiple: {
-      control: "boolean",
+      control: 'boolean',
       description:
-        "Whether multiple values can be entered for appropriate input types (e.g., email, file)",
+        'Whether multiple values can be entered for appropriate input types (e.g., email, file)',
     },
     list: {
-      control: "text",
-      description: "ID of a datalist element providing predefined options for the input",
+      control: 'text',
+      description: 'ID of a datalist element providing predefined options for the input',
     },
     size: {
-      control: "number",
-      description: "Visual size of the input in characters",
+      control: 'number',
+      description: 'Visual size of the input in characters',
     },
     enterKeyHint: {
-      control: "select",
-      options: ["enter", "done", "go", "next", "previous", "search", "send"],
-      description: "Hint for what action the Enter key will perform",
+      control: 'select',
+      options: ['enter', 'done', 'go', 'next', 'previous', 'search', 'send'],
+      description: 'Hint for what action the Enter key will perform',
     },
     inputMode: {
-      control: "select",
-      options: ["none", "text", "decimal", "numeric", "tel", "search", "email", "url"],
+      control: 'select',
+      options: ['none', 'text', 'decimal', 'numeric', 'tel', 'search', 'email', 'url'],
       description:
-        "Hint to browsers for which input mechanism to show (e.g., virtual keyboard type)",
+        'Hint to browsers for which input mechanism to show (e.g., virtual keyboard type)',
     },
     placeholder: {
-      control: "text",
-      description: "Short hint displayed in the input before the user enters a value",
+      control: 'text',
+      description: 'Short hint displayed in the input before the user enters a value',
     },
     title: {
-      control: "text",
-      description: "Tooltip text that appears when hovering over the input",
+      control: 'text',
+      description: 'Tooltip text that appears when hovering over the input',
     },
     spellCheck: {
-      control: "boolean",
-      description: "Whether to enable spell checking for the input",
+      control: 'boolean',
+      description: 'Whether to enable spell checking for the input',
     },
   },
 };
@@ -271,54 +270,54 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const BasicText: Story = {
-  name: "Basic Text Input",
+  name: 'Basic Text Input',
   args: {
-    type: "text",
+    type: 'text',
   },
 };
 
 export const Placeholder: Story = {
   args: {
-    type: "text",
-    placeholder: "Enter your text here...",
+    type: 'text',
+    placeholder: 'Enter your text here...',
   },
 };
 
 export const Disabled: Story = {
   args: {
-    type: "text",
-    placeholder: "This input is disabled",
+    type: 'text',
+    placeholder: 'This input is disabled',
     disabled: true,
   },
 };
 
 export const TypePassword: Story = {
   args: {
-    type: "password",
-    placeholder: "Enter your password",
+    type: 'password',
+    placeholder: 'Enter your password',
   },
 };
 
 export const TypeNumber: Story = {
   args: {
-    type: "number",
-    placeholder: "Enter a number",
+    type: 'number',
+    placeholder: 'Enter a number',
   },
 };
 
 export const TypeEmail: Story = {
   args: {
-    type: "email",
-    placeholder: "email@example.com",
+    type: 'email',
+    placeholder: 'email@example.com',
   },
 };
 
 export const InputWithLabel: Story = {
-  name: "Input Field with Label",
+  name: 'Input Field with Label',
   args: {
-    type: "email",
-    id: "email-demo",
-    placeholder: "Email",
+    type: 'email',
+    id: 'email-demo',
+    placeholder: 'Email',
   },
   decorators: [
     (Story) => (
@@ -332,16 +331,16 @@ export const InputWithLabel: Story = {
 
 export const Required: Story = {
   args: {
-    type: "text",
-    placeholder: "Required field",
+    type: 'text',
+    placeholder: 'Required field',
     required: true,
-    "aria-required": true,
+    'aria-required': true,
   },
 };
 
 // Interactive state stories using play functions to replace the old CSS-based simulation
 export const HoverInteraction: Story = {
-  name: "Hover State",
+  name: 'Hover State',
   parameters: {
     docs: {
       description: {
@@ -351,17 +350,17 @@ export const HoverInteraction: Story = {
     },
   },
   args: {
-    placeholder: "Hover over me",
-    type: "text",
+    placeholder: 'Hover over me',
+    type: 'text',
   },
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
     // Get the input
-    const input = canvas.getByPlaceholderText("Hover over me");
+    const input = canvas.getByPlaceholderText('Hover over me');
 
     // Hover over the input
-    await step("Hover over the input", async () => {
+    await step('Hover over the input', async () => {
       await userEvent.hover(input);
 
       // Verify the input is being hovered (visual confirmation is primary)
@@ -371,7 +370,7 @@ export const HoverInteraction: Story = {
 };
 
 export const FocusInteraction: Story = {
-  name: "Focus State",
+  name: 'Focus State',
   parameters: {
     docs: {
       description: {
@@ -381,17 +380,17 @@ export const FocusInteraction: Story = {
     },
   },
   args: {
-    placeholder: "Click me or press Tab",
-    type: "text",
+    placeholder: 'Click me or press Tab',
+    type: 'text',
   },
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
     // Get the input
-    const input = canvas.getByPlaceholderText("Click me or press Tab");
+    const input = canvas.getByPlaceholderText('Click me or press Tab');
 
     // Focus the input
-    await step("Focus the input", async () => {
+    await step('Focus the input', async () => {
       await userEvent.tab();
 
       // Verify the input has focus
@@ -399,42 +398,42 @@ export const FocusInteraction: Story = {
     });
 
     // Type something to demonstrate the focus state
-    await step("Type in the input", async () => {
-      await userEvent.type(input, "This input is now focused");
+    await step('Type in the input', async () => {
+      await userEvent.type(input, 'This input is now focused');
 
       // Verify the typed content
-      await expect(input).toHaveValue("This input is now focused");
+      await expect(input).toHaveValue('This input is now focused');
     });
   },
 };
 
 export const AllInteractionsSequence: Story = {
-  name: "All Interactions",
+  name: 'All Interactions',
   parameters: {
     docs: {
       description: {
         story:
-          "This demonstrates all input interactions in sequence: hover, focus, and typing interactions. The play function shows each state with a short delay between them.",
+          'This demonstrates all input interactions in sequence: hover, focus, and typing interactions. The play function shows each state with a short delay between them.',
       },
     },
   },
   args: {
-    placeholder: "Interact with me",
-    type: "text",
+    placeholder: 'Interact with me',
+    type: 'text',
   },
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-    const input = canvas.getByPlaceholderText("Interact with me");
+    const input = canvas.getByPlaceholderText('Interact with me');
 
     // 1. Hover state
-    await step("Hover over the input", async () => {
+    await step('Hover over the input', async () => {
       await userEvent.hover(input);
       // Wait a moment to see the hover state
       await new Promise((resolve) => setTimeout(resolve, 1000));
     });
 
     // 2. Focus state
-    await step("Focus the input", async () => {
+    await step('Focus the input', async () => {
       await userEvent.click(input);
       await expect(input).toHaveFocus();
       // Wait a moment to see the focus state
@@ -442,29 +441,29 @@ export const AllInteractionsSequence: Story = {
     });
 
     // 3. Type some text
-    await step("Type in the input", async () => {
-      await userEvent.type(input, "Hello, world!", { delay: 100 });
+    await step('Type in the input', async () => {
+      await userEvent.type(input, 'Hello, world!', { delay: 100 });
       // Verify the typed content
-      await expect(input).toHaveValue("Hello, world!");
+      await expect(input).toHaveValue('Hello, world!');
     });
   },
 };
 
 export const ErrorState: Story = {
-  name: "Error State",
+  name: 'Error State',
   parameters: {
     docs: {
       description: {
         story:
-          "This shows how the input looks when it has an error or invalid state. The error state is achieved with the aria-invalid attribute, which can be applied to any input to indicate validation failure.",
+          'This shows how the input looks when it has an error or invalid state. The error state is achieved with the aria-invalid attribute, which can be applied to any input to indicate validation failure.',
       },
     },
   },
   args: {
-    "aria-invalid": "true",
-    placeholder: "Invalid input value",
-    type: "text",
-    defaultValue: "Invalid data",
+    'aria-invalid': 'true',
+    placeholder: 'Invalid input value',
+    type: 'text',
+    defaultValue: 'Invalid data',
   },
   decorators: [
     (Story) => (
@@ -479,22 +478,22 @@ export const ErrorState: Story = {
 };
 
 export const WithLabelAndError: Story = {
-  name: "With Label and Error",
+  name: 'With Label and Error',
   parameters: {
     docs: {
       description: {
         story:
-          "This shows how to display an input with an error state alongside a label and error message. The aria-describedby attribute connects the input to its error message.",
+          'This shows how to display an input with an error state alongside a label and error message. The aria-describedby attribute connects the input to its error message.',
       },
     },
   },
   args: {
-    id: "email-error-demo",
-    type: "email",
-    placeholder: "name@example.com",
-    defaultValue: "invalid-email",
-    "aria-invalid": "true",
-    "aria-describedby": "email-error-message",
+    id: 'email-error-demo',
+    type: 'email',
+    placeholder: 'name@example.com',
+    defaultValue: 'invalid-email',
+    'aria-invalid': 'true',
+    'aria-describedby': 'email-error-message',
   },
   decorators: [
     (Story) => (
@@ -510,7 +509,7 @@ export const WithLabelAndError: Story = {
 };
 
 export const LongPlaceholder: Story = {
-  name: "Long Placeholder",
+  name: 'Long Placeholder',
   parameters: {
     docs: {
       description: {
@@ -561,12 +560,12 @@ export const LongPlaceholder: Story = {
 };
 
 export const LongValue: Story = {
-  name: "Long Value",
+  name: 'Long Value',
   parameters: {
     docs: {
       description: {
         story:
-          "This demonstrates how the input handles exceptionally long input values. Users can scroll horizontally to see the full content.",
+          'This demonstrates how the input handles exceptionally long input values. Users can scroll horizontally to see the full content.',
       },
     },
   },
@@ -632,45 +631,45 @@ export const LongValue: Story = {
 // Edge case stories
 
 export const EmptyValue: Story = {
-  name: "Empty Value Input",
+  name: 'Empty Value Input',
   parameters: {
     docs: {
       description: {
         story:
-          "An input with an explicitly empty value to test how the component handles empty strings.",
+          'An input with an explicitly empty value to test how the component handles empty strings.',
       },
     },
   },
   args: {
-    type: "text",
-    placeholder: "Type something...",
-    defaultValue: "",
+    type: 'text',
+    placeholder: 'Type something...',
+    defaultValue: '',
   },
 };
 
 export const SpecialCharactersInput: Story = {
-  name: "Input with Special Characters",
+  name: 'Input with Special Characters',
   parameters: {
     docs: {
       description: {
         story:
-          "An input with special characters and emojis to test rendering and handling of non-standard text.",
+          'An input with special characters and emojis to test rendering and handling of non-standard text.',
       },
     },
   },
   args: {
-    type: "text",
-    defaultValue: "→ Special & Unicode € Characters 🚀 ★ é ç ñ",
+    type: 'text',
+    defaultValue: '→ Special & Unicode € Characters 🚀 ★ é ç ñ',
   },
 };
 
 export const AccessibilityEdgeCaseInput: Story = {
-  name: "Input with Accessibility Edge Cases",
+  name: 'Input with Accessibility Edge Cases',
   parameters: {
     docs: {
       description: {
         story:
-          "An input with extremely long accessibility attributes to test compatibility with assistive technologies.",
+          'An input with extremely long accessibility attributes to test compatibility with assistive technologies.',
       },
     },
   },
