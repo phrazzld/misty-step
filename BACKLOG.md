@@ -4,85 +4,120 @@ This backlog outlines the planned work for the Misty Step website, balancing imm
 
 ## High Priority
 
-### Foundation & Strategy
+### Foundation & Governance
 
 - **[Ops]**: Configure Core Development Tooling (Linting, Formatting, Pre-commit Hooks)
 
+  - **Type**: Enhancement
   - **Complexity**: Simple
-  - **Rationale**: Enforces code consistency and quality from the start, aligning with Core Philosophy (Automation, Coding Standards) and TypeScript Appendix (Prettier, ESLint). Reduces review friction and improves maintainability.
+  - **Rationale**: Enforces code consistency and quality from the start, aligning with Core Philosophy (Automation, Coding Standards) and TypeScript Appendix (Prettier, ESLint). Reduces review friction and improves maintainability. Foundational for efficient development.
   - **Expected Outcome**: Prettier and ESLint configured with project standards. Pre-commit hooks (e.g., Husky + lint-staged) automatically format and lint staged files. CI check verifies formatting and linting.
   - **Dependencies**: None.
 
-- **[Ops]**: Set Up Automated Deployment Pipeline (CI/CD)
+- **[Ops]**: Enforce Conventional Commits via Git Hooks (commitlint)
 
-  - **Complexity**: Medium
-  - **Rationale**: Streamlines releases, ensures consistency, enables rapid feedback loops, and automates quality gates. Aligns with Core Philosophy (Automate Everything, CI/CD). Foundational for reliable delivery.
-  - **Expected Outcome**: CI pipeline (e.g., GitHub Actions) triggered on pushes/PRs to main branch. Pipeline performs checkout, setup, lint/format check, build. Successful merges to main trigger deployment to production. Preview deployments for PRs configured.
-  - **Dependencies**: Hosting provider choice (e.g., Vercel/Netlify).
+  - **Type**: Enhancement
+  - **Complexity**: Simple
+  - **Rationale**: Ensures consistent commit history, enabling automated changelog generation and semantic versioning, aligning with Core Philosophy (Semantic Versioning).
+  - **Expected Outcome**: `commitlint` integrated with Husky `commit-msg` hook to validate commit messages against Conventional Commits standards. CI check also validates commit message format of PR titles/squashed commits.
+  - **Dependencies**: Configure Core Development Tooling.
+
+- **[Ops]**: Define and Enforce Specific Node.js LTS Version
+
+  - **Type**: Enhancement
+  - **Complexity**: Simple
+  - **Rationale**: Ensures consistent development, build, and deployment environments, preventing version-related issues. Aligns with TS Appendix (Tooling and Environment).
+  - **Expected Outcome**: A specific Node.js LTS version documented and enforced via `package.json#engines` and `.nvmrc`. CI/CD pipeline uses this version.
+  - **Dependencies**: None.
 
 - **[Feature]**: Define and Document Core Brand Identity & Messaging
 
+  - **Type**: Feature
   - **Complexity**: Medium
   - **Rationale**: Establishes the foundational voice, tone, and visual direction ("personality", "purpose") crucial for consistent communication and design implementation. Ensures the site clearly communicates the company's value proposition, driving user understanding and adoption.
   - **Expected Outcome**: A concise brand guideline document (or section in README/docs) covering mission, voice, tone, target audience, and core messaging points. Shared understanding within the team.
   - **Dependencies**: None. Influences UI/UX Design, Copywriting.
 
 - **[Enhancement]**: Establish Foundational Design System in Code (Tokens: Colors, Typography, Spacing)
+  - **Type**: Enhancement
   - **Complexity**: Medium
   - **Rationale**: Creates a consistent visual language ("high design vibes") necessary for implementing specific aesthetic goals and ensuring maintainability. Aligns with Frontend Appendix (Tailwind theme config) and Core Philosophy (Modularity).
   - **Expected Outcome**: Defined color palette, typographic scale, and spacing rules implemented via Tailwind CSS theme configuration (`tailwind.config.js`) or CSS variables. Base styles applied globally.
-  - **Dependencies**: Influenced by "Define and Document Core Brand Identity & Messaging".
+  - **Dependencies**: Define and Document Core Brand Identity & Messaging.
 
 ### Core User Experience & Functionality
 
-- **[Feature]**: Implement Functional Contact Form Submission
+- **[Feature]**: Implement Functional Contact Form Submission (Client-Side Logic & UI)
 
+  - **Type**: Feature
   - **Complexity**: Medium
-  - **Rationale**: Enables lead generation and user communication, a fundamental business requirement ("unstub contact form"). Currently a blocker for user interaction and direct business value. Requires secure and reliable handling.
-  - **Expected Outcome**: Users can submit the contact form. Submissions are reliably received (e.g., via Netlify Forms, SendGrid API, or a simple serverless function). Input validation implemented. Clear success/failure UI feedback provided. Basic spam protection considered.
-  - **Dependencies**: Decision on backend implementation/integration. Foundational Design System (for styling).
+  - **Rationale**: Enables lead generation and user communication, a fundamental business requirement ("unstub contact form"). This covers the frontend aspects.
+  - **Expected Outcome**: Users can fill out the contact form. Client-side validation (e.g., using React Hook Form + Zod) implemented. Clear success/failure UI feedback provided based on submission attempt.
+  - **Dependencies**: Foundational Design System.
+
+- **[Feature]**: Implement Robust Server-Side Validation & Processing for Contact Form
+
+  - **Type**: Feature
+  - **Complexity**: Medium
+  - **Rationale**: Ensures data integrity and security for the primary user interaction point. Aligns with Core Philosophy (Security - "NEVER trust external input"). Critical for reliable lead capture.
+  - **Expected Outcome**: Backend mechanism (e.g., serverless function) rigorously validates all inputs for type, format, length, and potential malicious content before processing. Submissions are reliably received (e.g., sent via email, stored). Basic spam protection considered.
+  - **Dependencies**: Implement Functional Contact Form Submission (Client-Side Logic & UI).
 
 - **[Enhancement]**: Refine Website Copy for Clarity and Impact (Homepage, Key Sections)
 
+  - **Type**: Enhancement
   - **Complexity**: Medium
   - **Rationale**: Ensures key pages clearly articulate the company's purpose and value proposition, directly addressing the need to "clarify purpose" and improve user engagement. Aligns with Core Philosophy (Document the Why).
   - **Expected Outcome**: Compelling, concise, and brand-aligned copy on the Homepage and other primary sections. Improved user understanding of Misty Step's offerings.
-  - **Dependencies**: Depends on "Define and Document Core Brand Identity & Messaging".
+  - **Dependencies**: Define and Document Core Brand Identity & Messaging.
 
 - **[Fix]**: Ensure Core Responsiveness Across Devices (Mobile-First)
+  - **Type**: Fix
   - **Complexity**: Medium
   - **Rationale**: Guarantees a usable and professional experience on mobile, tablet, and desktop. Mandatory per Frontend Appendix (Mobile-First). Essential for modern web presence, accessibility, and user satisfaction.
   - **Expected Outcome**: All primary pages render correctly and are easily navigable on standard breakpoints (e.g., 320px, 768px, 1024px, 1440px+). No layout breakage or usability issues. Verified via browser dev tools.
   - **Dependencies**: Foundational Design System.
 
-### Initial Technical Health & DX Setup
+### Initial Technical Excellence & Developer Experience
 
 - **[Ops]**: Set up Storybook for Component Development & Documentation
 
+  - **Type**: Enhancement
   - **Complexity**: Medium
-  - **Rationale**: Mandated by Frontend Appendix (Storybook-First). Enforces component-driven development, provides a living style guide, facilitates isolated development/testing, and enables visual regression testing later. Improves developer experience and maintainability.
+  - **Rationale**: Mandated by Frontend Appendix (Storybook-First). Enforces component-driven development, provides a living style guide, facilitates isolated development/testing. Improves developer experience and maintainability.
   - **Expected Outcome**: Storybook installed and configured. Basic structure set up reflecting Atomic Design levels. Example stories for initial UI primitives created. Storybook build integrated into CI.
   - **Dependencies**: Foundational Design System.
 
 - **[Enhancement]**: Implement Basic SEO Metadata & Structure
 
+  - **Type**: Enhancement
   - **Complexity**: Simple
   - **Rationale**: Ensures the site is discoverable by search engines, improving organic traffic and visibility. Critical business value for a marketing site.
   - **Expected Outcome**: Pages have appropriate meta titles, descriptions using framework capabilities (e.g., Next.js `Metadata` API). Semantic HTML structure (headings, landmarks) reviewed/implemented. Generation and configuration of `robots.txt` and `sitemap.xml`. Basic Open Graph tags for social sharing.
-  - **Dependencies**: Requires finalized page titles and descriptions from content refinement.
+  - **Dependencies**: Refine Website Copy for Clarity and Impact.
 
 - **[Enhancement]**: Conduct Initial Performance Audit & Basic Optimizations
 
+  - **Type**: Enhancement
   - **Complexity**: Medium
   - **Rationale**: Establishes a performance baseline and addresses low-hanging fruit (image optimization, font loading) to improve initial load times and user experience, impacting retention and SEO. Aligns with Frontend Appendix (Web Vitals).
-  - **Expected Outcome**: Baseline Lighthouse performance score recorded. Obvious bottlenecks identified and addressed (e.g., leveraging Next.js Image component). Target initial improvement in Core Web Vitals (LCP < 2.5s, FID/INP < 100ms, CLS < 0.1).
-  - **Dependencies**: Core features/pages implemented.
+  - **Expected Outcome**: Baseline Lighthouse performance score recorded. Obvious bottlenecks identified and addressed (e.g., leveraging Next.js Image component). Target initial improvement in Core Web Vitals (LCP < 2.5s, INP < 100ms, CLS < 0.1).
+  - **Dependencies**: Core pages/features implemented.
 
-- **[Enhancement]**: Conduct Initial Accessibility Audit & Remediation (Target WCAG 2.1 AA)
+- **[Enhancement]**: Conduct Initial Accessibility Audit & Basic Remediation (Target WCAG 2.1 AA)
+
+  - **Type**: Enhancement
   - **Complexity**: Medium
   - **Rationale**: Mandatory per Frontend Appendix (WCAG 2.1 AA). Ensures the website is usable by people with disabilities, broadening the audience, improving SEO, and complying with best practices. Foundational for quality.
   - **Expected Outcome**: Identification and remediation of key accessibility issues (keyboard navigation, color contrast, semantic HTML, ARIA roles/attributes, form labels) using tools like axe DevTools and manual checks. Improved Lighthouse accessibility score.
-  - **Dependencies**: Core Responsiveness, Foundational Design System.
+  - **Dependencies**: Ensure Core Responsiveness Across Devices.
+
+- **[Ops]**: Implement Basic Structured Logging Setup
+  - **Type**: Enhancement
+  - **Complexity**: Simple
+  - **Rationale**: Establishes structured JSON logging early, crucial for observability and debugging, as mandated by Core Philosophy (Logging Strategy) and TS Appendix (Logging).
+  - **Expected Outcome**: A standard logging library (e.g., Pino) configured for JSON output. Basic log levels set up. Initial integration for logging application startup, errors, and contact form submission attempts/results (server-side).
+  - **Dependencies**: Implement Robust Server-Side Validation & Processing for Contact Form (for logging context).
 
 ## Medium Priority
 
@@ -90,27 +125,31 @@ This backlog outlines the planned work for the Misty Step website, balancing imm
 
 - **[Enhancement]**: Implement Atomic Design Component Structure
 
+  - **Type**: Enhancement
   - **Complexity**: Medium
-  - **Rationale**: Mandated by Frontend Appendix (1). Enhances component organization, reusability, clarifies Storybook structure, and improves maintainability. Aligns with Core Philosophy (Modularity).
+  - **Rationale**: Mandated by Frontend Appendix (Component Architecture). Enhances component organization, reusability, clarifies Storybook structure, and improves maintainability. Aligns with Core Philosophy (Modularity).
   - **Expected Outcome**: Components explicitly organized into `src/components/ui/{atoms, molecules, organisms}` directories (or similar structure). Storybook hierarchy reflects this. Key existing components refactored. Documented.
-  - **Dependencies**: Storybook Setup. Foundational Design System.
+  - **Dependencies**: Set up Storybook for Component Development & Documentation.
 
 - **[Enhancement]**: Refine Core UI Component Styling (Buttons, Forms, Nav)
 
+  - **Type**: Enhancement
   - **Complexity**: Medium
   - **Rationale**: Improves the overall look and feel ("aesthetics"), aligning components with the defined brand identity and design system. Leverages preferred tooling (e.g., Tailwind CSS, potentially shadcn/ui).
   - **Expected Outcome**: Key UI components styled consistently using design tokens, reflecting the brand aesthetic. Components documented with stories in Storybook. Dark mode support considered/implemented.
-  - **Dependencies**: Foundational Design System, Atomic Design Component Structure, Storybook Setup.
+  - **Dependencies**: Foundational Design System, Implement Atomic Design Component Structure.
 
 - **[Enhancement]**: Implement Subtle & Elegant UI Animations/Transitions
+  - **Type**: Enhancement
   - **Complexity**: Medium
   - **Rationale**: Adds polish and delight ("elegant subtle delightful animations"), enhancing the user experience and reinforcing the desired "high design vibes" aesthetic without hindering performance. Aligns with Frontend Appendix (Animation Principles).
   - **Expected Outcome**: Smooth, non-intrusive animations (e.g., using Framer Motion or CSS transitions) on key interactions (hover states, focus states, page transitions). Respects `prefers-reduced-motion`. Animations documented in Storybook where applicable.
-  - **Dependencies**: Refined Core UI Component Styling.
+  - **Dependencies**: Refine Core UI Component Styling.
 
 ### Content & Communication
 
 - **[Feature]**: Develop an "About" or "Philosophy" Page
+  - **Type**: Feature
   - **Complexity**: Medium
   - **Rationale**: Builds credibility and allows for deeper storytelling, providing context beyond the homepage. Helps articulate company values and mission, supporting brand identity.
   - **Expected Outcome**: New route and page created. Informative and engaging content elaborating on company values, mission, vision. Content and design aligned with brand identity and design system. SEO metadata included.
@@ -118,104 +157,199 @@ This backlog outlines the planned work for the Misty Step website, balancing imm
 
 ### Technical Excellence & Architecture
 
+- **[Refactor]**: Implement Feature-Based Directory Structure
+
+  - **Type**: Refactor
+  - **Complexity**: Medium
+  - **Rationale**: Aligns with Philosophy Arch Guideline 4 (Package Structure) and TS Appendix (Feature Folders). Improves modularity, navigability, and scalability as features grow. Enhances developer experience.
+  - **Expected Outcome**: Code organized into feature/domain directories (e.g., `src/features/contact/`) alongside shared code (`src/components/ui/`, `src/lib/`). Existing code refactored. Documented.
+  - **Dependencies**: Initial features built, Implement Atomic Design Component Structure.
+
 - **[Refactor]**: Review and Refactor Core UI Components for Reusability & Maintainability
 
+  - **Type**: Refactor
   - **Complexity**: Medium
   - **Rationale**: Improves code maintainability, consistency, and developer experience by ensuring components are well-structured (DRY, SRP), testable, and reusable. Reduces technical debt. Aligns with Core Philosophy (Modularity, Maintainability).
   - **Expected Outcome**: Key UI components refactored to have clear props (TypeScript interfaces), minimal internal state, and strong separation of concerns. Code duplication reduced. Components easily testable in isolation.
   - **Dependencies**: Implement Atomic Design Component Structure.
 
-- **[Refactor]**: Implement Feature-Based Directory Structure
+- **[Enhancement]**: Integrate Zod Schema Validation for Forms (with React Hook Form)
+  - **Type**: Enhancement
   - **Complexity**: Medium
-  - **Rationale**: Aligns with Philosophy Arch Guideline 4 (Package Structure) and TS Appendix (Feature Folders). Improves modularity, navigability, and scalability as features grow. Enhances developer experience.
-  - **Expected Outcome**: Code organized into feature/domain directories (e.g., `src/features/contact/`) alongside shared code (`src/components/ui/`, `src/lib/`). Existing code refactored. Documented.
-  - **Dependencies**: Initial features built, Atomic Design Structure implemented.
+  - **Rationale**: Mandated by Frontend Appendix (Form Handling - "Zod for schema validation with React Hook Form") for robust, type-safe form validation, providing a single source of truth.
+  - **Expected Outcome**: Zod schemas defined for all forms (starting with Contact Form). React Hook Form integrated with Zod resolver for validation.
+  - **Dependencies**: Implement Functional Contact Form Submission (Client-Side Logic & UI).
 
 ### Quality Assurance & Testing
 
 - **[Ops]**: Integrate Automated Accessibility Checks in CI
 
+  - **Type**: Enhancement
   - **Complexity**: Medium
   - **Rationale**: Enforces Frontend Appendix requirement (WCAG 2.1 AA). Provides early feedback and prevents regressions. Supports the manual A11y audit. Aligns with Core Philosophy (Automation, Quality Gates).
   - **Expected Outcome**: Automated a11y tests (e.g., `jest-axe` in component tests, Storybook `addon-a11y` checks via CI integration) run in the CI pipeline, failing the build on configured violation levels.
-  - **Dependencies**: CI/CD Setup, Initial Accessibility Audit.
+  - **Dependencies**: Set Up Automated Deployment Pipeline (CI/CD), Conduct Initial Accessibility Audit & Basic Remediation.
 
 - **[Ops]**: Integrate Storybook Visual Regression Testing in CI
 
+  - **Type**: Enhancement
   - **Complexity**: Medium
   - **Rationale**: Supports Frontend Appendix (Storybook-First) and Core Philosophy (Automate Everything). Prevents unintended UI changes and ensures visual consistency. Acts as a quality gate.
   - **Expected Outcome**: Visual snapshots generated for Storybook stories and compared in CI (e.g., using Chromatic). Diffs detected require explicit approval or code changes to resolve. Integrated into the PR workflow.
-  - **Dependencies**: Storybook Setup, Refined Core UI Component Styling, CI/CD Setup.
+  - **Dependencies**: Set up Storybook for Component Development & Documentation, Refine Core UI Component Styling, Set Up Automated Deployment Pipeline (CI/CD).
 
 - **[Enhancement]**: Implement Component Testing (Unit/Integration for Atoms/Molecules/Organisms)
+
+  - **Type**: Enhancement
   - **Complexity**: Medium
   - **Rationale**: Ensures correctness and reliability of UI components in isolation and composition. Aligns with Core Principle 3 (Design for Testability) and Frontend Appendix 4 (Testing Strategy). Supports safe refactoring.
-  - **Expected Outcome**: Unit tests for key Atoms/Molecules, integration tests for key Organisms verifying props, states, and basic interactions. Test coverage targets established for components. Tests run in CI.
-  - **Dependencies**: Atomic Design Component Structure, CI/CD Setup.
+  - **Expected Outcome**: Unit tests for key Atoms/Molecules, integration tests for key Organisms verifying props, states, and basic interactions using React Testing Library. Test coverage targets established. Tests run in CI.
+  - **Dependencies**: Implement Atomic Design Component Structure, Set Up Automated Deployment Pipeline (CI/CD).
 
-### Operational Excellence
+- **[Enhancement]**: Implement Comprehensive End-to-End Testing for Critical Flows
+  - **Type**: Enhancement
+  - **Complexity**: Medium
+  - **Rationale**: The Frontend Appendix (Testing Strategy) mandates E2E testing for critical user flows. Ensures core functionality like navigation and contact form submission are reliably tested from a user's perspective, acting as a key quality gate.
+  - **Expected Outcome**: An E2E test suite (e.g., using Playwright or Cypress) covering successful navigation to all main pages and successful submission of the contact form. Tests integrated into the CI/CD pipeline and must pass for deployment.
+  - **Dependencies**: Implement Robust Server-Side Validation & Processing for Contact Form, Set Up Automated Deployment Pipeline (CI/CD), All core pages/features implemented.
+
+### Operational Excellence & Security
+
+- **[Enhancement]**: Implement Specific Security Measures for Contact Form Endpoint
+
+  - **Type**: Enhancement
+  - **Complexity**: Medium
+  - **Rationale**: Protects the contact form submission endpoint against common web vulnerabilities like CSRF and potential abuse. Aligns with Core Philosophy (Security Considerations - "Protect against common web vulnerabilities").
+  - **Expected Outcome**: Measures such as CSRF token implementation and rate limiting (basic) are applied to the contact form submission endpoint. Input sanitization is confirmed as part of server-side validation.
+  - **Dependencies**: Implement Robust Server-Side Validation & Processing for Contact Form.
 
 - **[Enhancement]**: Integrate Web Analytics
 
+  - **Type**: Enhancement
   - **Complexity**: Simple
   - **Rationale**: Enables tracking of website traffic and user behavior, providing crucial insights for future improvements, content strategy, and measuring business value.
   - **Expected Outcome**: Integration of a privacy-respecting analytics platform (e.g., Plausible, Fathom, or GA4 with consent). Tracking page views and key events (e.g., contact form submission success). Configuration managed via environment variables.
-  - **Dependencies**: Functional Contact Form Submission.
+  - **Dependencies**: Implement Functional Contact Form Submission.
+
+- **[Enhancement]**: Integrate Web Vitals Metrics & Observability Instrumentation
+
+  - **Type**: Enhancement
+  - **Complexity**: Medium
+  - **Rationale**: Provides ongoing, actionable performance and health data beyond initial audits or basic analytics. Aligns with Core Philosophy (Observability - "metrics and tracing") and Frontend Appendix (Performance & RUM).
+  - **Expected Outcome**: Core Web Vitals (LCP, INP, CLS) are continuously measured and reported to an analytics/observability platform. Key user interactions or API calls from the frontend are instrumented for performance monitoring.
+  - **Dependencies**: Integrate Web Analytics, Deployed production site.
 
 - **[Enhancement]**: Set Up Basic Uptime Monitoring
 
+  - **Type**: Enhancement
   - **Complexity**: Simple
   - **Rationale**: Provides automated alerts if the production website becomes unavailable, enabling faster response to outages and ensuring operational reliability.
   - **Expected Outcome**: Integration with an uptime monitoring service checking the production site URL periodically. Alerts configured for downtime notifications.
   - **Dependencies**: Deployed production site.
 
 - **[Enhancement]**: Implement Basic Security Headers
+
+  - **Type**: Enhancement
   - **Complexity**: Simple
   - **Rationale**: Improves website security posture by mitigating common vulnerabilities (e.g., XSS, clickjacking). Aligns with Core Philosophy (Security Considerations).
   - **Expected Outcome**: Implementation of key security headers (e.g., `Content-Security-Policy` (basic), `Strict-Transport-Security`, `X-Frame-Options`, `X-Content-Type-Options`) via hosting configuration or middleware. Verified using browser dev tools or online scanners.
   - **Dependencies**: Deployed production site.
 
+- **[Enhancement]**: Implement Top-Level UI Error Boundary and Refined Component Error Handling
+  - **Type**: Enhancement
+  - **Complexity**: Medium
+  - **Rationale**: Aligns with Core Philosophy (Error Handling) and Frontend Appendix (Error Handling). Ensures graceful degradation and user-friendly error messages for unexpected UI errors.
+  - **Expected Outcome**: A React Error Boundary wraps the main application, catching and logging unhandled JavaScript errors in the UI, displaying a user-friendly fallback. Key components integrate structured logging for their specific error conditions.
+  - **Dependencies**: Implement Basic Structured Logging Setup.
+
 ## Low Priority
 
-### Technical Health & DX
-
-- **[Refactor]**: Update Key Dependencies & Tooling (Node.js, Framework, etc.)
-
-  - **Complexity**: Medium
-  - **Rationale**: Ensures the project benefits from the latest features, performance improvements, and security patches. Reduces technical debt. Aligns with Core Philosophy (Dependency Management).
-  - **Expected Outcome**: Major dependencies updated to recent stable versions. Build process remains stable. Security vulnerabilities identified by `npm audit --audit-level=high` addressed. CI pipeline confirms compatibility.
-  - **Dependencies**: Stable CI/CD pipeline.
-
-- **[Fix]**: Update Husky Post-Commit Hook Format (If Deprecated)
-
-  - **Complexity**: Simple
-  - **Rationale**: Addresses potential deprecation warnings in Git hooks tooling to ensure compatibility with future versions. Minor technical debt removal for smooth developer workflow.
-  - **Expected Outcome**: Updated hook format following current Husky best practices, eliminating any deprecation warnings. Verified via local commit attempt.
-  - **Dependencies**: Core Development Tooling setup.
+### Developer Experience & Documentation
 
 - **[Enhancement]**: Add Comprehensive README and Developer Onboarding Documentation
 
+  - **Type**: Enhancement
   - **Complexity**: Simple
   - **Rationale**: Lowers friction for new contributors or future maintenance, ensuring consistency in setup and development practices. Aligns with Core Philosophy (Documentation Approach). Improves developer experience.
   - **Expected Outcome**: Clear setup instructions, contribution guidelines (Conventional Commits reminder), architecture overview (Atomic Design, Feature Folders), testing strategy, CI/CD process, and Storybook usage documented in `README.md` and potentially `CONTRIBUTING.md`.
   - **Dependencies**: Key architectural decisions made and implemented.
 
+- **[Ops]**: Define and Document Architecture Decision Record (ADR) Process
+
+  - **Type**: Enhancement
+  - **Complexity**: Simple
+  - **Rationale**: Formalizes the documentation of significant architectural decisions and their rationale, improving long-term maintainability and onboarding. Aligns with Core Philosophy (Documentation Approach - "Document Decisions, Not Mechanics").
+  - **Expected Outcome**: A lightweight ADR template and process (e.g., storing ADRs in `docs/adr/`) are defined and documented. At least one initial ADR is created for a past or current significant decision.
+  - **Dependencies**: None.
+
+- **[Ops]**: Refine Post-Commit Hook for Glance Documentation Generation
+
+  - **Type**: Enhancement
+  - **Complexity**: Simple
+  - **Rationale**: Improves the robustness of automated documentation generation via `glance`, addressing potential issues with logging and error handling in the `post-commit` hook. Aligns with Core Philosophy (Automation).
+  - **Expected Outcome**: `post-commit` hook script for `glance` updated to manage logs effectively, check for command existence, and handle errors gracefully.
+  - **Dependencies**: Configure Core Development Tooling, Glance tool setup.
+
+- **[Refactor]**: Extract Reusable Form Handling Logic from Contact Component
+  - **Type**: Refactor
+  - **Complexity**: Simple
+  - **Rationale**: Improves component simplicity and reusability by separating form submission logic from presentation. Aligns with Core Philosophy (Modularity, Simplicity First).
+  - **Expected Outcome**: Generic form handling logic (e.g., state management, submission handler structure) extracted into a custom hook or utility, making the Contact component primarily responsible for layout and specific field definitions.
+  - **Dependencies**: Implement Functional Contact Form Submission (Client-Side Logic & UI), Integrate Zod Schema Validation for Forms.
+
+### Technical Health & Operational Excellence
+
+- **[Refactor]**: Update Key Dependencies & Tooling (Node.js, Framework, etc.)
+
+  - **Type**: Refactor
+  - **Complexity**: Medium
+  - **Rationale**: Ensures the project benefits from the latest features, performance improvements, and security patches. Reduces technical debt. Aligns with Core Philosophy (Dependency Management).
+  - **Expected Outcome**: Major dependencies updated to recent stable versions. Build process remains stable. Security vulnerabilities identified addressed. CI pipeline confirms compatibility.
+  - **Dependencies**: Stable CI/CD pipeline.
+
 - **[Ops]**: Implement CI Enforcement of Test Coverage Thresholds
 
+  - **Type**: Enhancement
   - **Complexity**: Simple
-  - **Rationale**: Aligns with Philosophy Frontend Appendix (4) and Core Principle 3 (Design for Testability). Ensures testing standards are consistently met once tests are written. Acts as a quality gate.
-  - **Expected Outcome**: CI pipeline configured to measure test coverage and fail if coverage drops below defined thresholds (e.g., 90% Atoms/Molecules, 85% Organisms - adjust as appropriate).
-  - **Dependencies**: CI/CD Setup, Component Testing implemented.
+  - **Rationale**: Aligns with Philosophy Frontend Appendix (4) and Core Principle 3 (Design for Testability). Ensures testing standards are consistently met. Acts as a quality gate.
+  - **Expected Outcome**: CI pipeline configured to measure test coverage and fail if coverage drops below defined thresholds.
+  - **Dependencies**: Set Up Automated Deployment Pipeline (CI/CD), Implement Component Testing.
 
 - **[Ops]**: Integrate Dependency Vulnerability Scanning in CI
+
+  - **Type**: Enhancement
   - **Complexity**: Simple
-  - **Rationale**: Identifies known security vulnerabilities in dependencies as a mandatory security practice (Security Considerations, TS Appendix 12). Acts as a quality gate.
+  - **Rationale**: Identifies known security vulnerabilities in dependencies as a mandatory security practice. Acts as a quality gate.
   - **Expected Outcome**: CI pipeline includes a step to run `npm audit --audit-level=high` (or equivalent) and fails the build if critical/high severity vulnerabilities are found.
-  - **Dependencies**: CI/CD Setup.
+  - **Dependencies**: Set Up Automated Deployment Pipeline (CI/CD).
+
+- **[Ops]**: Implement Automated Dependency Update Bot (e.g., Dependabot/Renovate)
+
+  - **Type**: Enhancement
+  - **Complexity**: Simple
+  - **Rationale**: Proactively manages dependency updates and security patches, reducing manual effort and security risks. Aligns with Core Philosophy (Dependency Management - "Automated tools").
+  - **Expected Outcome**: Dependabot or Renovate configured for the repository to automatically create PRs for dependency updates, integrated with CI checks.
+  - **Dependencies**: Set Up Automated Deployment Pipeline (CI/CD).
+
+- **[Ops]**: Implement Automated Changelog Generation and SemVer Release Process
+
+  - **Type**: Enhancement
+  - **Complexity**: Simple
+  - **Rationale**: Automates release versioning and changelog generation based on Conventional Commits. Aligns with Core Philosophy (Semantic Versioning and Release Automation).
+  - **Expected Outcome**: Tooling (e.g., `semantic-release` or `standard-version`) integrated into the CI/CD pipeline to automate version bumping, tagging, and `CHANGELOG.md` updates upon merges to the main branch.
+  - **Dependencies**: Enforce Conventional Commits via Git Hooks, Set Up Automated Deployment Pipeline (CI/CD).
+
+- **[Enhancement]**: Enforce Secure Secret Management and Configuration Externalization
+  - **Type**: Enhancement
+  - **Complexity**: Simple
+  - **Rationale**: Ensures all sensitive information (API keys, etc.) is managed securely via environment variables, not hardcoded. Aligns with Core Philosophy (Security Considerations) and TS Appendix (Configuration).
+  - **Expected Outcome**: Clear policy and practice for managing secrets via environment variables. An `.env.example` file is maintained. CI/CD pipeline configured to use environment variables for secrets.
+  - **Dependencies**: Becomes relevant as integrations requiring secrets are added.
 
 ### Innovation & Exploration
 
 - **[Research]**: Explore Use Cases for Advanced Animations or Interactions (e.g., WebGL, Lottie)
+  - **Type**: Research
   - **Complexity**: Medium
   - **Rationale**: Investigates potential for highly engaging visual elements that align with the "high design" goal, evaluating performance, accessibility, and complexity trade-offs. Drives innovation.
   - **Expected Outcome**: Summary report or proof-of-concept assessing feasibility, relevant libraries/techniques, performance implications, accessibility considerations, and recommended next steps.
@@ -249,30 +383,13 @@ _(Items from this list move into prioritized tiers as strategic focus shifts)_
   - **Rationale**: Further improve loading performance for top-tier Lighthouse scores and user experience, especially on slower connections. Ensures technical excellence and scalability.
   - **Expected Outcome**: Measurable improvements in FCP, LCP, and INP metrics beyond basic optimizations. Techniques implemented based on profiling.
 
-- **[Enhancement]**: Implement Comprehensive End-to-End Testing
+- **[Feature]**: Progressive Web App (PWA) Capabilities
 
   - **Complexity**: Complex
-  - **Rationale**: Provides high confidence in application stability by simulating real user flows across the application. Mandatory per Frontend Appendix for critical flows. Ensures operational reliability.
-  - **Expected Outcome**: Test suite (e.g., using Cypress, Playwright) covering critical user paths (navigation, form submission). Tests integrated into the CI/CD pipeline.
+  - **Rationale**: Adds offline access, installability, and mobile-first enhancements, improving engagement and reach.
+  - **Expected Outcome**: Service worker, manifest, and PWA compliance for the marketing site.
 
 - **[Research]**: Investigate A/B Testing Framework Integration
-
   - **Complexity**: Medium
-  - **Rationale**: Enables data-driven optimization of messaging, design, or calls-to-action to improve conversion rates and user engagement. Drives business value through experimentation.
-  - **Expected Outcome**: Evaluation of A/B testing tools compatible with the tech stack. Plan for integrating experimentation into the development workflow.
-
-- **[Feature]**: Progressive Web App (PWA) Capabilities
-  - **Complexity**: Complex
-  - **Rationale**: Enhances user experience with features like offline access (static content), installability, potentially improving engagement and resilience. Aligns with Frontend Appendix 11.
-  - **Expected Outcome**: Implementation of a service worker, web manifest file, and configurations meeting PWA installability criteria. Basic offline fallback page.
-
-## Philosophy Alignment Improvements
-
-The items below are already incorporated into the backlog above, but were previously identified specifically to improve alignment with our development philosophy:
-
-- Implement Feature-Based Directory Structure (Medium Priority)
-- Implement Atomic Design Component Structure (Medium Priority)
-- Integrate Automated Accessibility Checks in CI (Medium Priority)
-- Integrate Storybook Visual Regression Testing in CI (Medium Priority)
-- Implement CI Enforcement of Test Coverage Thresholds (Low Priority)
-- Establish Architecture Decision Record (ADR) Process (addressed via comprehensive documentation)
+  - **Rationale**: Enables data-driven experimentation to optimize conversions and UX.
+  - **Expected Outcome**: Evaluation of A/B tools and plan for integration.

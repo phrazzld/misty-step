@@ -4,9 +4,33 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 // Import after the mock is set up
 import logger, { createLogger, createConfiguredLogger } from './logger';
 
+// Define a more specific type for pino options
+interface PinoOptions {
+  name?: string;
+  level?: string;
+  base?: {
+    service_name: string;
+    [key: string]: unknown;
+  };
+  formatters?: {
+    level: (label: string) => { level: string };
+    [key: string]: unknown;
+  };
+  transport?: {
+    target: string;
+    options: {
+      colorize: boolean;
+      translateTime: string;
+      [key: string]: unknown;
+    };
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
+
 // Define the type for our mock pino function with additional properties
 type MockPinoFn = ReturnType<typeof vi.fn> & {
-  lastOptions: Record<string, any>;
+  lastOptions: PinoOptions;
   stdTimeFunctions: {
     isoTime: string;
   };

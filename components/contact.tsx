@@ -1,7 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import {
+  useForm,
+  SubmitHandler,
+  FieldError,
+  RegisterOptions,
+  UseFormRegister,
+} from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -46,11 +52,112 @@ function SubmitAlert({ result }: { result: SubmitResult | null }): React.ReactEl
 }
 
 /**
+ * Form field component to reduce duplication
+ */
+interface FormFieldProps {
+  id: keyof ContactFormFields;
+  label: string;
+  placeholder: string;
+  register: UseFormRegister<ContactFormFields>;
+  error?: FieldError;
+  type?: string;
+  registerOptions?: RegisterOptions;
+  rows?: number;
+  isTextarea?: boolean;
+}
+
+function FormField({
+  id,
+  label,
+  placeholder,
+  register,
+  error,
+  type = 'text',
+  registerOptions,
+  rows,
+  isTextarea = false,
+}: FormFieldProps): React.ReactElement {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor={id}>{label}</Label>
+      {isTextarea ? (
+        <Textarea
+          id={id}
+          rows={rows || 4}
+          placeholder={placeholder}
+          aria-invalid={error ? 'true' : 'false'}
+          {...register(id as keyof ContactFormFields, registerOptions)}
+        />
+      ) : (
+        <Input
+          id={id}
+          type={type}
+          placeholder={placeholder}
+          aria-invalid={error ? 'true' : 'false'}
+          {...register(id as keyof ContactFormFields, registerOptions)}
+        />
+      )}
+      {error && (
+        <p className="text-sm text-red-500 mt-1" role="alert">
+          {error.message}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Form submission handler logic
+ */
+function useContactFormSubmission() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
+
+  const handleFormSubmit = async (data: ContactFormFields, reset: () => void) => {
+    setIsSubmitting(true);
+    setSubmitResult(null);
+
+    try {
+      // Create FormData from the form values
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+
+      // Submit the form data
+      const result = await submitContactForm(formData);
+
+      // Update state based on the result
+      if (result.success) {
+        setSubmitResult({
+          success: true,
+          message: 'Your message has been sent successfully!',
+        });
+        reset();
+      } else {
+        setSubmitResult({
+          success: false,
+          message: result.error || 'Something went wrong. Please try again.',
+        });
+      }
+    } catch {
+      setSubmitResult({
+        success: false,
+        message: 'An unexpected error occurred. Please try again later.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return { isSubmitting, submitResult, handleFormSubmit };
+}
+
+/**
  * Contact form component
  */
 export function Contact(): React.ReactElement {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
+  const { isSubmitting, submitResult, handleFormSubmit } = useContactFormSubmission();
 
   const {
     register,
@@ -66,43 +173,7 @@ export function Contact(): React.ReactElement {
   });
 
   const onSubmit: SubmitHandler<ContactFormFields> = async (data) => {
-    setIsSubmitting(true);
-    setSubmitResult(null);
-
-    try {
-      // Create FormData from the form values
-      const formData = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
-        formData.append(key, value);
-      });
-
-      // Submit the form data using our extracted function
-      const result = await submitContactForm(formData);
-
-      // Update state based on the result
-      if (result.success) {
-        setSubmitResult({
-          success: true,
-          message: 'Your message has been sent successfully!',
-        });
-
-        // Reset the form on success
-        reset();
-      } else {
-        setSubmitResult({
-          success: false,
-          message: result.error || 'Something went wrong. Please try again.',
-        });
-      }
-    } catch {
-      // Handle any unexpected errors without using the error parameter
-      setSubmitResult({
-        success: false,
-        message: 'An unexpected error occurred. Please try again later.',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    await handleFormSubmit(data, reset);
   };
 
   return (
@@ -114,56 +185,39 @@ export function Contact(): React.ReactElement {
             <SubmitAlert result={submitResult} />
             <form onSubmit={handleSubmit(onSubmit)} aria-label="Contact form">
               <div className="grid gap-4 mb-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    id="name"
-                    placeholder="Your name"
-                    aria-invalid={errors.name ? 'true' : 'false'}
-                    {...register('name', { required: 'Name is required' })}
-                  />
-                  {errors.name && (
-                    <p className="text-sm text-red-500 mt-1" role="alert">
-                      {errors.name.message}
-                    </p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="your.email@example.com"
-                    aria-invalid={errors.email ? 'true' : 'false'}
-                    {...register('email', {
-                      required: 'Email is required',
-                      pattern: {
-                        value: /\S+@\S+\.\S+/,
-                        message: 'Please enter a valid email address',
-                      },
-                    })}
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-red-500 mt-1" role="alert">
-                      {errors.email.message}
-                    </p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea
-                    id="message"
-                    rows={4}
-                    placeholder="How can we help you?"
-                    aria-invalid={errors.message ? 'true' : 'false'}
-                    {...register('message', { required: 'Message is required' })}
-                  />
-                  {errors.message && (
-                    <p className="text-sm text-red-500 mt-1" role="alert">
-                      {errors.message.message}
-                    </p>
-                  )}
-                </div>
+                <FormField
+                  id="name"
+                  label="Name"
+                  placeholder="Your name"
+                  register={register}
+                  error={errors.name}
+                  registerOptions={{ required: 'Name is required' }}
+                />
+                <FormField
+                  id="email"
+                  label="Email"
+                  type="email"
+                  placeholder="your.email@example.com"
+                  register={register}
+                  error={errors.email}
+                  registerOptions={{
+                    required: 'Email is required',
+                    pattern: {
+                      value: /\S+@\S+\.\S+/,
+                      message: 'Please enter a valid email address',
+                    },
+                  }}
+                />
+                <FormField
+                  id="message"
+                  label="Message"
+                  placeholder="How can we help you?"
+                  register={register}
+                  error={errors.message}
+                  registerOptions={{ required: 'Message is required' }}
+                  rows={4}
+                  isTextarea
+                />
               </div>
               <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? 'Sending...' : 'Send Message'}

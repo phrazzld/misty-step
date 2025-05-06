@@ -42,10 +42,18 @@ describe('Layout', () => {
 
     // Verify that it's an html element
     expect(layout.type).toBe('html');
-    expect((layout.props as Record<string, any>).lang).toBe('en');
+
+    // Use a more specific type for props
+    interface HtmlElementProps {
+      lang: string;
+      children: React.ReactNode;
+      [key: string]: unknown;
+    }
+
+    expect((layout.props as HtmlElementProps).lang).toBe('en');
 
     // Verify that it contains a body element with children
-    const body = (layout.props as Record<string, any>).children;
+    const body = (layout.props as HtmlElementProps).children;
     expect(body.type).toBe('body');
     expect(body.props.className).toContain('--font-geist-sans');
     expect(body.props.className).toContain('--font-geist-mono');
