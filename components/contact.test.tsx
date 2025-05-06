@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-// Import form module for mocking
-import '@/lib/contact-form';
-import { render, screen } from '@/test/utils';
+import * as contactFormModule from '@/lib/contact-form';
+import { render, screen, waitFor } from '@/test/utils';
 
 import { Contact } from './contact';
 
@@ -13,6 +13,10 @@ vi.mock('@/lib/contact-form', () => ({
 }));
 
 describe('Contact', () => {
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
+
   it('renders correctly with all form elements', () => {
     render(<Contact />);
 
@@ -28,28 +32,88 @@ describe('Contact', () => {
     expect(screen.getByRole('button', { name: /send message/i })).toBeInTheDocument();
   });
 
-  it('validates required fields', () => {
+  it('validates required fields when form is submitted', async () => {
+    const user = userEvent.setup();
     render(<Contact />);
 
-    // Get form fields
-    const nameInput = screen.getByLabelText('Name');
-    const emailInput = screen.getByLabelText('Email');
-    const messageInput = screen.getByLabelText('Message');
+    // Submit the form without filling any fields
+    await user.click(screen.getByRole('button', { name: /send message/i }));
 
-    // Check if required validation is working
-    expect(nameInput).toBeRequired();
-    expect(emailInput).toBeRequired();
-    expect(messageInput).toBeRequired();
+    // Check for validation error messages
+    await waitFor(() => {
+      expect(screen.getByText('Name is required')).toBeInTheDocument();
+      expect(screen.getByText('Email is required')).toBeInTheDocument();
+      expect(screen.getByText('Message is required')).toBeInTheDocument();
+    });
   });
 
-  it('validates email format', () => {
+  it('uses email input type for validation', () => {
     render(<Contact />);
 
-    // Get email input
+    // Check that the email input has the correct type for browser validation
     const emailInput = screen.getByLabelText('Email') as HTMLInputElement;
-
-    // Email input should have type="email" for browser validation
     expect(emailInput.type).toBe('email');
+  });
+
+  it('submits the form with valid data', async () => {
+    // Mock successful submission
+    vi.mocked(contactFormModule.submitContactForm).mockResolvedValueOnce({
+      success: true,
+      data: {
+        name: 'John Doe',
+        email: 'john@example.com',
+        message: 'Test message',
+      },
+    });
+
+    const user = userEvent.setup();
+    render(<Contact />);
+
+    // Fill in the form
+    await user.type(screen.getByLabelText('Name'), 'John Doe');
+    await user.type(screen.getByLabelText('Email'), 'john@example.com');
+    await user.type(screen.getByLabelText('Message'), 'Test message');
+
+    // Submit the form
+    await user.click(screen.getByRole('button', { name: /send message/i }));
+
+    // Verify form submission
+    await waitFor(() => {
+      expect(contactFormModule.submitContactForm).toHaveBeenCalledTimes(1);
+
+      // Check that FormData was created with the form values
+      const formDataArg = vi.mocked(contactFormModule.submitContactForm).mock.calls[0][0];
+      expect(formDataArg).toBeInstanceOf(FormData);
+
+      // Success message should be displayed
+      expect(screen.getByRole('alert')).toHaveTextContent(
+        'Your message has been sent successfully!',
+      );
+    });
+  });
+
+  it('shows error message on failed form submission', async () => {
+    // Mock failed submission
+    vi.mocked(contactFormModule.submitContactForm).mockResolvedValueOnce({
+      success: false,
+      error: 'Failed to send message',
+    });
+
+    const user = userEvent.setup();
+    render(<Contact />);
+
+    // Fill in the form
+    await user.type(screen.getByLabelText('Name'), 'John Doe');
+    await user.type(screen.getByLabelText('Email'), 'john@example.com');
+    await user.type(screen.getByLabelText('Message'), 'Test message');
+
+    // Submit the form
+    await user.click(screen.getByRole('button', { name: /send message/i }));
+
+    // Verify error message
+    await waitFor(() => {
+      expect(screen.getByRole('alert')).toHaveTextContent('Failed to send message');
+    });
   });
 
   it('has the correct section id for navigation purposes', () => {
@@ -58,10 +122,4 @@ describe('Contact', () => {
     expect(section).toBeInTheDocument();
     expect(section).toHaveTextContent(/get in touch/i);
   });
-
-  // Note: Form submission tests are skipped for now
-  // They are covered by tests in lib/contact-form.test.ts
-  it.todo('should call submitContactForm when the form is submitted');
-  it.todo('should show success message on successful form submission');
-  it.todo('should show error message on failed form submission');
 });

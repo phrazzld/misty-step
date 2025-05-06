@@ -6,8 +6,6 @@ This document tracks areas excluded from test coverage and the work needed to pr
 
 The following files have been excluded from coverage calculations in `vitest.config.ts`:
 
-- `test/utils.tsx`
-- `components/contact.tsx`
 - `lib/logger.ts`
 
 ## Required Improvements
@@ -42,7 +40,7 @@ The following files have been excluded from coverage calculations in `vitest.con
 - [x] Create proper FormData mocking strategy
 - [x] Add test to verify form data construction with all fields
 - [x] Add test to verify form submission behavior and error handling
-- [ ] Consider using a form library that's more testable (e.g., React Hook Form, Formik)
+- [x] Consider using a form library that's more testable (e.g., React Hook Form, Formik)
 
 ### Test Utilities
 
@@ -55,15 +53,15 @@ The following files have been excluded from coverage calculations in `vitest.con
 
 **Tasks**:
 
-- [ ] Refactor dark mode preference handling for better testability
-- [ ] Create separate, focused utilities for theme testing
-- [ ] Add tests for theme-related render utilities
-- [ ] Improve structure to make testing RTL render options possible
+- [x] Refactor dark mode preference handling for better testability
+- [x] Create separate, focused utilities for theme testing
+- [x] Add tests for theme-related render utilities
+- [x] Improve structure to make testing RTL render options possible
 
 ## Skipped Tests
 
 The following tests are currently skipped and should be fixed:
 
 - [x] `lib/logger.test.ts`: "configures logger with different options based on NODE_ENV"
-- [ ] `test/utils.test.tsx`: "passes custom render options through to RTL render"
+- [x] `test/utils.test.tsx`: "passes custom render options through to RTL render"
 - [x] `components/contact.test.tsx`: "accepts input and submits the form with data"

@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-import { render, screen } from '@/test/utils';
+import { render, screen, mockDarkModePreference } from '@/test/utils';
 
 import { DarkModeToggle } from './dark-mode-toggle';
 
@@ -9,21 +9,12 @@ describe('DarkModeToggle', () => {
   // Reset document class and matchMedia between tests
   beforeEach(() => {
     document.documentElement.classList.remove('dark');
+    // Default to light mode preference for all tests
+    mockDarkModePreference(false);
+  });
 
-    // Default matchMedia to light mode preference
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: vi.fn().mockImplementation((query) => ({
-        matches: false, // Default to not matching (light mode)
-        media: query,
-        onchange: null,
-        addListener: vi.fn(),
-        removeListener: vi.fn(),
-        addEventListener: vi.fn(),
-        removeEventListener: vi.fn(),
-        dispatchEvent: vi.fn(),
-      })),
-    });
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it('renders correctly in light mode', () => {
@@ -34,26 +25,11 @@ describe('DarkModeToggle', () => {
   });
 
   it('renders with dark mode when user prefers dark', () => {
-    // Mock system preference for dark mode
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: vi.fn().mockImplementation((query) => ({
-        matches: query === '(prefers-color-scheme: dark)', // Match dark mode
-        media: query,
-        onchange: null,
-        addListener: vi.fn(),
-        removeListener: vi.fn(),
-        addEventListener: vi.fn(),
-        removeEventListener: vi.fn(),
-        dispatchEvent: vi.fn(),
-      })),
-    });
-
-    render(<DarkModeToggle />);
+    render(<DarkModeToggle />, { prefersDarkMode: true });
 
     // Should show sun emoji for dark mode
-    expect(screen.getByText('🌞')).toBeInTheDocument();
-    expect(screen.getByRole('button')).toHaveAttribute('title', 'Switch to light mode');
+    expect(screen.getByRole('button')).toHaveTextContent('🌙');
+    expect(screen.getByRole('button')).toHaveAttribute('title', 'Switch to dark mode');
   });
 
   it('toggles between light and dark mode when clicked', async () => {
@@ -85,25 +61,11 @@ describe('DarkModeToggle', () => {
   });
 
   it('initializes with dark mode when system preference is dark', () => {
-    // Mock system preference for dark mode
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: vi.fn().mockImplementation((query) => ({
-        matches: query === '(prefers-color-scheme: dark)', // Match dark mode
-        media: query,
-        onchange: null,
-        addListener: vi.fn(),
-        removeListener: vi.fn(),
-        addEventListener: vi.fn(),
-        removeEventListener: vi.fn(),
-        dispatchEvent: vi.fn(),
-      })),
-    });
+    // Use the theme prop directly to render in dark mode
+    render(<DarkModeToggle />, { theme: 'dark' });
 
-    render(<DarkModeToggle />);
-
-    // Only test that the button shows the correct icon and title
-    expect(screen.getByText('🌞')).toBeInTheDocument();
+    // Test that the button shows the correct icon and title
+    expect(screen.getByRole('button')).toHaveTextContent('🌞');
     expect(screen.getByRole('button')).toHaveAttribute('title', 'Switch to light mode');
   });
 

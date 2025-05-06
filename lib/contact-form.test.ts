@@ -1,35 +1,17 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
+
+import { mockFormDataWithValues } from '@/test/mocks/formdata-mock';
 
 import { processContactForm, submitContactForm } from './contact-form';
 
 describe('contact-form', () => {
-  // Create a mock FormData for testing
-  let mockFormData: FormData;
-
-  beforeEach(() => {
-    // Reset the FormData mock before each test
-    mockFormData = {
-      get: vi.fn(),
-      append: vi.fn(),
-      delete: vi.fn(),
-      entries: vi.fn(),
-      forEach: vi.fn(),
-      getAll: vi.fn(),
-      has: vi.fn(),
-      keys: vi.fn(),
-      set: vi.fn(),
-      values: vi.fn(),
-    } as unknown as FormData;
-  });
-
   describe('processContactForm', () => {
     it('returns success result with form data when all fields are provided', () => {
-      // Set up the mock to return valid data
-      vi.mocked(mockFormData.get).mockImplementation((key) => {
-        if (key === 'name') return 'John Doe';
-        if (key === 'email') return 'john@example.com';
-        if (key === 'message') return 'This is a test message';
-        return null;
+      // Create a mock FormData with valid data
+      const mockFormData = mockFormDataWithValues({
+        name: 'John Doe',
+        email: 'john@example.com',
+        message: 'This is a test message',
       });
 
       // Process the form
@@ -51,12 +33,10 @@ describe('contact-form', () => {
     });
 
     it('returns error result when name is missing', () => {
-      // Set up the mock to return incomplete data
-      vi.mocked(mockFormData.get).mockImplementation((key) => {
-        if (key === 'name') return null; // Missing name
-        if (key === 'email') return 'john@example.com';
-        if (key === 'message') return 'This is a test message';
-        return null;
+      // Create a mock FormData with missing name
+      const mockFormData = mockFormDataWithValues({
+        email: 'john@example.com',
+        message: 'This is a test message',
       });
 
       // Process the form
@@ -69,12 +49,10 @@ describe('contact-form', () => {
     });
 
     it('returns error result when email is missing', () => {
-      // Set up the mock to return incomplete data
-      vi.mocked(mockFormData.get).mockImplementation((key) => {
-        if (key === 'name') return 'John Doe';
-        if (key === 'email') return null; // Missing email
-        if (key === 'message') return 'This is a test message';
-        return null;
+      // Create a mock FormData with missing email
+      const mockFormData = mockFormDataWithValues({
+        name: 'John Doe',
+        message: 'This is a test message',
       });
 
       // Process the form
@@ -87,12 +65,10 @@ describe('contact-form', () => {
     });
 
     it('returns error result when message is missing', () => {
-      // Set up the mock to return incomplete data
-      vi.mocked(mockFormData.get).mockImplementation((key) => {
-        if (key === 'name') return 'John Doe';
-        if (key === 'email') return 'john@example.com';
-        if (key === 'message') return null; // Missing message
-        return null;
+      // Create a mock FormData with missing message
+      const mockFormData = mockFormDataWithValues({
+        name: 'John Doe',
+        email: 'john@example.com',
       });
 
       // Process the form
@@ -105,7 +81,8 @@ describe('contact-form', () => {
     });
 
     it('handles unexpected errors during processing', () => {
-      // Make the FormData.get method throw an error
+      // Create a mock FormData that throws an error
+      const mockFormData = mockFormDataWithValues({});
       vi.mocked(mockFormData.get).mockImplementation(() => {
         throw new Error('Test error');
       });
@@ -122,10 +99,10 @@ describe('contact-form', () => {
 
   describe('submitContactForm', () => {
     it('returns the result from processContactForm when validation fails', async () => {
-      // Set up the mock to return incomplete data
-      vi.mocked(mockFormData.get).mockImplementation((key) => {
-        if (key === 'name') return null; // Missing name
-        return null;
+      // Create a mock FormData with missing fields
+      const mockFormData = mockFormDataWithValues({
+        email: 'john@example.com',
+        message: 'This is a test message',
       });
 
       // Submit the form
@@ -137,12 +114,11 @@ describe('contact-form', () => {
     });
 
     it('returns a successful result after the simulated delay when validation passes', async () => {
-      // Set up the mock to return valid data
-      vi.mocked(mockFormData.get).mockImplementation((key) => {
-        if (key === 'name') return 'John Doe';
-        if (key === 'email') return 'john@example.com';
-        if (key === 'message') return 'This is a test message';
-        return null;
+      // Create a mock FormData with valid data
+      const mockFormData = mockFormDataWithValues({
+        name: 'John Doe',
+        email: 'john@example.com',
+        message: 'This is a test message',
       });
 
       // Mock setTimeout to avoid actual delay in tests
