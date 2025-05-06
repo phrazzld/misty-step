@@ -38,7 +38,7 @@ The following files have been excluded from coverage calculations in `vitest.con
 
 **Tasks**:
 
-- [ ] Extract form handling logic to a separate, testable function
+- [x] Extract form handling logic to a separate, testable function
 - [ ] Create proper FormData mocking strategy
 - [ ] Add test to verify form data construction with all fields
 - [ ] Add test to verify form submission behavior and error handling
