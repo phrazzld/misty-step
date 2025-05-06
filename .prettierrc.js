@@ -12,6 +12,8 @@
  * - Integration with ESLint for cohesive code quality
  *
  * @see https://prettier.io/docs/en/options.html for all available options
+ * @see docs/DEVELOPMENT_PHILOSOPHY_APPENDIX_TYPESCRIPT.md for TypeScript standards
+ * @see docs/DEVELOPMENT_PHILOSOPHY_APPENDIX_FRONTEND.md for React/Next.js standards
  */
 
 module.exports = {
@@ -91,4 +93,18 @@ module.exports = {
    * @rationale More consistent rendering across editors and environments
    */
   useTabs: false,
+
+  /**
+   * Format embedded code in files like markdown and html
+   * @default "auto"
+   * @rationale Ensures consistency across all code snippets
+   */
+  embeddedLanguageFormatting: 'auto',
+
+  /**
+   * Wrap markdown text as-is since markdown represents newlines with 2 trailing spaces
+   * @default "preserve"
+   * @rationale Respects content author's intended formatting
+   */
+  proseWrap: 'preserve',
 };
