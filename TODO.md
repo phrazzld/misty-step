@@ -83,7 +83,7 @@ This document outlines the specific tasks required to implement the core develop
 
 ## Pre-commit Hooks (Husky & lint-staged)
 
-- [ ] **T007 · Feature · P1: Configure Husky pre-commit hook to run lint-staged**
+- [x] **T007 · Feature · P1: Configure Husky pre-commit hook to run lint-staged**
 
   - **Context:** Automate quality checks before commits
   - **Action:**
