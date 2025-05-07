@@ -57,7 +57,7 @@ This document outlines the specific tasks required to implement the core develop
     1. Manually review the `.prettierrc.js` diff
   - **Depends‑on:** none
 
-- [ ] **T005 · Test · P1: Test Prettier format check across all relevant file types**
+- [x] **T005 · Test · P1: Test Prettier format check across all relevant file types**
 
   - **Context:** Verify current Prettier compliance
   - **Action:**
