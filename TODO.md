@@ -69,7 +69,7 @@ This document outlines the specific tasks required to implement the core develop
     1. Check the console output of the Prettier command for non-conformant file reports
   - **Depends‑on:** [T004]
 
-- [ ] **T006 · Chore · P1: Format entire codebase using approved Prettier configuration**
+- [x] **T006 · Chore · P1: Format entire codebase using approved Prettier configuration**
   - **Context:** Ensure codebase has consistent formatting
   - **Action:**
     1. Execute `prettier --write .` (or equivalent command for configured file types) across the entire codebase
