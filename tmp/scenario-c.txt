@@ -1,0 +1,3 @@
+This is a clean file to test the commit-msg hook.
+It should have no linting issues since it's just a text file.
+The commit should be blocked solely due to an invalid commit message format.
