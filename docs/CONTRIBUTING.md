@@ -17,18 +17,39 @@ This document provides comprehensive instructions for setting up and working wit
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js** - Version 20 or higher
+- **Node.js** - Version 20 or higher (required)
 
   - [Download from nodejs.org](https://nodejs.org/)
   - Or use a version manager like [nvm](https://github.com/nvm-sh/nvm) or [fnm](https://github.com/Schniz/fnm)
+  - To check your version: `node --version`
 
-- **pnpm** - Version 10 or higher
+- **pnpm** - Version 10 or higher (required)
 
   - Install globally: `npm install -g pnpm@latest`
   - Or use [Corepack](https://nodejs.org/api/corepack.html): `corepack enable && corepack prepare pnpm@latest --activate`
+  - To check your version: `pnpm --version`
 
 - **Git** - Latest version recommended
   - [Download from git-scm.com](https://git-scm.com/downloads)
+
+### Version Requirements Enforcement
+
+This project uses the `engines` field in `package.json` to define and enforce tool version requirements:
+
+```json
+"engines": {
+  "node": ">=20",
+  "pnpm": ">=10"
+}
+```
+
+These requirements ensure all developers work with compatible tooling, preventing inconsistencies and "works on my machine" issues. When you run `pnpm install`, the package manager will check your Node.js and pnpm versions against these requirements:
+
+- If using an incompatible version, you'll receive a warning or error
+- By default, pnpm will warn but continue with installation
+- To strictly enforce these requirements, you can set `engine-strict=true` in `.npmrc`
+
+**Note**: npm and yarn are not supported for this project. If you attempt to use them, you may encounter compatibility issues as the project is specifically configured for pnpm.
 
 ## Initial Setup
 

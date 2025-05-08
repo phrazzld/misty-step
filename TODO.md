@@ -221,7 +221,7 @@ This document outlines the specific tasks required to implement the core develop
     1. The rationale for strict rules is clearly documented and accessible to developers
   - **Depends‑on:** [T015]
 
-- [ ] **T017 · Chore · P2: Document and enforce tool versions using package.json engines**
+- [x] **T017 · Chore · P2: Document and enforce tool versions using package.json engines**
   - **Context:** Prevent environment inconsistencies
   - **Action:**
     1. Update the `engines` field in `package.json` to specify required versions for Node.js and the package manager (npm/yarn/pnpm)
