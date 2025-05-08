@@ -1,0 +1,11 @@
+This is a test file to verify the commit-msg hook.
+
+Verification Results (Task T008):
+- Husky commit-msg hook is properly configured to use pnpm commitlint
+- Commitlint is configured to use @commitlint/config-conventional
+- Tests confirm that:
+  - Invalid commit messages (not following Conventional Commits) are rejected
+  - Valid commit messages following the Conventional Commits format are accepted
+  - Valid scoped commit messages (e.g., "fix(component): message") are accepted
+
+The commit-msg hook is correctly enforcing Conventional Commits standards as required.

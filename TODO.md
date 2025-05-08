@@ -96,7 +96,7 @@ This document outlines the specific tasks required to implement the core develop
     2. Attempt to commit and verify `lint-staged` runs (and potentially fixes/blocks based on its config)
   - **Depends‑on:** none
 
-- [ ] **T008 · Feature · P1: Configure Husky commit-msg hook to enforce conventional commits**
+- [x] **T008 · Feature · P1: Configure Husky commit-msg hook to enforce conventional commits**
 
   - **Context:** Ensure commit messages follow standards
   - **Action:**
