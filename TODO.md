@@ -169,7 +169,7 @@ This document outlines the specific tasks required to implement the core develop
     2. Push a clean commit; verify CI job passes the ESLint step
   - **Depends‑on:** [T003]
 
-- [ ] **T013 · Feature · P0: Configure CI pipeline to run Prettier format checks**
+- [x] **T013 · Feature · P0: Configure CI pipeline to run Prettier format checks**
 
   - **Context:** Enforce formatting standards in CI
   - **Action:**
