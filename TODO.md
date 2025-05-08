@@ -210,7 +210,7 @@ This document outlines the specific tasks required to implement the core develop
     1. Ask a team member unfamiliar with the setup to follow the documentation and provide feedback
   - **Depends‑on:** [T011]
 
-- [ ] **T016 · Chore · P3: Document rationale for strict linting and formatting rules**
+- [x] **T016 · Chore · P3: Document rationale for strict linting and formatting rules**
 
   - **Context:** Help developers understand why strict rules are enforced
   - **Action:**
