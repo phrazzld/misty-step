@@ -233,28 +233,50 @@ This document outlines the specific tasks required to implement the core develop
     1. Attempt `npm install` (or equivalent) with an incompatible Node.js/package manager version; verify a warning or error is shown (depending on package manager behavior)
   - **Depends‑on:** [T015]
 
-## Clarifications & Assumptions
+## CI Failure Fixes
 
-- [x] **Issue:** Define scope of linting/formatting for non-source code files (e.g., Markdown, JSON, YAML)
+- [x] **T018 · Bug · P0: Fix type assertions in app/layout.test.tsx**
 
-  - **Context:** Sections related to ESLint, Prettier, lint-staged configuration
-  - **Blocking?:** No
-  - **Resolution:** Added comprehensive documentation in CONTRIBUTING.md about the scope of linting and formatting for all file types, including special handling for non-source files
+  - **Context:** CI is failing due to TypeScript errors in app/layout.test.tsx
+  - **Action:**
+    1. Add proper null checks before accessing the `body` property
+    2. Add React type guards to ensure body is a ReactElement before accessing `.type` and `.props`
+    3. Create a helper function `isReactElement()` if needed for type narrowing
+  - **Done‑when:**
+    1. TypeScript type checking passes without errors for app/layout.test.tsx
+    2. All usages of `body.type` and `body.props` are properly guarded against null/undefined and type-checked
+  - **Verification:**
+    1. Run `pnpm typecheck` locally and confirm no errors in app/layout.test.tsx
+    2. Commit and push changes to verify CI passes this file
+  - **Depends‑on:** none
 
-- [x] **Issue:** Determine the canonical location for developer tooling documentation (e.g., `README.md` vs. `CONTRIBUTING.md` vs. a dedicated `docs/` folder)
+- [ ] **T019 · Bug · P0: Fix type compatibility in components/contact.tsx**
 
-  - **Context:** Documentation tasks
-  - **Blocking?:** No
-  - **Resolution:** Added comprehensive documentation structure section to README.md clarifying canonical locations:
-    - README.md serves as the entry point and high-level overview
-    - docs/CONTRIBUTING.md is the canonical location for developer tooling documentation
-    - docs/ directory houses specialized documentation
+  - **Context:** CI is failing due to type errors in form validation in contact.tsx
+  - **Action:**
+    1. Fix type compatibility issues with the `RegisterOptions` type in the contact form
+    2. Properly type form field validation using generic types with `RegisterOptions<ContactFormFields, 'name'|'email'|'message'>`
+    3. Update the `register()` calls to use properly typed validation rules
+  - **Done‑when:**
+    1. TypeScript type checking passes without errors for components/contact.tsx
+    2. Form validation types are properly constrained to the specific form fields
+  - **Verification:**
+    1. Run `pnpm typecheck` locally and confirm no errors in components/contact.tsx
+    2. Commit and push changes to verify CI passes for this file
+  - **Depends‑on:** none
 
-- [ ] **Issue:** Confirm specific Conventional Commits configuration/preset to be used (e.g., default, angular, etc.)
+- [ ] **T020 · Bug · P0: Fix undefined property access in lib/logger.test.ts**
 
-  - **Context:** Task regarding commit-msg hook for Conventional Commits
-  - **Blocking?:** No
-
-- [ ] **Issue:** Identify if any specialized or non-default file types (beyond common JS/TS/JSON/MD) require specific lint-staged or Prettier handling
-  - **Context:** lint-staged configuration task
-  - **Blocking?:** No
+  - **Context:** CI is failing due to TypeScript errors from accessing potentially undefined properties
+  - **Action:**
+    1. Add optional chaining or non-null assertions for `mockPino.lastOptions.base` access
+    2. Add optional chaining or non-null assertions for `devOptions.base` access
+    3. Add optional chaining or non-null assertions for `prodOptions.base` access
+    4. Add optional chaining or non-null assertions for `mockPino.lastOptions.transport` access
+  - **Done‑when:**
+    1. TypeScript type checking passes without errors for lib/logger.test.ts
+    2. All property accesses that could be undefined are properly handled
+  - **Verification:**
+    1. Run `pnpm typecheck` locally and confirm no errors in lib/logger.test.ts
+    2. Commit and push changes to verify CI passes for this file
+  - **Depends‑on:** none
