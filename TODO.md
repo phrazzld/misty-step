@@ -183,7 +183,7 @@ This document outlines the specific tasks required to implement the core develop
     2. Push a commit with correctly formatted code; verify CI job passes the Prettier step
   - **Depends‑on:** [T006]
 
-- [ ] **T014 · Chore · P1: Align CI checks with pre-commit hook configurations**
+- [x] **T014 · Chore · P1: Align CI checks with pre-commit hook configurations**
   - **Context:** Ensure consistency between local and CI environments
   - **Action:**
     1. Ensure CI scripts use the same versions of Node.js, ESLint, Prettier, and their respective configurations as used by the local pre-commit hooks
