@@ -241,10 +241,14 @@ This document outlines the specific tasks required to implement the core develop
   - **Blocking?:** No
   - **Resolution:** Added comprehensive documentation in CONTRIBUTING.md about the scope of linting and formatting for all file types, including special handling for non-source files
 
-- [ ] **Issue:** Determine the canonical location for developer tooling documentation (e.g., `README.md` vs. `CONTRIBUTING.md` vs. a dedicated `docs/` folder)
+- [x] **Issue:** Determine the canonical location for developer tooling documentation (e.g., `README.md` vs. `CONTRIBUTING.md` vs. a dedicated `docs/` folder)
 
   - **Context:** Documentation tasks
   - **Blocking?:** No
+  - **Resolution:** Added comprehensive documentation structure section to README.md clarifying canonical locations:
+    - README.md serves as the entry point and high-level overview
+    - docs/CONTRIBUTING.md is the canonical location for developer tooling documentation
+    - docs/ directory houses specialized documentation
 
 - [ ] **Issue:** Confirm specific Conventional Commits configuration/preset to be used (e.g., default, angular, etc.)
 
