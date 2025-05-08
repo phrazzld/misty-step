@@ -110,7 +110,7 @@ This document outlines the specific tasks required to implement the core develop
     2. Attempt to commit with a valid message format; verify acceptance
   - **Depends‑on:** none
 
-- [ ] **T009 · Feature · P1: Configure lint-staged for ESLint and Prettier on relevant file types**
+- [x] **T009 · Feature · P1: Configure lint-staged for ESLint and Prettier on relevant file types**
   - **Context:** Define which checks to run on staged files
   - **Action:**
     1. Update `.lintstagedrc.json` (or equivalent lint-staged configuration)
