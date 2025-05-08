@@ -61,7 +61,7 @@ interface FormFieldProps {
   register: UseFormRegister<ContactFormFields>;
   error?: FieldError;
   type?: string;
-  registerOptions?: RegisterOptions;
+  registerOptions?: RegisterOptions<ContactFormFields, keyof ContactFormFields>;
   rows?: number;
   isTextarea?: boolean;
 }
@@ -86,7 +86,7 @@ function FormField({
           rows={rows || 4}
           placeholder={placeholder}
           aria-invalid={error ? 'true' : 'false'}
-          {...register(id as keyof ContactFormFields, registerOptions)}
+          {...register(id, registerOptions as RegisterOptions<ContactFormFields, typeof id>)}
         />
       ) : (
         <Input
@@ -94,7 +94,7 @@ function FormField({
           type={type}
           placeholder={placeholder}
           aria-invalid={error ? 'true' : 'false'}
-          {...register(id as keyof ContactFormFields, registerOptions)}
+          {...register(id, registerOptions as RegisterOptions<ContactFormFields, typeof id>)}
         />
       )}
       {error && (
@@ -191,7 +191,9 @@ export function Contact(): React.ReactElement {
                   placeholder="Your name"
                   register={register}
                   error={errors.name}
-                  registerOptions={{ required: 'Name is required' }}
+                  registerOptions={
+                    { required: 'Name is required' } as RegisterOptions<ContactFormFields, 'name'>
+                  }
                 />
                 <FormField
                   id="email"
@@ -200,13 +202,15 @@ export function Contact(): React.ReactElement {
                   placeholder="your.email@example.com"
                   register={register}
                   error={errors.email}
-                  registerOptions={{
-                    required: 'Email is required',
-                    pattern: {
-                      value: /\S+@\S+\.\S+/,
-                      message: 'Please enter a valid email address',
-                    },
-                  }}
+                  registerOptions={
+                    {
+                      required: 'Email is required',
+                      pattern: {
+                        value: /\S+@\S+\.\S+/,
+                        message: 'Please enter a valid email address',
+                      },
+                    } as RegisterOptions<ContactFormFields, 'email'>
+                  }
                 />
                 <FormField
                   id="message"
@@ -214,7 +218,12 @@ export function Contact(): React.ReactElement {
                   placeholder="How can we help you?"
                   register={register}
                   error={errors.message}
-                  registerOptions={{ required: 'Message is required' }}
+                  registerOptions={
+                    { required: 'Message is required' } as RegisterOptions<
+                      ContactFormFields,
+                      'message'
+                    >
+                  }
                   rows={4}
                   isTextarea
                 />
