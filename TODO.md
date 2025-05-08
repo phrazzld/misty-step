@@ -197,7 +197,7 @@ This document outlines the specific tasks required to implement the core develop
 
 ## Documentation
 
-- [ ] **T015 · Chore · P2: Document core development tooling setup and workflow**
+- [x] **T015 · Chore · P2: Document core development tooling setup and workflow**
 
   - **Context:** Enable developers to understand and use the tooling
   - **Action:**

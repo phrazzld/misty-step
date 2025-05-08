@@ -186,6 +186,7 @@ All checks must pass for pull requests to be merged.
 
 The project includes several important documentation files:
 
+- **Contributing Guide**: See [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md) for detailed setup instructions and development workflow
 - **Development Philosophy**: See `docs/DEVELOPMENT_PHILOSOPHY.md` and language-specific appendices
 - **Storybook Contribution**: See `docs/CONTRIBUTING-STORYBOOK.md` for guidelines on creating stories
 - **Glance Documentation**: See `docs/GLANCE-COMMAND.md` for information about the automated directory documentation tool
