@@ -139,7 +139,7 @@ This document outlines the specific tasks required to implement the core develop
     2. Lint a file with ESLint (with auto-fix), then format it with Prettier. Confirm no new formatting changes are made due to ESLint fixes
   - **Depends‑on:** [T001, T004]
 
-- [ ] **T011 · Test · P0: Test complete pre-commit workflow end-to-end**
+- [x] **T011 · Test · P0: Test complete pre-commit workflow end-to-end**
   - **Context:** Verify entire tooling workflow functions correctly
   - **Action:**
     1. Create scenarios: a) stage files with fixable ESLint/Prettier issues, b) stage files with unfixable ESLint issues, c) attempt commit with invalid message format
