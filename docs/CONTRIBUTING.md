@@ -191,6 +191,55 @@ When you run `git commit`, the following process occurs automatically:
 - `.lintstagedrc.json` - Configuration for lint-staged (what commands run on which files)
 - `commitlint.config.js` - Configuration for commitlint (commit message validation)
 
+### Scope of Linting and Formatting for Non-Source Code Files
+
+This project applies different levels of code quality checks depending on the file type:
+
+#### Source Code Files (JavaScript/TypeScript)
+
+- **JavaScript/TypeScript files** (`.js`, `.jsx`, `.ts`, `.tsx`, `.mjs`):
+  - Formatted with Prettier
+  - Linted with ESLint with auto-fixes applied
+  - Type-checked with TypeScript (for `.ts` and `.tsx` files)
+
+#### Non-Source Code Files
+
+- **JSON files** (`.json`):
+
+  - Formatted with Prettier
+  - No additional linting beyond formatting
+
+- **Styling files** (`.css`):
+
+  - Formatted with Prettier
+  - No additional linting beyond formatting
+
+- **HTML files** (`.html`):
+
+  - Formatted with Prettier
+  - No additional linting beyond formatting
+
+- **YAML files** (`.yml`, `.yaml`):
+
+  - Formatted with Prettier
+  - No additional linting beyond formatting
+
+- **Markdown files** (`.md`):
+
+  - Formatted with Prettier
+  - Special handling to exclude symlinks (which are common in the documentation)
+
+- **Storybook configuration files** (`.storybook/**/*.{js,ts,tsx,css}`):
+
+  - Formatted with Prettier
+  - JavaScript/TypeScript files also linted with ESLint
+
+- **Husky scripts** (`.husky/*`):
+  - Ensured to end with a newline
+  - No formatting or linting beyond this
+
+This configuration ensures all files in the repository maintain consistent formatting while applying appropriate linting rules to source code files. The pre-commit hooks apply these checks only to staged files, making the commit process efficient.
+
 ### Manual Hook Bypass (Use Sparingly)
 
 In rare circumstances, you might need to bypass hooks temporarily:

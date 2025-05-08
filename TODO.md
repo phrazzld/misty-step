@@ -235,10 +235,11 @@ This document outlines the specific tasks required to implement the core develop
 
 ## Clarifications & Assumptions
 
-- [ ] **Issue:** Define scope of linting/formatting for non-source code files (e.g., Markdown, JSON, YAML)
+- [x] **Issue:** Define scope of linting/formatting for non-source code files (e.g., Markdown, JSON, YAML)
 
   - **Context:** Sections related to ESLint, Prettier, lint-staged configuration
   - **Blocking?:** No
+  - **Resolution:** Added comprehensive documentation in CONTRIBUTING.md about the scope of linting and formatting for all file types, including special handling for non-source files
 
 - [ ] **Issue:** Determine the canonical location for developer tooling documentation (e.g., `README.md` vs. `CONTRIBUTING.md` vs. a dedicated `docs/` folder)
 
