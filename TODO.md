@@ -155,7 +155,7 @@ This document outlines the specific tasks required to implement the core develop
 
 ## CI Integration
 
-- [ ] **T012 · Feature · P0: Configure CI pipeline to run ESLint checks**
+- [x] **T012 · Feature · P0: Configure CI pipeline to run ESLint checks**
 
   - **Context:** Enforce linting standards in CI
   - **Action:**
