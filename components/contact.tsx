@@ -1,19 +1,15 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import {
-  useForm,
-  SubmitHandler,
-  FieldError,
-  RegisterOptions,
-  UseFormRegister,
-} from 'react-hook-form';
+import { useForm, SubmitHandler, FieldError, UseFormRegister } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { submitContactForm } from '@/lib/contact-form';
+import { ContactFormSchema, ContactFormFields } from '@/lib/schemas/contact-form-schema';
 
 /**
  * Form submission result type
@@ -21,15 +17,6 @@ import { submitContactForm } from '@/lib/contact-form';
 interface SubmitResult {
   success?: boolean;
   message?: string;
-}
-
-/**
- * Form field types
- */
-interface ContactFormFields {
-  name: string;
-  email: string;
-  message: string;
 }
 
 /**
@@ -61,7 +48,6 @@ interface FormFieldProps {
   register: UseFormRegister<ContactFormFields>;
   error?: FieldError;
   type?: string;
-  registerOptions?: RegisterOptions<ContactFormFields, keyof ContactFormFields>;
   rows?: number;
   isTextarea?: boolean;
 }
@@ -73,7 +59,6 @@ function FormField({
   register,
   error,
   type = 'text',
-  registerOptions,
   rows,
   isTextarea = false,
 }: FormFieldProps): React.ReactElement {
@@ -86,7 +71,7 @@ function FormField({
           rows={rows || 4}
           placeholder={placeholder}
           aria-invalid={error ? 'true' : 'false'}
-          {...register(id, registerOptions as RegisterOptions<ContactFormFields, typeof id>)}
+          {...register(id)}
         />
       ) : (
         <Input
@@ -94,7 +79,7 @@ function FormField({
           type={type}
           placeholder={placeholder}
           aria-invalid={error ? 'true' : 'false'}
-          {...register(id, registerOptions as RegisterOptions<ContactFormFields, typeof id>)}
+          {...register(id)}
         />
       )}
       {error && (
@@ -165,6 +150,7 @@ export function Contact(): React.ReactElement {
     reset,
     formState: { errors },
   } = useForm<ContactFormFields>({
+    resolver: zodResolver(ContactFormSchema),
     defaultValues: {
       name: '',
       email: '',
@@ -191,9 +177,6 @@ export function Contact(): React.ReactElement {
                   placeholder="Your name"
                   register={register}
                   error={errors.name}
-                  registerOptions={
-                    { required: 'Name is required' } as RegisterOptions<ContactFormFields, 'name'>
-                  }
                 />
                 <FormField
                   id="email"
@@ -202,15 +185,6 @@ export function Contact(): React.ReactElement {
                   placeholder="your.email@example.com"
                   register={register}
                   error={errors.email}
-                  registerOptions={
-                    {
-                      required: 'Email is required',
-                      pattern: {
-                        value: /\S+@\S+\.\S+/,
-                        message: 'Please enter a valid email address',
-                      },
-                    } as RegisterOptions<ContactFormFields, 'email'>
-                  }
                 />
                 <FormField
                   id="message"
@@ -218,12 +192,6 @@ export function Contact(): React.ReactElement {
                   placeholder="How can we help you?"
                   register={register}
                   error={errors.message}
-                  registerOptions={
-                    { required: 'Message is required' } as RegisterOptions<
-                      ContactFormFields,
-                      'message'
-                    >
-                  }
                   rows={4}
                   isTextarea
                 />

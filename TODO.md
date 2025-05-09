@@ -298,7 +298,7 @@ This document outlines the specific tasks required to implement the core develop
     2. Confirm the schema file passes linting with no warnings
   - **Depends‑on:** none
 
-- [ ] **T022 · Refactor · P0: Integrate Zod validation in Contact component**
+- [x] **T022 · Refactor · P0: Integrate Zod validation in Contact component**
 
   - **Context:** Need to use extracted schema in Contact component
   - **Action:**
