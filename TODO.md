@@ -341,7 +341,7 @@ This document outlines the specific tasks required to implement the core develop
     1. Run `pnpm test` to verify all tests pass
   - **Depends‑on:** [T023]
 
-- [ ] **T025 · Verify · P0: Run all verification steps for CI fixes**
+- [x] **T025 · Verify · P0: Run all verification steps for CI fixes**
   - **Context:** Final verification before submitting fixes
   - **Action:**
     1. Run `pnpm format:check` to verify formatting
