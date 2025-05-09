@@ -313,7 +313,7 @@ This document outlines the specific tasks required to implement the core develop
     2. Manually test form validation functionality
   - **Depends‑on:** [T021]
 
-- [ ] **T023 · Refactor · P0: Reduce Contact component line count**
+- [x] **T023 · Refactor · P0: Reduce Contact component line count**
 
   - **Context:** Contact component exceeds 75 lines (currently 79)
   - **Action:**
