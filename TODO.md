@@ -328,7 +328,7 @@ This document outlines the specific tasks required to implement the core develop
     2. Ensure the component still functions correctly
   - **Depends‑on:** [T022]
 
-- [ ] **T024 · Test · P1: Update tests for refactored Contact component**
+- [x] **T024 · Test · P1: Update tests for refactored Contact component**
 
   - **Context:** Tests need to be updated for the refactored contact component
   - **Action:**
