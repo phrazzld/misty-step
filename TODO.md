@@ -280,3 +280,76 @@ This document outlines the specific tasks required to implement the core develop
     1. Run `pnpm typecheck` locally and confirm no errors in lib/logger.test.ts
     2. Commit and push changes to verify CI passes for this file
   - **Depends‑on:** none
+
+## Current CI Failure Resolution
+
+- [x] **T021 · Refactor · P0: Extract form validation logic from Contact component**
+
+  - **Context:** CI is failing due to the Contact component exceeding max-lines-per-function limit
+  - **Action:**
+    1. Create a Zod schema for the Contact form in a new file (`lib/schemas/contact-form-schema.ts`)
+    2. Define appropriate validation rules for each field (name, email, message)
+    3. Ensure the schema exports a proper TypeScript type for the form data
+  - **Done‑when:**
+    1. File exists with correct validation schema
+    2. Schema properly validates all form fields with appropriate rules
+  - **Verification:**
+    1. Run `pnpm typecheck` to verify the schema has correct types
+    2. Confirm the schema file passes linting with no warnings
+  - **Depends‑on:** none
+
+- [ ] **T022 · Refactor · P0: Integrate Zod validation in Contact component**
+
+  - **Context:** Need to use extracted schema in Contact component
+  - **Action:**
+    1. Import the Zod schema and zodResolver into Contact component
+    2. Update the useForm hook to use the Zod resolver
+    3. Remove inline validation logic (registerOptions prop) from FormField components
+  - **Done‑when:**
+    1. Contact component uses Zod schema for validation
+    2. No more inline validation logic in FormField components
+  - **Verification:**
+    1. Run `pnpm typecheck` to verify type compatibility
+    2. Manually test form validation functionality
+  - **Depends‑on:** [T021]
+
+- [ ] **T023 · Refactor · P0: Reduce Contact component line count**
+
+  - **Context:** Contact component exceeds 75 lines (currently 79)
+  - **Action:**
+    1. Refactor the component to be less than 75 lines total
+    2. Consider extracting more subcomponents or simplifying existing logic
+    3. Preserve all functionality while reducing code size
+  - **Done‑when:**
+    1. Component is below 75 lines
+    2. ESLint reports no max-lines-per-function warnings
+  - **Verification:**
+    1. Run `pnpm lint` and confirm no warnings for components/contact.tsx
+    2. Ensure the component still functions correctly
+  - **Depends‑on:** [T022]
+
+- [ ] **T024 · Test · P1: Update tests for refactored Contact component**
+
+  - **Context:** Tests need to be updated for the refactored contact component
+  - **Action:**
+    1. Modify any tests that rely on the previous validation approach
+    2. Ensure tests cover the new Zod validation schema behavior
+  - **Done‑when:**
+    1. All tests pass with no warnings
+    2. Test coverage for Contact component remains high
+  - **Verification:**
+    1. Run `pnpm test` to verify all tests pass
+  - **Depends‑on:** [T023]
+
+- [ ] **T025 · Verify · P0: Run all verification steps for CI fixes**
+  - **Context:** Final verification before submitting fixes
+  - **Action:**
+    1. Run `pnpm format:check` to verify formatting
+    2. Run `pnpm lint` to verify linting passes with no warnings
+    3. Run `pnpm typecheck` to verify type checking passes
+    4. Run `pnpm test` to verify all tests pass
+  - **Done‑when:**
+    1. All checks pass with no errors or warnings
+  - **Verification:**
+    1. CI build passes successfully
+  - **Depends‑on:** [T021, T022, T023, T024]
