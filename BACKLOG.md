@@ -6,14 +6,6 @@ This backlog outlines the planned work for the Misty Step website, balancing imm
 
 ### Foundation & Governance
 
-- **[Ops]**: Configure Core Development Tooling (Linting, Formatting, Pre-commit Hooks)
-
-  - **Type**: Enhancement
-  - **Complexity**: Simple
-  - **Rationale**: Enforces code consistency and quality from the start, aligning with Core Philosophy (Automation, Coding Standards) and TypeScript Appendix (Prettier, ESLint). Reduces review friction and improves maintainability. Foundational for efficient development.
-  - **Expected Outcome**: Prettier and ESLint configured with project standards. Pre-commit hooks (e.g., Husky + lint-staged) automatically format and lint staged files. CI check verifies formatting and linting.
-  - **Dependencies**: None.
-
 - **[Ops]**: Enforce Conventional Commits via Git Hooks (commitlint)
 
   - **Type**: Enhancement
@@ -120,6 +112,64 @@ This backlog outlines the planned work for the Misty Step website, balancing imm
   - **Dependencies**: Implement Robust Server-Side Validation & Processing for Contact Form (for logging context).
 
 ## Medium Priority
+
+### Code Review Issues
+
+- **[Fix]**: Add Storybook ESLint Plugin Configuration
+
+  - **Type**: Fix
+  - **Complexity**: Simple
+  - **Rationale**: Storybook-specific linting rules are not being applied because the configuration was removed from `package.json`'s `eslintConfig` block but not re-integrated into the new `eslint.config.mjs` flat config. This means potential issues specific to Storybook best practices might be missed.
+  - **Expected Outcome**: Storybook ESLint plugin properly integrated into `eslint.config.mjs` for `*.stories.*` files, ensuring consistent code quality for Storybook components.
+  - **Dependencies**: None.
+
+- **[Fix]**: Improve Error Handling in Contact Form Submission
+
+  - **Type**: Fix
+  - **Complexity**: Simple
+  - **Rationale**: The `catch {}` block in `handleFormSubmit` discards the actual error object, making debugging unexpected failures in the form submission process extremely difficult, as all specific error details are lost.
+  - **Expected Outcome**: Error handling improved by capturing and properly logging the error object using the project's structured logger. Sensitive information not exposed in user-facing messages but available in developer logs.
+  - **Dependencies**: Implement Basic Structured Logging Setup.
+
+- **[Refactor]**: Extract Complex Inline Script from lint-staged Configuration
+
+  - **Type**: Refactor
+  - **Complexity**: Simple
+  - **Rationale**: The inline Node.js script for filtering out symlinks in markdown formatting is difficult to read, maintain, and debug directly within the JSON configuration file, making the lint-staged configuration more fragile.
+  - **Expected Outcome**: Node.js logic extracted into a dedicated script file with proper documentation, called from the `.lintstagedrc.json` rule for `*.md` files.
+  - **Dependencies**: None.
+
+- **[Ops]**: Remove Temporary Test/Verification File
+
+  - **Type**: Ops
+  - **Complexity**: Simple
+  - **Rationale**: Committing temporary files used for manual verification clutters the repository history unnecessarily. The verification steps are already documented in `TODO.md`.
+  - **Expected Outcome**: `test-commit-msg.txt` removed from the repository.
+  - **Dependencies**: None.
+
+- **[Refactor]**: Evaluate FormField Component Abstraction
+
+  - **Type**: Refactor
+  - **Complexity**: Simple
+  - **Rationale**: The `FormField` component uses an `isTextarea` boolean prop, which could become awkward if more field types are introduced. For only three fields of two types, the abstraction benefit is marginal.
+  - **Expected Outcome**: Evaluation of the current abstraction with recommendations for either maintaining it or creating more specialized field components if additional form types are needed.
+  - **Dependencies**: None.
+
+- **[Refactor]**: Simplify ESLint Scripts in package.json
+
+  - **Type**: Refactor
+  - **Complexity**: Simple
+  - **Rationale**: The explicit listing of all directories in the `lint` and `lint:fix` scripts is verbose and requires manual updates if new top-level source directories are added.
+  - **Expected Outcome**: Scripts simplified to use the current directory (`.`) with proper `ignorePatterns` in `eslint.config.mjs`.
+  - **Dependencies**: None.
+
+- **[Refactor]**: Review ESLint no-param-reassign Rule Exception
+
+  - **Type**: Refactor
+  - **Complexity**: Simple
+  - **Rationale**: Allowing direct mutation of parameters named "state" is a broad exception that could inadvertently permit direct state mutation in contexts where it's an anti-pattern.
+  - **Expected Outcome**: Exception made more specific by restricting it to files matching appropriate patterns, or documented explanation of why the broad exception is necessary.
+  - **Dependencies**: None.
 
 ### Design System & Aesthetics
 
