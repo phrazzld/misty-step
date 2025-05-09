@@ -179,7 +179,7 @@ describe('logger', () => {
       // Verify pino was called with the custom name
       expect(mockPino).toHaveBeenCalled();
       expect(mockPino.lastOptions.name).toBe('test-service');
-      expect(mockPino.lastOptions.base.service_name).toBe('test-service');
+      expect(mockPino.lastOptions.base?.service_name).toBe('test-service');
     });
 
     it('uses the same configuration approach regardless of environment', () => {
@@ -194,7 +194,7 @@ describe('logger', () => {
       // Compare key options (excluding transport)
       expect(devOptions.name).toEqual(prodOptions.name);
       expect(devOptions.level).toEqual(prodOptions.level);
-      expect(devOptions.base.service_name).toEqual(prodOptions.base.service_name);
+      expect(devOptions.base?.service_name).toEqual(prodOptions.base?.service_name);
 
       // But transport should be different
       expect(devOptions.transport).toBeDefined();
@@ -207,7 +207,7 @@ describe('logger', () => {
       // Test development environment
       createConfiguredLogger({ environment: 'development' });
       expect(mockPino.lastOptions.transport).toBeDefined();
-      expect(mockPino.lastOptions.transport.target).toBe('pino-pretty');
+      expect(mockPino.lastOptions.transport?.target).toBe('pino-pretty');
 
       // Test production environment
       mockPino.lastOptions = {}; // Reset

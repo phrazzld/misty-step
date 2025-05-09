@@ -265,7 +265,7 @@ This document outlines the specific tasks required to implement the core develop
     2. Commit and push changes to verify CI passes for this file
   - **Depends‑on:** none
 
-- [ ] **T020 · Bug · P0: Fix undefined property access in lib/logger.test.ts**
+- [x] **T020 · Bug · P0: Fix undefined property access in lib/logger.test.ts**
 
   - **Context:** CI is failing due to TypeScript errors from accessing potentially undefined properties
   - **Action:**
