@@ -6,14 +6,6 @@ This backlog outlines the planned work for the Misty Step website, balancing imm
 
 ### Foundation & Governance
 
-- **[Ops]**: Enforce Conventional Commits via Git Hooks (commitlint)
-
-  - **Type**: Enhancement
-  - **Complexity**: Simple
-  - **Rationale**: Ensures consistent commit history, enabling automated changelog generation and semantic versioning, aligning with Core Philosophy (Semantic Versioning).
-  - **Expected Outcome**: `commitlint` integrated with Husky `commit-msg` hook to validate commit messages against Conventional Commits standards. CI check also validates commit message format of PR titles/squashed commits.
-  - **Dependencies**: Configure Core Development Tooling.
-
 - **[Ops]**: Define and Enforce Specific Node.js LTS Version
 
   - **Type**: Enhancement
