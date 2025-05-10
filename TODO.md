@@ -45,7 +45,7 @@
     1. Review CI logs from `pnpm/action-setup` or add a temporary `pnpm --version` step to confirm `10.10.0` is used.
   - **Depends‑on:** none
 
-- [ ] **T004 · chore · P1: update CONTRIBUTING.md to specify pnpm version 10.10.0**
+- [x] **T004 · chore · P1: update CONTRIBUTING.md to specify pnpm version 10.10.0**
 
   - **Context:** Remediation Plan, cr-03 Standardize pnpm Version Specification and Usage, Step 4
   - **Action:**

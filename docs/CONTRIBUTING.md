@@ -25,7 +25,7 @@ Before you begin, ensure you have the following installed:
   - Run `nvm use` or `fnm use` in the project directory to switch to the correct version
   - To check your version: `node --version`
 
-- **pnpm** - Version 10 or higher (required)
+- **pnpm** - Version 10.10.0 (required)
 
   - Install globally: `npm install -g pnpm@latest`
   - Or use [Corepack](https://nodejs.org/api/corepack.html): `corepack enable && corepack prepare pnpm@latest --activate`
@@ -41,7 +41,7 @@ This project uses the `engines` field in `package.json` to define and enforce to
 ```json
 "engines": {
   "node": "22.15.0",
-  "pnpm": ">=10"
+  "pnpm": "10.10.0"
 }
 ```
 
