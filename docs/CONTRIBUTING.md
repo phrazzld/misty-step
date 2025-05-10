@@ -163,12 +163,116 @@ All commit messages must follow the [Conventional Commits](https://www.conventio
 [optional footer(s)]
 ```
 
-Example valid commit messages:
+#### Required Elements
 
-- `feat: add dark mode toggle`
-- `fix(navigation): correct header link paths`
-- `docs: update README with new setup instructions`
-- `chore: update dependencies`
+- **Type**: Describes the kind of change (see types below)
+- **Description**: A short, imperative tense description of the change
+  - Begin with a lowercase letter
+  - Do not end with a period
+  - Keep it under 100 characters
+  - Use imperative, present tense (e.g., "add" not "added" or "adds")
+
+#### Optional Elements
+
+- **Scope**: A noun describing the section of the codebase affected
+
+  - Must be one of the predefined scopes (see below)
+  - Should be lowercase
+  - Example: `feat(ui): add button component`
+
+- **Body**: Provides detailed explanatory text
+
+  - Separated from subject by a blank line
+  - Can consist of multiple paragraphs separated by blank lines
+  - Use to explain the motivation for the change
+  - Describe differences from previous behavior
+  - Use imperative, present tense
+
+- **Footer**: Metadata about the commit
+  - Breaking changes MUST be indicated with `BREAKING CHANGE:` prefix
+  - Reference issues that this commit closes with `Closes #123, #456`
+
+#### Allowed Types
+
+| Type       | Description                                                                        |
+| ---------- | ---------------------------------------------------------------------------------- |
+| `feat`     | A new feature                                                                      |
+| `fix`      | A bug fix                                                                          |
+| `docs`     | Documentation only changes                                                         |
+| `style`    | Changes that do not affect the meaning of the code (white-space, formatting, etc.) |
+| `refactor` | A code change that neither fixes a bug nor adds a feature                          |
+| `perf`     | A code change that improves performance                                            |
+| `test`     | Adding missing tests or correcting existing tests                                  |
+| `build`    | Changes to the build system or external dependencies                               |
+| `ci`       | Changes to CI configuration files and scripts                                      |
+| `chore`    | Other changes that don't modify src or test files                                  |
+| `revert`   | Reverts a previous commit                                                          |
+
+#### Allowed Scopes
+
+Scopes are used to provide additional context about the part of the codebase being modified:
+
+- `ui`: UI components and styling
+- `components`: React components
+- `docs`: Documentation
+- `lib`: Library code and utilities
+- `config`: Configuration files
+- `test`: Test-related changes
+- `ci`: CI-related changes
+- `deps`: Dependency updates
+- `app`: Application pages and routing
+
+#### Examples of Valid Commit Messages
+
+```
+feat(ui): add dark mode toggle button
+
+Implement a new button component that allows users to switch between light and dark themes.
+The button stores the preference in localStorage for persistence.
+
+Closes #123
+```
+
+```
+fix(components): correct header link paths
+
+The navigation links in the header were pointing to incorrect routes, causing 404 errors.
+```
+
+```
+docs: update README with new setup instructions
+
+Update the getting started guide with clearer instructions for the updated build process.
+```
+
+```
+chore(deps): update dependencies
+
+Update all non-major dependencies to their latest versions.
+```
+
+```
+refactor(lib): simplify contact form validation logic
+
+Refactor form validation to use the new schema-based approach, reducing code complexity.
+```
+
+```
+BREAKING CHANGE: rename user authentication props
+
+Change the naming convention for auth-related props to improve clarity.
+Anyone using these components will need to update their implementation.
+
+Before:
+<AuthForm userToken={token} />
+
+After:
+<AuthForm authToken={token} />
+```
+
+#### Commit Linting
+
+Our repository uses `commitlint` to automatically enforce these standards. Commits that do not match the format will be rejected. This ensures a clean, consistent commit history that can be used to generate changelogs and determine version bumps automatically.
 
 ### Pre-commit Workflow
 
