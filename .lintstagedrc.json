@@ -1,6 +1,7 @@
 {
   "*.{js,jsx,ts,tsx,mjs}": ["prettier --write", "eslint --fix"],
-  "*.{json,css,html}": ["prettier --write"],
+  "*.{json,css,html,yml,yaml}": ["prettier --write"],
+  ".storybook/**/*.{js,ts,tsx,css}": ["prettier --write", "eslint --fix"],
   "*.md": [
     "node -e \"const {execSync} = require('child_process'); const fs = require('fs'); const files = process.argv.slice(1); const nonSymlinks = files.filter(file => !fs.lstatSync(file).isSymbolicLink()); if (nonSymlinks.length) execSync('prettier --write ' + nonSymlinks.join(' '), {stdio: 'inherit'});\""
   ],

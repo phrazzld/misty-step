@@ -184,11 +184,29 @@ All checks must pass for pull requests to be merged.
 
 ## Documentation
 
-The project includes several important documentation files:
+This project follows a structured documentation approach with clearly defined locations for different types of documentation:
 
+### Documentation Structure
+
+- **README.md (Project Root)**: Serves as the primary entry point with project overview, setup instructions, and high-level documentation. This file provides the "big picture" and directs developers to more detailed documentation.
+
+- **docs/CONTRIBUTING.md**: Contains comprehensive guidelines for setting up the development environment, following the development workflow, and contributing to the project. This is the canonical location for contributor-focused documentation.
+
+- **docs/ Directory**: Houses specialized and detailed documentation:
+  - **Development Philosophy**: See `docs/DEVELOPMENT_PHILOSOPHY.md` and language-specific appendices for core development principles
+  - **Tool-Specific Guides**: See `docs/CONTRIBUTING-STORYBOOK.md` for Storybook contribution guidelines
+  - **Automation Tools**: See `docs/GLANCE-COMMAND.md` for information about the automated directory documentation tool
+
+### Key Documentation Files
+
+- **Contributing Guide**: See [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md) for detailed setup instructions and development workflow
 - **Development Philosophy**: See `docs/DEVELOPMENT_PHILOSOPHY.md` and language-specific appendices
 - **Storybook Contribution**: See `docs/CONTRIBUTING-STORYBOOK.md` for guidelines on creating stories
 - **Glance Documentation**: See `docs/GLANCE-COMMAND.md` for information about the automated directory documentation tool
+
+### Developer Tooling Documentation
+
+Developer tooling documentation (ESLint, Prettier, pre-commit hooks, etc.) is primarily located in [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md), with supporting information in this README.md under the [Code Quality](#code-quality) section.
 
 ## Storybook
 

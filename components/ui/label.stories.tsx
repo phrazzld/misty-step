@@ -272,7 +272,7 @@ export const WithHTMLContent: Story = {
           tooltip
         </span>{' '}
         and a{' '}
-        <a href="#" className="text-primary hover:underline">
+        <a href="https://example.com" className="text-primary hover:underline">
           link
         </a>
       </Label>

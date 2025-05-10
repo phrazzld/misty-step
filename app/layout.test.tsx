@@ -1,3 +1,4 @@
+import React, { isValidElement, ReactElement, ReactNode } from 'react';
 import { describe, it, expect, vi } from 'vitest';
 
 import { metadata, default as RootLayout } from './layout';
@@ -14,6 +15,17 @@ vi.mock('next/font/google', () => ({
     variable: '--font-geist-mono',
   }),
 }));
+
+// Type guard to narrow ReactNode to ReactElement
+function isReactElement(node: ReactNode): node is ReactElement {
+  return isValidElement(node);
+}
+
+// Define the type for the body props
+interface BodyProps {
+  className: string;
+  [key: string]: unknown;
+}
 
 describe('Layout', () => {
   it('has the correct metadata', () => {
@@ -42,13 +54,34 @@ describe('Layout', () => {
 
     // Verify that it's an html element
     expect(layout.type).toBe('html');
-    expect((layout.props as Record<string, any>).lang).toBe('en');
+
+    // Use a more specific type for props
+    interface HtmlElementProps {
+      lang: string;
+      children: React.ReactNode;
+      [key: string]: unknown;
+    }
+
+    expect((layout.props as HtmlElementProps).lang).toBe('en');
 
     // Verify that it contains a body element with children
-    const body = (layout.props as Record<string, any>).children;
-    expect(body.type).toBe('body');
-    expect(body.props.className).toContain('--font-geist-sans');
-    expect(body.props.className).toContain('--font-geist-mono');
-    expect(body.props.className).toContain('antialiased');
+    const body = (layout.props as HtmlElementProps).children;
+
+    // Add null check and type narrowing
+    expect(body).not.toBeNull();
+    expect(isReactElement(body)).toBe(true);
+
+    // Only access properties after type narrowing
+    if (isReactElement(body)) {
+      expect(body.type).toBe('body');
+
+      // Type assertion for body.props
+      const bodyProps = body.props as BodyProps;
+      expect(bodyProps.className).toContain('--font-geist-sans');
+      expect(bodyProps.className).toContain('--font-geist-mono');
+      expect(bodyProps.className).toContain('antialiased');
+    } else {
+      throw new Error('Expected body to be a React element');
+    }
   });
 });

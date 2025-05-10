@@ -282,7 +282,7 @@ export const IconButton: Story = {
 export const AsChild: Story = {
   args: {
     asChild: true,
-    children: <a href="#">Anchor Button</a>,
+    children: <a href="https://example.com">Anchor Button</a>,
   },
 };
 

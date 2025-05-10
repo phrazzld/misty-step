@@ -103,58 +103,31 @@ const eslintConfig = [
       reportUnusedDisableDirectives: true,
     },
   },
+];
 
-  /**
-   * Next.js configuration
-   *
-   * Includes React and JSX rules tailored for Next.js development
-   * Enforces core web vitals standards for performance
-   *
-   * @see https://nextjs.org/docs/basic-features/eslint
-   */
-  ...compat.extends('next/core-web-vitals'),
+// Add Next.js configuration
+const nextConfig = compat.extends('next/core-web-vitals');
+eslintConfig.push(...nextConfig);
 
-  /**
-   * TypeScript-specific rules
-   *
-   * Enforces type safety and best practices for TypeScript code
-   * Uses the recommended configuration from @typescript-eslint
-   *
-   * @see https://typescript-eslint.io/linting/configs
-   */
-  ...compat.extends('plugin:@typescript-eslint/recommended'),
+// Add TypeScript-specific rules
+const tsConfig = compat.extends('plugin:@typescript-eslint/recommended');
+eslintConfig.push(...tsConfig);
 
-  /**
-   * Accessibility rules for JSX
-   *
-   * Ensures components are accessible to users with disabilities
-   * Follows WCAG and other accessibility standards
-   *
-   * @see https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
-   */
-  ...compat.extends('plugin:jsx-a11y/recommended'),
+// Add accessibility rules for JSX
+const a11yConfig = compat.extends('plugin:jsx-a11y/recommended');
+eslintConfig.push(...a11yConfig);
 
-  /**
-   * Import organization rules
-   *
-   * Enforces consistent import ordering and prevents common import issues
-   * Includes TypeScript-specific import rules
-   *
-   * @see https://github.com/import-js/eslint-plugin-import
-   */
-  ...compat.extends('plugin:import/recommended'),
-  ...compat.extends('plugin:import/typescript'),
+// Add import organization rules
+const importConfig = compat.extends('plugin:import/recommended');
+const tsImportConfig = compat.extends('plugin:import/typescript');
+eslintConfig.push(...importConfig, ...tsImportConfig);
 
-  /**
-   * Prettier integration
-   *
-   * Turns off all ESLint rules that might conflict with Prettier
-   * Must be placed LAST in the extends array to properly override other configs
-   *
-   * @see https://github.com/prettier/eslint-config-prettier
-   */
-  ...compat.extends('prettier'),
+// Add Prettier integration
+const prettierConfig = compat.extends('prettier');
+eslintConfig.push(...prettierConfig);
 
+// Add custom project-specific rules
+eslintConfig.push({
   /**
    * Custom project-specific rules
    *
@@ -162,177 +135,256 @@ const eslintConfig = [
    * They supplement the extended configurations with additional requirements.
    * Organized by category for better maintainability.
    */
-  {
-    rules: {
-      /*** TypeScript Rules ***/
+  rules: {
+    /*** TypeScript Rules ***/
 
-      /**
-       * Forbids the use of the 'any' type to ensure proper type safety
-       * Forces developers to use proper typing or more specific types like 'unknown'
-       * @rationale Improves type safety and prevents type-related bugs
-       */
-      '@typescript-eslint/no-explicit-any': 'error',
+    /**
+     * Forbids the use of the 'any' type to ensure proper type safety
+     * Forces developers to use proper typing or more specific types like 'unknown'
+     * @rationale Improves type safety and prevents type-related bugs
+     */
+    '@typescript-eslint/no-explicit-any': 'error',
 
-      /**
-       * Prevents unused variables but allows intentionally unused variables with underscore prefix
-       * @example function calculateTotal(_unused, valueToUse) { return valueToUse * 2; }
-       * @rationale Reduces code clutter while allowing for API compatibility
-       */
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_', // Allows params prefixed with underscore
-          varsIgnorePattern: '^_', // Allows variables prefixed with underscore
-        },
-      ],
+    /**
+     * Prevents unused variables but allows intentionally unused variables with underscore prefix
+     * @example function calculateTotal(_unused, valueToUse) { return valueToUse * 2; }
+     * @rationale Reduces code clutter while allowing for API compatibility
+     */
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_', // Allows params prefixed with underscore
+        varsIgnorePattern: '^_', // Allows variables prefixed with underscore
+      },
+    ],
 
-      /**
-       * Disallows non-null assertions (the ! postfix operator)
-       * @example const name = user!.name; // Not allowed
-       * @rationale Encourages proper null checking and prevents runtime errors
-       */
-      '@typescript-eslint/no-non-null-assertion': 'error',
+    /**
+     * Disallows non-null assertions (the ! postfix operator)
+     * @example const name = user!.name; // Not allowed
+     * @rationale Encourages proper null checking and prevents runtime errors
+     */
+    '@typescript-eslint/no-non-null-assertion': 'error',
 
-      /**
-       * Enforces using 'interface' for type definitions instead of 'type'
-       * @rationale Provides more consistent code style and better supports declaration merging
-       */
-      '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+    /**
+     * Enforces using 'interface' for type definitions instead of 'type'
+     * @rationale Provides more consistent code style and better supports declaration merging
+     */
+    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
 
-      /**
-       * Prevents variable shadowing (redeclaring a variable in a child scope)
-       * @rationale Prevents confusing code and potential bugs from using wrong variable
-       */
-      '@typescript-eslint/no-shadow': 'error',
+    /**
+     * Prevents variable shadowing (redeclaring a variable in a child scope)
+     * @rationale Prevents confusing code and potential bugs from using wrong variable
+     */
+    '@typescript-eslint/no-shadow': 'error',
 
-      /*** Code Quality Rules ***/
+    /*** Code Quality Rules ***/
 
-      /**
-       * Forbids using console.log and other console methods
-       * @rationale Use the structured logger from lib/logger.ts instead for consistent logging
-       */
-      'no-console': 'error',
+    /**
+     * Forbids using console.log and other console methods
+     * @rationale Use the structured logger from lib/logger.ts instead for consistent logging
+     */
+    'no-console': 'error',
 
-      /**
-       * Prevents reassigning function parameters
-       * @rationale Enforces immutability and functional programming principles
-       */
-      'no-param-reassign': 'error',
+    /**
+     * Prefer const over let for variables that aren't reassigned
+     * @rationale Enforces immutability patterns as required by Development Philosophy
+     */
+    'prefer-const': 'error',
 
-      /*** React Rules ***/
+    /**
+     * Enforces PascalCase for React components and camelCase for non-component functions
+     * @rationale Consistent naming convention improves readability
+     */
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'function',
+        format: ['camelCase', 'PascalCase'],
+      },
+    ],
 
-      /**
-       * Enforces providing a unique 'key' prop in array iterations
-       * @rationale Necessary for React's reconciliation process and performance
-       */
-      'react/jsx-key': 'error',
+    /**
+     * Prevent direct mutation of objects passed as arguments
+     * @rationale Supports immutability principles from Development Philosophy
+     */
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: [
+          'acc',
+          'accumulator',
+          'e',
+          'event',
+          'ctx',
+          'context',
+          'req',
+          'request',
+          'res',
+          'response',
+          'state',
+        ],
+      },
+    ],
 
-      /**
-       * Validates the dependencies array in useEffect, useMemo, and useCallback hooks
-       * @rationale Prevents stale closures and ensures hooks run when dependencies change
-       */
-      'react-hooks/exhaustive-deps': 'error',
+    /**
+     * Disallow the use of var
+     * @rationale Encourages using const and let which have block scope, improving code clarity
+     */
+    'no-var': 'error',
 
-      /**
-       * Restricts binding in JSX attributes to prevent unnecessary re-renders
-       * @rationale Improves performance by preventing function recreation on each render
-       * @exception Allows arrow functions as they're often needed for passing parameters
-       */
-      'react/jsx-no-bind': [
-        'error',
-        {
-          allowArrowFunctions: true, // Allow arrow functions in JSX props
-          allowFunctions: false, // Don't allow regular function declarations
-        },
-      ],
+    /*** React Rules ***/
 
-      /**
-       * Prevents using array indices as React 'key' props
-       * @rationale Array indices can lead to incorrect component updates when items are reordered
-       */
-      'react/no-array-index-key': 'error',
+    /**
+     * Enforces providing a unique 'key' prop in array iterations
+     * @rationale Necessary for React's reconciliation process and performance
+     */
+    'react/jsx-key': 'error',
 
-      /**
-       * Requires self-closing for components without children
-       * @example <div /> instead of <div></div> when empty
-       * @rationale Improves code readability and reduces noise
-       */
-      'react/self-closing-comp': 'error',
+    /**
+     * Validates the dependencies array in useEffect, useMemo, and useCallback hooks
+     * @rationale Prevents stale closures and ensures hooks run when dependencies change
+     */
+    'react-hooks/exhaustive-deps': 'error',
 
-      /*** Code Structure Rules ***/
+    /**
+     * Restricts binding in JSX attributes to prevent unnecessary re-renders
+     * @rationale Improves performance by preventing function recreation on each render
+     * @exception Allows arrow functions as they're often needed for passing parameters
+     */
+    'react/jsx-no-bind': [
+      'error',
+      {
+        allowArrowFunctions: true, // Allow arrow functions in JSX props
+        allowFunctions: false, // Don't allow regular function declarations
+      },
+    ],
 
-      /**
-       * Warns when files exceed 500 lines (excludes blank lines and comments)
-       * @rationale Encourages modular code and better file organization
-       */
-      'max-lines': ['warn', { max: 500, skipBlankLines: true, skipComments: true }],
+    /**
+     * Prevents using array indices as React 'key' props
+     * @rationale Array indices can lead to incorrect component updates when items are reordered
+     */
+    'react/no-array-index-key': 'error',
 
-      /**
-       * Warns when functions exceed 75 lines (excludes blank lines and comments)
-       * @rationale Encourages smaller, more focused functions
-       */
-      'max-lines-per-function': ['warn', { max: 75, skipBlankLines: true, skipComments: true }],
+    /**
+     * Requires self-closing for components without children
+     * @example <div /> instead of <div></div> when empty
+     * @rationale Improves code readability and reduces noise
+     */
+    'react/self-closing-comp': 'error',
 
-      /**
-       * Warns when functions exceed a cyclomatic complexity of 10
-       * @rationale Discourages overly complex functions that are hard to test and maintain
-       */
-      complexity: ['warn', 10],
+    /*** Code Structure Rules ***/
 
-      /*** Import Rules ***/
+    /**
+     * Warns when files exceed 500 lines (excludes blank lines and comments)
+     * @rationale Encourages modular code and better file organization
+     */
+    'max-lines': ['warn', { max: 500, skipBlankLines: true, skipComments: true }],
 
-      /**
-       * Enforces consistent import ordering and grouping
-       * @rationale Provides consistent codebase and makes imports easier to scan
-       */
-      'import/order': [
-        'error',
-        {
-          // Group imports in this specific order
-          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-          'newlines-between': 'always', // Require newlines between import groups
-          alphabetize: { order: 'asc', caseInsensitive: true }, // Sort alphabetically
-        },
-      ],
+    /**
+     * Warns when functions exceed 75 lines (excludes blank lines and comments)
+     * @rationale Encourages smaller, more focused functions
+     */
+    'max-lines-per-function': ['warn', { max: 75, skipBlankLines: true, skipComments: true }],
 
-      /**
-       * Prevents importing the same module multiple times
-       * @rationale Reduces redundancy and potential confusion
-       */
-      'import/no-duplicates': 'error',
+    /**
+     * Warns when functions exceed a cyclomatic complexity of 10
+     * @rationale Discourages overly complex functions that are hard to test and maintain
+     */
+    complexity: ['warn', 10],
 
-      /**
-       * Ensures all imports appear at the top of the file
-       * @rationale Maintains consistent code organization and prevents hoisting issues
-       */
-      'import/first': 'error',
+    /*** Import Rules ***/
 
-      /*** Accessibility Rules ***/
+    /**
+     * Enforces consistent import ordering and grouping
+     * @rationale Provides consistent codebase and makes imports easier to scan
+     */
+    'import/order': [
+      'error',
+      {
+        // Group imports in this specific order
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        'newlines-between': 'always', // Require newlines between import groups
+        alphabetize: { order: 'asc', caseInsensitive: true }, // Sort alphabetically
+      },
+    ],
 
-      /**
-       * Ensures anchors have valid href attributes
-       * @rationale Required for proper accessibility and keyboard navigation
-       */
-      'jsx-a11y/anchor-is-valid': 'error',
+    /**
+     * Prevents importing the same module multiple times
+     * @rationale Reduces redundancy and potential confusion
+     */
+    'import/no-duplicates': 'error',
 
-      /**
-       * Ensures all images have alt text for screen readers
-       * @rationale Critical for accessibility compliance
-       */
-      'jsx-a11y/alt-text': 'error',
+    /**
+     * Ensures all imports appear at the top of the file
+     * @rationale Maintains consistent code organization and prevents hoisting issues
+     */
+    'import/first': 'error',
 
-      /*** Error Handling ***/
+    /*** Accessibility Rules ***/
 
-      /**
-       * Ensures only Error objects are thrown
-       * @example throw new Error('message') // Correct
-       * @example throw 'message' // Incorrect
-       * @rationale Enables proper stack traces and error handling
-       */
-      'no-throw-literal': 'error',
-    },
+    /**
+     * Ensures anchors have valid href attributes
+     * @rationale Required for proper accessibility and keyboard navigation
+     */
+    'jsx-a11y/anchor-is-valid': 'error',
+
+    /**
+     * Ensures all images have alt text for screen readers
+     * @rationale Critical for accessibility compliance
+     */
+    'jsx-a11y/alt-text': 'error',
+
+    /**
+     * Enforces that all form elements have proper labels
+     * @rationale Essential for screen reader users to identify form inputs
+     */
+    'jsx-a11y/label-has-associated-control': 'error',
+
+    /**
+     * Ensures ARIA roles are valid for elements
+     * @rationale Prevents incorrect ARIA usage that could mislead assistive technologies
+     */
+    'jsx-a11y/aria-role': 'error',
+
+    /**
+     * Enforces proper focus management for modals, dialogs, and popups
+     * @rationale Required for keyboard-only users to navigate and use modal interfaces
+     */
+    'jsx-a11y/no-noninteractive-element-interactions': 'error',
+
+    /**
+     * Ensures interactive elements are accessible to keyboard users
+     * @rationale Required for WCAG 2.1 AA compliance - keyboard accessibility
+     */
+    'jsx-a11y/interactive-supports-focus': 'error',
+
+    /**
+     * Prevents assigning click handlers to non-interactive elements without role
+     * @rationale Ensures all clickable elements are accessible to keyboard and screen reader users
+     */
+    'jsx-a11y/click-events-have-key-events': 'error',
+
+    /**
+     * Ensures heading elements (h1-h6) contain accessible content
+     * @rationale Required for proper document structure and navigation for screen reader users
+     */
+    'jsx-a11y/heading-has-content': 'error',
+
+    /*** Error Handling ***/
+
+    /**
+     * Ensures only Error objects are thrown
+     * @example throw new Error('message') // Correct
+     * @example throw 'message' // Incorrect
+     * @rationale Enables proper stack traces and error handling
+     */
+    'no-throw-literal': 'error',
   },
+});
 
+// Add test files overrides
+eslintConfig.push({
   /**
    * Test files overrides
    *
@@ -341,42 +393,50 @@ const eslintConfig = [
    *
    * @applies To all test files (*.test.ts, *.test.tsx, etc.) and files in test directories
    */
-  {
-    files: [
-      '**/*.test.ts', // Vitest test files
-      '**/*.test.tsx', // React component test files
-      '**/*.spec.ts', // Alternative test naming convention
-      '**/*.spec.tsx', // Alternative React test naming convention
-      '**/test/**/*.ts', // Files in test directories
-      '**/test/**/*.tsx', // React files in test directories
-    ],
-    rules: {
-      /**
-       * Relaxed to 'warn' for tests to allow for type flexibility in mocks and test data
-       * @rationale Test mocks often need flexibility that strict typing would impede
-       */
-      '@typescript-eslint/no-explicit-any': 'warn',
+  files: [
+    '**/*.test.ts', // Vitest test files
+    '**/*.test.tsx', // React component test files
+    '**/*.spec.ts', // Alternative test naming convention
+    '**/*.spec.tsx', // Alternative React test naming convention
+    '**/test/**/*.ts', // Files in test directories
+    '**/test/**/*.tsx', // React files in test directories
+  ],
+  rules: {
+    /**
+     * Relaxed to 'warn' for tests to allow for type flexibility in mocks and test data
+     * @rationale Test mocks often need flexibility that strict typing would impede
+     */
+    '@typescript-eslint/no-explicit-any': 'warn',
 
-      /**
-       * Disabled for test files as tests often contain large test suites
-       * @rationale Long test files are common and don't present the same maintenance challenges
-       */
-      'max-lines': 'off',
+    /**
+     * Disabled for test files as tests often contain large test suites
+     * @rationale Long test files are common and don't present the same maintenance challenges
+     */
+    'max-lines': 'off',
 
-      /**
-       * Disabled for test files to allow for comprehensive test cases
-       * @rationale Test functions often need to cover multiple scenarios in one test
-       */
-      'max-lines-per-function': 'off',
+    /**
+     * Disabled for test files to allow for comprehensive test cases
+     * @rationale Test functions often need to cover multiple scenarios in one test
+     */
+    'max-lines-per-function': 'off',
 
-      /**
-       * Allows multiple exports in test utility files
-       * @rationale Test utilities often export multiple related helper functions
-       */
-      'import/export': 'off',
-    },
+    /**
+     * Allows multiple exports in test utility files
+     * @rationale Test utilities often export multiple related helper functions
+     */
+    'import/export': 'off',
   },
+});
 
+// Add TypeScript files with type checking
+const typecheckingTsConfig = {
+  files: ['**/*.ts', '**/*.tsx'],
+  ...compat.extends('plugin:@typescript-eslint/recommended-requiring-type-checking')[0],
+};
+eslintConfig.push(typecheckingTsConfig);
+
+// Add Storybook stories overrides
+eslintConfig.push({
   /**
    * Storybook stories overrides
    *
@@ -386,40 +446,38 @@ const eslintConfig = [
    * @applies To all Storybook story files (*.stories.ts, *.stories.tsx)
    * @see https://storybook.js.org/docs/react/api/csf
    */
-  {
-    files: ['**/*.stories.ts', '**/*.stories.tsx'],
-    rules: {
-      /**
-       * Disabled for story files as they can contain many story variations
-       * @rationale Stories often contain multiple variations of a component
-       */
-      'max-lines': 'off',
+  files: ['**/*.stories.ts', '**/*.stories.tsx'],
+  rules: {
+    /**
+     * Disabled for story files as they can contain many story variations
+     * @rationale Stories often contain multiple variations of a component
+     */
+    'max-lines': 'off',
 
-      /**
-       * Disabled for story files to allow for complex story setups
-       * @rationale Story configuration and state management can be verbose
-       */
-      'max-lines-per-function': 'off',
+    /**
+     * Disabled for story files to allow for complex story setups
+     * @rationale Story configuration and state management can be verbose
+     */
+    'max-lines-per-function': 'off',
 
-      /**
-       * Disabled for stories which may have complex argument controls or decorators
-       * @rationale Stories often need complex setup code for demonstration purposes
-       */
-      complexity: 'off',
+    /**
+     * Disabled for stories which may have complex argument controls or decorators
+     * @rationale Stories often need complex setup code for demonstration purposes
+     */
+    complexity: 'off',
 
-      /**
-       * Relaxed to 'warn' for stories to ease development
-       * @rationale Stories focus on visual representation, not code quality enforcement
-       */
-      'react/self-closing-comp': 'warn',
+    /**
+     * Relaxed to 'warn' for stories to ease development
+     * @rationale Stories focus on visual representation, not code quality enforcement
+     */
+    'react/self-closing-comp': 'warn',
 
-      /**
-       * Relaxed to 'warn' for stories to allow for demonstration links
-       * @rationale Stories sometimes need placeholder links for demonstration
-       */
-      'jsx-a11y/anchor-is-valid': 'warn',
-    },
+    /**
+     * Relaxed to 'warn' for stories to allow for demonstration links
+     * @rationale Stories sometimes need placeholder links for demonstration
+     */
+    'jsx-a11y/anchor-is-valid': 'warn',
   },
-];
+});
 
 export default eslintConfig;
