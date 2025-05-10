@@ -19,7 +19,7 @@
     2. After changes, confirm that CI jobs requiring `devDependencies` (e.g., tests, linting, build in `ci.yml`) complete successfully.
   - **Depends‑on:** none
 
-- [ ] **T002 · chore · P1: standardize pnpm version in package.json to 10.10.0**
+- [x] **T002 · chore · P1: standardize pnpm version in package.json to 10.10.0**
 
   - **Context:** Remediation Plan, cr-03 Standardize pnpm Version Specification and Usage, Steps 1 & 2
   - **Action:**
