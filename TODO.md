@@ -32,7 +32,7 @@
     1. Inspect `package.json` to confirm the fields `packageManager` and `engines.pnpm` are correctly set.
   - **Depends‑on:** none
 
-- [ ] **T003 · chore · P1: update pnpm version to 10.10.0 in CI pnpm/action-setup**
+- [x] **T003 · chore · P1: update pnpm version to 10.10.0 in CI pnpm/action-setup**
 
   - **Context:** Remediation Plan, cr-03 Standardize pnpm Version Specification and Usage, Step 3
   - **Action:**
