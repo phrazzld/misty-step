@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Verify Node.js and pnpm versions match package.json#engines
+echo "Verifying Node.js and pnpm versions..."
+sh .github/scripts/verify-versions.sh
+
+# Run lint-staged if version check passes
 pnpm lint-staged

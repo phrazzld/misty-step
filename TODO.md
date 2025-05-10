@@ -98,7 +98,7 @@
     1. Temporarily modify a CI workflow to set up an incorrect Node.js or pnpm version. Trigger the workflow and verify it fails at the new version check step with an appropriate error message.
   - **Depends‑on:** [T002, T003, T006]
 
-- [ ] **T008 · feature · P1: implement pre-commit hook for local Node.js/pnpm version check**
+- [x] **T008 · feature · P1: implement pre-commit hook for local Node.js/pnpm version check**
 
   - **Context:** Remediation Plan, cr-01 Implement Strict Node.js & pnpm Version Enforcement, Step 4
   - **Action:**
