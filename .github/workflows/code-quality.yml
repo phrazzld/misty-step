@@ -20,13 +20,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '22.15.0'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 10
+          version: '10.10.0'
           run_install: false
+
+      - name: Verify Node.js and pnpm versions
+        run: |
+          chmod +x .github/scripts/verify-versions.sh
+          .github/scripts/verify-versions.sh
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -55,7 +60,7 @@ jobs:
         run: |
           echo "::group::Dependencies Installation"
           start_time=$(date +%s)
-          pnpm install --no-frozen-lockfile
+          pnpm install --frozen-lockfile
           end_time=$(date +%s)
           echo "::endgroup::"
           echo "INSTALL_TIME=$((end_time-start_time))" >> $GITHUB_OUTPUT
@@ -84,16 +89,21 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '22.15.0'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 10
+          version: '10.10.0'
           run_install: false
 
+      - name: Verify Node.js and pnpm versions
+        run: |
+          chmod +x .github/scripts/verify-versions.sh
+          .github/scripts/verify-versions.sh
+
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       # Validate PR title follows conventional commits
       - name: Validate PR title
