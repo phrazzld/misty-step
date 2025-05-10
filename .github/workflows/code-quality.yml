@@ -28,6 +28,11 @@ jobs:
           version: '10.10.0'
           run_install: false
 
+      - name: Verify Node.js and pnpm versions
+        run: |
+          chmod +x .github/scripts/verify-versions.sh
+          .github/scripts/verify-versions.sh
+
       - name: Get pnpm store directory
         id: pnpm-cache
         shell: bash
@@ -91,6 +96,11 @@ jobs:
         with:
           version: '10.10.0'
           run_install: false
+
+      - name: Verify Node.js and pnpm versions
+        run: |
+          chmod +x .github/scripts/verify-versions.sh
+          .github/scripts/verify-versions.sh
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

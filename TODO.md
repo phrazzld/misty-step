@@ -57,7 +57,7 @@
     1. Manually review `docs/CONTRIBUTING.md` to ensure the pnpm version requirement is clear and accurate.
   - **Depends‑on:** none
 
-- [ ] **T005 · chore · P1: verify .npmrc has engine-strict=true**
+- [x] **T005 · chore · P1: verify .npmrc has engine-strict=true**
 
   - **Context:** Remediation Plan, cr-01 Implement Strict Node.js & pnpm Version Enforcement, Step 1
   - **Action:**
@@ -71,7 +71,7 @@
     2. Switch to a non-matching pnpm version and run `pnpm install`. Verify it fails due to engine mismatch.
   - **Depends‑on:** [T002, T006]
 
-- [ ] **T006 · chore · P1: set exact Node.js version in package.json#engines.node**
+- [x] **T006 · chore · P1: set exact Node.js version in package.json#engines.node**
 
   - **Context:** Remediation Plan, cr-01 Implement Strict Node.js & pnpm Version Enforcement, Step 2
   - **Action:**
@@ -83,7 +83,7 @@
     1. Inspect `package.json` to confirm `engines.node` is set to the chosen exact version.
   - **Depends‑on:** none
 
-- [ ] **T007 · feature · P1: add Node.js/pnpm version verification script to CI workflows**
+- [x] **T007 · feature · P1: add Node.js/pnpm version verification script to CI workflows**
 
   - **Context:** Remediation Plan, cr-01 Implement Strict Node.js & pnpm Version Enforcement, Step 3
   - **Action:**
