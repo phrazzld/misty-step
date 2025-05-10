@@ -113,7 +113,7 @@
     2. Locally switch to a pnpm version different from `package.json#engines.pnpm`. Attempt to commit a change and verify the pre-commit hook blocks the commit.
   - **Depends‑on:** [T002, T006]
 
-- [ ] **T009 · chore · P2: align .nvmrc with package.json#engines.node**
+- [x] **T009 · chore · P2: align .nvmrc with package.json#engines.node**
   - **Context:** Remediation Plan, cr-01 Implement Strict Node.js & pnpm Version Enforcement (Done-When for `.nvmrc`)
   - **Action:**
     1. If an `.nvmrc` file is used, update its content to match the exact Node.js version specified in `package.json#engines.node`.
